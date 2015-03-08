@@ -70,16 +70,20 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.vb" />
     <Compile Include="Customer.vb" />
+    <Compile Include="DBUtil.vb" />
     <Compile Include="Employee.vb" />
     <Compile Include="Equipment.vb" />
-    <Compile Include="Form1.vb">
+    <Compile Include="GUI.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="GUI.Designer.vb">
+      <DependentUpon>GUI.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MailUtil.vb" />
+    <Compile Include="Model.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -97,8 +101,12 @@
     </Compile>
     <Compile Include="Order.vb" />
     <Compile Include="Person.vb" />
+    <Compile Include="Statistics.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="GUI.resx">
+      <DependentUpon>GUI.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
