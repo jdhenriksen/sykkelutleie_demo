@@ -71,15 +71,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.vb" />
+    <Compile Include="AccountTest2.Designer.vb">
+      <DependentUpon>AccountTest2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AccountTest2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Customer.vb" />
     <Compile Include="DBUtil.vb" />
     <Compile Include="Employee.vb" />
     <Compile Include="Equipment.vb" />
-    <Compile Include="GUI.vb">
+    <Compile Include="AccountTest.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI.Designer.vb">
-      <DependentUpon>GUI.vb</DependentUpon>
+    <Compile Include="AccountTest.Designer.vb">
+      <DependentUpon>AccountTest.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MailUtil.vb" />
@@ -104,8 +110,11 @@
     <Compile Include="Statistics.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GUI.resx">
-      <DependentUpon>GUI.vb</DependentUpon>
+    <EmbeddedResource Include="AccountTest.resx">
+      <DependentUpon>AccountTest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountTest2.resx">
+      <DependentUpon>AccountTest2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
