@@ -83,7 +83,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Customer.vb" />
-    <Compile Include="DBUtil.vb" />
+    <Compile Include="DBUtility.vb" />
     <Compile Include="Employee.vb" />
     <Compile Include="Equipment.vb" />
     <Compile Include="AccountTest.vb">
@@ -93,10 +93,10 @@
       <DependentUpon>AccountTest.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="DBTest.Designer.vb">
+      <DependentUpon>DBTest.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="DBTest.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MailUtil.vb" />
@@ -128,8 +128,8 @@
     <EmbeddedResource Include="AccountTest2.resx">
       <DependentUpon>AccountTest2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="DBTest.resx">
+      <DependentUpon>DBTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
