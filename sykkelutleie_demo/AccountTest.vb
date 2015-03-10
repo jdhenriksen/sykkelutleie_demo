@@ -14,7 +14,7 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnChangeUsername.Click
-        a1.uname = InputBox("Skriv inn nytt brukernavn")
+        a1.username = InputBox("Skriv inn nytt brukernavn")
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnChangePassword.Click

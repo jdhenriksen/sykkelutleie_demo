@@ -3,7 +3,7 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class Account
-    Private username As String
+    Public Property username As String
     Private password As String
 
     Sub New(username As String, password As String)
@@ -14,15 +14,6 @@ Public Class Account
             Me.password = "defPwd15"
         End If
     End Sub
-
-    Property uname() As String
-        Get
-            Return username
-        End Get
-        Set(username As String)
-            Me.username = username
-        End Set
-    End Property
 
     Property pwd() As String
         Get
