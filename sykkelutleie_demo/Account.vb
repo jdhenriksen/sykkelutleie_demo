@@ -15,26 +15,28 @@ Public Class Account
         End If
     End Sub
 
-    Public Function getUsername() As String
-        Return username
-    End Function
+    Property uname() As String
+        Get
+            Return username
+        End Get
+        Set(username As String)
+            Me.username = username
+        End Set
+    End Property
 
-    Public Function getPassword() As String
-        Return password
-    End Function
-
-    Public Sub setUsername(username As String)
-        Me.username = username
-    End Sub
-
-    Public Function setPassword(password As String) As Boolean
-        If validatePassword(password) Then
-            Me.password = password
-            'Skriv passord til database
-            Return True
-        End If
-        Return False
-    End Function
+    Property pwd() As String
+        Get
+            Return password
+        End Get
+        Set(password As String)
+            If validatePassword(password) Then
+                Me.password = password
+                'Skriv passord til database.
+            Else
+                password = "defPwd15"
+            End If
+        End Set
+    End Property
 
     Public Function login(username As String, password As String) As Boolean
         'hent brukernavn og passord fra database

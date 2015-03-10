@@ -1,7 +1,7 @@
 ﻿Public Class AccountTest
     Private a1 As Account
     Private Sub btnCreateAccount_Click(sender As Object, e As EventArgs) Handles btnCreateAccount.Click
-        a1 = New Account("bruker1", "bruker0001")
+        a1 = New Account(InputBox("Brukernavn:"), InputBox("Passord:"))
         MsgBox(a1.toString)
     End Sub
 
@@ -14,16 +14,11 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnChangeUsername.Click
-        a1.setUsername(InputBox("Nytt brukernavn:"))
-        MsgBox("Brukernavn endret.")
+        a1.uname = InputBox("Skriv inn nytt brukernavn")
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnChangePassword.Click
-        If Not a1.setPassword(InputBox("Nytt passord:")) Then
-            MsgBox("Passord for kort. Prøv igjen.")
-        Else
-            MsgBox("Passord endret.")
-        End If
+        a1.pwd = InputBox("Skriv inn nytt passord")
     End Sub
 
     Private Sub btnStatus_Click(sender As Object, e As EventArgs) Handles btnStatus.Click
