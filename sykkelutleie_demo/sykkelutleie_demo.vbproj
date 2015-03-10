@@ -118,6 +118,7 @@
     </Compile>
     <Compile Include="Order.vb" />
     <Compile Include="Person.vb" />
+    <Compile Include="SQLRes.vb" />
     <Compile Include="Statistics.vb" />
   </ItemGroup>
   <ItemGroup>
