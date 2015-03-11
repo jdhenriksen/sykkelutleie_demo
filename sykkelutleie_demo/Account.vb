@@ -4,24 +4,24 @@
 ''' <remarks></remarks>
 Public Class Account
     Public Property username As String
-    Private password As String
+    Private userPassword As String
 
     Sub New(username As String, password As String)
         Me.username = username
         If validatePassword(password) Then
-            Me.password = password
+            userPassword = password
         Else
-            Me.password = "defPwd15"
+            userPassword = "defPwd15"
         End If
     End Sub
 
-    Property pwd() As String
+    Property password() As String
         Get
-            Return password
+            Return userPassword
         End Get
         Set(password As String)
             If validatePassword(password) Then
-                Me.password = password
+                userPassword = password
                 'Skriv passord til database.
             Else
                 password = "defPwd15"
@@ -34,12 +34,8 @@ Public Class Account
         Return True
     End Function
 
-    Public Sub logout()
-        'Utloggingsfunksjonalitet
-    End Sub
-
     Public Overrides Function toString() As String
-        Return "Brukernavn: " & username & ", passord: " & password
+        Return "Brukernavn: " & username & ", passord: " & userPassword
     End Function
 
     ''' <summary>

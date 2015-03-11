@@ -23,22 +23,33 @@ Partial Class AccountTest2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.btnLogout = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(70, 46)
+        Me.Label1.Location = New System.Drawing.Point(95, 43)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(62, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Velkommen"
+        '
+        'btnLogout
+        '
+        Me.btnLogout.Location = New System.Drawing.Point(82, 107)
+        Me.btnLogout.Name = "btnLogout"
+        Me.btnLogout.Size = New System.Drawing.Size(75, 23)
+        Me.btnLogout.TabIndex = 1
+        Me.btnLogout.Text = "Logg ut"
+        Me.btnLogout.UseVisualStyleBackColor = True
         '
         'AccountTest2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 262)
+        Me.Controls.Add(Me.btnLogout)
         Me.Controls.Add(Me.Label1)
         Me.Name = "AccountTest2"
         Me.Text = "AccountTest2"
@@ -47,4 +58,5 @@ Partial Class AccountTest2
 
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents btnLogout As System.Windows.Forms.Button
 End Class

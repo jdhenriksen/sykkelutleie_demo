@@ -18,7 +18,7 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnChangePassword.Click
-        a1.pwd = InputBox("Skriv inn nytt passord")
+        a1.password = InputBox("Skriv inn nytt passord")
     End Sub
 
     Private Sub btnStatus_Click(sender As Object, e As EventArgs) Handles btnStatus.Click
