@@ -82,6 +82,12 @@
     <Compile Include="AccountTest2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AdminForm.Designer.vb">
+      <DependentUpon>AdminForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Customer.vb" />
     <Compile Include="DBUtility.vb" />
     <Compile Include="Employee.vb" />
@@ -120,6 +126,12 @@
     <Compile Include="Person.vb" />
     <Compile Include="SQLRes.vb" />
     <Compile Include="Statistics.vb" />
+    <Compile Include="StatisticsView.Designer.vb">
+      <DependentUpon>StatisticsView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticsView.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AccountTest.resx">
@@ -127,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AccountTest2.resx">
       <DependentUpon>AccountTest2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForm.resx">
+      <DependentUpon>AdminForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DBTest.resx">
       <DependentUpon>DBTest.vb</DependentUpon>
@@ -136,6 +151,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticsView.resx">
+      <DependentUpon>StatisticsView.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
