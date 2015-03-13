@@ -88,7 +88,7 @@
     <Compile Include="AdminForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customer.vb" />
+    <Compile Include="Bike.vb" />
     <Compile Include="DBUtility.vb" />
     <Compile Include="Employee.vb" />
     <Compile Include="EmployeeTest.Designer.vb">
@@ -135,6 +135,12 @@
     <Compile Include="StatisticsView.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="StorageWorker.Designer.vb">
+      <DependentUpon>StorageWorker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StorageWorker.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EmployeeTest.resx">
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StatisticsView.resx">
       <DependentUpon>StatisticsView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StorageWorker.resx">
+      <DependentUpon>StorageWorker.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

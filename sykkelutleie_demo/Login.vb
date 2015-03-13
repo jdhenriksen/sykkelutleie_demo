@@ -23,4 +23,11 @@
         Me.Hide()
         AccountTest.Show()
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnOpenStorageWorkerTest.Click
+
+        Me.Hide()
+        StorageWorker.Show()
+
+    End Sub
 End Class
