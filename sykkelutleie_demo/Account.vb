@@ -3,16 +3,18 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class Account
-    Public Property username As String
+    Private username As String
     Private userPassword As String
+    Private dbutil As DBUtility
 
     Sub New(username As String, password As String)
         Me.username = username
         If validatePassword(password) Then
             userPassword = password
         Else
-            userPassword = "defPwd15"
+            userPassword = "defaultPassword"
         End If
+        dbutil = New DBUtility
     End Sub
 
     Property password() As String
@@ -24,19 +26,11 @@ Public Class Account
                 userPassword = password
                 'Skriv passord til database.
             Else
-                password = "defPwd15"
+                password = "defaultPassword"
             End If
         End Set
     End Property
 
-    Public Function login(username As String, password As String) As Boolean
-        'hent brukernavn og passord fra database
-        Return True
-    End Function
-
-    Public Overrides Function toString() As String
-        Return "Brukernavn: " & username & ", passord: " & userPassword
-    End Function
 
     ''' <summary>
     ''' Hjelpemetode for å sjekke passord.
@@ -49,5 +43,9 @@ Public Class Account
             Return True
         End If
         Return False
+    End Function
+
+    Public Overrides Function toString() As String
+        Return "Brukernavn: " & username & vbCrLf & "Passord: " & password
     End Function
 End Class

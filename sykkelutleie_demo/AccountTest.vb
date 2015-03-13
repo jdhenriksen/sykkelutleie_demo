@@ -1,37 +1,47 @@
 ﻿Public Class AccountTest
-    Private a1 As Account
-    Private Sub btnCreateAccount_Click(sender As Object, e As EventArgs) Handles btnCreateAccount.Click
-        a1 = New Account(InputBox("Brukernavn:"), InputBox("Passord:"))
-        MsgBox(a1.toString)
+
+    Private dbutil As New DBUtility
+    Private sql As String
+    Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
+        Me.Close()
     End Sub
 
-    Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        Dim username = txtUsername.Text
-        Dim password = txtPassword.Text
-        If a1.login(username, password) Then
-            AccountTest2.Show()
+    Private Sub showAllEmployees()
+        sql = "SELECT * FROM ansatt"
+        Dim table As DataTable = dbutil.selectQuery(sql)
+        dgvAccount.DataSource = table
+    End Sub
+
+    Private Sub btnShowAllEmployees_Click(sender As Object, e As EventArgs) Handles btnShowAllEmployees.Click
+        showAllEmployees()
+    End Sub
+
+    Private Sub btnChangeUsername_Click(sender As Object, e As EventArgs) Handles btnChangeUsername.Click
+        Dim newName As String = InputBox("Gjør om brukernavn til:")
+        sql = "UPDATE ansatt SET brukernavn = '" & newName & "' WHERE ansattid > 1"
+        If dbutil.updateQuery(sql) Then
+            showAllEmployees()
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnChangeUsername.Click
-        a1.username = InputBox("Skriv inn nytt brukernavn")
+    Private Sub btnChangePassword_Click(sender As Object, e As EventArgs) Handles btnChangePassword.Click
+        Dim newPassword As String = InputBox("Endre passord til:")
+        sql = "UPDATE ansatt SET passord = '" & newPassword & "' WHERE ansattid > 1"
+        If dbutil.updateQuery(sql) Then
+            showAllEmployees()
+        End If
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnChangePassword.Click
-        a1.password = InputBox("Skriv inn nytt passord")
+    Private Sub dgvAccount_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvAccount.CellDoubleClick
+
+        Dim row As String = dgvAccount.CurrentCell.RowIndex
+        Dim col As String = dgvAccount.CurrentCell.ColumnIndex
+        MsgBox(row & ", " & col)
+        'Dim out As String = dgvAccount.Rows(row).Cells(col).Value
+        'MsgBox(out)
     End Sub
 
-    Private Sub btnStatus_Click(sender As Object, e As EventArgs) Handles btnStatus.Click
-        MsgBox(a1.toString)
-    End Sub
+    Private Sub btnCreateAccount_Click(sender As Object, e As EventArgs) Handles btnCreateAccount.Click
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        Me.Hide()
-        DBTest.Show()
-    End Sub
-
-    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
-        Me.Hide()
-        AdminForm.Show()
     End Sub
 End Class
