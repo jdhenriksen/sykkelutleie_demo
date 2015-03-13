@@ -49,10 +49,8 @@ Public Class DBUtility
             connection.Close()
         Catch ex As MySqlException
             errorMessage(ex)
-            connection.Dispose()
-            Return False
         Finally
-
+            connection.Dispose()
         End Try
 
         Return True

@@ -10,6 +10,7 @@
         lastname = ln
         setPhone(phone)
         setEmail(email)
+        active = 1
     End Sub
 
     'Testkonstruktør

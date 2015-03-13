@@ -8,7 +8,7 @@ Public Class StatisticsView
         Dim myStatistic As New Statistics
         Dim result As DataTable
 
-        result = myStatistic.generateStatistics(AdminForm.statisticsType, AdminForm.startDate, AdminForm.endDate)
+        result = myStatistic.generateStatistics(AdminForm.statisticsType, AdminForm.startDate, AdminForm.endDate, AdminForm.limitResult)
         If result.Rows.Count = 0 Then
             MsgBox("Ingen data ble funnet på valgt filter")
         End If
@@ -18,5 +18,5 @@ Public Class StatisticsView
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
     End Sub
-   
+
 End Class
