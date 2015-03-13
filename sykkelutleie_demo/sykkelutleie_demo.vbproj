@@ -89,6 +89,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Bike.vb" />
+    <Compile Include="Customer.vb" />
     <Compile Include="DBUtility.vb" />
     <Compile Include="Employee.vb" />
     <Compile Include="EmployeeTest.Designer.vb">
