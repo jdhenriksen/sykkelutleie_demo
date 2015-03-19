@@ -1,26 +1,36 @@
-﻿Public Class Bike
+﻿Public Class Bike 
     Private frameNumber As String
     Private status As String
     Private location As String
     Private placeOfOrigin As String
-    Private brakes As String
+    Private Property brakes As String
     Private tires As String
     Private frame As String
     Private gear As String
-    Private modellnavn As String
     Public model As Model
     Dim sqlstring As String
     Dim anySqlQuery As New DBUtility
     Dim myData As New DataTable
+    Dim svar As String
 
 
-
+    ''' <summary>
+    ''' Nytt bikeobject
+    ''' </summary>
+    ''' <param name="framenb"></param>
+    ''' <param name="stat"></param>
+    ''' <param name="loc"></param>
+    ''' <param name="placeorigin"></param>
+    ''' <param name="brake"></param>
+    ''' <param name="tire"></param>
+    ''' <param name="framename"></param>
+    ''' <param name="gearname"></param>
+    ''' <param name="modelobject"></param>
+    ''' <remarks>Tar i mot modellobjektet i tilegg til alle de andre parametere</remarks>
     Public Sub New(ByVal framenb As String, ByVal stat As String,
                     ByVal loc As String, ByVal placeorigin As String,
                     ByVal brake As String, ByVal tire As String,
-                    ByVal framename As String, ByVal gearname As String, ByVal mnavn As String)
-
-
+                    ByVal framename As String, ByVal gearname As String, ByRef modelobject As Object)
 
         frameNumber = framenb
         status = stat
@@ -30,134 +40,85 @@
         tires = tire
         frame = framename
         gear = gearname
-        modellnavn = mnavn
-    End Sub
+        model = modelobject
 
+    End Sub
+    ''' <summary>
+    ''' Ny sykkel
+    ''' </summary>
+    ''' <remarks>Hvis True altså utført får vi bekreftelse</remarks>
     Public Sub createBike()
-        sqlstring = "INSERT INTO sykkel (rammenr, status, lokasjon, utleiested, bremser, dekk, ramme, gir, modell) VALUES ('" & GetframeNumber() & "','" & GetStatus() & "','" & GetLocation() & "','" & GetPlaceOfOrigins() & "','" & GetBrakes() & "','" & GetTires() & "','" & GetFrame() & "','" & GetGear() & "','" & GetModel() & "')"
 
-        anySqlQuery.updateQuery(sqlstring)
+        sqlstring = "INSERT INTO sykkel (rammenr, status, lokasjon, utleiested, bremser, dekk, ramme, gir, modell) VALUES ('" & getFrameNumber() & "','" & getStatus() & "','" & getLocation() & "','" & getPlaceOfOrigins() & "','" & brakes & "','" & getTires() & "','" & getFrame() & "','" & getGear() & "','" & getModel() & "')"
 
-        StorageWorker.clear()
-
-
-
-    End Sub
-
-
-    Public Sub changeBike()
-
-        anySqlQuery.updateQuery("UPDATE sykkel SET status ='" & GetStatus() & "', lokasjon ='" & GetLocation() & "', utleiested='" & GetPlaceOfOrigins() & "', bremser='" & GetBrakes() & "', dekk= '" & GetTires() & "', ramme= '" & GetFrame() & "', gir ='" & GetGear() & "', modell ='" & GetModel() & "' WHERE rammenr ='" & GetframeNumber() & "'")
-        StorageWorker.clear()
-        StorageWorker.lock()
-        StorageWorker.Button4.Enabled = True
-        StorageWorker.Button5.Enabled = False
-    End Sub
-
-    Public Sub deleteBike()
-
-        anySqlQuery.updateQuery("DELETE FROM sykkel WHERE rammenr ='" & GetframeNumber() & "'")
-        StorageWorker.editFramenb.Clear()
-        StorageWorker.clear()
-        StorageWorker.lock()
+        svar = anySqlQuery.updateQuery(sqlstring)
+        If svar = "True" Then
+            MsgBox("Sykkel er opprettet")
+        End If
 
     End Sub
-
+    ''' <summary>
+    ''' Søk etter sykkel
+    ''' </summary>
+    ''' <remarks>Fyller datagridview for sykkel med reultater</remarks>
     Public Sub searchBike()
 
-        myData = anySqlQuery.selectQuery("SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE '%" & GetframeNumber() & "%') AND (modell LIKE '%" & GetModel() & "%') AND (status LIKE '" & GetStatus() & "%') AND (lokasjon LIKE '%" & GetLocation() & "%') AND (utleiested LIKE '%" & GetPlaceOfOrigins() & "%') AND (bremser LIKE '%" & GetBrakes() & "%') AND (dekk LIKE '%" & GetTires() & "%') AND (ramme LIKE '%" & GetFrame() & "%') AND (gir LIKE '%" & GetGear() & "%') AND (modell LIKE '%" & GetModel() & "%')")
+        myData = anySqlQuery.selectQuery("SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE '%" & getFrameNumber() & "%') AND (modell LIKE '%" & getModel() & "%') AND (status LIKE '" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%') AND (modell LIKE '%" & getModel() & "%')")
 
-        StorageWorker.DataGridView1.DataSource = myData
+        StorageWorker.dtgvBike.DataSource = myData
+
+    End Sub
+    ''' <summary>
+    ''' Endre Sykkel
+    ''' </summary>
+    ''' <remarks>oppdatering av sykkelinfo, alle bokser og felter oppdateres
+    ''' Hvis bekreftet svar= True så gir vi bekreftelse til bruker</remarks>
+    Public Sub changeBike()
+
+        svar = anySqlQuery.updateQuery("UPDATE sykkel SET status ='" & getStatus() & "', lokasjon ='" & getLocation() & "', utleiested='" & getPlaceOfOrigins() & "', bremser='" & brakes & "', dekk= '" & getTires() & "', ramme= '" & getFrame() & "', gir ='" & getGear() & "', modell ='" & getModel() & "' WHERE rammenr ='" & getFrameNumber() & "'")
+
+        If svar = "True" Then
+            MsgBox("Sykkel er oppdatert")
+        End If
+
+    End Sub
+    ''' <summary>
+    ''' Slette sykkel
+    ''' </summary>
+    ''' <remarks>Bruker også objectet, men trenger kun modellnavn
+    ''' Returnerer også svar i form av msgbox()</remarks>
+    Public Sub deleteBike()
+
+        svar = anySqlQuery.updateQuery("DELETE FROM sykkel WHERE rammenr ='" & getFrameNumber() & "'")
+        If svar = "True" Then
+            MsgBox("Sykkel ble slettet")
+        End If
 
     End Sub
 
-    Public Function GetframeNumber()
-
+    Public Function getFrameNumber()
         Return frameNumber
-
     End Function
-
-    Public Sub SetframeNumber(ByVal fnb As String)
-
-    End Sub
-
-
-    Public Function GetStatus()
-
+    Public Function getStatus()
         Return status
-
     End Function
-
-    Public Sub SetStatus(ByVal s As String)
-
-    End Sub
-
-    Public Function GetLocation()
-
+    Public Function getLocation()
         Return location
-
     End Function
-
-    Public Sub SetLocation(ByVal l As String)
-
-    End Sub
-
-    Public Function GetPlaceOfOrigins()
-
+    Public Function getPlaceOfOrigins()
         Return placeOfOrigin
-
     End Function
-
-    Public Sub SetPlaceOfOrigins(ByVal p As String)
-
-    End Sub
-
-    Public Function GetBrakes()
-
-        Return brakes
-
-    End Function
-
-    Public Sub SetBrakes(ByVal b As String)
-
-    End Sub
-
-    Public Function GetTires()
-
+    Public Function getTires()
         Return tires
-
     End Function
-
-    Public Sub SetTires(ByVal t As String)
-
-    End Sub
-
-    Public Function GetFrame()
-
+    Public Function getFrame()
         Return frame
-
     End Function
-
-    Public Sub SetFrame(ByVal f As String)
-
-    End Sub
-
-    Public Function GetGear()
-
+    Public Function getGear()
         Return gear
-
+    End Function
+    Public Function getModel()
+        Return model.getModel()
     End Function
 
-    Public Sub SetGear(ByVal g As String)
-
-    End Sub
-
-    Public Function GetModel()
-        Return modellnavn
-    End Function
-
-    Public Sub SetModel()
-
-    End Sub
 End Class
-
