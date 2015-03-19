@@ -30,4 +30,10 @@
         StorageWorker.Show()
 
     End Sub
+
+    Private Sub btnOpenMailTest_Click(sender As Object, e As EventArgs) Handles btnOpenMailTest.Click
+        Me.Hide()
+        MailTest.Show()
+    End Sub
+
 End Class

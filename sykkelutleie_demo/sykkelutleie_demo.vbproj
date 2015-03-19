@@ -89,6 +89,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Bike.vb" />
+    <Compile Include="Customer.vb" />
     <Compile Include="DBUtility.vb" />
     <Compile Include="Employee.vb" />
     <Compile Include="EmployeeTest.Designer.vb">
@@ -110,6 +111,19 @@
     <Compile Include="DBTest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="mailLogin.Designer.vb">
+      <DependentUpon>mailLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="mailLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MailTest.Designer.vb">
+      <DependentUpon>MailTest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MailTest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MailUtility.vb" />
     <Compile Include="Model.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -157,6 +171,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DBTest.resx">
       <DependentUpon>DBTest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mailLogin.resx">
+      <DependentUpon>mailLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MailTest.resx">
+      <DependentUpon>MailTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

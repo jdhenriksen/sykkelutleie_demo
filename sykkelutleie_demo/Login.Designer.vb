@@ -33,31 +33,29 @@ Partial Class Login
         Me.btnOpenStorageWorkerTest = New System.Windows.Forms.Button()
         Me.btnOpenAccountTest = New System.Windows.Forms.Button()
         Me.btnOpenEmployeeTest = New System.Windows.Forms.Button()
+        Me.btnOpenMailTest = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtUsername
         '
-        Me.txtUsername.Location = New System.Drawing.Point(107, 23)
-        Me.txtUsername.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtUsername.Location = New System.Drawing.Point(80, 19)
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(171, 22)
+        Me.txtUsername.Size = New System.Drawing.Size(129, 20)
         Me.txtUsername.TabIndex = 0
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(107, 55)
-        Me.txtPassword.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtPassword.Location = New System.Drawing.Point(80, 45)
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.Size = New System.Drawing.Size(171, 22)
+        Me.txtPassword.Size = New System.Drawing.Size(129, 20)
         Me.txtPassword.TabIndex = 1
         '
         'btnLogin
         '
-        Me.btnLogin.Location = New System.Drawing.Point(179, 100)
-        Me.btnLogin.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnLogin.Location = New System.Drawing.Point(134, 81)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(100, 28)
+        Me.btnLogin.Size = New System.Drawing.Size(75, 23)
         Me.btnLogin.TabIndex = 2
         Me.btnLogin.Text = "Logg inn"
         Me.btnLogin.UseVisualStyleBackColor = True
@@ -65,100 +63,103 @@ Partial Class Login
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(16, 23)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(12, 19)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(81, 17)
+        Me.Label1.Size = New System.Drawing.Size(62, 13)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Brukernavn"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(16, 59)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(12, 48)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(60, 17)
+        Me.Label2.Size = New System.Drawing.Size(45, 13)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "Passord"
         '
         'btnOpenDatabaseTest
         '
-        Me.btnOpenDatabaseTest.Location = New System.Drawing.Point(23, 25)
-        Me.btnOpenDatabaseTest.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnOpenDatabaseTest.Location = New System.Drawing.Point(17, 20)
         Me.btnOpenDatabaseTest.Name = "btnOpenDatabaseTest"
-        Me.btnOpenDatabaseTest.Size = New System.Drawing.Size(171, 36)
+        Me.btnOpenDatabaseTest.Size = New System.Drawing.Size(128, 29)
         Me.btnOpenDatabaseTest.TabIndex = 9
         Me.btnOpenDatabaseTest.Text = "Database Test"
         Me.btnOpenDatabaseTest.UseVisualStyleBackColor = True
         '
         'btnOpenAdminForm
         '
-        Me.btnOpenAdminForm.Location = New System.Drawing.Point(23, 68)
-        Me.btnOpenAdminForm.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnOpenAdminForm.Location = New System.Drawing.Point(17, 55)
         Me.btnOpenAdminForm.Name = "btnOpenAdminForm"
-        Me.btnOpenAdminForm.Size = New System.Drawing.Size(171, 30)
+        Me.btnOpenAdminForm.Size = New System.Drawing.Size(128, 24)
         Me.btnOpenAdminForm.TabIndex = 10
         Me.btnOpenAdminForm.Text = "AdminForm"
         Me.btnOpenAdminForm.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.btnOpenMailTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenStorageWorkerTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenAccountTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenEmployeeTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenAdminForm)
         Me.GroupBox2.Controls.Add(Me.btnOpenDatabaseTest)
-        Me.GroupBox2.Location = New System.Drawing.Point(333, 15)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4)
+        Me.GroupBox2.Location = New System.Drawing.Point(250, 12)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox2.Size = New System.Drawing.Size(667, 353)
+        Me.GroupBox2.Size = New System.Drawing.Size(500, 287)
         Me.GroupBox2.TabIndex = 12
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "TestArea"
         '
         'btnOpenStorageWorkerTest
         '
-        Me.btnOpenStorageWorkerTest.Location = New System.Drawing.Point(23, 176)
+        Me.btnOpenStorageWorkerTest.Location = New System.Drawing.Point(17, 143)
+        Me.btnOpenStorageWorkerTest.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnOpenStorageWorkerTest.Name = "btnOpenStorageWorkerTest"
-        Me.btnOpenStorageWorkerTest.Size = New System.Drawing.Size(171, 43)
+        Me.btnOpenStorageWorkerTest.Size = New System.Drawing.Size(128, 35)
         Me.btnOpenStorageWorkerTest.TabIndex = 13
         Me.btnOpenStorageWorkerTest.Text = "StorageWorker"
         Me.btnOpenStorageWorkerTest.UseVisualStyleBackColor = True
         '
         'btnOpenAccountTest
         '
-        Me.btnOpenAccountTest.Location = New System.Drawing.Point(23, 140)
-        Me.btnOpenAccountTest.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnOpenAccountTest.Location = New System.Drawing.Point(17, 114)
         Me.btnOpenAccountTest.Name = "btnOpenAccountTest"
-        Me.btnOpenAccountTest.Size = New System.Drawing.Size(171, 28)
+        Me.btnOpenAccountTest.Size = New System.Drawing.Size(128, 23)
         Me.btnOpenAccountTest.TabIndex = 12
         Me.btnOpenAccountTest.Text = "AccountTest"
         Me.btnOpenAccountTest.UseVisualStyleBackColor = True
         '
         'btnOpenEmployeeTest
         '
-        Me.btnOpenEmployeeTest.Location = New System.Drawing.Point(23, 105)
-        Me.btnOpenEmployeeTest.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnOpenEmployeeTest.Location = New System.Drawing.Point(17, 85)
         Me.btnOpenEmployeeTest.Name = "btnOpenEmployeeTest"
-        Me.btnOpenEmployeeTest.Size = New System.Drawing.Size(171, 28)
+        Me.btnOpenEmployeeTest.Size = New System.Drawing.Size(128, 23)
         Me.btnOpenEmployeeTest.TabIndex = 11
         Me.btnOpenEmployeeTest.Text = "EmployeeTest"
         Me.btnOpenEmployeeTest.UseVisualStyleBackColor = True
         '
+        'btnOpenMailTest
+        '
+        Me.btnOpenMailTest.Location = New System.Drawing.Point(17, 182)
+        Me.btnOpenMailTest.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnOpenMailTest.Name = "btnOpenMailTest"
+        Me.btnOpenMailTest.Size = New System.Drawing.Size(128, 35)
+        Me.btnOpenMailTest.TabIndex = 15
+        Me.btnOpenMailTest.Text = "Mail Test"
+        Me.btnOpenMailTest.UseVisualStyleBackColor = True
+        '
         'Login
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1060, 572)
+        Me.ClientSize = New System.Drawing.Size(795, 465)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnLogin)
         Me.Controls.Add(Me.txtPassword)
         Me.Controls.Add(Me.txtUsername)
         Me.Controls.Add(Me.GroupBox2)
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Login"
         Me.Text = "Login"
         Me.GroupBox2.ResumeLayout(False)
@@ -177,5 +178,6 @@ Partial Class Login
     Friend WithEvents btnOpenEmployeeTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenAccountTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenStorageWorkerTest As System.Windows.Forms.Button
+    Friend WithEvents btnOpenMailTest As System.Windows.Forms.Button
 
 End Class
