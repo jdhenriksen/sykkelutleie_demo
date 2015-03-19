@@ -3,7 +3,10 @@
     Private lastname As String
     Private phone As String
     Private email As String
-    Private active As Integer 'Utelatt fra konstruktør for testing.
+    Private active As Integer
+    'Private type As Person ---> Identifiserer om objektet er Employee eller Customer
+    Private argException As ArgumentOutOfRangeException 'TEST
+    Private dbutil As DBUtility
 
     Sub New(fn As String, ln As String, phone As String, email As String)
         firstname = fn
@@ -11,6 +14,7 @@
         setPhone(phone)
         setEmail(email)
         active = 1
+        dbutil = New DBUtility
     End Sub
 
     'Testkonstruktør
@@ -20,6 +24,7 @@
         phone = "11221122"
         email = "testperson@test.net"
         active = 1
+        dbutil = New DBUtility
     End Sub
 
     Public Function getFirstname() As String
@@ -46,7 +51,9 @@
         If IsNumeric(phone) And phone.Trim.Length = 8 Then
             Me.phone = phone
         Else
-            MsgBox("Ugylding telefonnummer.")
+            'argException = New ArgumentOutOfRangeException("phone", "Telefonnummer må være et tall på 8 tegn.")
+            'Throw argException
+            MsgBox("Telefonnummer er ugyldig.")
         End If
     End Sub
 
@@ -67,8 +74,12 @@
     End Function
 
     Public Sub setActive(active As Integer)
-        If active = 0 Or active = 1 Then
+        If active = 0 Then
             Me.active = active
+        ElseIf active = 1 Then
+            Me.active = active
+        Else
+            MsgBox("Aktivert kan kun være 1 eller 0.")
         End If
     End Sub
 

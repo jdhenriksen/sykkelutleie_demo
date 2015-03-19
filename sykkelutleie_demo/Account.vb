@@ -1,30 +1,38 @@
-﻿''' <summary>
+﻿Imports System.Text
+Imports System.Security.Cryptography
+
+''' <summary>
 ''' Klasse for å administrere kontoinformasjon. Knyttes til en ansatt i systemet.
 ''' </summary>
 ''' <remarks></remarks>
+
 Public Class Account
     Private username As String
-    Private userPassword As String
+    Private pwdHash As String
     Private dbutil As DBUtility
 
     Sub New(username As String, password As String)
         Me.username = username
-        If validatePassword(password) Then
-            userPassword = password
-        Else
-            userPassword = "defaultPassword"
-        End If
+        Me.password = password
         dbutil = New DBUtility
+    End Sub
+
+    Public Function getUsername() As String
+        Return username
+    End Function
+
+    Public Sub setUsername(name As String)
+        username = name
     End Sub
 
     Property password() As String
         Get
-            Return userPassword
+            Return pwdHash
         End Get
         Set(password As String)
             If validatePassword(password) Then
-                userPassword = password
-                'Skriv passord til database.
+                pwdHash = generateHash(password)
+                'Skriv passord/hash til database.
             Else
                 password = "defaultPassword"
             End If
@@ -45,7 +53,26 @@ Public Class Account
         Return False
     End Function
 
+    ''' <summary>
+    ''' Hjelpefunksjon for å lage hash til passord.
+    ''' </summary>
+    ''' <param name="password">Passord som skal hashes.</param>
+    ''' <returns>Hashverdi basert på passord (MD5)</returns>
+    ''' <remarks></remarks>
+    Private Function generateHash(password As String) As String
+        'Create encoding object to ensure encoding standard
+        Dim encoding As New UnicodeEncoding()
+        'Retrieve byte array based on source text
+        Dim byteSourceText() As Byte = encoding.GetBytes(password)
+        'Instantiate MD5 Provider Object
+        Dim md5 As New MD5CryptoServiceProvider()
+        'Compute hash
+        Dim byteHash() As Byte = md5.ComputeHash(byteSourceText)
+        'Convert to String
+        Return Convert.ToBase64String(byteHash)
+    End Function
+
     Public Overrides Function toString() As String
-        Return "Brukernavn: " & username & vbCrLf & "Passord: " & password
+        Return "Brukernavn: " & username & vbCrLf & "Passord: " & pwdHash
     End Function
 End Class
