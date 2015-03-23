@@ -1,4 +1,4 @@
-﻿Public Class Bike
+﻿Public Class Bike 
     Private frameNumber As String
     Private status As String
     Private location As String
@@ -41,10 +41,6 @@
         frame = framename
         gear = gearname
         model = modelobject
-
-    End Sub
-
-    Public Sub New()
 
     End Sub
     ''' <summary>
@@ -120,10 +116,13 @@
     Public Function getGear()
         Return gear
     End Function
+    Public Function getModel()
+        Return model.getModel()
+    End Function
 
-    Public Function getModel(Optional ByVal framenb As String = "")
+    Public Function getModelname(Optional ByVal framenb As String = "")
         If framenb = "" Then
-            Return model.getModel()
+            Return model.getModel
         Else
 
             myData = anySqlQuery.selectQuery("SELECT modell FROM sykkel WHERE rammenr = '" & framenb & "'")
