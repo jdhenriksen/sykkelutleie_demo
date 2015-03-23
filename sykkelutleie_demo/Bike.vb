@@ -1,4 +1,4 @@
-﻿Public Class Bike 
+﻿Public Class Bike
     Private frameNumber As String
     Private status As String
     Private location As String
@@ -49,7 +49,7 @@
     ''' <remarks>Hvis True altså utført får vi bekreftelse</remarks>
     Public Sub createBike()
 
-        sqlstring = "INSERT INTO sykkel (rammenr, status, lokasjon, utleiested, bremser, dekk, ramme, gir, modell) VALUES ('" & getFrameNumber() & "','" & getStatus() & "','" & getLocation() & "','" & getPlaceOfOrigins() & "','" & brakes & "','" & getTires() & "','" & getFrame() & "','" & getGear() & "','" & getModel() & "')"
+        sqlstring = "INSERT INTO sykkel (rammenr, status, lokasjon, utleiested, bremser, dekk, ramme, gir, modell) VALUES ('" & frameNumber & "','" & getStatus() & "','" & getLocation() & "','" & getPlaceOfOrigins() & "','" & brakes & "','" & getTires() & "','" & getFrame() & "','" & getGear() & "','" & getModel() & "')"
 
         svar = anySqlQuery.updateQuery(sqlstring)
         If svar = "True" Then
@@ -63,7 +63,7 @@
     ''' <remarks>Fyller datagridview for sykkel med reultater</remarks>
     Public Sub searchBike()
 
-        myData = anySqlQuery.selectQuery("SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE '%" & getFrameNumber() & "%') AND (modell LIKE '%" & getModel() & "%') AND (status LIKE '" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%') AND (modell LIKE '%" & getModel() & "%')")
+        myData = anySqlQuery.selectQuery("SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE '%" & frameNumber & "%') AND (modell LIKE '%" & getModel() & "%') AND (status LIKE '" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%') AND (modell LIKE '%" & getModel() & "%')")
 
         StorageWorker.dtgvBike.DataSource = myData
 
@@ -75,7 +75,7 @@
     ''' Hvis bekreftet svar= True så gir vi bekreftelse til bruker</remarks>
     Public Sub changeBike()
 
-        svar = anySqlQuery.updateQuery("UPDATE sykkel SET status ='" & getStatus() & "', lokasjon ='" & getLocation() & "', utleiested='" & getPlaceOfOrigins() & "', bremser='" & brakes & "', dekk= '" & getTires() & "', ramme= '" & getFrame() & "', gir ='" & getGear() & "', modell ='" & getModel() & "' WHERE rammenr ='" & getFrameNumber() & "'")
+        svar = anySqlQuery.updateQuery("UPDATE sykkel SET status ='" & getStatus() & "', lokasjon ='" & getLocation() & "', utleiested='" & getPlaceOfOrigins() & "', bremser='" & brakes & "', dekk= '" & getTires() & "', ramme= '" & getFrame() & "', gir ='" & getGear() & "', modell ='" & getModel() & "' WHERE rammenr ='" & frameNumber & "'")
 
         If svar = "True" Then
             MsgBox("Sykkel er oppdatert")
@@ -89,13 +89,12 @@
     ''' Returnerer også svar i form av msgbox()</remarks>
     Public Sub deleteBike()
 
-        svar = anySqlQuery.updateQuery("DELETE FROM sykkel WHERE rammenr ='" & getFrameNumber() & "'")
+        svar = anySqlQuery.updateQuery("DELETE FROM sykkel WHERE rammenr ='" & frameNumber & "'")
         If svar = "True" Then
             MsgBox("Sykkel ble slettet")
         End If
 
     End Sub
-
     Public Function getFrameNumber()
         Return frameNumber
     End Function
@@ -121,4 +120,57 @@
         Return model.getModel()
     End Function
 
+    Public Function getModelname(Optional ByVal framenb As String = "")
+        If framenb = "" Then
+            Return model.getModel
+        Else
+
+            myData = anySqlQuery.selectQuery("SELECT modell FROM sykkel WHERE rammenr = '" & framenb & "'")
+            svar = myData.Rows(0)(0).ToString()
+            Return svar
+        End If
+
+    End Function
+
+    Public Function getPrice(Optional ByVal framenb As String = "")
+        If framenb = "" Then
+            Return model.getPrice
+        Else
+            myData = anySqlQuery.selectQuery("SELECT modell FROM sykkel WHERE rammenr = '" & framenb & "'")
+            Dim modellnavn As String = myData.Rows(0)(0).ToString()
+
+            myData = anySqlQuery.selectQuery("SELECT pris FROM modell WHERE modell = '" & modellnavn & "'")
+            svar = myData.Rows(0)(0).ToString()
+            Return svar
+        End If
+
+    End Function
+
+    Public Function getProducer(Optional ByVal framenb As String = "")
+        If framenb = "" Then
+            Return model.getProducer
+        Else
+            myData = anySqlQuery.selectQuery("SELECT modell FROM sykkel WHERE rammenr = '" & framenb & "'")
+            Dim modellnavn As String = myData.Rows(0)(0).ToString()
+
+            myData = anySqlQuery.selectQuery("SELECT produsent FROM modell WHERE modell = '" & modellnavn & "'")
+            svar = myData.Rows(0)(0).ToString()
+            Return svar
+        End If
+
+    End Function
+
+    Public Function getCategory(Optional ByVal framenb As String = "")
+        If framenb = "" Then
+            Return model.getCategory
+        Else
+            myData = anySqlQuery.selectQuery("SELECT modell FROM sykkel WHERE rammenr = '" & framenb & "'")
+            Dim modellnavn As String = myData.Rows(0)(0).ToString()
+
+            myData = anySqlQuery.selectQuery("SELECT kategori FROM modell WHERE modell = '" & modellnavn & "'")
+            svar = myData.Rows(0)(0).ToString()
+            Return svar
+        End If
+
+    End Function
 End Class
