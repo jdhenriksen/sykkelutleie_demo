@@ -22,7 +22,6 @@ Partial Class EmployeeTest
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.rtbEmployeeTest = New System.Windows.Forms.RichTextBox()
         Me.dgvEmployeeTest = New System.Windows.Forms.DataGridView()
         Me.txtEmpFirstname = New System.Windows.Forms.TextBox()
         Me.txtEmpLastname = New System.Windows.Forms.TextBox()
@@ -38,33 +37,22 @@ Partial Class EmployeeTest
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.btnCreateEmployee = New System.Windows.Forms.Button()
         Me.btnInsertEmployee = New System.Windows.Forms.Button()
         Me.btnSelectAllEmployees = New System.Windows.Forms.Button()
         Me.btnSearchForEmpById = New System.Windows.Forms.Button()
         Me.txtEmpId = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.btnActiveTest = New System.Windows.Forms.Button()
-        Me.btnSetActiveToZero = New System.Windows.Forms.Button()
-        Me.btnSendInfoToTxt = New System.Windows.Forms.Button()
         Me.btnUpdateEmp = New System.Windows.Forms.Button()
+        Me.btnDeleteEmp = New System.Windows.Forms.Button()
         CType(Me.dgvEmployeeTest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'rtbEmployeeTest
-        '
-        Me.rtbEmployeeTest.Location = New System.Drawing.Point(248, 12)
-        Me.rtbEmployeeTest.Name = "rtbEmployeeTest"
-        Me.rtbEmployeeTest.Size = New System.Drawing.Size(212, 298)
-        Me.rtbEmployeeTest.TabIndex = 0
-        Me.rtbEmployeeTest.Text = ""
         '
         'dgvEmployeeTest
         '
         Me.dgvEmployeeTest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvEmployeeTest.Location = New System.Drawing.Point(572, 12)
+        Me.dgvEmployeeTest.Location = New System.Drawing.Point(294, 12)
         Me.dgvEmployeeTest.Name = "dgvEmployeeTest"
-        Me.dgvEmployeeTest.Size = New System.Drawing.Size(288, 310)
+        Me.dgvEmployeeTest.Size = New System.Drawing.Size(566, 310)
         Me.dgvEmployeeTest.TabIndex = 1
         '
         'txtEmpFirstname
@@ -179,27 +167,18 @@ Partial Class EmployeeTest
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Passord:"
         '
-        'btnCreateEmployee
-        '
-        Me.btnCreateEmployee.Location = New System.Drawing.Point(378, 318)
-        Me.btnCreateEmployee.Name = "btnCreateEmployee"
-        Me.btnCreateEmployee.Size = New System.Drawing.Size(82, 23)
-        Me.btnCreateEmployee.TabIndex = 16
-        Me.btnCreateEmployee.Text = "Opprett ansatt"
-        Me.btnCreateEmployee.UseVisualStyleBackColor = True
-        '
         'btnInsertEmployee
         '
-        Me.btnInsertEmployee.Location = New System.Drawing.Point(160, 318)
+        Me.btnInsertEmployee.Location = New System.Drawing.Point(18, 328)
         Me.btnInsertEmployee.Name = "btnInsertEmployee"
         Me.btnInsertEmployee.Size = New System.Drawing.Size(82, 23)
         Me.btnInsertEmployee.TabIndex = 18
-        Me.btnInsertEmployee.Text = "Skriv til DB"
+        Me.btnInsertEmployee.Text = "Legg til"
         Me.btnInsertEmployee.UseVisualStyleBackColor = True
         '
         'btnSelectAllEmployees
         '
-        Me.btnSelectAllEmployees.Location = New System.Drawing.Point(482, 12)
+        Me.btnSelectAllEmployees.Location = New System.Drawing.Point(785, 328)
         Me.btnSelectAllEmployees.Name = "btnSelectAllEmployees"
         Me.btnSelectAllEmployees.Size = New System.Drawing.Size(75, 23)
         Me.btnSelectAllEmployees.TabIndex = 19
@@ -208,11 +187,11 @@ Partial Class EmployeeTest
         '
         'btnSearchForEmpById
         '
-        Me.btnSearchForEmpById.Location = New System.Drawing.Point(29, 318)
+        Me.btnSearchForEmpById.Location = New System.Drawing.Point(705, 328)
         Me.btnSearchForEmpById.Name = "btnSearchForEmpById"
-        Me.btnSearchForEmpById.Size = New System.Drawing.Size(43, 23)
+        Me.btnSearchForEmpById.Size = New System.Drawing.Size(74, 23)
         Me.btnSearchForEmpById.TabIndex = 20
-        Me.btnSearchForEmpById.Text = "Søk"
+        Me.btnSearchForEmpById.Text = "Søk på ID"
         Me.btnSearchForEmpById.UseVisualStyleBackColor = True
         '
         'txtEmpId
@@ -231,57 +210,36 @@ Partial Class EmployeeTest
         Me.Label8.TabIndex = 22
         Me.Label8.Text = "AnsattID:"
         '
-        'btnActiveTest
-        '
-        Me.btnActiveTest.Location = New System.Drawing.Point(482, 155)
-        Me.btnActiveTest.Name = "btnActiveTest"
-        Me.btnActiveTest.Size = New System.Drawing.Size(75, 23)
-        Me.btnActiveTest.TabIndex = 23
-        Me.btnActiveTest.Text = "activeTest"
-        Me.btnActiveTest.UseVisualStyleBackColor = True
-        '
-        'btnSetActiveToZero
-        '
-        Me.btnSetActiveToZero.Location = New System.Drawing.Point(482, 126)
-        Me.btnSetActiveToZero.Name = "btnSetActiveToZero"
-        Me.btnSetActiveToZero.Size = New System.Drawing.Size(75, 23)
-        Me.btnSetActiveToZero.TabIndex = 24
-        Me.btnSetActiveToZero.Text = "active = 0"
-        Me.btnSetActiveToZero.UseVisualStyleBackColor = True
-        '
-        'btnSendInfoToTxt
-        '
-        Me.btnSendInfoToTxt.Location = New System.Drawing.Point(482, 64)
-        Me.btnSendInfoToTxt.Name = "btnSendInfoToTxt"
-        Me.btnSendInfoToTxt.Size = New System.Drawing.Size(75, 49)
-        Me.btnSendInfoToTxt.TabIndex = 25
-        Me.btnSendInfoToTxt.Text = "Send til tekstfelt"
-        Me.btnSendInfoToTxt.UseVisualStyleBackColor = True
-        '
         'btnUpdateEmp
         '
-        Me.btnUpdateEmp.Location = New System.Drawing.Point(79, 318)
+        Me.btnUpdateEmp.Location = New System.Drawing.Point(120, 328)
         Me.btnUpdateEmp.Name = "btnUpdateEmp"
         Me.btnUpdateEmp.Size = New System.Drawing.Size(75, 23)
         Me.btnUpdateEmp.TabIndex = 26
-        Me.btnUpdateEmp.Text = "Oppdater"
+        Me.btnUpdateEmp.Text = "Endre"
         Me.btnUpdateEmp.UseVisualStyleBackColor = True
+        '
+        'btnDeleteEmp
+        '
+        Me.btnDeleteEmp.Location = New System.Drawing.Point(213, 328)
+        Me.btnDeleteEmp.Name = "btnDeleteEmp"
+        Me.btnDeleteEmp.Size = New System.Drawing.Size(75, 23)
+        Me.btnDeleteEmp.TabIndex = 27
+        Me.btnDeleteEmp.Text = "Slett"
+        Me.btnDeleteEmp.UseVisualStyleBackColor = True
         '
         'EmployeeTest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(872, 353)
+        Me.ClientSize = New System.Drawing.Size(872, 418)
+        Me.Controls.Add(Me.btnDeleteEmp)
         Me.Controls.Add(Me.btnUpdateEmp)
-        Me.Controls.Add(Me.btnSendInfoToTxt)
-        Me.Controls.Add(Me.btnSetActiveToZero)
-        Me.Controls.Add(Me.btnActiveTest)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.txtEmpId)
         Me.Controls.Add(Me.btnSearchForEmpById)
         Me.Controls.Add(Me.btnSelectAllEmployees)
         Me.Controls.Add(Me.btnInsertEmployee)
-        Me.Controls.Add(Me.btnCreateEmployee)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
@@ -297,7 +255,6 @@ Partial Class EmployeeTest
         Me.Controls.Add(Me.txtEmpLastname)
         Me.Controls.Add(Me.txtEmpFirstname)
         Me.Controls.Add(Me.dgvEmployeeTest)
-        Me.Controls.Add(Me.rtbEmployeeTest)
         Me.Name = "EmployeeTest"
         Me.Text = "EmployeeTest"
         CType(Me.dgvEmployeeTest, System.ComponentModel.ISupportInitialize).EndInit()
@@ -305,7 +262,6 @@ Partial Class EmployeeTest
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents rtbEmployeeTest As System.Windows.Forms.RichTextBox
     Friend WithEvents dgvEmployeeTest As System.Windows.Forms.DataGridView
     Friend WithEvents txtEmpFirstname As System.Windows.Forms.TextBox
     Friend WithEvents txtEmpLastname As System.Windows.Forms.TextBox
@@ -321,14 +277,11 @@ Partial Class EmployeeTest
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents btnCreateEmployee As System.Windows.Forms.Button
     Friend WithEvents btnInsertEmployee As System.Windows.Forms.Button
     Friend WithEvents btnSelectAllEmployees As System.Windows.Forms.Button
     Friend WithEvents btnSearchForEmpById As System.Windows.Forms.Button
     Friend WithEvents txtEmpId As System.Windows.Forms.TextBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents btnActiveTest As System.Windows.Forms.Button
-    Friend WithEvents btnSetActiveToZero As System.Windows.Forms.Button
-    Friend WithEvents btnSendInfoToTxt As System.Windows.Forms.Button
     Friend WithEvents btnUpdateEmp As System.Windows.Forms.Button
+    Friend WithEvents btnDeleteEmp As System.Windows.Forms.Button
 End Class
