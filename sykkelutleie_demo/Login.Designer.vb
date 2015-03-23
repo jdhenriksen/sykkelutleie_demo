@@ -30,11 +30,12 @@ Partial Class Login
         Me.btnOpenDatabaseTest = New System.Windows.Forms.Button()
         Me.btnOpenAdminForm = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btnOpenOrderTest = New System.Windows.Forms.Button()
         Me.btnOpenMailTest = New System.Windows.Forms.Button()
         Me.btnOpenStorageWorkerTest = New System.Windows.Forms.Button()
         Me.btnOpenAccountTest = New System.Windows.Forms.Button()
         Me.btnOpenEmployeeTest = New System.Windows.Forms.Button()
-        Me.btnOpenOrderTest = New System.Windows.Forms.Button()
+        Me.btnCustomerTest = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -99,6 +100,7 @@ Partial Class Login
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.btnCustomerTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenOrderTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenMailTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenStorageWorkerTest)
@@ -112,6 +114,15 @@ Partial Class Login
         Me.GroupBox2.TabIndex = 12
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "TestArea"
+        '
+        'btnOpenOrderTest
+        '
+        Me.btnOpenOrderTest.Location = New System.Drawing.Point(17, 223)
+        Me.btnOpenOrderTest.Name = "btnOpenOrderTest"
+        Me.btnOpenOrderTest.Size = New System.Drawing.Size(128, 23)
+        Me.btnOpenOrderTest.TabIndex = 16
+        Me.btnOpenOrderTest.Text = "OrderTest"
+        Me.btnOpenOrderTest.UseVisualStyleBackColor = True
         '
         'btnOpenMailTest
         '
@@ -151,14 +162,14 @@ Partial Class Login
         Me.btnOpenEmployeeTest.Text = "EmployeeTest"
         Me.btnOpenEmployeeTest.UseVisualStyleBackColor = True
         '
-        'btnOpenOrderTest
+        'btnCustomerTest
         '
-        Me.btnOpenOrderTest.Location = New System.Drawing.Point(17, 223)
-        Me.btnOpenOrderTest.Name = "btnOpenOrderTest"
-        Me.btnOpenOrderTest.Size = New System.Drawing.Size(128, 23)
-        Me.btnOpenOrderTest.TabIndex = 16
-        Me.btnOpenOrderTest.Text = "OrderTest"
-        Me.btnOpenOrderTest.UseVisualStyleBackColor = True
+        Me.btnCustomerTest.Location = New System.Drawing.Point(17, 253)
+        Me.btnCustomerTest.Name = "btnCustomerTest"
+        Me.btnCustomerTest.Size = New System.Drawing.Size(128, 23)
+        Me.btnCustomerTest.TabIndex = 17
+        Me.btnCustomerTest.Text = "CustomerTest"
+        Me.btnCustomerTest.UseVisualStyleBackColor = True
         '
         'Login
         '
@@ -191,5 +202,6 @@ Partial Class Login
     Friend WithEvents btnOpenStorageWorkerTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenMailTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenOrderTest As System.Windows.Forms.Button
+    Friend WithEvents btnCustomerTest As System.Windows.Forms.Button
 
 End Class

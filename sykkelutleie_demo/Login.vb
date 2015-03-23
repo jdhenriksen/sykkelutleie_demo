@@ -40,4 +40,9 @@
         OrderTest.Show()
         Me.Hide()
     End Sub
+
+    Private Sub btnCustomerTest_Click_2(sender As Object, e As EventArgs) Handles btnCustomerTest.Click
+        CustomerTest.Show()
+        Me.Hide()
+    End Sub
 End Class
