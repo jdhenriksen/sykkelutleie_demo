@@ -5,6 +5,11 @@ Imports System.Configuration
 ''' </summary>
 ''' <remarks></remarks>
 Public Class DBUtility
+    'Dim sql As String
+    '  Public Sub New(sql As String)
+    '     Me.sql = sql
+    ' End Sub
+
     ''' <summary>
     ''' Database funksjon som håndterer alle SELECT setninger til DB
     ''' </summary>
@@ -18,7 +23,7 @@ Public Class DBUtility
         Try
             connection.Open()
             Dim adapter As New MySqlDataAdapter
-            adapter.SelectCommand = New MySqlCommand(sql, connection)
+            adapter.SelectCommand = New MySqlCommand(Sql, connection)
             adapter.Fill(data)
             connection.Close()
 
