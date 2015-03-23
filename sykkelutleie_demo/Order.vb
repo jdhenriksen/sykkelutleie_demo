@@ -17,23 +17,10 @@
         employee = emp
     End Sub
 
-    'Testkonstruktør
-    Sub New()
-        timestamp = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
-        fromDate = New Date(2015, 3, 15)
-        toDate = New Date(2015, 3, 17)
-        customer = New Customer()
-        employee = New Employee("Egil", "Jensen", "45454545", "egil@jensen.no", "selger", "egiljen", "45egiljensen")
-        model = New Model("4545", "800", "dadsa", "jfdjsf")
-        Dim bikeTemp(0) As Bike
-        bikeTemp(0) = New Bike("554488", "jodoksad", "alstad", "alstad", "keramikk", "dunlop", "djasdois", "dsahda", model)
-        Me.bike = bikeTemp
-    End Sub
-
     Public Overrides Function toString() As String
         Return "Timestamp: " & getTimestamp() & vbCrLf & "Fra: " & getFromDate() & vbCrLf & "Til: " & getToDate() & vbCrLf _
             & "Kunde: " & getCustomerName() & vbCrLf & "Ansatt: " & getEmployeeName() & vbCrLf & "Sykkel: " & getAllBikeNumbers() _
-            & "Totalpris: " & model.getPrice() & " kr."
+            & "Totalpris: " & model.GetPrice() & " kr."
     End Function
 
     Public Function getTimestamp() As Date
