@@ -8,12 +8,16 @@ Imports System.Security.Cryptography
 
 Public Class Account
     Private username As String
-    Private pwdHash As String
+    Private password As String
     Private dbutil As DBUtility
 
     Sub New(username As String, password As String)
         Me.username = username
-        Me.password = password
+        If validatePassword(password) Then
+            Me.password = generateHash(password)
+        Else
+            MsgBox("Passord ugyldig.")
+        End If
         dbutil = New DBUtility
     End Sub
 
@@ -25,20 +29,18 @@ Public Class Account
         username = name
     End Sub
 
-    Property password() As String
-        Get
-            Return pwdHash
-        End Get
-        Set(password As String)
-            If validatePassword(password) Then
-                pwdHash = generateHash(password)
-                'Skriv passord/hash til database.
-            Else
-                password = "defaultPassword"
-            End If
-        End Set
-    End Property
+    Public Function getPassword() As String
+        Return password
+    End Function
 
+    Public Sub setPassword(password)
+        If validatePassword(password) Then
+            password = generateHash(password)
+            'Skriv passord/hash til database i Employee.
+        Else
+            MsgBox("Passord ugyldig.")
+        End If
+    End Sub
 
     ''' <summary>
     ''' Hjelpemetode for å sjekke passord.
@@ -73,6 +75,6 @@ Public Class Account
     End Function
 
     Public Overrides Function toString() As String
-        Return "Brukernavn: " & username & vbCrLf & "Passord: " & pwdHash
+        Return "Brukernavn: " & username & vbCrLf & "Passord: " & password
     End Function
 End Class

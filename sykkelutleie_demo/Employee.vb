@@ -25,7 +25,7 @@ Public Class Employee
     Public Sub createEmployee()
         dbutil = New DBUtility()
         Dim sql As String = "INSERT INTO  ansatt(`brukernavn` ,`passord` ,`fornavn` ,`etternavn` ,`telefon` ,`epost` ,`adresse` ,`stilling` ,`postnr` ,`aktivert`)" _
-                            & "VALUES ('" & account.getUsername() & "',  '" & account.password & "',  '" & getFirstname() & "',  '" & getLastname() & "',  '" & getPhone() & "',  '" & getEmail() _
+                            & "VALUES ('" & account.getUsername() & "',  '" & account.getPassword & "',  '" & getFirstname() & "',  '" & getLastname() & "',  '" & getPhone() & "',  '" & getEmail() _
                             & "',  '" & "testvegen 43" & "',  '" & getJobTitle() & "',  '" & "7020" & "',  '1')"
         dbutil.updateQuery(sql)
     End Sub
@@ -35,16 +35,16 @@ Public Class Employee
         'Send variabler til tekstbokser for endring
         'UPDATE på id for å endre i DB
         dbutil = New DBUtility()
-        Dim sql As String = "UPDATE ansatt SET brukernavn = '" & account.getUsername() & "', passord = '" & account.password & "', fornavn = '" & getFirstname() & "', etternavn = '" & getLastname() _
+        Dim sql As String = "UPDATE ansatt SET brukernavn = '" & account.getUsername() & "', passord = '" & account.getPassword & "', fornavn = '" & getFirstname() & "', etternavn = '" & getLastname() _
                             & "', telefon = '" & getPhone() & "', epost = '" & getEmail() & "', adresse = 'adresseIkkeTilgjengelig', stilling = '" & getJobTitle() & "', postnr = 7020, aktivert = '" & getActive() _
                             & "' WHERE ansattid = " & id & ";"
         dbutil.updateQuery(sql)
     End Sub
 
     Public Sub deleteEmployee()
-        'Sett 'active'/aktivert til 0
-        'I GUI skal tekstfelter tilhørende ansatt ikke kunne redigeres lengre
-        '-------> DEMO I EMPLOYEETEST
+        setActive(0)
+        dbutil = New DBUtility
+        dbutil.updateQuery("UPDATE ansatt SET aktivert = 0 WHERE ansattid = " & getEmployeeID() & ";")
     End Sub
 
     'Midlertidig hjelpemetode for å hente ut ansatt basert på id

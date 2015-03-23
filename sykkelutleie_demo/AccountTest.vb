@@ -27,7 +27,7 @@
     Private Sub btnChangePassword_Click(sender As Object, e As EventArgs) Handles btnChangePassword.Click
         Dim newPassword As String = InputBox("Endre passord til:")
         Dim acc As Account = New Account("Hashtest", newPassword)
-        sql = "UPDATE ansatt SET passord = '" & acc.password & "' WHERE ansattid > 1"
+        sql = "UPDATE ansatt SET passord = '" & acc.getPassword & "' WHERE ansattid > 1"
         If dbutil.updateQuery(sql) Then
             showAllEmployees()
         End If
