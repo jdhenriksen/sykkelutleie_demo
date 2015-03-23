@@ -5,7 +5,6 @@
     Private email As String
     Private active As Integer
     'Private type As Person ---> Identifiserer om objektet er Employee eller Customer
-    Private argException As ArgumentOutOfRangeException 'TEST
     Private dbutil As DBUtility
 
     Sub New(fn As String, ln As String, phone As String, email As String)
@@ -51,8 +50,6 @@
         If IsNumeric(phone) And phone.Trim.Length = 8 Then
             Me.phone = phone
         Else
-            'argException = New ArgumentOutOfRangeException("phone", "Telefonnummer må være et tall på 8 tegn.")
-            'Throw argException
             MsgBox("Telefonnummer er ugyldig.")
         End If
     End Sub

@@ -35,9 +35,9 @@ Partial Class mailLogin
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(85, 9)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(150, 13)
+        Me.Label3.Size = New System.Drawing.Size(219, 13)
         Me.Label3.TabIndex = 11
-        Me.Label3.Text = "Trenger ikke skrive noe hær..."
+        Me.Label3.Text = "Trenger ikke skrive noe hær... er hardkodet.."
         '
         'Button1
         '

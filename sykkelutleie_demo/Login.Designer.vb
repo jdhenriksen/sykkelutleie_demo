@@ -30,10 +30,11 @@ Partial Class Login
         Me.btnOpenDatabaseTest = New System.Windows.Forms.Button()
         Me.btnOpenAdminForm = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btnOpenMailTest = New System.Windows.Forms.Button()
         Me.btnOpenStorageWorkerTest = New System.Windows.Forms.Button()
         Me.btnOpenAccountTest = New System.Windows.Forms.Button()
         Me.btnOpenEmployeeTest = New System.Windows.Forms.Button()
-        Me.btnOpenMailTest = New System.Windows.Forms.Button()
+        Me.btnOpenOrderTest = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -98,6 +99,7 @@ Partial Class Login
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.btnOpenOrderTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenMailTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenStorageWorkerTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenAccountTest)
@@ -111,10 +113,20 @@ Partial Class Login
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "TestArea"
         '
+        'btnOpenMailTest
+        '
+        Me.btnOpenMailTest.Location = New System.Drawing.Point(17, 182)
+        Me.btnOpenMailTest.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnOpenMailTest.Name = "btnOpenMailTest"
+        Me.btnOpenMailTest.Size = New System.Drawing.Size(128, 35)
+        Me.btnOpenMailTest.TabIndex = 15
+        Me.btnOpenMailTest.Text = "Mail Test"
+        Me.btnOpenMailTest.UseVisualStyleBackColor = True
+        '
         'btnOpenStorageWorkerTest
         '
         Me.btnOpenStorageWorkerTest.Location = New System.Drawing.Point(17, 143)
-        Me.btnOpenStorageWorkerTest.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnOpenStorageWorkerTest.Margin = New System.Windows.Forms.Padding(2)
         Me.btnOpenStorageWorkerTest.Name = "btnOpenStorageWorkerTest"
         Me.btnOpenStorageWorkerTest.Size = New System.Drawing.Size(128, 35)
         Me.btnOpenStorageWorkerTest.TabIndex = 13
@@ -139,15 +151,14 @@ Partial Class Login
         Me.btnOpenEmployeeTest.Text = "EmployeeTest"
         Me.btnOpenEmployeeTest.UseVisualStyleBackColor = True
         '
-        'btnOpenMailTest
+        'btnOpenOrderTest
         '
-        Me.btnOpenMailTest.Location = New System.Drawing.Point(17, 182)
-        Me.btnOpenMailTest.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnOpenMailTest.Name = "btnOpenMailTest"
-        Me.btnOpenMailTest.Size = New System.Drawing.Size(128, 35)
-        Me.btnOpenMailTest.TabIndex = 15
-        Me.btnOpenMailTest.Text = "Mail Test"
-        Me.btnOpenMailTest.UseVisualStyleBackColor = True
+        Me.btnOpenOrderTest.Location = New System.Drawing.Point(17, 223)
+        Me.btnOpenOrderTest.Name = "btnOpenOrderTest"
+        Me.btnOpenOrderTest.Size = New System.Drawing.Size(128, 23)
+        Me.btnOpenOrderTest.TabIndex = 16
+        Me.btnOpenOrderTest.Text = "OrderTest"
+        Me.btnOpenOrderTest.UseVisualStyleBackColor = True
         '
         'Login
         '
@@ -179,5 +190,6 @@ Partial Class Login
     Friend WithEvents btnOpenAccountTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenStorageWorkerTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenMailTest As System.Windows.Forms.Button
+    Friend WithEvents btnOpenOrderTest As System.Windows.Forms.Button
 
 End Class

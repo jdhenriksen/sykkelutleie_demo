@@ -3,20 +3,24 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class StatisticsView
-
-    Private Sub StatisticsView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim myStatistic As New Statistics
+    ''' <summary>
+    ''' Viser statistikk i eget vindu.
+    ''' </summary>
+    ''' <remarks>Justere bredde og høyde automatisk etter treff i databasen.</remarks>
+    Public Sub refreshComponents()
+        Dim myStatistic As New Statistics(AdminForm.statisticsType, AdminForm.startDate, AdminForm.endDate, AdminForm.limitResult)
         Dim result As DataTable
 
-        result = myStatistic.generateStatistics(AdminForm.statisticsType, AdminForm.startDate, AdminForm.endDate, AdminForm.limitResult)
-        If result.Rows.Count = 0 Then
-            MsgBox("Ingen data ble funnet på valgt filter")
-        End If
+        result = myStatistic.generateStatistics()
+
         DataGridView1.DataSource = result
         Label1.Text = result.Rows.Count
+
+        Me.Width = (result.Columns.Count * 100)
+        Me.Height = (result.Rows.Count * 41 + 50)  'Hva skjer ved veldig mange treff..
+
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
     End Sub
-
 End Class
