@@ -3,11 +3,24 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class Statistics
-    Public Function generateStatistics(ByVal typeStatistic As String, ByVal startDate As String, ByVal endDate As String, ByVal limitResult As Integer) As DataTable
+    Private typeStatistic As String
+    Private startDate As String
+    Private endDate As String
+    Private limitResult As Integer
+
+    Public Sub New(ByVal typeStatistic As String, ByVal startDate As String, ByVal endDate As String, ByVal limitResult As Integer)
+        Me.typeStatistic = typeStatistic
+        Me.startDate = startDate
+        Me.endDate = endDate
+        Me.limitResult = limitResult
+
+    End Sub
+
+    Public Function generateStatistics() As DataTable
         Dim query As String
         Dim sqlRes As New SQLRes
-        Dim DButil As New DBUtility
-        'Dim typeWhereDate As String
+        Dim dbUtil As New DBUtility
+
 
         Select Case typeStatistic
             Case "Dyreste sykkel"
@@ -38,12 +51,14 @@ Public Class Statistics
                 statisticsTypeError()
                 Return Nothing
         End Select
+        ' Dim dbUtil As New DBUtility(query)
 
-        Return DButil.selectQuery(query)
+
+        Return dbUtil.selectQuery(query)'dbUtil.selectQuery
     End Function
 
     Private Sub statisticsTypeError()
-        MsgBox("Bare statistikkene 'Billigste-' og 'Dyreste sykkel' kan brukes for øyeblikket")
+        MsgBox("Valgt SQL spørring finnes ikke")
     End Sub
 
 End Class
