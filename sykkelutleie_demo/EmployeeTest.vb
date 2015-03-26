@@ -9,15 +9,7 @@ Public Class EmployeeTest
     Private table As DataTable
 
     Private Sub btnInsertEmployee_Click(sender As Object, e As EventArgs) Handles btnInsertEmployee.Click
-        Dim firstname As String = txtEmpFirstname.Text
-        Dim lastname As String = txtEmpLastname.Text
-        Dim phone As String = txtEmpPhone.Text
-        Dim email As String = txtEmpEmail.Text
-        Dim job As String = txtEmpJobTitle.Text
-        Dim username As String = txtEmpUsername.Text
-        Dim password As String = txtEmpPassword.Text
-
-        emp = New Employee(firstname, lastname, phone, email, job, username, password)
+        createEmployeeFromTextFields()
         emp.createEmployee()
     End Sub
 
@@ -30,6 +22,7 @@ Public Class EmployeeTest
     End Sub
 
     Private Sub btnUpdateEmp_Click(sender As Object, e As EventArgs) Handles btnUpdateEmp.Click
+        createEmployeeFromTextFields()
         emp.editEmployee(txtEmpId.Text)
     End Sub
 
@@ -48,6 +41,7 @@ Public Class EmployeeTest
         getAllEmployees()
     End Sub
 
+    'Hjelpemetode: Lister ut alle ansatte og presenterer dem i datagridviewet.
     Private Sub getAllEmployees()
         dbutil = New DBUtility
         table = New DataTable
@@ -75,7 +69,7 @@ Public Class EmployeeTest
         txtEmpJobTitle.Text = table.Rows(0)(8).ToString()
     End Sub
 
-    'Hjelpemetode: Sjekker aktivert-verdien til en ansatt. IKKE FUNGERENDE.
+    'Hjelpemetode: Sjekker aktivert-verdien til en ansatt. NOT COMPLETE.
     Private Sub activeCheck()
         Dim textBoxArr() As TextBox = {txtEmpEmail, txtEmpFirstname, txtEmpId, txtEmpJobTitle, txtEmpLastname, txtEmpPassword, txtEmpPhone, txtEmpUsername}
         If Not emp.isActive() Then
@@ -83,5 +77,22 @@ Public Class EmployeeTest
                 txtBox.Enabled = False
             Next
         End If
+    End Sub
+
+    'Hjelpemetode: Lager Employee-objekt basert på verdier i tekstfelt.
+    Private Sub createEmployeeFromTextFields()
+        Dim firstname As String = txtEmpFirstname.Text
+        Dim lastname As String = txtEmpLastname.Text
+        Dim phone As String = txtEmpPhone.Text
+        Dim email As String = txtEmpEmail.Text
+        Dim job As String = txtEmpJobTitle.Text
+        Dim username As String = txtEmpUsername.Text
+        Dim password As String = txtEmpPassword.Text
+
+        emp = New Employee(firstname, lastname, phone, email, job, username, password)
+    End Sub
+
+    Private Sub txtEmpPassword_MouseClick(sender As Object, e As MouseEventArgs) Handles txtEmpPassword.MouseClick
+        txtEmpPassword.PasswordChar = "*"
     End Sub
 End Class
