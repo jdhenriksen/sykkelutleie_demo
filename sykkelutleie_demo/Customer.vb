@@ -3,13 +3,17 @@
 
     Private customerID As String
     Private dbutil As DBUtility
+    Private _kid As String
+
     Sub New(firstname As String, lastname As String, phone As String, email As String)
         MyBase.New(firstname, lastname, phone, email)
     End Sub
-    'Testkonstruktør
-    Sub New()
-        MyBase.New()
+
+    Sub New(kid As String)
+        ' TODO: Complete member initialization 
+        _kid = kid
     End Sub
+
     Public Sub createCustomer()
         dbutil = New DBUtility()
         Dim sql As String = "INSERT INTO  kunde(`fornavn` ,`etternavn` ,`telefon` ,`epost` ,`aktivert`)" _

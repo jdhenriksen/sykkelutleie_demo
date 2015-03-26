@@ -23,13 +23,9 @@ Partial Class CustomerTest
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.btnUpdateCustomer = New System.Windows.Forms.Button()
-        Me.btnSendInfoToTxt = New System.Windows.Forms.Button()
-        Me.btnSetActiveToZero = New System.Windows.Forms.Button()
-        Me.btnActiveTest = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.txtCmrId = New System.Windows.Forms.TextBox()
         Me.btnSearchForCmrById = New System.Windows.Forms.Button()
-        Me.btnSelectAllCustomers = New System.Windows.Forms.Button()
         Me.btnInsertCustomer = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -40,7 +36,8 @@ Partial Class CustomerTest
         Me.txtCmrLastname = New System.Windows.Forms.TextBox()
         Me.txtCmrFirstname = New System.Windows.Forms.TextBox()
         Me.dgvCustomerTest = New System.Windows.Forms.DataGridView()
-        Me.rtbCustomerTest = New System.Windows.Forms.RichTextBox()
+        Me.btnSetActiveToZero = New System.Windows.Forms.Button()
+        Me.btnSelectAllCustomers = New System.Windows.Forms.Button()
         CType(Me.dgvCustomerTest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -52,33 +49,6 @@ Partial Class CustomerTest
         Me.btnUpdateCustomer.TabIndex = 52
         Me.btnUpdateCustomer.Text = "Oppdater"
         Me.btnUpdateCustomer.UseVisualStyleBackColor = True
-        '
-        'btnSendInfoToTxt
-        '
-        Me.btnSendInfoToTxt.Location = New System.Drawing.Point(473, 75)
-        Me.btnSendInfoToTxt.Name = "btnSendInfoToTxt"
-        Me.btnSendInfoToTxt.Size = New System.Drawing.Size(75, 49)
-        Me.btnSendInfoToTxt.TabIndex = 51
-        Me.btnSendInfoToTxt.Text = "Send til tekstfelt"
-        Me.btnSendInfoToTxt.UseVisualStyleBackColor = True
-        '
-        'btnSetActiveToZero
-        '
-        Me.btnSetActiveToZero.Location = New System.Drawing.Point(473, 137)
-        Me.btnSetActiveToZero.Name = "btnSetActiveToZero"
-        Me.btnSetActiveToZero.Size = New System.Drawing.Size(75, 23)
-        Me.btnSetActiveToZero.TabIndex = 50
-        Me.btnSetActiveToZero.Text = "active = 0"
-        Me.btnSetActiveToZero.UseVisualStyleBackColor = True
-        '
-        'btnActiveTest
-        '
-        Me.btnActiveTest.Location = New System.Drawing.Point(473, 166)
-        Me.btnActiveTest.Name = "btnActiveTest"
-        Me.btnActiveTest.Size = New System.Drawing.Size(75, 23)
-        Me.btnActiveTest.TabIndex = 49
-        Me.btnActiveTest.Text = "activeTest"
-        Me.btnActiveTest.UseVisualStyleBackColor = True
         '
         'Label8
         '
@@ -104,15 +74,6 @@ Partial Class CustomerTest
         Me.btnSearchForCmrById.TabIndex = 46
         Me.btnSearchForCmrById.Text = "Søk"
         Me.btnSearchForCmrById.UseVisualStyleBackColor = True
-        '
-        'btnSelectAllCustomers
-        '
-        Me.btnSelectAllCustomers.Location = New System.Drawing.Point(473, 23)
-        Me.btnSelectAllCustomers.Name = "btnSelectAllCustomers"
-        Me.btnSelectAllCustomers.Size = New System.Drawing.Size(75, 23)
-        Me.btnSelectAllCustomers.TabIndex = 45
-        Me.btnSelectAllCustomers.Text = "List Kunder"
-        Me.btnSelectAllCustomers.UseVisualStyleBackColor = True
         '
         'btnInsertCustomer
         '
@@ -190,32 +151,40 @@ Partial Class CustomerTest
         'dgvCustomerTest
         '
         Me.dgvCustomerTest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvCustomerTest.Location = New System.Drawing.Point(563, 23)
+        Me.dgvCustomerTest.Location = New System.Drawing.Point(271, 23)
         Me.dgvCustomerTest.Name = "dgvCustomerTest"
-        Me.dgvCustomerTest.Size = New System.Drawing.Size(288, 211)
+        Me.dgvCustomerTest.Size = New System.Drawing.Size(580, 299)
         Me.dgvCustomerTest.TabIndex = 28
         '
-        'rtbCustomerTest
+        'btnSetActiveToZero
         '
-        Me.rtbCustomerTest.Location = New System.Drawing.Point(239, 23)
-        Me.rtbCustomerTest.Name = "rtbCustomerTest"
-        Me.rtbCustomerTest.Size = New System.Drawing.Size(212, 211)
-        Me.rtbCustomerTest.TabIndex = 27
-        Me.rtbCustomerTest.Text = ""
+        Me.btnSetActiveToZero.Location = New System.Drawing.Point(151, 308)
+        Me.btnSetActiveToZero.Name = "btnSetActiveToZero"
+        Me.btnSetActiveToZero.Size = New System.Drawing.Size(75, 23)
+        Me.btnSetActiveToZero.TabIndex = 53
+        Me.btnSetActiveToZero.Text = "Deaktiver"
+        Me.btnSetActiveToZero.UseVisualStyleBackColor = True
+        '
+        'btnSelectAllCustomers
+        '
+        Me.btnSelectAllCustomers.Location = New System.Drawing.Point(21, 308)
+        Me.btnSelectAllCustomers.Name = "btnSelectAllCustomers"
+        Me.btnSelectAllCustomers.Size = New System.Drawing.Size(75, 23)
+        Me.btnSelectAllCustomers.TabIndex = 54
+        Me.btnSelectAllCustomers.Text = "List Kunder"
+        Me.btnSelectAllCustomers.UseVisualStyleBackColor = True
         '
         'CustomerTest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(870, 375)
-        Me.Controls.Add(Me.btnUpdateCustomer)
-        Me.Controls.Add(Me.btnSendInfoToTxt)
+        Me.Controls.Add(Me.btnSelectAllCustomers)
         Me.Controls.Add(Me.btnSetActiveToZero)
-        Me.Controls.Add(Me.btnActiveTest)
+        Me.Controls.Add(Me.btnUpdateCustomer)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.txtCmrId)
         Me.Controls.Add(Me.btnSearchForCmrById)
-        Me.Controls.Add(Me.btnSelectAllCustomers)
         Me.Controls.Add(Me.btnInsertCustomer)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
@@ -226,7 +195,6 @@ Partial Class CustomerTest
         Me.Controls.Add(Me.txtCmrLastname)
         Me.Controls.Add(Me.txtCmrFirstname)
         Me.Controls.Add(Me.dgvCustomerTest)
-        Me.Controls.Add(Me.rtbCustomerTest)
         Me.Name = "CustomerTest"
         Me.Text = "CustomerTest"
         CType(Me.dgvCustomerTest, System.ComponentModel.ISupportInitialize).EndInit()
@@ -235,13 +203,9 @@ Partial Class CustomerTest
 
     End Sub
     Friend WithEvents btnUpdateCustomer As System.Windows.Forms.Button
-    Friend WithEvents btnSendInfoToTxt As System.Windows.Forms.Button
-    Friend WithEvents btnSetActiveToZero As System.Windows.Forms.Button
-    Friend WithEvents btnActiveTest As System.Windows.Forms.Button
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents txtCmrId As System.Windows.Forms.TextBox
     Friend WithEvents btnSearchForCmrById As System.Windows.Forms.Button
-    Friend WithEvents btnSelectAllCustomers As System.Windows.Forms.Button
     Friend WithEvents btnInsertCustomer As System.Windows.Forms.Button
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
@@ -252,5 +216,6 @@ Partial Class CustomerTest
     Friend WithEvents txtCmrLastname As System.Windows.Forms.TextBox
     Friend WithEvents txtCmrFirstname As System.Windows.Forms.TextBox
     Friend WithEvents dgvCustomerTest As System.Windows.Forms.DataGridView
-    Friend WithEvents rtbCustomerTest As System.Windows.Forms.RichTextBox
+    Friend WithEvents btnSetActiveToZero As System.Windows.Forms.Button
+    Friend WithEvents btnSelectAllCustomers As System.Windows.Forms.Button
 End Class
