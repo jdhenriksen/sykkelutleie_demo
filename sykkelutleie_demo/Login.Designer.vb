@@ -30,12 +30,12 @@ Partial Class Login
         Me.btnOpenDatabaseTest = New System.Windows.Forms.Button()
         Me.btnOpenAdminForm = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btnCustomerTest = New System.Windows.Forms.Button()
         Me.btnOpenOrderTest = New System.Windows.Forms.Button()
         Me.btnOpenMailTest = New System.Windows.Forms.Button()
         Me.btnOpenStorageWorkerTest = New System.Windows.Forms.Button()
         Me.btnOpenAccountTest = New System.Windows.Forms.Button()
         Me.btnOpenEmployeeTest = New System.Windows.Forms.Button()
-        Me.btnCustomerTest = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -50,6 +50,7 @@ Partial Class Login
         '
         Me.txtPassword.Location = New System.Drawing.Point(80, 45)
         Me.txtPassword.Name = "txtPassword"
+        Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(129, 20)
         Me.txtPassword.TabIndex = 1
         '
@@ -115,6 +116,15 @@ Partial Class Login
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "TestArea"
         '
+        'btnCustomerTest
+        '
+        Me.btnCustomerTest.Location = New System.Drawing.Point(17, 253)
+        Me.btnCustomerTest.Name = "btnCustomerTest"
+        Me.btnCustomerTest.Size = New System.Drawing.Size(128, 23)
+        Me.btnCustomerTest.TabIndex = 17
+        Me.btnCustomerTest.Text = "CustomerTest"
+        Me.btnCustomerTest.UseVisualStyleBackColor = True
+        '
         'btnOpenOrderTest
         '
         Me.btnOpenOrderTest.Location = New System.Drawing.Point(17, 223)
@@ -161,15 +171,6 @@ Partial Class Login
         Me.btnOpenEmployeeTest.TabIndex = 11
         Me.btnOpenEmployeeTest.Text = "EmployeeTest"
         Me.btnOpenEmployeeTest.UseVisualStyleBackColor = True
-        '
-        'btnCustomerTest
-        '
-        Me.btnCustomerTest.Location = New System.Drawing.Point(17, 253)
-        Me.btnCustomerTest.Name = "btnCustomerTest"
-        Me.btnCustomerTest.Size = New System.Drawing.Size(128, 23)
-        Me.btnCustomerTest.TabIndex = 17
-        Me.btnCustomerTest.Text = "CustomerTest"
-        Me.btnCustomerTest.UseVisualStyleBackColor = True
         '
         'Login
         '

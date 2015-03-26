@@ -33,15 +33,6 @@
         End If
     End Sub
 
-    Private Sub dgvAccount_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvAccount.CellDoubleClick
-
-        Dim row As String = dgvAccount.CurrentCell.RowIndex
-        Dim col As String = dgvAccount.CurrentCell.ColumnIndex
-        MsgBox(row & ", " & col)
-        'Dim out As String = dgvAccount.Rows(row).Cells(col).Value
-        'MsgBox(out)
-    End Sub
-
     Private Sub btnCreateAccount_Click(sender As Object, e As EventArgs) Handles btnCreateAccount.Click
 
     End Sub

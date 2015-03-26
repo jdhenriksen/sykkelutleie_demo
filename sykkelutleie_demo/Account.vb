@@ -74,6 +74,11 @@ Public Class Account
         Return Convert.ToBase64String(byteHash)
     End Function
 
+    'TODO
+    Public Function login(id As String, username As String, password As String) As Boolean
+        Return True
+    End Function
+
     Public Overrides Function toString() As String
         Return "Brukernavn: " & username & vbCrLf & "Passord: " & password
     End Function
