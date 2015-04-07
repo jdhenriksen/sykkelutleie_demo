@@ -1,20 +1,22 @@
 ﻿''' <summary>
 ''' Håndterer oppgaver i forbindelse med ansatte (brukere) i systemet.
+''' Kommuniserer ut mot aktuelt Form og inn mot EmployeeDAO for databaseoperasjoner.
 ''' </summary>
 ''' <remarks></remarks>
 Public Class Employee
     Inherits Person
     Private employeeID As String
-    Private jobTitle As String
-    'Private address As String
-    'Private zipcode As String
+    Private job As String
+    Private address As String
+    Private zip As String
     Private account As Account
-    Private dbutil As DBUtility
+    Private dao As New EmployeeDao
 
-
-    Sub New(fn As String, ln As String, phone As String, email As String, job As String, username As String, password As String)
+    Sub New(fn As String, ln As String, phone As String, email As String, job As String, address As String, zip As String, username As String, password As String)
         MyBase.New(fn, ln, phone, email)
-        jobTitle = job
+        Me.job = job
+        Me.address = address
+        Me.zip = zip
         account = New Account(username, password)
     End Sub
 
@@ -22,48 +24,52 @@ Public Class Employee
         employeeID = id
     End Sub
 
+    Sub New()
+
+    End Sub
+
     Public Sub createEmployee()
-        dbutil = New DBUtility()
-        Dim sql As String = "INSERT INTO  ansatt(`brukernavn` ,`passord` ,`fornavn` ,`etternavn` ,`telefon` ,`epost` ,`adresse` ,`stilling` ,`postnr` ,`aktivert`)" _
-                            & "VALUES ('" & account.getUsername() & "',  '" & account.getPassword() & "',  '" & getFirstname() & "',  '" & getLastname() & "',  '" & getPhone() & "',  '" & getEmail() _
-                            & "',  '" & "testvegen 43" & "',  '" & getJobTitle() & "',  '" & "7020" & "',  '1')"
-        dbutil.updateQuery(sql)
+        Dim list = makeList()
+        dao.createEmployee(list)
     End Sub
 
     Public Sub editEmployee(id As String)
-        'Endre relevante variabler - hent fra DB og skriv ny verdi til DB (mellomlagre som variabler)
-        'Send variabler til tekstbokser for endring
-        'UPDATE på id for å endre i DB
-        dbutil = New DBUtility()
-        Dim sql As String = "UPDATE ansatt SET brukernavn = '" & account.getUsername() & "', passord = '" & account.getPassword() & "', fornavn = '" & getFirstname() & "', etternavn = '" & getLastname() _
-                            & "', telefon = '" & getPhone() & "', epost = '" & getEmail() & "', adresse = 'adresseIkkeTilgjengelig', stilling = '" & getJobTitle() & "', postnr = 7020, aktivert = '" & getActive() _
-                            & "' WHERE ansattid = '" & id & "';"
-        dbutil.updateQuery(sql)
+        Dim list = makeList()
+        dao.editEmployee(list, id)
     End Sub
 
     Public Sub deleteEmployee()
         setActive(0)
-        dbutil = New DBUtility
-        dbutil.updateQuery("UPDATE ansatt SET aktivert = 0 WHERE ansattid = " & getEmployeeID() & ";")
+        dao.deleteEmployee(getEmployeeID())
     End Sub
 
     'Midlertidig hjelpemetode for å hente ut ansatt basert på id
     'Mulig at settes til Private senere
     Public Function selectEmployeeById(id As String) As DataTable
-        'kall til isActive() her...
-        dbutil = New DBUtility()
-        Dim sql As String = "SELECT * FROM ansatt WHERE ansattid LIKE'" & id & "';"
-        Dim table As DataTable = dbutil.selectQuery(sql)
-        Return table
+        Return dao.selectEmployeeById(id)
+    End Function
+
+    Public Function getAllEmployees() As DataTable
+        Return dao.getAllEmployees()
     End Function
 
     'Hjelpemetode for å sjekke om en ansatt er satt til aktiv
-    Public Function isActive() As Boolean
-        If getActive() = 1 Then
-            Return True
-        Else
-            Return False
+    Public Function isActive(id As String) As Boolean
+        Dim table As New DataTable
+        table = dao.isActive(id)
+        Dim active As Integer
+        If table.Rows.Count = 1 Then
+            active = table.Rows(0)(0)
         End If
+        Return active
+    End Function
+
+    Public Function getAreaByZipCode(zipcode As String)
+        Return dao.getAreaByZipCode(zipcode)
+    End Function
+
+    Public Function usernameCheck(username As String) As Boolean
+        Return dao.usernameCheck(username)
     End Function
 
     Public Function getEmployeeID() As String
@@ -71,19 +77,45 @@ Public Class Employee
     End Function
 
     Public Function getJobTitle() As String
-        Return jobTitle
+        Return job
     End Function
 
     Public Sub setJobTitle(title As String)
-        jobTitle = title
+        job = title
     End Sub
 
-    Public Function getAccountInfo() As String
-        Return account.toString()
+    Public Function getAddress() As String
+        Return address
     End Function
 
-    Public Overrides Function toString() As String
-        Return MyBase.toString() & "Jobbtittel: " & getJobTitle() & vbCrLf & "Brukernavn: " _
-            & account.toString()
+    Public Sub setAddress(address As String)
+        Me.address = address
+    End Sub
+
+    Public Function getZip() As String
+        Return zip
     End Function
+
+    Public Sub setZip(zip As String)
+        Me.zip = zip
+    End Sub
+
+    'Hjelpemetode. Lager liste som sendes til DAO.
+    Private Function makeList() As List(Of String)
+        Dim list As New List(Of String)
+        With list
+            .Add(account.getUsername())
+            .Add(account.getPassword())
+            .Add(getFirstname())
+            .Add(getLastname())
+            .Add(getPhone())
+            .Add(getEmail())
+            .Add(getAddress())
+            .Add(getJobTitle())
+            .Add(getZip())
+            .Add(getActive())
+        End With
+        Return list
+    End Function
+
 End Class

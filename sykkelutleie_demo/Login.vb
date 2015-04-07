@@ -10,59 +10,60 @@
         End If
 
         Dim account As New Account(username, password)
-        Dim dbutil As New DBUtility
-        Dim table As New DataTable
-        Dim sql As String = "SELECT brukernavn, passord FROM ansatt WHERE brukernavn LIKE '" & account.getUsername() _
-                            & "' AND passord LIKE '" & account.getPassword() & "';"
-        table = dbutil.selectQuery(sql)
+        Dim table As DataTable = account.login()
+        Dim jobDesc As String = ""
         If table.Rows.Count > 0 Then
-            MsgBox("Brukerkonto funnet. Du redirigeres nå til et nytt skjermbilde.")
-            AccountTest.Show()
+            jobDesc = table.Rows(0).Item("stilling")
+            MsgBox("Brukerkonto funnet. Du er logget inn som:" & vbCrLf & jobDesc)
         Else
             MsgBox("Kombinasjonen av brukernavn og passord finnes ikke i databasen.")
         End If
 
+        jobDesc = jobDesc.ToLower
+        Select Case jobDesc
+            Case "lagerarbeider"
+                StorageWorker.Show()
+            Case "selger"
+                OrderTest.Show()
+            Case "sekretær", "daglig leder"
+                AdminForm.Show()
+            Case Else
+        End Select
+
+        txtPassword.Clear()
+        txtUsername.Clear()
+
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles btnOpenDatabaseTest.Click
-        Me.Hide()
         DBTest.Show()
     End Sub
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles btnOpenAdminForm.Click
-        Me.Hide()
         AdminForm.Show()
     End Sub
 
     Private Sub btnEmployeeTest_Click(sender As Object, e As EventArgs) Handles btnOpenEmployeeTest.Click
-        Me.Hide()
         EmployeeTest.Show()
     End Sub
 
-    Private Sub btnOpenAccountTest_Click(sender As Object, e As EventArgs) Handles btnOpenAccountTest.Click
-        Me.Hide()
-        AccountTest.Show()
-    End Sub
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnOpenStorageWorkerTest.Click
-
-        Me.Hide()
         StorageWorker.Show()
-
     End Sub
 
     Private Sub btnOpenMailTest_Click(sender As Object, e As EventArgs) Handles btnOpenMailTest.Click
-        Me.Hide()
         MailTest.Show()
     End Sub
 
     Private Sub btnOpenOrderTest_Click(sender As Object, e As EventArgs) Handles btnOpenOrderTest.Click
         OrderTest.Show()
-        Me.Hide()
     End Sub
 
     Private Sub btnCustomerTest_Click_2(sender As Object, e As EventArgs) Handles btnCustomerTest.Click
         CustomerTest.Show()
-        Me.Hide()
+    End Sub
+
+    Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        AcceptButton = btnLogin
     End Sub
 End Class

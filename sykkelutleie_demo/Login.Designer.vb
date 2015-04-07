@@ -34,7 +34,6 @@ Partial Class Login
         Me.btnOpenOrderTest = New System.Windows.Forms.Button()
         Me.btnOpenMailTest = New System.Windows.Forms.Button()
         Me.btnOpenStorageWorkerTest = New System.Windows.Forms.Button()
-        Me.btnOpenAccountTest = New System.Windows.Forms.Button()
         Me.btnOpenEmployeeTest = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -105,7 +104,6 @@ Partial Class Login
         Me.GroupBox2.Controls.Add(Me.btnOpenOrderTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenMailTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenStorageWorkerTest)
-        Me.GroupBox2.Controls.Add(Me.btnOpenAccountTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenEmployeeTest)
         Me.GroupBox2.Controls.Add(Me.btnOpenAdminForm)
         Me.GroupBox2.Controls.Add(Me.btnOpenDatabaseTest)
@@ -154,15 +152,6 @@ Partial Class Login
         Me.btnOpenStorageWorkerTest.Text = "StorageWorker"
         Me.btnOpenStorageWorkerTest.UseVisualStyleBackColor = True
         '
-        'btnOpenAccountTest
-        '
-        Me.btnOpenAccountTest.Location = New System.Drawing.Point(17, 114)
-        Me.btnOpenAccountTest.Name = "btnOpenAccountTest"
-        Me.btnOpenAccountTest.Size = New System.Drawing.Size(128, 23)
-        Me.btnOpenAccountTest.TabIndex = 12
-        Me.btnOpenAccountTest.Text = "AccountTest"
-        Me.btnOpenAccountTest.UseVisualStyleBackColor = True
-        '
         'btnOpenEmployeeTest
         '
         Me.btnOpenEmployeeTest.Location = New System.Drawing.Point(17, 85)
@@ -199,7 +188,6 @@ Partial Class Login
     Friend WithEvents btnOpenAdminForm As System.Windows.Forms.Button
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents btnOpenEmployeeTest As System.Windows.Forms.Button
-    Friend WithEvents btnOpenAccountTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenStorageWorkerTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenMailTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenOrderTest As System.Windows.Forms.Button

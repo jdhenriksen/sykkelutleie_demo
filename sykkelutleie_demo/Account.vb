@@ -9,7 +9,6 @@ Imports System.Security.Cryptography
 Public Class Account
     Private username As String
     Private password As String
-    Private dbutil As DBUtility
 
     Sub New(username As String, password As String)
         Me.username = username
@@ -18,7 +17,6 @@ Public Class Account
         Else
             MsgBox("Passord ugyldig.")
         End If
-        dbutil = New DBUtility
     End Sub
 
     Public Function getUsername() As String
@@ -33,10 +31,9 @@ Public Class Account
         Return password
     End Function
 
-    Public Sub setPassword(password)
+    Public Sub setPassword(password As String)
         If validatePassword(password) Then
             password = generateHash(password)
-            'Skriv passord/hash til database i Employee.
         Else
             MsgBox("Passord ugyldig.")
         End If
@@ -74,12 +71,9 @@ Public Class Account
         Return Convert.ToBase64String(byteHash)
     End Function
 
-    'TODO
-    Public Function login(id As String, username As String, password As String) As Boolean
-        Return True
-    End Function
-
-    Public Overrides Function toString() As String
-        Return "Brukernavn: " & username & vbCrLf & "Passord: " & password
+    Public Function login() As DataTable
+        Dim dao As New EmployeeDao
+        Dim table As DataTable = dao.login(getUsername(), getPassword())
+        Return table
     End Function
 End Class

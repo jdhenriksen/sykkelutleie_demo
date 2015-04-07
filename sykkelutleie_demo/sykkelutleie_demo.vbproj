@@ -76,12 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.vb" />
-    <Compile Include="AccountTest.Designer.vb">
-      <DependentUpon>AccountTest.vb</DependentUpon>
-    </Compile>
-    <Compile Include="AccountTest.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="AdminForm.Designer.vb">
       <DependentUpon>AdminForm.vb</DependentUpon>
     </Compile>
@@ -96,6 +90,7 @@
     <Compile Include="CustomerTest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="dao\EmployeeDao.vb" />
     <Compile Include="DBUtility.vb" />
     <Compile Include="Employee.vb" />
     <Compile Include="EmployeeTest.Designer.vb">
@@ -178,9 +173,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AccountTest.resx">
-      <DependentUpon>AccountTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.vb</DependentUpon>

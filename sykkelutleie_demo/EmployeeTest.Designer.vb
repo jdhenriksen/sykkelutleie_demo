@@ -30,20 +30,26 @@ Partial Class EmployeeTest
         Me.txtEmpJobTitle = New System.Windows.Forms.TextBox()
         Me.txtEmpUsername = New System.Windows.Forms.TextBox()
         Me.txtEmpPassword = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.lblEmpFirstname = New System.Windows.Forms.Label()
+        Me.lblEmpLastname = New System.Windows.Forms.Label()
+        Me.lblEmpPhone = New System.Windows.Forms.Label()
+        Me.lblEmpEmail = New System.Windows.Forms.Label()
+        Me.lblEmpJobDescription = New System.Windows.Forms.Label()
+        Me.lblEmpUsername = New System.Windows.Forms.Label()
+        Me.lblEmpPassword = New System.Windows.Forms.Label()
         Me.btnInsertEmployee = New System.Windows.Forms.Button()
         Me.btnSelectAllEmployees = New System.Windows.Forms.Button()
         Me.btnSearchForEmpById = New System.Windows.Forms.Button()
         Me.txtEmpId = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.lblEmpId = New System.Windows.Forms.Label()
         Me.btnUpdateEmp = New System.Windows.Forms.Button()
         Me.btnDeleteEmp = New System.Windows.Forms.Button()
+        Me.txtEmpAddress = New System.Windows.Forms.TextBox()
+        Me.txtEmpZipCode = New System.Windows.Forms.TextBox()
+        Me.lblEmpAddress = New System.Windows.Forms.Label()
+        Me.lblEmpZipCode = New System.Windows.Forms.Label()
+        Me.txtEmpZipArea = New System.Windows.Forms.TextBox()
+        Me.lblEmpZipArea = New System.Windows.Forms.Label()
         CType(Me.dgvEmployeeTest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -52,7 +58,7 @@ Partial Class EmployeeTest
         Me.dgvEmployeeTest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvEmployeeTest.Location = New System.Drawing.Point(294, 12)
         Me.dgvEmployeeTest.Name = "dgvEmployeeTest"
-        Me.dgvEmployeeTest.Size = New System.Drawing.Size(566, 310)
+        Me.dgvEmployeeTest.Size = New System.Drawing.Size(566, 335)
         Me.dgvEmployeeTest.TabIndex = 1
         '
         'txtEmpFirstname
@@ -92,84 +98,84 @@ Partial Class EmployeeTest
         '
         'txtEmpUsername
         '
-        Me.txtEmpUsername.Location = New System.Drawing.Point(100, 243)
+        Me.txtEmpUsername.Location = New System.Drawing.Point(100, 272)
         Me.txtEmpUsername.Name = "txtEmpUsername"
         Me.txtEmpUsername.Size = New System.Drawing.Size(142, 20)
         Me.txtEmpUsername.TabIndex = 7
         '
         'txtEmpPassword
         '
-        Me.txtEmpPassword.Location = New System.Drawing.Point(100, 269)
+        Me.txtEmpPassword.Location = New System.Drawing.Point(100, 298)
         Me.txtEmpPassword.Name = "txtEmpPassword"
         Me.txtEmpPassword.Size = New System.Drawing.Size(142, 20)
         Me.txtEmpPassword.TabIndex = 8
         '
-        'Label1
+        'lblEmpFirstname
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(35, 48)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(49, 13)
-        Me.Label1.TabIndex = 9
-        Me.Label1.Text = "Fornavn:"
+        Me.lblEmpFirstname.AutoSize = True
+        Me.lblEmpFirstname.Location = New System.Drawing.Point(35, 48)
+        Me.lblEmpFirstname.Name = "lblEmpFirstname"
+        Me.lblEmpFirstname.Size = New System.Drawing.Size(49, 13)
+        Me.lblEmpFirstname.TabIndex = 9
+        Me.lblEmpFirstname.Text = "Fornavn:"
         '
-        'Label2
+        'lblEmpLastname
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(35, 74)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(56, 13)
-        Me.Label2.TabIndex = 10
-        Me.Label2.Text = "Etternavn:"
+        Me.lblEmpLastname.AutoSize = True
+        Me.lblEmpLastname.Location = New System.Drawing.Point(35, 74)
+        Me.lblEmpLastname.Name = "lblEmpLastname"
+        Me.lblEmpLastname.Size = New System.Drawing.Size(56, 13)
+        Me.lblEmpLastname.TabIndex = 10
+        Me.lblEmpLastname.Text = "Etternavn:"
         '
-        'Label3
+        'lblEmpPhone
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(35, 100)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(46, 13)
-        Me.Label3.TabIndex = 11
-        Me.Label3.Text = "Telefon:"
+        Me.lblEmpPhone.AutoSize = True
+        Me.lblEmpPhone.Location = New System.Drawing.Point(35, 100)
+        Me.lblEmpPhone.Name = "lblEmpPhone"
+        Me.lblEmpPhone.Size = New System.Drawing.Size(46, 13)
+        Me.lblEmpPhone.TabIndex = 11
+        Me.lblEmpPhone.Text = "Telefon:"
         '
-        'Label4
+        'lblEmpEmail
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(35, 126)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(37, 13)
-        Me.Label4.TabIndex = 12
-        Me.Label4.Text = "Epost:"
+        Me.lblEmpEmail.AutoSize = True
+        Me.lblEmpEmail.Location = New System.Drawing.Point(35, 126)
+        Me.lblEmpEmail.Name = "lblEmpEmail"
+        Me.lblEmpEmail.Size = New System.Drawing.Size(37, 13)
+        Me.lblEmpEmail.TabIndex = 12
+        Me.lblEmpEmail.Text = "Epost:"
         '
-        'Label5
+        'lblEmpJobDescription
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(35, 152)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(52, 13)
-        Me.Label5.TabIndex = 13
-        Me.Label5.Text = "Jobbtittel:"
+        Me.lblEmpJobDescription.AutoSize = True
+        Me.lblEmpJobDescription.Location = New System.Drawing.Point(35, 152)
+        Me.lblEmpJobDescription.Name = "lblEmpJobDescription"
+        Me.lblEmpJobDescription.Size = New System.Drawing.Size(52, 13)
+        Me.lblEmpJobDescription.TabIndex = 13
+        Me.lblEmpJobDescription.Text = "Jobbtittel:"
         '
-        'Label6
+        'lblEmpUsername
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(35, 246)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(65, 13)
-        Me.Label6.TabIndex = 14
-        Me.Label6.Text = "Brukernavn:"
+        Me.lblEmpUsername.AutoSize = True
+        Me.lblEmpUsername.Location = New System.Drawing.Point(35, 275)
+        Me.lblEmpUsername.Name = "lblEmpUsername"
+        Me.lblEmpUsername.Size = New System.Drawing.Size(65, 13)
+        Me.lblEmpUsername.TabIndex = 14
+        Me.lblEmpUsername.Text = "Brukernavn:"
         '
-        'Label7
+        'lblEmpPassword
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(35, 272)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(48, 13)
-        Me.Label7.TabIndex = 15
-        Me.Label7.Text = "Passord:"
+        Me.lblEmpPassword.AutoSize = True
+        Me.lblEmpPassword.Location = New System.Drawing.Point(35, 301)
+        Me.lblEmpPassword.Name = "lblEmpPassword"
+        Me.lblEmpPassword.Size = New System.Drawing.Size(48, 13)
+        Me.lblEmpPassword.TabIndex = 15
+        Me.lblEmpPassword.Text = "Passord:"
         '
         'btnInsertEmployee
         '
-        Me.btnInsertEmployee.Location = New System.Drawing.Point(18, 328)
+        Me.btnInsertEmployee.Location = New System.Drawing.Point(17, 353)
         Me.btnInsertEmployee.Name = "btnInsertEmployee"
         Me.btnInsertEmployee.Size = New System.Drawing.Size(82, 23)
         Me.btnInsertEmployee.TabIndex = 18
@@ -178,7 +184,7 @@ Partial Class EmployeeTest
         '
         'btnSelectAllEmployees
         '
-        Me.btnSelectAllEmployees.Location = New System.Drawing.Point(785, 328)
+        Me.btnSelectAllEmployees.Location = New System.Drawing.Point(783, 353)
         Me.btnSelectAllEmployees.Name = "btnSelectAllEmployees"
         Me.btnSelectAllEmployees.Size = New System.Drawing.Size(75, 23)
         Me.btnSelectAllEmployees.TabIndex = 19
@@ -187,7 +193,7 @@ Partial Class EmployeeTest
         '
         'btnSearchForEmpById
         '
-        Me.btnSearchForEmpById.Location = New System.Drawing.Point(705, 328)
+        Me.btnSearchForEmpById.Location = New System.Drawing.Point(703, 353)
         Me.btnSearchForEmpById.Name = "btnSearchForEmpById"
         Me.btnSearchForEmpById.Size = New System.Drawing.Size(74, 23)
         Me.btnSearchForEmpById.TabIndex = 20
@@ -201,18 +207,18 @@ Partial Class EmployeeTest
         Me.txtEmpId.Size = New System.Drawing.Size(142, 20)
         Me.txtEmpId.TabIndex = 21
         '
-        'Label8
+        'lblEmpId
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(35, 22)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(51, 13)
-        Me.Label8.TabIndex = 22
-        Me.Label8.Text = "AnsattID:"
+        Me.lblEmpId.AutoSize = True
+        Me.lblEmpId.Location = New System.Drawing.Point(35, 22)
+        Me.lblEmpId.Name = "lblEmpId"
+        Me.lblEmpId.Size = New System.Drawing.Size(51, 13)
+        Me.lblEmpId.TabIndex = 22
+        Me.lblEmpId.Text = "AnsattID:"
         '
         'btnUpdateEmp
         '
-        Me.btnUpdateEmp.Location = New System.Drawing.Point(120, 328)
+        Me.btnUpdateEmp.Location = New System.Drawing.Point(119, 353)
         Me.btnUpdateEmp.Name = "btnUpdateEmp"
         Me.btnUpdateEmp.Size = New System.Drawing.Size(75, 23)
         Me.btnUpdateEmp.TabIndex = 26
@@ -221,32 +227,88 @@ Partial Class EmployeeTest
         '
         'btnDeleteEmp
         '
-        Me.btnDeleteEmp.Location = New System.Drawing.Point(213, 328)
+        Me.btnDeleteEmp.Location = New System.Drawing.Point(212, 353)
         Me.btnDeleteEmp.Name = "btnDeleteEmp"
         Me.btnDeleteEmp.Size = New System.Drawing.Size(75, 23)
         Me.btnDeleteEmp.TabIndex = 27
         Me.btnDeleteEmp.Text = "Slett"
         Me.btnDeleteEmp.UseVisualStyleBackColor = True
         '
+        'txtEmpAddress
+        '
+        Me.txtEmpAddress.Location = New System.Drawing.Point(100, 175)
+        Me.txtEmpAddress.Name = "txtEmpAddress"
+        Me.txtEmpAddress.Size = New System.Drawing.Size(142, 20)
+        Me.txtEmpAddress.TabIndex = 28
+        '
+        'txtEmpZipCode
+        '
+        Me.txtEmpZipCode.Location = New System.Drawing.Point(100, 201)
+        Me.txtEmpZipCode.Name = "txtEmpZipCode"
+        Me.txtEmpZipCode.ReadOnly = True
+        Me.txtEmpZipCode.Size = New System.Drawing.Size(142, 20)
+        Me.txtEmpZipCode.TabIndex = 29
+        '
+        'lblEmpAddress
+        '
+        Me.lblEmpAddress.AutoSize = True
+        Me.lblEmpAddress.Location = New System.Drawing.Point(35, 178)
+        Me.lblEmpAddress.Name = "lblEmpAddress"
+        Me.lblEmpAddress.Size = New System.Drawing.Size(48, 13)
+        Me.lblEmpAddress.TabIndex = 30
+        Me.lblEmpAddress.Text = "Adresse:"
+        '
+        'lblEmpZipCode
+        '
+        Me.lblEmpZipCode.AutoSize = True
+        Me.lblEmpZipCode.Location = New System.Drawing.Point(35, 204)
+        Me.lblEmpZipCode.Name = "lblEmpZipCode"
+        Me.lblEmpZipCode.Size = New System.Drawing.Size(40, 13)
+        Me.lblEmpZipCode.TabIndex = 31
+        Me.lblEmpZipCode.Text = "Postnr:"
+        '
+        'txtEmpZipArea
+        '
+        Me.txtEmpZipArea.Location = New System.Drawing.Point(100, 227)
+        Me.txtEmpZipArea.Name = "txtEmpZipArea"
+        Me.txtEmpZipArea.ReadOnly = True
+        Me.txtEmpZipArea.Size = New System.Drawing.Size(142, 20)
+        Me.txtEmpZipArea.TabIndex = 32
+        '
+        'lblEmpZipArea
+        '
+        Me.lblEmpZipArea.AutoSize = True
+        Me.lblEmpZipArea.Location = New System.Drawing.Point(35, 230)
+        Me.lblEmpZipArea.Name = "lblEmpZipArea"
+        Me.lblEmpZipArea.Size = New System.Drawing.Size(51, 13)
+        Me.lblEmpZipArea.TabIndex = 33
+        Me.lblEmpZipArea.Text = "Poststed:"
+        '
         'EmployeeTest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(872, 418)
+        Me.ClientSize = New System.Drawing.Size(872, 457)
+        Me.Controls.Add(Me.lblEmpZipArea)
+        Me.Controls.Add(Me.txtEmpZipArea)
+        Me.Controls.Add(Me.lblEmpZipCode)
+        Me.Controls.Add(Me.lblEmpAddress)
+        Me.Controls.Add(Me.txtEmpZipCode)
+        Me.Controls.Add(Me.txtEmpAddress)
         Me.Controls.Add(Me.btnDeleteEmp)
         Me.Controls.Add(Me.btnUpdateEmp)
-        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.lblEmpId)
         Me.Controls.Add(Me.txtEmpId)
         Me.Controls.Add(Me.btnSearchForEmpById)
         Me.Controls.Add(Me.btnSelectAllEmployees)
         Me.Controls.Add(Me.btnInsertEmployee)
-        Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblEmpPassword)
+        Me.Controls.Add(Me.lblEmpUsername)
+        Me.Controls.Add(Me.lblEmpJobDescription)
+        Me.Controls.Add(Me.lblEmpEmail)
+        Me.Controls.Add(Me.lblEmpPhone)
+        Me.Controls.Add(Me.lblEmpLastname)
+        Me.Controls.Add(Me.lblEmpFirstname)
         Me.Controls.Add(Me.txtEmpPassword)
         Me.Controls.Add(Me.txtEmpUsername)
         Me.Controls.Add(Me.txtEmpJobTitle)
@@ -270,18 +332,24 @@ Partial Class EmployeeTest
     Friend WithEvents txtEmpJobTitle As System.Windows.Forms.TextBox
     Friend WithEvents txtEmpUsername As System.Windows.Forms.TextBox
     Friend WithEvents txtEmpPassword As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents lblEmpFirstname As System.Windows.Forms.Label
+    Friend WithEvents lblEmpLastname As System.Windows.Forms.Label
+    Friend WithEvents lblEmpPhone As System.Windows.Forms.Label
+    Friend WithEvents lblEmpEmail As System.Windows.Forms.Label
+    Friend WithEvents lblEmpJobDescription As System.Windows.Forms.Label
+    Friend WithEvents lblEmpUsername As System.Windows.Forms.Label
+    Friend WithEvents lblEmpPassword As System.Windows.Forms.Label
     Friend WithEvents btnInsertEmployee As System.Windows.Forms.Button
     Friend WithEvents btnSelectAllEmployees As System.Windows.Forms.Button
     Friend WithEvents btnSearchForEmpById As System.Windows.Forms.Button
     Friend WithEvents txtEmpId As System.Windows.Forms.TextBox
-    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents lblEmpId As System.Windows.Forms.Label
     Friend WithEvents btnUpdateEmp As System.Windows.Forms.Button
     Friend WithEvents btnDeleteEmp As System.Windows.Forms.Button
+    Friend WithEvents txtEmpAddress As System.Windows.Forms.TextBox
+    Friend WithEvents txtEmpZipCode As System.Windows.Forms.TextBox
+    Friend WithEvents lblEmpAddress As System.Windows.Forms.Label
+    Friend WithEvents lblEmpZipCode As System.Windows.Forms.Label
+    Friend WithEvents txtEmpZipArea As System.Windows.Forms.TextBox
+    Friend WithEvents lblEmpZipArea As System.Windows.Forms.Label
 End Class
