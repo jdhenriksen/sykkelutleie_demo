@@ -59,17 +59,12 @@ Public Class Model
     ''' Modell søk
     ''' </summary>
     ''' <remarks>Fyller opp resultatliste(datagridView) med modeller</remarks>
-    Public Sub sokModell()
+    Public Function sokModell() As DataTable
+        sqlstring = "SELECT modell, pris, produsent, kategori FROM modell WHERE (modell LIKE '%" & getModel() & "%') AND (pris >=" & getPrice() & ") AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')"
 
-        Dim myData As New DataTable
+        Return anySqlQuery.selectQuery(sqlstring)
 
-        sqlstring = "SELECT modell, pris, produsent, kategori FROM modell WHERE (modell LIKE '%" & getModel() & "%') AND (pris LIKE '%" & getPrice() & "%') AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')"
-
-        myData = anySqlQuery.selectQuery(sqlstring)
-
-        StorageWorker.dtgvModel.DataSource = myData
-
-    End Sub
+    End Function
     ''' <summary>
     ''' Slette Modell
     ''' </summary>

@@ -36,6 +36,18 @@
         'Sett 'active'/aktivert til 0
     End Sub
 
+
+    Public Function searchCustomer() As DataTable
+        dbutil = New DBUtility()
+        Dim table As DataTable
+        Dim sql As String
+
+        sql = "SELECT kid, fornavn, etternavn, telefon, epost FROM kunde WHERE (kid LIKE '%" & _kid & "%') AND (fornavn LIKE '%" & MyBase.firstname & "%') AND (etternavn LIKE '" & MyBase.lastname & "%') AND (telefon LIKE '%" & MyBase.phone & "%') AND (epost LIKE '%" & MyBase.email & "%')"
+        table = dbutil.selectQuery(sql)
+
+        Return table
+    End Function
+
     'Midlertidig hjelpemetode for å hente ut ansatt basert på id
     'Mulig at settes til Private senere
     Public Function selectCustomerById(id As String) As DataTable

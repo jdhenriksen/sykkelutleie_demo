@@ -7,7 +7,7 @@ Public Class AdminForm
     Public endDate As String
     Public statisticsType As String
     Public limitResult As Integer
-    Private Sub endApplication(sender As Object, e As EventArgs) Handles BtnEndApplication.Click
+    Private Sub endApplication() Handles BtnEndApplication.Click
         End
     End Sub
 
@@ -17,14 +17,14 @@ Public Class AdminForm
     Private Sub CalenderTo_DateChanged(sender As Object, e As DateRangeEventArgs) Handles CalendarTo.DateChanged
         LabelDispToDate.Text = Format(CalendarTo.SelectionEnd, "yyyy/MM/dd")
     End Sub
-    Private Sub CmbBxType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbBxType.SelectedIndexChanged
+    Private Sub CmbBxType_SelectedIndexChanged() Handles CmbBxType.SelectedIndexChanged
         LabelDispType.Text = CmbBxType.SelectedItem
     End Sub
 
-    Private Sub NumericUpDownAntall_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDownAntall.ValueChanged
+    Private Sub NumericUpDownAntall_ValueChanged() Handles NumericUpDownAntall.ValueChanged
         LabelDispAntall.Text = NumericUpDownAntall.Value
     End Sub
-    Private Sub chkBxAllTimeStart_CheckedChanged(sender As Object, e As EventArgs) Handles chkBxAllTimeStart.CheckedChanged
+    Private Sub chkBxAllTimeStart_CheckedChanged() Handles chkBxAllTimeStart.CheckedChanged
         If chkBxAllTimeStart.Checked = True Then
             CalendarFrom.Enabled = False
             LabelDispFromDate.Text = "2015/01/01"
@@ -34,7 +34,7 @@ Public Class AdminForm
         End If
     End Sub
 
-    Private Sub chkBxAllTimeEnd_CheckedChanged(sender As Object, e As EventArgs) Handles chkBxAllTimeEnd.CheckedChanged
+    Private Sub chkBxAllTimeEnd_CheckedChanged() Handles chkBxAllTimeEnd.CheckedChanged
         If chkBxAllTimeEnd.Checked = True Then
             CalendarTo.Enabled = False
             LabelDispToDate.Text = "2099/01/01"
@@ -43,7 +43,7 @@ Public Class AdminForm
             LabelDispToDate.Text = Format(CalendarTo.SelectionEnd, "yyyy/MM/dd")
         End If
     End Sub
-    Private Sub btnDisplayStatistics_Click(sender As Object, e As EventArgs) Handles btnDisplayStatistics.Click
+    Private Sub btnDisplayStatistics_Click() Handles btnDisplayStatistics.Click
         startDate = LabelDispFromDate.Text
         endDate = LabelDispToDate.Text
         statisticsType = LabelDispType.Text

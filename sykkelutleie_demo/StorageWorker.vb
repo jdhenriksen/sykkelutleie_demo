@@ -48,7 +48,8 @@ Public Class StorageWorker
     Private Sub searchBike_Click(sender As Object, e As EventArgs) Handles btnSearchbike.Click
 
         objectupdate()
-        bike.searchBike()            'Bruker alle tilgjengelge felter med informasjon til å søke etter samsvarende sykler.
+        'Bruker alle tilgjengelge felter med informasjon til å søke etter samsvarende sykler.
+        dtgvBike.DataSource = bike.searchBike()
         updateComboboxes()           'oppdaterer combobokser
 
     End Sub
@@ -163,7 +164,7 @@ Public Class StorageWorker
 
         objectupdate()
 
-        model.sokModell()
+        dtgvModel.DataSource = model.sokModell()
 
     End Sub
 
@@ -438,4 +439,6 @@ Public Class StorageWorker
 
     End Sub
 
+    Private Sub txtFramenumber_MaskInputRejected(sender As Object, e As MaskInputRejectedEventArgs) Handles txtFramenumber.MaskInputRejected
+    End Sub
 End Class

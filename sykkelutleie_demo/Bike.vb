@@ -1,4 +1,4 @@
-﻿Public Class Bike 
+﻿Public Class Bike
     Private frameNumber As String
     Private status As String
     Private location As String
@@ -61,13 +61,25 @@
     ''' Søk etter sykkel
     ''' </summary>
     ''' <remarks>Fyller datagridview for sykkel med reultater</remarks>
-    Public Sub searchBike()
+    Public Function searchBike() As DataTable
 
         myData = anySqlQuery.selectQuery("SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE '%" & frameNumber & "%') AND (modell LIKE '%" & getModel() & "%') AND (status LIKE '" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%') AND (modell LIKE '%" & getModel() & "%')")
 
-        StorageWorker.dtgvBike.DataSource = myData
+        Return myData
 
-    End Sub
+    End Function
+    ''' <summary>
+    ''' Finner sykkel og modelldata 
+    ''' </summary>
+    ''' <returns>Datatabell basert på sql spørring</returns>
+    ''' <remarks>Joiner sykkel og modell for å gi data fra begge</remarks>
+    Public Function searchBicycleModel() As DataTable
+
+        myData = anySqlQuery.selectQuery("SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE  (rammenr LIKE '%" & frameNumber & "%') AND (sykkel.modell LIKE '%" & getModel() & "%') AND (status LIKE '%" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%') AND (pris >=" & getPrice() & ") AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')")
+
+        Return myData
+    End Function
+
     ''' <summary>
     ''' Endre Sykkel
     ''' </summary>

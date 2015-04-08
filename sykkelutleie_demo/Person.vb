@@ -1,9 +1,9 @@
 ﻿Public Class Person
-    Private firstname As String
-    Private lastname As String
-    Private phone As String
-    Private email As String
-    Private active As Integer
+    Property firstname As String
+    Property lastname As String
+    Property phone As String
+    Property email As String
+    Property active As Integer
     'Private type As Person ---> Identifiserer om objektet er Employee eller Customer
     Private dbutil As DBUtility
 
@@ -50,7 +50,7 @@
         If IsNumeric(phone) And phone.Trim.Length = 8 Then
             Me.phone = phone
         Else
-            MsgBox("Telefonnummer er ugyldig.")
+            'MsgBox("Telefonnummer er ugyldig.")
         End If
     End Sub
 
@@ -62,7 +62,7 @@
         If email.Contains("@") Then
             Me.email = email
         Else
-            MsgBox("Ugyldig epostadresse.")
+            ' MsgBox("Ugyldig epostadresse.")
         End If
     End Sub
 
