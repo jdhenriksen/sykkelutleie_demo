@@ -3,25 +3,61 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class Order
+    Property bicycleList As List(Of Bike)
+    Private bicycle As Bike
+    Property customer As Customer
+    Property salesman As Employee
+    'Private equipment As List(Of EquipmentDao)
     Property orderID As String
     Property fromDate As Date
     Property toDate As Date
-    Property kid As String
-    Property employeeNumber As String
+    'Property kid As String
+    ' Property employeeNumber As String
     Property discount As String
     Property bicyclePriceCounter As Double
     Property sum As Double
     Public Sub New()
 
     End Sub
-    Public Sub New(fromDate As Date, toDate As Date, kid As String, employeNumber As String, bicyclePriceCounter As Double, discount As String)
+    ' Public Sub New(fromDate As Date, toDate As Date, kid As String, employeNumber As String, bicyclePriceCounter As Double, discount As String)
+    '    Me.fromDate = Format(fromDate, "yyyy/MM/dd")
+    '   Me.toDate = Format(toDate, "yyyy/MM/dd")
+    '  Me.kid = kid
+    ' Me.employeeNumber = employeNumber
+    'Me.bicyclePriceCounter = bicyclePriceCounter
+    'Me.discount = discount
+    'End Sub
+    Public Sub New(bicycleList As List(Of Bike), customer As Customer, salesman As Employee, fromDate As Date, toDate As Date, bicyclePriceCounter As Double, discount As String)
+        Me.bicycleList = bicycleList
+        Me.customer = customer
+        Me.salesman = salesman
         Me.fromDate = Format(fromDate, "yyyy/MM/dd")
         Me.toDate = Format(toDate, "yyyy/MM/dd")
-        Me.kid = kid
-        Me.employeeNumber = employeNumber
         Me.bicyclePriceCounter = bicyclePriceCounter
         Me.discount = discount
     End Sub
+
+    ''' <summary>
+    ''' Finner ny Datatable basert på sykkel- og modellsøk
+    ''' </summary>
+    ''' <param name="model">Kommer fra tekstfeltene som det skrives i</param>
+    ''' <param name="bike">Kommer fra tekstfeltene som det skrives i</param>
+    ''' <returns>Returnerer Datatable</returns>
+    ''' <remarks>Det meste som søkes på er "tomme" felt , ""</remarks>
+    Public Function updateBicycle() As DataTable
+        Dim data As DataTable
+
+        data = bicycle.searchBicycleModel
+
+        Return data
+    End Function
+    Public Function updateCustomer() As DataTable
+        Dim data As DataTable
+
+        data = customer.searchCustomer
+
+        Return data
+    End Function
     ''' <summary>
     ''' Finner tiden i dager mellom to datoer
     ''' </summary>
@@ -70,10 +106,27 @@ Public Class Order
         Dim tempFromDate As String = Format(fromDate, "yyyy/MM/dd")
         Dim tempToDate As String = Format(toDate, "yyyy/MM/dd")
 
-        sql = "INSERT INTO `14badr05`.`bestilling` (`bestillingsid`, `datotid`, `leie_fra`, `leie_til`, `ansattid`, `kid`, `sum`) VALUES (NULL, CURRENT_TIMESTAMP, '" & tempFromDate & "', '" & tempToDate & "', '" & employeeNumber & "', '" & kid & "', '" & getTotalPrice() & "');"
+        sql = "INSERT INTO `14badr05`.`bestilling` (`bestillingsid`, `datotid`, `leie_fra`, `leie_til`, `ansattid`, `kid`, `sum`) VALUES (NULL, CURRENT_TIMESTAMP, '" & tempFromDate & "', '" & tempToDate & "', '" & salesman.employeeID & "', '" & customer.customerID & "', '" & getTotalPrice() & "');"
 
         dbutil.updateQuery(sql)
+
+        For Each bicycle As Bike In bicycleList
+            sql = "INSERT INTO `14badr05`.`sykkel_bestilling` (`bestillingsid`, `rammenr`) VALUES ('" & getOrderID() & "', '" & bicycle.frameNumber & "');"
+
+            dbutil.updateQuery(sql)
+        Next
+
+        ' Public Sub registerEquipmentOrder()
+        '   Dim dbutil As New DBUtility
+        '  Dim sql As String
+
+        '  sql = "INSERT INTO `14badr05`.`utstyr_bestilling` (`bestillingsid`, `varenr`) VALUES ('" & orderID & "', '" & equipmentNumber & "');"
+
+        '  dbutil.updateQuery(sql)
+        '  End Sub
+
     End Sub
+
     ''' <summary>
     ''' Finner bestillingsID basert på info brukt til å lage bestilling
     ''' </summary>
@@ -88,7 +141,7 @@ Public Class Order
         Dim tempFromDate As String = Format(fromDate, "yyyy/MM/dd")
         Dim tempToDate As String = Format(toDate, "yyyy/MM/dd")
 
-        sql = "SELECT bestillingsid FROM bestilling WHERE leie_fra ='" & tempFromDate & "' AND leie_til='" & tempToDate & "' AND ansattid='" & employeeNumber & "' AND kid='" & kid & "' AND sum='" & getTotalPrice() & "';"
+        sql = "SELECT bestillingsid FROM bestilling WHERE leie_fra ='" & tempFromDate & "' AND leie_til='" & tempToDate & "' AND ansattid='" & salesman.employeeID & "' AND kid='" & customer.customerID & "' AND sum='" & getTotalPrice() & "';"
 
         result = dbutil.selectQuery(sql)
 
@@ -103,26 +156,6 @@ Public Class Order
         End If
 
     End Function
-    ''' <summary>
-    ''' Finner ny Datatable basert på sykkel- og modellsøk
-    ''' </summary>
-    ''' <param name="model">Kommer fra tekstfeltene som det skrives i</param>
-    ''' <param name="bike">Kommer fra tekstfeltene som det skrives i</param>
-    ''' <returns>Returnerer Datatable</returns>
-    ''' <remarks>Det meste som søkes på er "tomme" felt , ""</remarks>
-    Public Function updateBicycle(model As Model, bike As Bike) As DataTable
-        Dim data As DataTable
 
-        data = bike.searchBicycleModel
-
-        Return data
-    End Function
-    Public Function updateCustomer(customer As Customer) As DataTable
-        Dim data As DataTable
-
-        data = customer.searchCustomer
-
-        Return data
-    End Function
 
 End Class

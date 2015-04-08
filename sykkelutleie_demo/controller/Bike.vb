@@ -1,13 +1,13 @@
 ﻿Public Class Bike 
-    Private frameNumber As String
-    Private status As String
-    Private location As String
-    Private placeOfOrigin As String
-    Private brakes As String
-    Private tires As String
-    Private frame As String
-    Private gear As String
-    Public model As Model
+    Property frameNumber As String
+    Property status As String
+    Property location As String
+    Property placeOfOrigin As String
+    Property brakes As String
+    Property tires As String
+    Property frame As String
+    Property gear As String
+    Property model As Model
     Dim sqlstring As String
     Dim anySqlQuery As New DBUtility
     Dim myData As New DataTable

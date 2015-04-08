@@ -1,10 +1,10 @@
 ﻿
 Public Class Model
 
-    Private model As String
-    Private price As String
-    Private producer As String
-    Private category As String
+    Property model As String
+    Property price As Double
+    Property producer As String
+    Property category As String
     Dim anySqlQuery As New DBUtility
     Dim sqlstring As String
     Dim answer As String
@@ -14,7 +14,7 @@ Public Class Model
     ''' Ny modellobject instans
     ''' </summary>
     ''' <remarks> New lager nytt objekt uti fra verdier som blir sendt til den</remarks>
-    Public Sub New(ByVal m As String, ByVal pri As String, ByVal pro As String, ByVal c As String)
+    Public Sub New(ByVal m As String, ByVal pri As Double, ByVal pro As String, ByVal c As String)
 
         model = m
         price = pri

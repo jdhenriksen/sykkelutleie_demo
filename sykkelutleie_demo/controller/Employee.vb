@@ -5,7 +5,7 @@
 ''' <remarks></remarks>
 Public Class Employee
     Inherits Person
-    Private employeeID As String
+    Property employeeID As String
     Private job As String
     Private address As String
     Private zip As String

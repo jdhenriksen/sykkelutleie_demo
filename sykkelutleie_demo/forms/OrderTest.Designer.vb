@@ -27,7 +27,7 @@ Partial Class OrderTest
         Me.btnChangeCustomer = New System.Windows.Forms.Button()
         Me.btnCreateNewCustomer = New System.Windows.Forms.Button()
         Me.btnNextToSykkel = New System.Windows.Forms.Button()
-        Me.dtgvKunde = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewKunde = New System.Windows.Forms.DataGridView()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtBxKID = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -73,7 +73,7 @@ Partial Class OrderTest
         Me.ListBoxOrderOverview = New System.Windows.Forms.ListBox()
         Me.btnNewOrder = New System.Windows.Forms.Button()
         Me.TabPage1.SuspendLayout()
-        CType(Me.dtgvKunde, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewKunde, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Bestilling.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.dgvBicycle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,7 +95,7 @@ Partial Class OrderTest
         Me.TabPage1.Controls.Add(Me.btnChangeCustomer)
         Me.TabPage1.Controls.Add(Me.btnCreateNewCustomer)
         Me.TabPage1.Controls.Add(Me.btnNextToSykkel)
-        Me.TabPage1.Controls.Add(Me.dtgvKunde)
+        Me.TabPage1.Controls.Add(Me.DataGridViewKunde)
         Me.TabPage1.Controls.Add(Me.Label5)
         Me.TabPage1.Controls.Add(Me.txtBxKID)
         Me.TabPage1.Controls.Add(Me.Label4)
@@ -140,26 +140,26 @@ Partial Class OrderTest
         Me.btnNextToSykkel.Text = "Neste"
         Me.btnNextToSykkel.UseVisualStyleBackColor = True
         '
-        'dtgvKunde
+        'DataGridViewKunde
         '
-        Me.dtgvKunde.AllowUserToAddRows = False
-        Me.dtgvKunde.AllowUserToDeleteRows = False
-        Me.dtgvKunde.AllowUserToResizeColumns = False
-        Me.dtgvKunde.AllowUserToResizeRows = False
-        Me.dtgvKunde.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dtgvKunde.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.dtgvKunde.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgvKunde.Location = New System.Drawing.Point(239, 18)
-        Me.dtgvKunde.Margin = New System.Windows.Forms.Padding(2)
-        Me.dtgvKunde.MultiSelect = False
-        Me.dtgvKunde.Name = "dtgvKunde"
-        Me.dtgvKunde.ReadOnly = True
-        Me.dtgvKunde.RowHeadersVisible = False
-        Me.dtgvKunde.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders
-        Me.dtgvKunde.RowTemplate.Height = 24
-        Me.dtgvKunde.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgvKunde.Size = New System.Drawing.Size(840, 350)
-        Me.dtgvKunde.TabIndex = 151
+        Me.DataGridViewKunde.AllowUserToAddRows = False
+        Me.DataGridViewKunde.AllowUserToDeleteRows = False
+        Me.DataGridViewKunde.AllowUserToResizeColumns = False
+        Me.DataGridViewKunde.AllowUserToResizeRows = False
+        Me.DataGridViewKunde.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewKunde.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.DataGridViewKunde.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewKunde.Location = New System.Drawing.Point(239, 18)
+        Me.DataGridViewKunde.Margin = New System.Windows.Forms.Padding(2)
+        Me.DataGridViewKunde.MultiSelect = False
+        Me.DataGridViewKunde.Name = "DataGridViewKunde"
+        Me.DataGridViewKunde.ReadOnly = True
+        Me.DataGridViewKunde.RowHeadersVisible = False
+        Me.DataGridViewKunde.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders
+        Me.DataGridViewKunde.RowTemplate.Height = 24
+        Me.DataGridViewKunde.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridViewKunde.Size = New System.Drawing.Size(840, 350)
+        Me.DataGridViewKunde.TabIndex = 151
         '
         'Label5
         '
@@ -592,7 +592,7 @@ Partial Class OrderTest
         Me.Text = "OrderTest"
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
-        CType(Me.dtgvKunde, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewKunde, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Bestilling.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
@@ -607,7 +607,7 @@ Partial Class OrderTest
     End Sub
     Friend WithEvents txtBxFirstName As System.Windows.Forms.TextBox
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents dtgvKunde As System.Windows.Forms.DataGridView
+    Friend WithEvents DataGridViewKunde As System.Windows.Forms.DataGridView
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents txtBxKID As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label

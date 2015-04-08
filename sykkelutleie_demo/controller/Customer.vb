@@ -1,7 +1,7 @@
 ﻿Public Class Customer
     Inherits Person
 
-    Private customerID As String
+    Property customerID As String
     Private dbutil As DBUtility
     Private id As String
 
