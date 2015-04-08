@@ -35,10 +35,6 @@
 
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles btnOpenDatabaseTest.Click
-        DBTest.Show()
-    End Sub
-
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles btnOpenAdminForm.Click
         AdminForm.Show()
     End Sub

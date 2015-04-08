@@ -22,7 +22,7 @@ Public Class Statistics
         Dim dbUtil As New DBUtility
 
         With dbUtil
-            .addParametersToQuery("@limit", limitResult)
+            .addParametersToQuery("@limit", limitResult, DbType.Int64)
             .addParametersToQuery("@startDate", startDate)
             .addParametersToQuery("@endDate", endDate)
         End With

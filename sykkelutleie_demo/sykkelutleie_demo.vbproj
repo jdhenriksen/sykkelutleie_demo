@@ -113,12 +113,6 @@
       <DependentUpon>Login.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\DBTest.Designer.vb">
-      <DependentUpon>DBTest.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\DBTest.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\mailLogin.Designer.vb">
       <DependentUpon>mailLogin.vb</DependentUpon>
     </Compile>
@@ -183,9 +177,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\AdminForm.resx">
       <DependentUpon>AdminForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\DBTest.resx">
-      <DependentUpon>DBTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\mailLogin.resx">
       <DependentUpon>mailLogin.vb</DependentUpon>
