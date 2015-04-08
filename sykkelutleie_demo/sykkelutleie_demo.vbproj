@@ -75,19 +75,20 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.vb" />
-    <Compile Include="AdminForm.Designer.vb">
+    <Compile Include="controller\Account.vb" />
+    <Compile Include="forms\AdminForm.Designer.vb">
       <DependentUpon>AdminForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="AdminForm.vb">
+    <Compile Include="forms\AdminForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bike.vb" />
-    <Compile Include="Customer.vb" />
-    <Compile Include="CustomerTest.Designer.vb">
+    <Compile Include="controller\BicycleOrder.vb" />
+    <Compile Include="controller\Bike.vb" />
+    <Compile Include="controller\Customer.vb" />
+    <Compile Include="forms\CustomerTest.Designer.vb">
       <DependentUpon>CustomerTest.vb</DependentUpon>
     </Compile>
-    <Compile Include="CustomerTest.vb">
+    <Compile Include="forms\CustomerTest.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="dao\BikeDao.vb" />
@@ -96,41 +97,42 @@
     <Compile Include="dao\EquipmentDao.vb" />
     <Compile Include="dao\ModelDao.vb" />
     <Compile Include="dao\OrderDao.vb" />
-    <Compile Include="DBUtility.vb" />
-    <Compile Include="Employee.vb" />
+    <Compile Include="controller\DBUtility.vb" />
+    <Compile Include="controller\Employee.vb" />
     <Compile Include="forms\EmployeeTest.Designer.vb">
       <DependentUpon>EmployeeTest.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\EmployeeTest.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.vb">
+    <Compile Include="controller\EquipmentOrder.vb" />
+    <Compile Include="forms\Login.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.vb">
+    <Compile Include="forms\Login.Designer.vb">
       <DependentUpon>Login.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DBTest.Designer.vb">
+    <Compile Include="forms\DBTest.Designer.vb">
       <DependentUpon>DBTest.vb</DependentUpon>
     </Compile>
-    <Compile Include="DBTest.vb">
+    <Compile Include="forms\DBTest.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="mailLogin.Designer.vb">
+    <Compile Include="forms\mailLogin.Designer.vb">
       <DependentUpon>mailLogin.vb</DependentUpon>
     </Compile>
-    <Compile Include="mailLogin.vb">
+    <Compile Include="forms\mailLogin.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MailTest.Designer.vb">
+    <Compile Include="forms\MailTest.Designer.vb">
       <DependentUpon>MailTest.vb</DependentUpon>
     </Compile>
-    <Compile Include="MailTest.vb">
+    <Compile Include="forms\MailTest.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MailUtility.vb" />
-    <Compile Include="Model.vb" />
+    <Compile Include="controller\MailUtility.vb" />
+    <Compile Include="controller\Model.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -146,49 +148,49 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Order.vb" />
-    <Compile Include="OrderTest.Designer.vb">
+    <Compile Include="controller\Order.vb" />
+    <Compile Include="forms\OrderTest.Designer.vb">
       <DependentUpon>OrderTest.vb</DependentUpon>
     </Compile>
-    <Compile Include="OrderTest.vb">
+    <Compile Include="forms\OrderTest.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Person.vb" />
-    <Compile Include="SQLRes.vb" />
-    <Compile Include="Statistics.vb" />
-    <Compile Include="StatisticsView.Designer.vb">
+    <Compile Include="controller\Person.vb" />
+    <Compile Include="controller\SQLRes.vb" />
+    <Compile Include="controller\Statistics.vb" />
+    <Compile Include="forms\StatisticsView.Designer.vb">
       <DependentUpon>StatisticsView.vb</DependentUpon>
     </Compile>
-    <Compile Include="StatisticsView.vb">
+    <Compile Include="forms\StatisticsView.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StorageWorker.Designer.vb">
+    <Compile Include="forms\StorageWorker.Designer.vb">
       <DependentUpon>StorageWorker.vb</DependentUpon>
     </Compile>
-    <Compile Include="StorageWorker.vb">
+    <Compile Include="forms\StorageWorker.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CustomerTest.resx">
+    <EmbeddedResource Include="forms\CustomerTest.resx">
       <DependentUpon>CustomerTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\EmployeeTest.resx">
       <DependentUpon>EmployeeTest.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="forms\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminForm.resx">
+    <EmbeddedResource Include="forms\AdminForm.resx">
       <DependentUpon>AdminForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DBTest.resx">
+    <EmbeddedResource Include="forms\DBTest.resx">
       <DependentUpon>DBTest.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="mailLogin.resx">
+    <EmbeddedResource Include="forms\mailLogin.resx">
       <DependentUpon>mailLogin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MailTest.resx">
+    <EmbeddedResource Include="forms\MailTest.resx">
       <DependentUpon>MailTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -197,13 +199,13 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrderTest.resx">
+    <EmbeddedResource Include="forms\OrderTest.resx">
       <DependentUpon>OrderTest.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StatisticsView.resx">
+    <EmbeddedResource Include="forms\StatisticsView.resx">
       <DependentUpon>StatisticsView.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StorageWorker.resx">
+    <EmbeddedResource Include="forms\StorageWorker.resx">
       <DependentUpon>StorageWorker.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
