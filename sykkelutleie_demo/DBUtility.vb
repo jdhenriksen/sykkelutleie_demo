@@ -5,7 +5,7 @@ Imports System.Configuration
 ''' </summary>
 ''' <remarks></remarks>
 Public Class DBUtility
-    Public SQLParameters As New List(Of MySqlParameter)
+    Private SQLParameters As New List(Of MySqlParameter)
 
     ''' <summary>
     ''' Database funksjon som håndterer alle SELECT setninger til DB

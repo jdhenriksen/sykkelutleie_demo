@@ -90,13 +90,18 @@
     <Compile Include="CustomerTest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="dao\BikeDao.vb" />
+    <Compile Include="dao\CustomerDao.vb" />
     <Compile Include="dao\EmployeeDao.vb" />
+    <Compile Include="dao\EquipmentDao.vb" />
+    <Compile Include="dao\ModelDao.vb" />
+    <Compile Include="dao\OrderDao.vb" />
     <Compile Include="DBUtility.vb" />
     <Compile Include="Employee.vb" />
-    <Compile Include="EmployeeTest.Designer.vb">
+    <Compile Include="forms\EmployeeTest.Designer.vb">
       <DependentUpon>EmployeeTest.vb</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeTest.vb">
+    <Compile Include="forms\EmployeeTest.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.vb">
@@ -168,7 +173,7 @@
     <EmbeddedResource Include="CustomerTest.resx">
       <DependentUpon>CustomerTest.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeeTest.resx">
+    <EmbeddedResource Include="forms\EmployeeTest.resx">
       <DependentUpon>EmployeeTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">

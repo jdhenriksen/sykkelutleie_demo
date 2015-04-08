@@ -29,13 +29,11 @@ Public Class Employee
     End Sub
 
     Public Sub createEmployee()
-        Dim list = makeList()
-        dao.createEmployee(list)
+        dao.createEmployee(makeList())
     End Sub
 
     Public Sub editEmployee(id As String)
-        Dim list = makeList()
-        dao.editEmployee(list, id)
+        dao.editEmployee(makeList(), id)
     End Sub
 
     Public Sub deleteEmployee()
@@ -43,8 +41,7 @@ Public Class Employee
         dao.deleteEmployee(getEmployeeID())
     End Sub
 
-    'Midlertidig hjelpemetode for å hente ut ansatt basert på id
-    'Mulig at settes til Private senere
+    'Offentlig hjelpemetode for å hente ut ansatt basert på id
     Public Function selectEmployeeById(id As String) As DataTable
         Return dao.selectEmployeeById(id)
     End Function

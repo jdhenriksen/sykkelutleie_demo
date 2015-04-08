@@ -21,31 +21,37 @@ Public Class Statistics
         Dim sqlRes As New SQLRes
         Dim dbUtil As New DBUtility
 
+        With dbUtil
+            .addParametersToQuery("@limit", limitResult)
+            .addParametersToQuery("@startDate", startDate)
+            .addParametersToQuery("@endDate", endDate)
+        End With
+
 
         Select Case typeStatistic
             Case "Dyreste sykkel"
-                query = sqlRes.costliestBicycles & limitResult
+                query = sqlRes.mostExpensiveBicycles
 
             Case "Billigste sykkel"
-                query = sqlRes.cheapestBicycles & limitResult
+                query = sqlRes.cheapestBicycles
 
             Case "Mest aktive selger"
-                query = sqlRes.mosteActiveSalesman & "WHERE datotid BETWEEN '" & startDate & "' AND '" & endDate & "'"
+                query = sqlRes.mostActiveSalesman
 
             Case "Minst aktive selger"
-                query = sqlRes.leastActiveSalesman & "WHERE datotid BETWEEN '" & startDate & "' AND '" & endDate & "' GROUP BY ansatt.ansattid DESC"
+                query = sqlRes.leastActiveSalesman
 
             Case "Avanse"
-                query = sqlRes.avanseBicycles & "WHERE datotid BETWEEN '" & startDate & "' AND '" & endDate & "'"
+                query = sqlRes.avanseBicycles
 
             Case "Antall bestillinger"
-                query = sqlRes.countOrders & "WHERE datotid BETWEEN '" & startDate & "' AND '" & endDate & "'"
+                query = sqlRes.countOrders
 
             Case "Mest populære sykler"
-                query = sqlRes.countMosteActiveBicycles & "WHERE datotid BETWEEN '" & startDate & "' AND '" & endDate & "' GROUP BY sykkel.rammenr LIMIT " & limitResult
+                query = sqlRes.countMosteActiveBicycles
 
             Case "Minst populære sykler"
-                query = sqlRes.countLeastActiveBicycles & "WHERE datotid BETWEEN '" & startDate & "' AND '" & endDate & "' GROUP BY sykkel.rammenr DESC LIMIT " & limitResult
+                query = sqlRes.countLeastActiveBicycles
 
             Case Else
                 statisticsTypeError()
@@ -54,7 +60,7 @@ Public Class Statistics
         ' Dim dbUtil As New DBUtility(query)
 
 
-        Return dbUtil.selectQuery(query)'dbUtil.selectQuery
+        Return dbUtil.paramQuery(query) 'dbUtil.selectQuery
     End Function
 
     Private Sub statisticsTypeError()
