@@ -160,4 +160,16 @@
         End If
 
     End Function
+
+    ''' <summary>
+    ''' Finner sykkel og modelldata 
+    ''' </summary>
+    ''' <returns>Datatabell basert på sql spørring</returns>
+    ''' <remarks>Joiner sykkel og modell for å gi data fra begge</remarks>
+    Function searchBicycleModel() As DataTable
+        myData = anySqlQuery.selectQuery("SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE  (rammenr LIKE '%" & frameNumber & "%') AND (sykkel.modell LIKE '%" & getModel() & "%') AND (status LIKE '%" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%') AND (pris >=" & getPrice() & ") AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')")
+
+        Return myData
+    End Function
+
 End Class
