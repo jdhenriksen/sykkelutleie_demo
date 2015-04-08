@@ -8,15 +8,14 @@ Public Class StorageWorker
     Public bikemodel As Model
     Public bike As Bike
     Public model As Model
+    Dim answer As String
 
     ''' <summary>
-    ''' Opretter ny sykkel benytter seg av bikeobject og modelobject objectet som settes inn i bikeobject
-    ''' Etter en sykkel har blitt opprettet kjøres en nullstilling og oppdatering av combobokser
-    ''' Alt blir resettet og et nytt generelt søk blir gjort for å vise at sykkelen har blitt lagt til
+    ''' Oppretter ny sykkel 
     ''' </summary> 
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
+    ''' <remarks>benytter seg av bikeobject og modelobject objectet som settes inn i bikeobject
+    ''' Etter en sykkel har blitt opprettet kjøres en nullstilling og oppdatering av combobokser
+    ''' Alt blir resettet og et nytt generelt søk blir gjort for å vise at sykkelen har blitt lagt til</remarks>
     Private Sub newBike_Click(sender As Object, e As EventArgs) Handles btnNewbike.Click 'Opprett knapp
 
         objectupdate()      'Nytt object slik at alle verdier er de nyeste
@@ -26,10 +25,17 @@ Public Class StorageWorker
         Else
             dialogeResult = MsgBox("Vil du opprette sykkel med rammenr: " & bike.getFrameNumber & "?", MsgBoxStyle.YesNo)
             If dialogeResult = 6 Then                       'Spørsmål om bekreftelse av ny sykkel
-                bike.createBike()                           'Hvis svaret på dialogboksen er "Yes" så vil dialogeResult bli "6". Først da kjøres createbike()
+
+                answer = bike.createBike()                           'Hvis svaret på dialogboksen er "Yes" så vil dialogeResult bli "6". Først da kjøres createbike()
+
+                If answer = "True" Then
+                    MsgBox("Sykkel er opprettet")
+                End If
+
                 updateComboboxes()                          'Renser og fyller combobokser.
                 Nullbike_Click(sender, e)
                 searchBike_Click(sender, e)
+
             Else
                 MsgBox("Opprettelse av sykkel ble avbrutt.") 'Hvis "No" blir presset får bruker opp bekreftelse på at ingen sykkel ble opprettet
             End If
@@ -39,25 +45,20 @@ Public Class StorageWorker
     End Sub
 
     ''' <summary>
-    ''' Søk etter sykkel etter alle de verdier som er skrevet inn
-    ''' Oppdaterer object med nyeste verdier
+    ''' Søk etter sykkel 
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
+    ''' <remarks> Søker etter alle de verdier som er skrevet inn
+    ''' Oppdaterer object med nyeste verdier</remarks>
     Private Sub searchBike_Click(sender As Object, e As EventArgs) Handles btnSearchbike.Click
 
         objectupdate()
-        'Bruker alle tilgjengelge felter med informasjon til å søke etter samsvarende sykler.
-        dtgvBike.DataSource = bike.searchBike()
-        updateComboboxes()           'oppdaterer combobokser
+        dtgvBike.DataSource = bike.searchBike() 'Bruker alle tilgjengelge felter med informasjon til å søke etter samsvarende sykler.
+        updateComboboxes()                      'oppdaterer combobokser
 
     End Sub
     ''' <summary>
     ''' Sletting av sykkel
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>Sletting av sykkel
     ''' Bruker bikeobjektet
     ''' Eneste som brukes er rammenr som er valgt</remarks>
@@ -65,10 +66,13 @@ Public Class StorageWorker
 
         objectupdate()
 
-        dialogeResult = MsgBox("Vil du slette sykkel med rammenummer: " & bike.getFrameNumber() & "?", MsgBoxStyle.YesNo) 'Spør okm bekreftelse angående sletting av sykkel
+        dialogeResult = MsgBox("Vil du slette sykkel med rammenummer: " & bike.getFrameNumber() & "?", MsgBoxStyle.YesNo) 'Spør om bekreftelse angående sletting av sykkel
 
         If dialogeResult = 6 Then        'Hvis Yes er valgt så vil sykkelen bli slettet, Model klassen returnerer en dialogboks som bekrefter.
-            bike.deleteBike()            'Sletter sykkel hvis rett rammenr blir funnet
+            answer = bike.deleteBike()            'Sletter sykkel hvis rett rammenr blir 
+            If answer = "True" Then
+                MsgBox("Sykkelen ble slettet")
+            End If
             updateComboboxes()
             Nullbike_Click(sender, e)
         Else
@@ -80,8 +84,6 @@ Public Class StorageWorker
     ''' <summary>
     ''' Lagrer ny sykkel
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>Oppdaterer valgt sykkel med alle feltene
     ''' Det må velges en sykkel før du har muligheten til å oppdatere</remarks>
     Private Sub saveBike_Click(sender As Object, e As EventArgs) Handles btnSavebike.Click
@@ -94,7 +96,10 @@ Public Class StorageWorker
             If bike.getFrameNumber() = "" Then                      'Dette feltet er låst og blir kun fylt hvis en sykkel blir valgt fra datagridview
                 MsgBox("Du må velge en sykkel fra listen etter søk") 'Hvis det er ingenting der så betyr det at bruker ikke har valgt noe fra søk.
             Else
-                bike.changeBike()
+                answer = bike.changeBike()
+                If answer = "True" Then
+                    MsgBox("Sykkel er oppdatert")
+                End If
                 updateComboboxes()
                 Nullbike_Click(sender, e)
                 searchBike_Click(sender, e)
@@ -109,8 +114,6 @@ Public Class StorageWorker
     ''' <summary>
     ''' Endre Sykkel
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>Endrer knapper og tekstfelt for at brukeren kan skrive inn endringer</remarks>
     Private Sub changeBike_Click(sender As Object, e As EventArgs) Handles btnChangebike.Click
 
@@ -130,8 +133,6 @@ Public Class StorageWorker
     ''' <summary>
     ''' Opprette en ny modell
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>Minimum er at at modellnavn er fyllt inn
     ''' oppdaterer comboboxer på bike delen siden det er ny modell som må legges til
     ''' Resetter modellfelt og knapper
@@ -144,7 +145,10 @@ Public Class StorageWorker
         Else
             dialogeResult = MsgBox("Vil opprette modell med navn: " & model.getModel() & "?", MsgBoxStyle.YesNo)
             If dialogeResult = 6 Then
-                model.createModel()
+                answer = model.createModel()
+                If answer = "True" Then
+                    MsgBox("Modell er opprettet")
+                End If
                 updateComboboxes()
                 Nullmodel_Click(sender, e)
                 searchModel_Click(sender, e)
@@ -157,22 +161,18 @@ Public Class StorageWorker
     ''' <summary>
     ''' Søke etter modell
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>Søker etter modeller og hvis den blir funnet fylles modell sin DataGridView</remarks>
     Private Sub searchModel_Click(sender As Object, e As EventArgs) Handles btnSearchmodel.Click
 
         objectupdate()
 
-        dtgvModel.DataSource = model.sokModell()
+        dtgvModel.DataSource = model.searchModell()
 
     End Sub
 
     ''' <summary>
     ''' Lagre (oppdatere) modell
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>Mulighet for å endre alt utenom navnet
     ''' Nullstiller modellfelt og søker for å vise at søket er gjort</remarks>
     Private Sub saveModel_Click(sender As Object, e As EventArgs) Handles btnSavemodel.Click
@@ -182,7 +182,10 @@ Public Class StorageWorker
         dialogeResult = MsgBox("Vil du endre modell med navn: " & model.getModel() & "?", MsgBoxStyle.YesNo)
 
         If dialogeResult = 6 Then
-            model.changeModel()
+            answer = model.changeModel()
+            If answer = True Then
+                MsgBox("Endringer er lagret")
+            End If
             Nullmodel_Click(sender, e)
             searchModel_Click(sender, e)
         Else
@@ -193,8 +196,6 @@ Public Class StorageWorker
     ''' <summary>
     ''' Slett Modell
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>sletter modell etter modellnavn
     ''' oppdaterer combobokser siden en modell er slettet og det er en færre
     ''' resetter modellfelt og knapper</remarks>
@@ -205,7 +206,10 @@ Public Class StorageWorker
         dialogeResult = MsgBox("Vil du slette  modell med navn: " & model.getModel & " ?", MsgBoxStyle.YesNo)
 
         If dialogeResult = 6 Then
-            model.deleteModell() 'Sletter modell etter modellnavn
+            answer = model.deleteModell() 'Sletter modell etter modellnavn
+            If answer = "True" Then
+                MsgBox("Modellen er slettet")
+            End If
             updateComboboxes()
             Nullmodel_Click(sender, e)
         Else
@@ -216,9 +220,7 @@ Public Class StorageWorker
     ''' <summary>
     ''' Endre Modell
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks>Kun kosmetiske forandringer der knapper blir enabled, disabled ogtekstfelt blir åpnet slik at brukeren kan skrive inn for lagring</remarks>
+    ''' <remarks>Kun kosmetiske forandringer der knapper blir enabled, disabled og tekstfelt blir åpnet slik at brukeren kan skrive inn for lagring</remarks>
     Private Sub changeModel_Click(sender As Object, e As EventArgs) Handles btnChangemodel.Click
 
         txtModelcategory.ReadOnly = False  'Rediger modeller, denne åpner tekstfelt så ting kan endres på modell
@@ -234,14 +236,13 @@ Public Class StorageWorker
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         updateComboboxes() 'Fyller Modell bokser med modellvalg
-
+        searchModel_Click(sender, e)
+        searchBike_Click(sender, e)
     End Sub
 
     ''' <summary>
     ''' Boks for treff fra søk og velging av Sykler
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>Kan kun velge en hel rad og uansett hvilken celle man trykker på så vil vi bry oss kun om Y rad
     ''' Når rad er valgt tas Kolonne 0 og rad y som er rammenummeret
     ''' Rammenummeret blir da brukt for å finne resten av data som er tilhørende og fyller det inn i tekstfelt
@@ -284,8 +285,6 @@ Public Class StorageWorker
     ''' <summary>
     ''' Boks for fylling av modelldata
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>Når det trykkes på en celle blir kollonne 0 og rad Y innholdet (modellnavnet) sendt for å hente mer data for å fylle inn i tekstfelt 
     ''' Tekstfelt blir låst og knapper endret</remarks>
     Private Sub gridViewModel(sender As Object, e As DataGridViewCellEventArgs) Handles dtgvModel.CellClick
@@ -322,8 +321,6 @@ Public Class StorageWorker
     ''' <summary>
     ''' Combobox_forandring
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>Når en annen modell blir valgt finner vi informasjon for å fylle i modelldelen av bike</remarks>
     Private Sub indexChangedModel(sender As Object, e As EventArgs) Handles cmbModel.SelectedIndexChanged
 
@@ -379,10 +376,8 @@ Public Class StorageWorker
     ''' <summary>
     ''' Bike Nullstiller
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>Fjerner alt fra tekstfelter, datagridview og nullstiller knapper</remarks>
-    Private Sub Nullbike_Click(sender As Object, e As EventArgs) Handles btnNullbike.Click  'Fjerner alt fra Bike delen og nullstiller knapper
+    Private Sub Nullbike_Click(sender As Object, e As EventArgs) Handles btnNullbike.Click
 
         cmbModel.Enabled = True
         cmbStatus.Enabled = True
@@ -415,8 +410,6 @@ Public Class StorageWorker
     ''' <summary>
     ''' Nullstiller modell
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     ''' <remarks>Fjerner alt fra tekstfelter og nullstiller knappene </remarks>
     Private Sub Nullmodel_Click(sender As Object, e As EventArgs) Handles btnNullmodel.Click 'Fjerner alt fra Modellboksen og nullstiller knapper
 
@@ -439,6 +432,4 @@ Public Class StorageWorker
 
     End Sub
 
-    Private Sub txtFramenumber_MaskInputRejected(sender As Object, e As MaskInputRejectedEventArgs) Handles txtFramenumber.MaskInputRejected
-    End Sub
 End Class
