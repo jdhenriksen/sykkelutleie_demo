@@ -3,37 +3,34 @@
 
     Private customerID As String
     Private dbutil As DBUtility
-    Private _kid As String
+    Private id As String
 
     Sub New(firstname As String, lastname As String, phone As String, email As String)
         MyBase.New(firstname, lastname, phone, email)
     End Sub
 
-    Sub New(kid As String)
-        ' TODO: Complete member initialization 
-        _kid = kid
+    Sub New(id As String)
+        customerID = id
     End Sub
 
     Public Sub createCustomer()
         dbutil = New DBUtility()
-        Dim sql As String = "INSERT INTO  kunde(`fornavn` ,`etternavn` ,`telefon` ,`epost` ,`aktivert`)" _
+        Dim sql As String = "INSERT INTO kunde(`fornavn` ,`etternavn` ,`telefon` ,`epost` ,`aktivert`)" _
                             & "VALUES ('" & getFirstname() & "',  '" & getLastname() & "', '" & getPhone() _
                             & "', '" & getEmail() & "',  '1')"
         dbutil.updateQuery(sql)
     End Sub
-    Public Sub editCustomer(CmrId As String)
-        'Endre relevante variabler - hent fra DB og skriv ny verdi til DB (mellomlagre som variabler)
-        'Send variabler til tekstbokser for endring
-        'UPDATE på id for å endre i DB
+    Public Sub editCustomer(id As String)
         dbutil = New DBUtility()
-        Dim sql As String = "UPDATE kunde SET brukernavn = (`fornavn` ,`etternavn` ,`telefon` ,`epost` ,`aktivert`)" _
-                            & "VALUES ('" & getFirstname() & "',  '" & getLastname() & "', '" & getPhone() _
-                            & "', '" & getEmail() & "', aktivert = '" & getActive() _
-                            & "' WHERE kid = " & CmrId & ";"
+        Dim sql As String = "UPDATE kunde SET aktivert = '" & getActive() & "', fornavn = '" & getFirstname() & "', etternavn = '" & getLastname() _
+                            & "', telefon = '" & getPhone() & "', epost = '" & getEmail() & "' WHERE kid = '" & id & "';"
         dbutil.updateQuery(sql)
     End Sub
+
     Public Sub deleteCustomer()
-        'Sett 'active'/aktivert til 0
+        setActive(0)
+        dbutil = New DBUtility
+        dbutil.updateQuery("UPDATE kunde SET aktivert = 0 WHERE kid = " & getCustomerID() & ";")
     End Sub
 
 
@@ -42,7 +39,7 @@
         Dim table As DataTable
         Dim sql As String
 
-        sql = "SELECT kid, fornavn, etternavn, telefon, epost FROM kunde WHERE (kid LIKE '%" & _kid & "%') AND (fornavn LIKE '%" & MyBase.firstname & "%') AND (etternavn LIKE '" & MyBase.lastname & "%') AND (telefon LIKE '%" & MyBase.phone & "%') AND (epost LIKE '%" & MyBase.email & "%')"
+        sql = "SELECT kid, fornavn, etternavn, telefon, epost FROM kunde WHERE (kid LIKE '%" & id & "%') AND (fornavn LIKE '%" & MyBase.firstname & "%') AND (etternavn LIKE '" & MyBase.lastname & "%') AND (telefon LIKE '%" & MyBase.phone & "%') AND (epost LIKE '%" & MyBase.email & "%')"
         table = dbutil.selectQuery(sql)
 
         Return table
@@ -51,7 +48,6 @@
     'Midlertidig hjelpemetode for å hente ut ansatt basert på id
     'Mulig at settes til Private senere
     Public Function selectCustomerById(id As String) As DataTable
-        'kall til isActive() her...
         dbutil = New DBUtility()
         Dim sql As String = "SELECT * FROM kunde WHERE kid LIKE'" & id & "';"
         Dim table As DataTable = dbutil.selectQuery(sql)

@@ -9,6 +9,7 @@ Public Class OrderTest
     Private bicycleCounter As Integer = 0
     Private employee As String
     Private customer As String
+    Private cmr As Customer
  
     ''' <summary>
     ''' Lager objekter for å bruke i bestillings behandlingen
@@ -100,6 +101,7 @@ Public Class OrderTest
         Dim order As New Order
 
         dtgvKunde.DataSource = order.updateCustomer(createCustomer)
+
     End Sub
     Private Sub updateBicycleGridView()
         Dim order As New Order
@@ -221,12 +223,22 @@ Public Class OrderTest
     Private Sub Button11_Click()
         End
     End Sub
+    Private Sub createCustomerFromTextFields()
+        Dim firstname As String = txtBxFirstName.Text
+        Dim lastname As String = txtBxSirName.Text
+        Dim phone As String = txtBxPhone.Text
+        Dim email As String = txtBxEmail.Text
+
+        cmr = New Customer(firstname, lastname, phone, email)
+    End Sub
     Private Sub btnChangeCustomer_Click() Handles btnChangeCustomer.Click
-        txtBxFirstName.Text = ""
-        txtBxSirName.Text = ""
-        txtBxPhone.Text = ""
-        txtBxEmail.Text = ""
-        txtBxKID.Text = ""
+        '        txtBxFirstName.Text = ""
+        '       txtBxSirName.Text = ""
+        '      txtBxPhone.Text = ""
+        '     txtBxEmail.Text = ""
+        '    txtBxKID.Text = ""
+        createCustomerFromTextFields()
+        cmr.editCustomer(txtBxKID.Text)
     End Sub
     Private Sub txtBxFirstName_TextChanged() Handles txtBxFirstName.TextChanged
         updateCustomerGridView()
