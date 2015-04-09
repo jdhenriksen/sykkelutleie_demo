@@ -3,6 +3,8 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class OrderTest
+    Public Property loggedInUser As New Account
+
     Private bicycleList As New List(Of Bike)
     Private bicycleCounter As Integer = 0
     Private employee As String
@@ -22,17 +24,12 @@ Public Class OrderTest
     Private customerPhone As String
     Private customerCustomerID As String
 
-    Private salesmanEmployeeID As String
-    Private salesmanFirstname As String
-    Private salesmanLastname As String
-
 
     ''' <summary>
     ''' Prossedyrer som setter variablene fra tekstbokser.
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub setTestOrder()
-        setTestSalesman()
         setTestCustomer()
         fromDate = CalendarFrom.SelectionStart
         toDate = CalendarTo.SelectionEnd
@@ -57,11 +54,7 @@ Public Class OrderTest
         customerPhone = txtBxPhone.Text
         customerCustomerID = txtBxKID.Text
     End Sub
-    Public Sub setTestSalesman() 'Forløbig hardkodet
-        salesmanEmployeeID = "1"
-        salesmanFirstname = "Stig"
-        salesmanLastname = "Ofstad"
-    End Sub
+
 
 
 
@@ -75,8 +68,7 @@ Public Class OrderTest
 
         Dim customer As New Customer(customerFirstname, customerLastname, customerPhone, customerEmail)
         customer.setCustomerID(customerCustomerID)
-        Dim employee As New Employee(salesmanFirstname, salesmanLastname, "", "", "", "", "", "soofstad", "") 'Mangler ansatt id her
-        Dim order As New Order(bicycleList, customer, employee, fromDate, toDate, discount)
+        Dim order As New Order(bicycleList, customer, loggedInUser.getEmployee, fromDate, toDate, discount)
 
         order.registerOrder()
 
@@ -134,8 +126,8 @@ Public Class OrderTest
     Private Sub btnPrintReceipt_Click() Handles btnPrintReceipt.Click
         setTestOrder()
         Dim customer As New Customer(customerFirstname, customerLastname, customerPhone, customerEmail)
-        Dim employee As New Employee(salesmanFirstname, salesmanLastname, "", "", "", "", "", "soofstad", "passord123") 'Mangler ansatt id her
-        Dim order As New Order(bicycleList, customer, employee, fromDate, toDate, discount)
+        'Dim employee As New Employee(salesmanFirstname, salesmanLastname, "", "", "", "", "", "", "")
+        Dim order As New Order(bicycleList, customer, loggedInUser.getEmployee, fromDate, toDate, discount)
 
         ListBoxReceipt.Items.Add("")
         ListBoxReceipt.Items.Add("")
@@ -150,7 +142,7 @@ Public Class OrderTest
         ListBoxReceipt.Items.Add("Fra " & FormatDateTime(fromDate, DateFormat.ShortDate))
         ListBoxReceipt.Items.Add("Til og med " & FormatDateTime(toDate, DateFormat.ShortDate))
         ListBoxReceipt.Items.Add("Rabatt: " & discount)
-        ListBoxReceipt.Items.Add("Selger: " & salesmanFirstname & " " & salesmanLastname)
+        ListBoxReceipt.Items.Add("Selger: " & order.salesman.firstname & " " & order.salesman.lastname)
         ListBoxReceipt.Items.Add("Kunde: " & customerFirstname & " " & customerLastname & " KID: " & customerCustomerID)
         ListBoxReceipt.Items.Add("Antall dager: " & order.getTimeSpanOfOrder)
         ListBoxReceipt.Items.Add("Totalpris: " & order.getTotalPrice)
