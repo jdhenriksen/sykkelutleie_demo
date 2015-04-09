@@ -63,6 +63,7 @@
             Me.email = email
         Else
             ' MsgBox("Ugyldig epostadresse.")
+            Me.email = email
         End If
     End Sub
 

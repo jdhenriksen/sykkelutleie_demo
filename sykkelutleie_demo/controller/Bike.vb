@@ -7,7 +7,7 @@
     Property tires As String
     Property frame As String
     Property gear As String
-    Property model As Model
+    Property model As New Model
     Dim sqlstring As String
     Dim anySqlQuery As New DBUtility
     Dim myData As New DataTable
@@ -34,6 +34,10 @@
         model = modelobject
 
     End Sub
+    Public Sub New()
+
+    End Sub
+
     ''' <summary>
     ''' Ny sykkel
     ''' </summary>
@@ -166,8 +170,11 @@
     ''' </summary>
     ''' <returns>Datatabell basert på sql spørring</returns>
     ''' <remarks>Joiner sykkel og modell for å gi data fra begge</remarks>
-    Function searchBicycleModel() As DataTable
-        myData = anySqlQuery.selectQuery("SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE  (rammenr LIKE '%" & frameNumber & "%') AND (sykkel.modell LIKE '%" & getModel() & "%') AND (status LIKE '%" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%') AND (pris >=" & getPrice() & ") AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')")
+    Function searchBicycleModel(bike As Bike) As DataTable
+        Dim sql As String
+        sql = "SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE (rammenr LIKE '%" & bike.frameNumber & "%') AND (sykkel.modell LIKE '%" & bike.model.model & "%') AND (status LIKE '%" & "" & "%') AND (lokasjon LIKE '%" & bike.location & "%') AND(utleiested LIKE '%" & bike.placeOfOrigin & "%') AND (pris >=" & bike.model.price & ") AND (produsent LIKE '%" & bike.model.producer & "%') AND (kategori LIKE '%" & bike.model.category & "%')"
+
+        myData = anySqlQuery.selectQuery(sql)
 
         Return myData
     End Function

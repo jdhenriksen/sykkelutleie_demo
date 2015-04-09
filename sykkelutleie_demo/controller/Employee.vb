@@ -9,7 +9,7 @@ Public Class Employee
     Private job As String
     Private address As String
     Private zip As String
-    Private account As Account
+    Property account As Account
     Private dao As New EmployeeDao
 
     Sub New(fn As String, ln As String, phone As String, email As String, job As String, address As String, zip As String, username As String, password As String)

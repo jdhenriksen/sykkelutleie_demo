@@ -12,6 +12,9 @@
     Sub New(id As String)
         customerID = id
     End Sub
+    Sub New()
+
+    End Sub
 
     Public Sub createCustomer()
         dbutil = New DBUtility()
@@ -34,12 +37,12 @@
     End Sub
 
 
-    Public Function searchCustomer() As DataTable
+    Public Function searchCustomer(customer As Customer) As DataTable
         dbutil = New DBUtility()
         Dim table As DataTable
         Dim sql As String
 
-        sql = "SELECT kid, fornavn, etternavn, telefon, epost FROM kunde WHERE (kid LIKE '%" & id & "%') AND (fornavn LIKE '%" & MyBase.firstname & "%') AND (etternavn LIKE '" & MyBase.lastname & "%') AND (telefon LIKE '%" & MyBase.phone & "%') AND (epost LIKE '%" & MyBase.email & "%')"
+        sql = "SELECT kid, fornavn, etternavn, telefon, epost FROM kunde WHERE (kid LIKE '%" & customer.customerID & "%') AND (fornavn LIKE '%" & customer.firstname & "%') AND (etternavn LIKE '%" & customer.lastname & "%') AND (telefon LIKE '%" & customer.phone & "%') AND (epost LIKE '%" & customer.email & "%')"
         table = dbutil.selectQuery(sql)
 
         Return table
@@ -66,4 +69,9 @@
     Public Function getCustomerID() As String
         Return customerID
     End Function
+
+    Public Sub setCustomerID(tempCustomerID As String)
+        Me.customerID = tempCustomerID
+    End Sub
+
 End Class

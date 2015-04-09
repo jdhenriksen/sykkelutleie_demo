@@ -22,6 +22,9 @@ Public Class Model
         category = c
 
     End Sub
+    Public Sub New()
+
+    End Sub
 
     ''' <summary>
     ''' Ny Modell

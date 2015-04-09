@@ -7,7 +7,7 @@ Imports System.Security.Cryptography
 ''' <remarks></remarks>
 
 Public Class Account
-    Private username As String
+    Property username As String
     Private password As String
 
     Sub New(username As String, password As String)
