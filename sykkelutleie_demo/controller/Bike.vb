@@ -37,7 +37,6 @@
     Public Sub New()
 
     End Sub
-
     ''' <summary>
     ''' Ny sykkel
     ''' </summary>
@@ -81,7 +80,7 @@
     ''' Returnerer også svar i form av msgbox()</remarks>
     Public Function deleteBike()
 
-        answer = anySqlQuery.updateQuery("DELETE FROM sykkel WHERE rammenr ='" & frameNumber & "'")
+        answer = anySqlQuery.updateQuery("UPDATE sykkel SET status ='Deaktivert' WHERE rammenr ='" & frameNumber & "'")
 
         Return answer
 
@@ -165,6 +164,10 @@
 
     End Function
 
+    Public Function relBike(ByVal chosenbike As String)
+        Return anySqlQuery.selectQuery("SELECT modell, status, lokasjon, utleiested, dekk, ramme, gir, bremser FROM sykkel WHERE rammenr ='" & chosenbike & "'")
+    End Function
+
     ''' <summary>
     ''' Finner sykkel og modelldata 
     ''' </summary>
@@ -178,5 +181,4 @@
 
         Return myData
     End Function
-
 End Class

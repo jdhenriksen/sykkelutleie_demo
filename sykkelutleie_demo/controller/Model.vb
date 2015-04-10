@@ -1,6 +1,6 @@
 ﻿
 Public Class Model
-
+    'Private listofEquipment As List(Of Equipment)
     Property model As String
     Property price As Double
     Property producer As String
@@ -22,6 +22,7 @@ Public Class Model
         category = c
 
     End Sub
+
     Public Sub New()
 
     End Sub
@@ -62,7 +63,7 @@ Public Class Model
     ''' <remarks>Fyller opp resultatliste(datagridView) med modeller</remarks>
     Public Function searchModell()
 
-        sqlstring = "SELECT modell, pris, produsent, kategori FROM modell WHERE (modell LIKE '%" & getModel() & "%') AND (pris LIKE '%" & getPrice() & "%') AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')"
+        sqlstring = "SELECT modell, pris, produsent, kategori FROM modell WHERE (modell LIKE '%" & getModel() & "%') AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')"
 
         myData = anySqlQuery.selectQuery(sqlstring)
 
@@ -74,9 +75,24 @@ Public Class Model
     ''' </summary>
     ''' <remarks>Sletter modeller og returnerer msgbox hvis det blir utført</remarks>
     Public Function deleteModell()
+
         answer = anySqlQuery.updateQuery("DELETE FROM modell WHERE modell = '" & getModel() & "'")
 
         Return answer
+
+    End Function
+
+    Public Function allmodels()
+
+        myData = anySqlQuery.selectQuery("SELECT * FROM modell")
+
+        Return myData
+
+    End Function
+
+    Public Function relmodels(ByVal chosenmodel As String)
+
+        Return anySqlQuery.selectQuery("SELECT modell, pris, produsent, kategori FROM modell WHERE modell='" & chosenmodel & "'")
 
     End Function
 
