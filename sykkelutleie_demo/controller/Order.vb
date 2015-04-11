@@ -76,11 +76,14 @@ Public Class Order
         Dim totalPrice As Double
 
         For Each Bike As Bike In bicycleList
-            bicyclePriceCounter += Bike.model.price
+            bicyclePriceCounter += Bike.model.price 'Legger sammen prisen på alle sykklene i bestillingen.
+            For Each tempEquipment As Equipment In Bike.equipmentList
+                bicyclePriceCounter += tempEquipment.EquipmentPrice 'Legger sammen prisen på alt av utstyr i bestillingen.
+            Next
         Next
-        totalPrice = CInt(getTimeSpanOfOrder()) * bicyclePriceCounter
+        totalPrice = CInt(getTimeSpanOfOrder()) * bicyclePriceCounter 'Multipliserer hele summen med antall dager leie.
 
-        Select Case discount
+        Select Case discount ' Multipliserer hele summen med prosentall representerer rabatt.
             Case "Ingen"
                 totalPrice = totalPrice
             Case "10%"
@@ -116,25 +119,45 @@ Public Class Order
         Dim tempFromDate As String = Format(fromDate, "yyyy/MM/dd")
         Dim tempToDate As String = Format(toDate, "yyyy/MM/dd")
 
-        sql = "INSERT INTO `14badr05`.`bestilling` (`bestillingsid`, `datotid`, `leie_fra`, `leie_til`, `ansattid`, `kid`, `sum`) VALUES (NULL, CURRENT_TIMESTAMP, '" & tempFromDate & "', '" & tempToDate & "', '" & getEmployeeID(salesman.account.username) & "', '" & customer.customerID & "', '" & getTotalPrice() & "');"
+        '& getEmployeeID(salesman.account.username) & !!!! Bytt ut med hardkodet ansatt id, her 40
+
+        sql = "INSERT INTO `14badr05`.`bestilling` (`bestillingsid`, `datotid`, `leie_fra`, `leie_til`, `ansattid`, `kid`, `sum`) VALUES (NULL, CURRENT_TIMESTAMP, '" & tempFromDate & "', '" & tempToDate & "', 40, '" & customer.customerID & "', " & getTotalPrice() & ");"
 
         dbutil.updateQuery(sql)
 
+        Dim tempOrderID As String = getOrderID()
+
         For Each tempBicycle As Bike In bicycleList
 
-            sql = "INSERT INTO `14badr05`.`sykkel_bestilling` (`bestillingsid`, `rammenr`) VALUES ('" & getOrderID() & "', '" & tempBicycle.frameNumber & "');"
+            sql = "INSERT INTO `14badr05`.`sykkel_bestilling` (`bestillingsid`, `rammenr`) VALUES ('" & tempOrderID & "', '" & tempBicycle.frameNumber & "');"
 
-            dbutil.updateQuery(sql)
+            dbutil.updateQuery(sql) 'Hver sykkel i bestillingen legges til i sykkel_bestilling i database. SETTES IKKE TIL UTLEID STATUS
+
+            For Each tempEquipment As Equipment In tempBicycle.equipmentList
+                Dim data As DataTable = tempEquipment.getEquipmentIDDuringOrder(tempEquipment.EquipmentType) 'Finner varenr til første vare i databasen hvor under_bestilling = True
+                Dim row As DataRow
+                Dim tempEquipmentID As String
+
+
+                If data.Rows.Count = 0 Then
+                    MsgBox("Kunne ikke finne Varenummeret til " & tempEquipment.EquipmentType & " i databasen")
+
+                Else
+                    row = data.Rows(0)
+                    tempEquipmentID = row("varenr")
+                    sql = "INSERT INTO `14badr05`.`utstyr_bestilling` (`bestillingsid`, `varenr`) VALUES ('" & tempOrderID & "', '" & tempEquipmentID & "');"
+                    dbutil.updateQuery(sql) 'Hvert utstyr til hver sykkel legges til i bestillingen i Databasen. SETTES IKKE TIL UTLEID
+                    tempEquipment.setEquipmentNotUnderOrder(tempEquipmentID) 'Setter under_bestilling = False, slik at samme vare ikke kommer i neste loop
+
+                End If
+
+            Next
         Next
 
-        ' Public Sub registerEquipmentOrder()
-        '   Dim dbutil As New DBUtility
-        '  Dim sql As String
+        Dim equipment As New Equipment
+        equipment.setAllEquipmentNotUnderOrder()
 
-        '  sql = "INSERT INTO `14badr05`.`utstyr_bestilling` (`bestillingsid`, `varenr`) VALUES ('" & orderID & "', '" & equipmentNumber & "');"
 
-        '  dbutil.updateQuery(sql)
-        '  End Sub
 
     End Sub
 
@@ -155,7 +178,8 @@ Public Class Order
         Dim tempFromDate As String = Format(fromDate, "yyyy/MM/dd")
         Dim tempToDate As String = Format(toDate, "yyyy/MM/dd")
 
-        sql = "SELECT bestillingsid FROM bestilling WHERE leie_fra ='" & tempFromDate & "' AND leie_til='" & tempToDate & "' AND ansattid='" & getEmployeeID(salesman.account.username) & "' AND kid='" & customer.customerID & "' AND sum='" & sum & "';"
+        ' sql = "SELECT bestillingsid FROM bestilling WHERE leie_fra ='" & tempFromDate & "' AND leie_til='" & tempToDate & "' AND ansattid='" & getEmployeeID(salesman.account.username) & "' AND kid='" & customer.customerID & "' AND sum='" & sum & "';"
+        sql = "SELECT bestillingsid FROM bestilling WHERE leie_fra ='" & tempFromDate & "' AND leie_til='" & tempToDate & "' AND ansattid='40' AND kid='" & customer.customerID & "' AND sum='" & sum & "';"
 
         result = dbutil.selectQuery(sql)
 

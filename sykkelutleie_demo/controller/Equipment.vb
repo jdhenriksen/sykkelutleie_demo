@@ -5,10 +5,14 @@
     Dim MyData As New DataTable
     Dim Answer As String
 
-    Private EquipmentPrice As String
-    Private EquipmentStatus As String
-    Private EquipmentID As String
-    Private EquipmentType As String
+    Property EquipmentPrice As Double
+    Property EquipmentStatus As String
+    Property EquipmentID As String
+    Property EquipmentType As String
+
+    Public Sub New()
+
+    End Sub
 
     Public Sub New(ByVal EquipmentIDValue As String, ByVal EquipmentStatusValue As String, ByVal EquipmentPriceValue As String, ByVal EquipmentTypeValue As String)
 
@@ -54,24 +58,24 @@
 
     Public Function SearchEquipment()
 
-        sqlstring = "SELECT varenr, type, pris, status FROM tilleggsutstyr WHERE (varenr LIKE '%" & EquipmentID & "%') AND (type LIKE '%" & EquipmentType & "%') AND (pris LIKE '%" & EquipmentPrice & "%') AND (status LIKE '%" & EquipmentStatus & "%')"
+        sqlstring = "SELECT varenr, type, pris, status FROM tilleggsutstyr WHERE (varenr LIKE '%" & EquipmentID & "%') AND (type LIKE '%" & EquipmentType & "%') AND (pris LIKE '%" & EquipmentPrice & "%') AND (status LIKE '%" & EquipmentStatus & "%') GROUP BY type;"
 
         MyData = anySqlQuery.selectQuery(sqlstring)
 
         Return MyData
     End Function
 
-    Public Function modeljoin(ByVal modellnavn As String, ByVal equipmenttype As String)
+    Public Sub modeljoin(ByVal modellnavn As String, ByVal equipmenttype As String)
 
-        Dim varenr As String
+        Dim data As DataTable
+        data = anySqlQuery.selectQuery("SELECT tilleggsutstyr.varenr FROM tilleggsutstyr WHERE type ='" & equipmenttype & "'")
 
-        varenr = finnvarenr(equipmenttype)
+        For Each row As DataRow In data.Rows
+            sqlstring = "INSERT INTO kompatibel (varenr, modell) VALUES ('" & row("varenr") & "','" & modellnavn & "') ON DUPLICATE KEY UPDATE modell=VALUES(modell)"
+            anySqlQuery.updateQuery(sqlstring)
+        Next
 
-        sqlstring = "INSERT INTO kompatibel (varenr, modell) VALUES ('" & varenr & "','" & modellnavn & "') ON DUPLICATE KEY UPDATE modell=VALUES(modell)"
-
-        Return anySqlQuery.updateQuery(sqlstring)
-
-    End Function
+    End Sub
 
     Public Function modelEquipementCompatiable(ByVal modelname As String)
 
@@ -87,11 +91,18 @@
 
     End Function
 
-    Public Function finnvarenr(ByVal type As String)
+    Public Function getEquipmentID(ByVal type As String) As DataTable
 
-        MyData = anySqlQuery.selectQuery("SELECT varenr FROM tilleggsutstyr WHERE type ='" & type & "'")
+        MyData = anySqlQuery.selectQuery("SELECT varenr, tilleggsutstyr.pris FROM tilleggsutstyr WHERE type ='" & type & "' AND tilleggsutstyr.status = 'På lager' AND under_bestilling=0;")
 
-        Return MyData.Rows(0)(0).ToString()
+        Return MyData
+
+    End Function
+    Public Function getEquipmentIDDuringOrder(ByVal type As String) As DataTable
+
+        MyData = anySqlQuery.selectQuery("SELECT varenr FROM tilleggsutstyr WHERE type ='" & type & "'AND tilleggsutstyr.under_bestilling = '1';")
+
+        Return MyData
 
     End Function
 
@@ -108,5 +119,47 @@
         Return anySqlQuery.updateQuery("DELETE FROM kompatibel WHERE varenr ='" & varenr & "'" & " AND modell= '" & modelname & "'")
 
     End Function
+
+    Public Function compatibleEquipment(model As String) As DataTable
+        Dim dbutil As New DBUtility
+        Dim sql As String
+        Dim result As DataTable
+
+        sql = "SELECT tilleggsutstyr.type, tilleggsutstyr.varenr FROM tilleggsutstyr JOIN kompatibel ON kompatibel.varenr=tilleggsutstyr.varenr WHERE modell ='" & model & "' AND tilleggsutstyr.status = 'På lager' AND under_bestilling=0 GROUP BY type;"
+
+        result = dbutil.selectQuery(sql)
+
+        Return result
+    End Function
+
+    Public Sub setEquipmentUnderOrder(equipmentID As String)
+        Dim dbutil As New DBUtility
+        Dim sql As String
+
+        sql = "UPDATE  `14badr05`.`tilleggsutstyr` SET  `under_bestilling` =  '1' WHERE  `tilleggsutstyr`.`varenr` =" & equipmentID & ";"
+
+        dbutil.updateQuery(sql)
+
+    End Sub
+
+    Public Sub setEquipmentNotUnderOrder(equipmentID As String)
+        Dim dbutil As New DBUtility
+        Dim sql As String
+
+        sql = "UPDATE  `14badr05`.`tilleggsutstyr` SET  `under_bestilling` =  '0' WHERE  `tilleggsutstyr`.`varenr` =" & equipmentID & ";"
+
+        dbutil.updateQuery(sql)
+
+    End Sub
+
+    Public Sub setAllEquipmentNotUnderOrder()
+        Dim dbutil As New DBUtility
+        Dim sql As String
+
+        sql = "UPDATE  `14badr05`.`tilleggsutstyr` SET  `under_bestilling` =  '0'"
+
+        dbutil.updateQuery(sql)
+
+    End Sub
 
 End Class

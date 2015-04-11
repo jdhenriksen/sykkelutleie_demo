@@ -8,6 +8,7 @@
     Property frame As String
     Property gear As String
     Property model As New Model
+    Property equipmentList As New List(Of Equipment)
     Dim sqlstring As String
     Dim anySqlQuery As New DBUtility
     Dim myData As New DataTable
@@ -175,10 +176,30 @@
     ''' <remarks>Joiner sykkel og modell for å gi data fra begge</remarks>
     Function searchBicycleModel(bike As Bike) As DataTable
         Dim sql As String
-        sql = "SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE (rammenr LIKE '%" & bike.frameNumber & "%') AND (sykkel.modell LIKE '%" & bike.model.model & "%') AND (status LIKE '%" & "" & "%') AND (lokasjon LIKE '%" & bike.location & "%') AND(utleiested LIKE '%" & bike.placeOfOrigin & "%') AND (pris >=" & bike.model.price & ") AND (produsent LIKE '%" & bike.model.producer & "%') AND (kategori LIKE '%" & bike.model.category & "%')"
+        sql = "SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE (rammenr LIKE '%" & bike.frameNumber & "%') AND (sykkel.modell LIKE '%" & bike.model.model & "%') AND (status LIKE '%" & "" & "%') AND (lokasjon LIKE '%" & bike.location & "%') AND(utleiested LIKE '%" & bike.placeOfOrigin & "%') AND (pris >=" & bike.model.price & ") AND (produsent LIKE '%" & bike.model.producer & "%') AND (kategori LIKE '%" & bike.model.category & "%' AND sykkel.under_bestilling = '0' )"
 
         myData = anySqlQuery.selectQuery(sql)
 
         Return myData
     End Function
+
+    Public Sub setBikeUnderOrder(bicycleID As String)
+        Dim dbutil As New DBUtility
+        Dim sql As String
+
+        sql = "UPDATE  `14badr05`.`sykkel` SET  sykkel.`under_bestilling` =  '1' WHERE  sykkel.rammenr =" & bicycleID & ";"
+
+        dbutil.updateQuery(sql)
+
+    End Sub
+
+    Public Sub setAllBikesNotUnderOrder()
+        Dim dbutil As New DBUtility
+        Dim sql As String
+
+        sql = "UPDATE  `14badr05`.`sykkel` SET  sykkel.`under_bestilling` =  '0';"
+
+        dbutil.updateQuery(sql)
+
+    End Sub
 End Class

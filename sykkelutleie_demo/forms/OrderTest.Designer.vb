@@ -115,9 +115,9 @@ Partial Class OrderTest
         '
         'btnChangeCustomer
         '
-        Me.btnChangeCustomer.Location = New System.Drawing.Point(72, 345)
+        Me.btnChangeCustomer.Location = New System.Drawing.Point(337, 390)
         Me.btnChangeCustomer.Name = "btnChangeCustomer"
-        Me.btnChangeCustomer.Size = New System.Drawing.Size(149, 23)
+        Me.btnChangeCustomer.Size = New System.Drawing.Size(202, 42)
         Me.btnChangeCustomer.TabIndex = 155
         Me.btnChangeCustomer.Text = "Endre kunde"
         Me.btnChangeCustomer.UseVisualStyleBackColor = True
@@ -174,13 +174,14 @@ Partial Class OrderTest
         '
         Me.txtBxKID.Location = New System.Drawing.Point(72, 316)
         Me.txtBxKID.Name = "txtBxKID"
+        Me.txtBxKID.ReadOnly = True
         Me.txtBxKID.Size = New System.Drawing.Size(161, 20)
         Me.txtBxKID.TabIndex = 8
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(29, 260)
+        Me.Label4.Location = New System.Drawing.Point(30, 199)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(37, 13)
         Me.Label4.TabIndex = 7
@@ -188,7 +189,7 @@ Partial Class OrderTest
         '
         'txtBxEmail
         '
-        Me.txtBxEmail.Location = New System.Drawing.Point(72, 257)
+        Me.txtBxEmail.Location = New System.Drawing.Point(73, 196)
         Me.txtBxEmail.Name = "txtBxEmail"
         Me.txtBxEmail.Size = New System.Drawing.Size(161, 20)
         Me.txtBxEmail.TabIndex = 6
@@ -196,7 +197,7 @@ Partial Class OrderTest
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(29, 196)
+        Me.Label3.Location = New System.Drawing.Point(29, 265)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(43, 13)
         Me.Label3.TabIndex = 5
@@ -204,8 +205,9 @@ Partial Class OrderTest
         '
         'txtBxPhone
         '
-        Me.txtBxPhone.Location = New System.Drawing.Point(72, 193)
+        Me.txtBxPhone.Location = New System.Drawing.Point(72, 262)
         Me.txtBxPhone.Name = "txtBxPhone"
+        Me.txtBxPhone.ReadOnly = True
         Me.txtBxPhone.Size = New System.Drawing.Size(161, 20)
         Me.txtBxPhone.TabIndex = 4
         '
@@ -276,33 +278,32 @@ Partial Class OrderTest
         '
         Me.CheckedListBox1.CheckOnClick = True
         Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Items.AddRange(New Object() {"Barnesete", "Barnevogn", "Reperasjons sett", "Sykkelvesker"})
-        Me.CheckedListBox1.Location = New System.Drawing.Point(1088, 25)
+        Me.CheckedListBox1.Location = New System.Drawing.Point(977, 25)
         Me.CheckedListBox1.Name = "CheckedListBox1"
         Me.CheckedListBox1.Size = New System.Drawing.Size(113, 349)
         Me.CheckedListBox1.TabIndex = 3
         '
         'btnAddNewBicycle
         '
-        Me.btnAddNewBicycle.Location = New System.Drawing.Point(243, 389)
+        Me.btnAddNewBicycle.Location = New System.Drawing.Point(330, 388)
         Me.btnAddNewBicycle.Name = "btnAddNewBicycle"
         Me.btnAddNewBicycle.Size = New System.Drawing.Size(142, 41)
         Me.btnAddNewBicycle.TabIndex = 169
-        Me.btnAddNewBicycle.Text = "Ny sykkel"
+        Me.btnAddNewBicycle.Text = "Vis Alle"
         Me.btnAddNewBicycle.UseVisualStyleBackColor = True
         '
         'btnAddToOrder
         '
-        Me.btnAddToOrder.Location = New System.Drawing.Point(76, 388)
+        Me.btnAddToOrder.Location = New System.Drawing.Point(539, 379)
         Me.btnAddToOrder.Name = "btnAddToOrder"
-        Me.btnAddToOrder.Size = New System.Drawing.Size(142, 42)
+        Me.btnAddToOrder.Size = New System.Drawing.Size(268, 59)
         Me.btnAddToOrder.TabIndex = 168
-        Me.btnAddToOrder.Text = "Legg til i bestillig"
+        Me.btnAddToOrder.Text = "Legg sykkel med valgt utstyr til bestillingen"
         Me.btnAddToOrder.UseVisualStyleBackColor = True
         '
         'btnBackKunde
         '
-        Me.btnBackKunde.Location = New System.Drawing.Point(475, 396)
+        Me.btnBackKunde.Location = New System.Drawing.Point(49, 397)
         Me.btnBackKunde.Name = "btnBackKunde"
         Me.btnBackKunde.Size = New System.Drawing.Size(202, 42)
         Me.btnBackKunde.TabIndex = 167
@@ -311,7 +312,7 @@ Partial Class OrderTest
         '
         'btnNextBestilling
         '
-        Me.btnNextBestilling.Location = New System.Drawing.Point(888, 396)
+        Me.btnNextBestilling.Location = New System.Drawing.Point(846, 396)
         Me.btnNextBestilling.Name = "btnNextBestilling"
         Me.btnNextBestilling.Size = New System.Drawing.Size(202, 42)
         Me.btnNextBestilling.TabIndex = 166
@@ -336,7 +337,7 @@ Partial Class OrderTest
         Me.dgvBicycle.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders
         Me.dgvBicycle.RowTemplate.Height = 24
         Me.dgvBicycle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvBicycle.Size = New System.Drawing.Size(840, 350)
+        Me.dgvBicycle.Size = New System.Drawing.Size(700, 350)
         Me.dgvBicycle.TabIndex = 164
         '
         'Label6
@@ -539,9 +540,9 @@ Partial Class OrderTest
         '
         'btnRegisterOrder
         '
-        Me.btnRegisterOrder.Location = New System.Drawing.Point(968, 128)
+        Me.btnRegisterOrder.Location = New System.Drawing.Point(629, 408)
         Me.btnRegisterOrder.Name = "btnRegisterOrder"
-        Me.btnRegisterOrder.Size = New System.Drawing.Size(156, 58)
+        Me.btnRegisterOrder.Size = New System.Drawing.Size(200, 40)
         Me.btnRegisterOrder.TabIndex = 3
         Me.btnRegisterOrder.Text = "Registrer bestilling"
         Me.btnRegisterOrder.UseVisualStyleBackColor = True
@@ -552,7 +553,7 @@ Partial Class OrderTest
         Me.btnPrintReceipt.Name = "btnPrintReceipt"
         Me.btnPrintReceipt.Size = New System.Drawing.Size(156, 52)
         Me.btnPrintReceipt.TabIndex = 2
-        Me.btnPrintReceipt.Text = "Vis sammendrag"
+        Me.btnPrintReceipt.Text = "Vis Kvittering"
         Me.btnPrintReceipt.UseVisualStyleBackColor = True
         '
         'ListBoxReceipt
@@ -568,16 +569,16 @@ Partial Class OrderTest
         Me.ListBoxOrderOverview.FormattingEnabled = True
         Me.ListBoxOrderOverview.Location = New System.Drawing.Point(1151, 40)
         Me.ListBoxOrderOverview.Name = "ListBoxOrderOverview"
-        Me.ListBoxOrderOverview.Size = New System.Drawing.Size(221, 355)
+        Me.ListBoxOrderOverview.Size = New System.Drawing.Size(199, 355)
         Me.ListBoxOrderOverview.TabIndex = 3
         '
         'btnNewOrder
         '
-        Me.btnNewOrder.Location = New System.Drawing.Point(1169, 423)
+        Me.btnNewOrder.Location = New System.Drawing.Point(1151, 418)
         Me.btnNewOrder.Name = "btnNewOrder"
         Me.btnNewOrder.Size = New System.Drawing.Size(181, 42)
         Me.btnNewOrder.TabIndex = 4
-        Me.btnNewOrder.Text = "Ny bestilling"
+        Me.btnNewOrder.Text = "Reset Bestilling"
         Me.btnNewOrder.UseVisualStyleBackColor = True
         '
         'OrderTest
