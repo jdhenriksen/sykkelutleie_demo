@@ -56,7 +56,7 @@ Public Class StorageWorker
         objectupdate()
         dtgvBike.DataSource = bike.searchBike() 'Bruker alle tilgjengelge felter med informasjon til å søke etter samsvarende sykler.
         updateComboboxes()                      'oppdaterer combobokser
-
+        dtgvBike.ClearSelection()
     End Sub
     ''' <summary>
     ''' Sletting av sykkel
@@ -150,7 +150,7 @@ Public Class StorageWorker
                 answer = model.createModel()
 
 
-                For Each itemChecked In CheckedListBox1.CheckedItems
+                For Each itemChecked In lstbxEqipment.CheckedItems
 
                     equipment.modeljoin(model.getModel, (itemChecked.item("type").ToString()))
 
@@ -180,7 +180,7 @@ Public Class StorageWorker
         objectupdate()
 
         dtgvModel.DataSource = model.searchModell()
-
+        dtgvModel.ClearSelection()
     End Sub
 
     ''' <summary>
@@ -189,7 +189,8 @@ Public Class StorageWorker
     ''' <remarks>Mulighet for å endre alt utenom navnet
     ''' Nullstiller modellfelt og søker for å vise at søket er gjort</remarks>
     Private Sub saveModel_Click(sender As Object, e As EventArgs) Handles btnSavemodel.Click
-
+        btnEqipReset_Click(sender, e)
+        btnEqipSearch_Click(sender, e)
         objectupdate()
         myData = equipment.SearchEquipment
         dialogeResult = MsgBox("Vil du endre modell med navn: " & model.getModel() & "?", MsgBoxStyle.YesNo)
@@ -197,14 +198,14 @@ Public Class StorageWorker
         If dialogeResult = 6 Then
             answer = model.changeModel()
 
-            Dim selectedIndex As Integer = CheckedListBox1.SelectedIndex
+            Dim selectedIndex As Integer = lstbxEqipment.SelectedIndex
 
 
 
-            For i As Integer = 0 To CheckedListBox1.Items.Count - 1
+            For i As Integer = 0 To lstbxEqipment.Items.Count - 1
 
                 Dim chkstate As CheckState
-                chkstate = CheckedListBox1.GetItemCheckState(i)
+                chkstate = lstbxEqipment.GetItemCheckState(i)
 
                 If (chkstate = CheckState.Checked) Then
                     equipment.modeljoin(model.getModel, myData.Rows(i)(1).ToString)
@@ -220,7 +221,7 @@ Public Class StorageWorker
 
             Nullmodel_Click(sender, e)
             searchModel_Click(sender, e)
-
+            resetCheckedList()
         Else
             MsgBox("Endringer ble ikke lagret.") 'Tilbakemedling hvis bruker avbryter
         End If
@@ -265,7 +266,7 @@ Public Class StorageWorker
         txtModelproducer.ReadOnly = False
         btnSavemodel.Enabled = True
         btnChangemodel.Enabled = False
-        CheckedListBox1.Enabled = True
+        lstbxEqipment.Enabled = True
 
     End Sub
 
@@ -331,8 +332,8 @@ Public Class StorageWorker
     ''' Tekstfelt blir låst og knapper endret</remarks>
     Private Sub gridViewModel(sender As Object, e As DataGridViewCellEventArgs) Handles dtgvModel.CellClick
 
-        btnEqipReset_Click(sender, e)
-        CheckedListBox1.Enabled = False
+
+        lstbxEqipment.Enabled = False
         resetCheckedList()
 
         Dim rowchoice As Integer = dtgvModel.CurrentCellAddress.Y 'Finner Y rad some r valgt i datagridview på modelldelen
@@ -377,7 +378,7 @@ Public Class StorageWorker
 
                 If allEquipment.Rows(treff)(0).ToString() = myData.Rows(teller)(0).ToString() Then
 
-                    CheckedListBox1.SetItemChecked(treff, True)
+                    lstbxEqipment.SetItemChecked(treff, True)
 
                 End If
 
@@ -485,10 +486,14 @@ Public Class StorageWorker
         Else
             tempprice = txtModelprice.Text
         End If
+        Dim P As Double
+        Double.TryParse(txtEqipPrice.Text, P)
         model = New Model(txtModelname.Text, tempprice, txtModelproducer.Text, txtModelcategory.Text) 'Objekt for modelldel for søk,opprett,slett,endre,lagre
         bikemodel = New Model(cmbModel.SelectedItem, tempprice, txtProducer.Text, txtCategory.Text) 'modellObject som sendes med bike objectet
         bike = New Bike(txtFramenumber.Text, cmbStatus.SelectedItem, txtLocation.Text, txtPointofsale.Text, txtBrakes.Text, txtTire.Text, txtFrame.Text, txtGear.Text, bikemodel) 'bikeobjekt
-        equipment = New Equipment(txtEqipID.Text, txtEqipStatus.Text, txtEqipPrice.Text, txtEqipType.Text)
+        equipment = New Equipment(txtEqipID.Text, txtEqipStatus.Text, P, txtEqipType.Text)
+
+
     End Sub
 
     ''' <summary>
@@ -547,6 +552,8 @@ Public Class StorageWorker
         btnSearchmodel.Enabled = True
 
         dtgvModel.DataSource = Nothing
+        resetCheckedList()
+
 
     End Sub
 
@@ -576,8 +583,8 @@ Public Class StorageWorker
     Private Sub btnEqipSearch_Click(sender As Object, e As EventArgs) Handles btnEqipSearch.Click
 
         objectupdate()
-        dtgvEquip.DataSource = equipment.SearchEquipment()
-
+        dtgvEquip.DataSource = equipment.listAllEquipment()
+        dtgvEquip.ClearSelection()
     End Sub
 
     Private Sub btnEqipChange_Click(sender As Object, e As EventArgs) Handles btnEqipChange.Click
@@ -617,10 +624,11 @@ Public Class StorageWorker
 
 
     Private Sub resetCheckedList()
-        objectupdate()
-        CheckedListBox1.DataSource = Nothing
-        CheckedListBox1.DataSource = equipment.SearchEquipment()
-        CheckedListBox1.DisplayMember = "type"
+
+        lstbxEqipment.Enabled = False
+        lstbxEqipment.DataSource = Nothing
+        lstbxEqipment.DataSource = equipment.EquipmentTypes()
+        lstbxEqipment.DisplayMember = "type"
     End Sub
 
 End Class

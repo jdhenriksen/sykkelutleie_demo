@@ -57,7 +57,7 @@
     ''' <remarks>Fyller datagridview for sykkel med reultater</remarks>
     Public Function searchBike()
 
-        myData = anySqlQuery.selectQuery("SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE '%" & frameNumber & "%') AND (modell LIKE '%" & getModel() & "%') AND (status LIKE '" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%') AND (modell LIKE '%" & getModel() & "%')")
+        myData = anySqlQuery.selectQuery("SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE '%" & frameNumber & "%') AND (modell LIKE '%" & getModel() & "%') AND (status LIKE '" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%')")
 
         Return myData
 
@@ -85,30 +85,6 @@
 
         Return answer
 
-    End Function
-    Public Function getFrameNumber()
-        Return frameNumber
-    End Function
-    Public Function getStatus()
-        Return status
-    End Function
-    Public Function getLocation()
-        Return location
-    End Function
-    Public Function getPlaceOfOrigins()
-        Return placeOfOrigin
-    End Function
-    Public Function getTires()
-        Return tires
-    End Function
-    Public Function getFrame()
-        Return frame
-    End Function
-    Public Function getGear()
-        Return gear
-    End Function
-    Public Function getModel()
-        Return model.getModel()
     End Function
 
     Public Function getModelname(Optional ByVal framenb As String = "")
@@ -202,4 +178,29 @@
         dbutil.updateQuery(sql)
 
     End Sub
+
+    Public Function getFrameNumber()
+        Return frameNumber
+    End Function
+    Public Function getStatus()
+        Return status
+    End Function
+    Public Function getLocation()
+        Return location
+    End Function
+    Public Function getPlaceOfOrigins()
+        Return placeOfOrigin
+    End Function
+    Public Function getTires()
+        Return tires
+    End Function
+    Public Function getFrame()
+        Return frame
+    End Function
+    Public Function getGear()
+        Return gear
+    End Function
+    Public Function getModel()
+        Return model.getModel()
+    End Function
 End Class

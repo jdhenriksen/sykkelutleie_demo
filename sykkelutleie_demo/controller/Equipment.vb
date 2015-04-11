@@ -14,7 +14,7 @@
 
     End Sub
 
-    Public Sub New(ByVal EquipmentIDValue As String, ByVal EquipmentStatusValue As String, ByVal EquipmentPriceValue As String, ByVal EquipmentTypeValue As String)
+    Public Sub New(ByVal EquipmentIDValue As String, ByVal EquipmentStatusValue As String, ByVal EquipmentPriceValue As Double, ByVal EquipmentTypeValue As String)
 
         EquipmentStatus = EquipmentStatusValue
         EquipmentPrice = EquipmentPriceValue
@@ -57,8 +57,13 @@
 
 
     Public Function SearchEquipment()
+        If EquipmentPrice = 0 Then
+            sqlstring = "SELECT varenr, type, pris, status FROM tilleggsutstyr WHERE (varenr LIKE '%" & EquipmentID & "%') AND (type LIKE '%" & EquipmentType & "%') AND (status LIKE '%" & EquipmentStatus & "%') GROUP BY type;"
 
-        sqlstring = "SELECT varenr, type, pris, status FROM tilleggsutstyr WHERE (varenr LIKE '%" & EquipmentID & "%') AND (type LIKE '%" & EquipmentType & "%') AND (pris LIKE '%" & EquipmentPrice & "%') AND (status LIKE '%" & EquipmentStatus & "%') GROUP BY type;"
+        Else
+            sqlstring = "SELECT varenr, type, pris, status FROM tilleggsutstyr WHERE (varenr LIKE '%" & EquipmentID & "%') AND (type LIKE '%" & EquipmentType & "%') AND (pris LIKE '%" & EquipmentPrice & "%') AND (status LIKE '%" & EquipmentStatus & "%') GROUP BY type;"
+
+        End If
 
         MyData = anySqlQuery.selectQuery(sqlstring)
 
@@ -161,5 +166,26 @@
         dbutil.updateQuery(sql)
 
     End Sub
+
+
+    Public Function listAllEquipment()
+
+        sqlstring = "SELECT varenr, type, pris, status FROM tilleggsutstyr WHERE (varenr LIKE '%" & EquipmentID & "%') AND (type LIKE '%" & EquipmentType & "%') AND (pris LIKE '%" & EquipmentPrice & "%') AND (status LIKE '%" & EquipmentStatus & "%')"
+
+        MyData = anySqlQuery.selectQuery(sqlstring)
+
+        Return MyData
+
+    End Function
+
+    Public Function EquipmentTypes()
+
+        sqlstring = "SELECT varenr, type, pris, status FROM tilleggsutstyr GROUP BY type;"
+
+        MyData = anySqlQuery.selectQuery(sqlstring)
+
+        Return MyData
+
+    End Function
 
 End Class

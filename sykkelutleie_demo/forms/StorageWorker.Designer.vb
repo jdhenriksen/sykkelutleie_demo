@@ -22,7 +22,7 @@ Partial Class StorageWorker
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.lstbxEqipment = New System.Windows.Forms.CheckedListBox()
         Me.btnEqipSave = New System.Windows.Forms.Button()
         Me.btnEqipReset = New System.Windows.Forms.Button()
         Me.btnEqipCreate = New System.Windows.Forms.Button()
@@ -89,14 +89,15 @@ Partial Class StorageWorker
         CType(Me.dtgvBike, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'CheckedListBox1
+        'lstbxEqipment
         '
-        Me.CheckedListBox1.CheckOnClick = True
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(288, 527)
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(120, 174)
-        Me.CheckedListBox1.TabIndex = 228
+        Me.lstbxEqipment.CheckOnClick = True
+        Me.lstbxEqipment.Enabled = False
+        Me.lstbxEqipment.FormattingEnabled = True
+        Me.lstbxEqipment.Location = New System.Drawing.Point(288, 527)
+        Me.lstbxEqipment.Name = "lstbxEqipment"
+        Me.lstbxEqipment.Size = New System.Drawing.Size(120, 174)
+        Me.lstbxEqipment.TabIndex = 228
         '
         'btnEqipSave
         '
@@ -664,7 +665,7 @@ Partial Class StorageWorker
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1284, 723)
-        Me.Controls.Add(Me.CheckedListBox1)
+        Me.Controls.Add(Me.lstbxEqipment)
         Me.Controls.Add(Me.btnEqipSave)
         Me.Controls.Add(Me.btnEqipReset)
         Me.Controls.Add(Me.btnEqipCreate)
@@ -735,7 +736,7 @@ Partial Class StorageWorker
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CheckedListBox1 As System.Windows.Forms.CheckedListBox
+    Friend WithEvents lstbxEqipment As System.Windows.Forms.CheckedListBox
     Friend WithEvents btnEqipSave As System.Windows.Forms.Button
     Friend WithEvents btnEqipReset As System.Windows.Forms.Button
     Friend WithEvents btnEqipCreate As System.Windows.Forms.Button
