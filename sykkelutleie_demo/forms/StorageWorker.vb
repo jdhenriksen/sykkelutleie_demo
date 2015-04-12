@@ -198,10 +198,6 @@ Public Class StorageWorker
         If dialogeResult = 6 Then
             answer = model.changeModel()
 
-            Dim selectedIndex As Integer = lstbxEqipment.SelectedIndex
-
-
-
             For i As Integer = 0 To lstbxEqipment.Items.Count - 1
 
                 Dim chkstate As CheckState
@@ -274,11 +270,12 @@ Public Class StorageWorker
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         objectupdate()
-        updateComboboxes() 'Fyller Modell bokser med modellvalg
+        'Fyller Modell bokser med modellvalg
         searchModel_Click(sender, e)
         searchBike_Click(sender, e)
         btnEqipSearch_Click(sender, e)
         resetCheckedList()
+        updateComboboxes()
 
     End Sub
 
@@ -486,8 +483,10 @@ Public Class StorageWorker
         Else
             tempprice = txtModelprice.Text
         End If
+
         Dim P As Double
         Double.TryParse(txtEqipPrice.Text, P)
+
         model = New Model(txtModelname.Text, tempprice, txtModelproducer.Text, txtModelcategory.Text) 'Objekt for modelldel for søk,opprett,slett,endre,lagre
         bikemodel = New Model(cmbModel.SelectedItem, tempprice, txtProducer.Text, txtCategory.Text) 'modellObject som sendes med bike objectet
         bike = New Bike(txtFramenumber.Text, cmbStatus.SelectedItem, txtLocation.Text, txtPointofsale.Text, txtBrakes.Text, txtTire.Text, txtFrame.Text, txtGear.Text, bikemodel) 'bikeobjekt

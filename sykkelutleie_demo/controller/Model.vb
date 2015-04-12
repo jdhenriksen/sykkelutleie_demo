@@ -14,12 +14,12 @@ Public Class Model
     ''' Ny modellobject instans
     ''' </summary>
     ''' <remarks> New lager nytt objekt uti fra verdier som blir sendt til den</remarks>
-    Public Sub New(ByVal m As String, ByVal pri As Double, ByVal pro As String, ByVal c As String)
+    Public Sub New(ByVal modelname As String, ByVal modelprice As Double, ByVal modelproducer As String, ByVal modelcategory As String)
 
-        model = m
-        price = pri
-        producer = pro
-        category = c
+        model = modelname
+        price = modelprice
+        producer = modelproducer
+        category = modelcategory
 
     End Sub
 
@@ -76,7 +76,9 @@ Public Class Model
     ''' <remarks>Sletter modeller og returnerer msgbox hvis det blir utført</remarks>
     Public Function deleteModell()
 
-        answer = anySqlQuery.updateQuery("DELETE FROM modell WHERE modell = '" & getModel() & "'")
+        sqlstring = "DELETE FROM modell WHERE modell = '" & getModel() & "'"
+
+        answer = anySqlQuery.updateQuery(sqlstring)
 
         Return answer
 
@@ -84,7 +86,9 @@ Public Class Model
 
     Public Function allmodels()
 
-        myData = anySqlQuery.selectQuery("SELECT * FROM modell")
+        sqlstring = "SELECT modell FROM modell"
+
+        myData = anySqlQuery.selectQuery(sqlstring)
 
         Return myData
 
