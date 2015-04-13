@@ -1,13 +1,14 @@
 ﻿Public Class Bike 
-    Private frameNumber As String
-    Private status As String
-    Private location As String
-    Private placeOfOrigin As String
-    Private brakes As String
-    Private tires As String
-    Private frame As String
-    Private gear As String
-    Public model As Model
+    Property frameNumber As String
+    Property status As String
+    Property location As String
+    Property placeOfOrigin As String
+    Property brakes As String
+    Property tires As String
+    Property frame As String
+    Property gear As String
+    Property model As New Model
+    Property equipmentList As New List(Of Equipment)
     Dim sqlstring As String
     Dim anySqlQuery As New DBUtility
     Dim myData As New DataTable
@@ -34,6 +35,9 @@
         model = modelobject
 
     End Sub
+    Public Sub New()
+
+    End Sub
     ''' <summary>
     ''' Ny sykkel
     ''' </summary>
@@ -53,7 +57,7 @@
     ''' <remarks>Fyller datagridview for sykkel med reultater</remarks>
     Public Function searchBike()
 
-        myData = anySqlQuery.selectQuery("SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE '%" & frameNumber & "%') AND (modell LIKE '%" & getModel() & "%') AND (status LIKE '" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%') AND (modell LIKE '%" & getModel() & "%')")
+        myData = anySqlQuery.selectQuery("SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE '%" & frameNumber & "%') AND (modell LIKE '%" & getModel() & "%') AND (status LIKE '" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%')")
 
         Return myData
 
@@ -77,34 +81,10 @@
     ''' Returnerer også svar i form av msgbox()</remarks>
     Public Function deleteBike()
 
-        answer = anySqlQuery.updateQuery("DELETE FROM sykkel WHERE rammenr ='" & frameNumber & "'")
+        answer = anySqlQuery.updateQuery("UPDATE sykkel SET status ='Deaktivert' WHERE rammenr ='" & frameNumber & "'")
 
         Return answer
 
-    End Function
-    Public Function getFrameNumber()
-        Return frameNumber
-    End Function
-    Public Function getStatus()
-        Return status
-    End Function
-    Public Function getLocation()
-        Return location
-    End Function
-    Public Function getPlaceOfOrigins()
-        Return placeOfOrigin
-    End Function
-    Public Function getTires()
-        Return tires
-    End Function
-    Public Function getFrame()
-        Return frame
-    End Function
-    Public Function getGear()
-        Return gear
-    End Function
-    Public Function getModel()
-        Return model.getModel()
     End Function
 
     Public Function getModelname(Optional ByVal framenb As String = "")
@@ -161,15 +141,66 @@
 
     End Function
 
+    Public Function relBike(ByVal chosenbike As String)
+        Return anySqlQuery.selectQuery("SELECT modell, status, lokasjon, utleiested, dekk, ramme, gir, bremser FROM sykkel WHERE rammenr ='" & chosenbike & "'")
+    End Function
+
     ''' <summary>
     ''' Finner sykkel og modelldata 
     ''' </summary>
     ''' <returns>Datatabell basert på sql spørring</returns>
     ''' <remarks>Joiner sykkel og modell for å gi data fra begge</remarks>
-    Function searchBicycleModel() As DataTable
-        myData = anySqlQuery.selectQuery("SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE  (rammenr LIKE '%" & frameNumber & "%') AND (sykkel.modell LIKE '%" & getModel() & "%') AND (status LIKE '%" & getStatus() & "%') AND (lokasjon LIKE '%" & getLocation() & "%') AND (utleiested LIKE '%" & getPlaceOfOrigins() & "%') AND (bremser LIKE '%" & brakes & "%') AND (dekk LIKE '%" & getTires() & "%') AND (ramme LIKE '%" & getFrame() & "%') AND (gir LIKE '%" & getGear() & "%') AND (pris >=" & getPrice() & ") AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')")
+    Function searchBicycleModel(bike As Bike) As DataTable
+        Dim sql As String
+        sql = "SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE (rammenr LIKE '%" & bike.frameNumber & "%') AND (sykkel.modell LIKE '%" & bike.model.model & "%') AND (status LIKE '%" & "" & "%') AND (lokasjon LIKE '%" & bike.location & "%') AND(utleiested LIKE '%" & bike.placeOfOrigin & "%') AND (pris >=" & bike.model.price & ") AND (produsent LIKE '%" & bike.model.producer & "%') AND (kategori LIKE '%" & bike.model.category & "%' AND sykkel.under_bestilling = '0' )"
+
+        myData = anySqlQuery.selectQuery(sql)
 
         Return myData
     End Function
 
+    Public Sub setBikeUnderOrder(bicycleID As String)
+        Dim dbutil As New DBUtility
+        Dim sql As String
+
+        sql = "UPDATE  `14badr05`.`sykkel` SET  sykkel.`under_bestilling` =  '1' WHERE  sykkel.rammenr =" & bicycleID & ";"
+
+        dbutil.updateQuery(sql)
+
+    End Sub
+
+    Public Sub setAllBikesNotUnderOrder()
+        Dim dbutil As New DBUtility
+        Dim sql As String
+
+        sql = "UPDATE  `14badr05`.`sykkel` SET  sykkel.`under_bestilling` =  '0';"
+
+        dbutil.updateQuery(sql)
+
+    End Sub
+
+    Public Function getFrameNumber()
+        Return frameNumber
+    End Function
+    Public Function getStatus()
+        Return status
+    End Function
+    Public Function getLocation()
+        Return location
+    End Function
+    Public Function getPlaceOfOrigins()
+        Return placeOfOrigin
+    End Function
+    Public Function getTires()
+        Return tires
+    End Function
+    Public Function getFrame()
+        Return frame
+    End Function
+    Public Function getGear()
+        Return gear
+    End Function
+    Public Function getModel()
+        Return model.getModel()
+    End Function
 End Class

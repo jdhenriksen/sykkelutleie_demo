@@ -1,10 +1,10 @@
 ﻿
 Public Class Model
-
-    Private model As String
-    Private price As String
-    Private producer As String
-    Private category As String
+    'Private listofEquipment As List(Of Equipment)
+    Property model As String
+    Property price As Double
+    Property producer As String
+    Property category As String
     Dim anySqlQuery As New DBUtility
     Dim sqlstring As String
     Dim answer As String
@@ -14,12 +14,16 @@ Public Class Model
     ''' Ny modellobject instans
     ''' </summary>
     ''' <remarks> New lager nytt objekt uti fra verdier som blir sendt til den</remarks>
-    Public Sub New(ByVal m As String, ByVal pri As String, ByVal pro As String, ByVal c As String)
+    Public Sub New(ByVal modelname As String, ByVal modelprice As Double, ByVal modelproducer As String, ByVal modelcategory As String)
 
-        model = m
-        price = pri
-        producer = pro
-        category = c
+        model = modelname
+        price = modelprice
+        producer = modelproducer
+        category = modelcategory
+
+    End Sub
+
+    Public Sub New()
 
     End Sub
 
@@ -59,7 +63,7 @@ Public Class Model
     ''' <remarks>Fyller opp resultatliste(datagridView) med modeller</remarks>
     Public Function searchModell()
 
-        sqlstring = "SELECT modell, pris, produsent, kategori FROM modell WHERE (modell LIKE '%" & getModel() & "%') AND (pris LIKE '%" & getPrice() & "%') AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')"
+        sqlstring = "SELECT modell, pris, produsent, kategori FROM modell WHERE (modell LIKE '%" & getModel() & "%') AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')"
 
         myData = anySqlQuery.selectQuery(sqlstring)
 
@@ -71,9 +75,28 @@ Public Class Model
     ''' </summary>
     ''' <remarks>Sletter modeller og returnerer msgbox hvis det blir utført</remarks>
     Public Function deleteModell()
-        answer = anySqlQuery.updateQuery("DELETE FROM modell WHERE modell = '" & getModel() & "'")
+
+        sqlstring = "DELETE FROM modell WHERE modell = '" & getModel() & "'"
+
+        answer = anySqlQuery.updateQuery(sqlstring)
 
         Return answer
+
+    End Function
+
+    Public Function allmodels()
+
+        sqlstring = "SELECT modell FROM modell"
+
+        myData = anySqlQuery.selectQuery(sqlstring)
+
+        Return myData
+
+    End Function
+
+    Public Function relmodels(ByVal chosenmodel As String)
+
+        Return anySqlQuery.selectQuery("SELECT modell, pris, produsent, kategori FROM modell WHERE modell='" & chosenmodel & "'")
 
     End Function
 

@@ -8,7 +8,9 @@ Public Class StorageWorker
     Public bikemodel As Model
     Public bike As Bike
     Public model As Model
+    Public equipment As Equipment
     Dim answer As String
+    Dim myData As DataTable
 
     ''' <summary>
     ''' Oppretter ny sykkel 
@@ -54,7 +56,7 @@ Public Class StorageWorker
         objectupdate()
         dtgvBike.DataSource = bike.searchBike() 'Bruker alle tilgjengelge felter med informasjon til å søke etter samsvarende sykler.
         updateComboboxes()                      'oppdaterer combobokser
-
+        dtgvBike.ClearSelection()
     End Sub
     ''' <summary>
     ''' Sletting av sykkel
@@ -146,12 +148,23 @@ Public Class StorageWorker
             dialogeResult = MsgBox("Vil opprette modell med navn: " & model.getModel() & "?", MsgBoxStyle.YesNo)
             If dialogeResult = 6 Then
                 answer = model.createModel()
+
+
+                For Each itemChecked In lstbxEqipment.CheckedItems
+
+                    equipment.modeljoin(model.getModel, (itemChecked.item("type").ToString()))
+
+                Next
+
                 If answer = "True" Then
                     MsgBox("Modell er opprettet")
                 End If
                 updateComboboxes()
                 Nullmodel_Click(sender, e)
                 searchModel_Click(sender, e)
+                resetCheckedList()
+
+
             Else
                 MsgBox("Oppretting av modell ble avbrutt.")
             End If
@@ -167,7 +180,7 @@ Public Class StorageWorker
         objectupdate()
 
         dtgvModel.DataSource = model.searchModell()
-
+        dtgvModel.ClearSelection()
     End Sub
 
     ''' <summary>
@@ -176,18 +189,35 @@ Public Class StorageWorker
     ''' <remarks>Mulighet for å endre alt utenom navnet
     ''' Nullstiller modellfelt og søker for å vise at søket er gjort</remarks>
     Private Sub saveModel_Click(sender As Object, e As EventArgs) Handles btnSavemodel.Click
-
+        btnEqipReset_Click(sender, e)
+        btnEqipSearch_Click(sender, e)
         objectupdate()
-
+        myData = equipment.EquipmentTypes()
         dialogeResult = MsgBox("Vil du endre modell med navn: " & model.getModel() & "?", MsgBoxStyle.YesNo)
 
         If dialogeResult = 6 Then
             answer = model.changeModel()
+
+            For i As Integer = 0 To lstbxEqipment.Items.Count - 1
+
+                Dim chkstate As CheckState
+                chkstate = lstbxEqipment.GetItemCheckState(i)
+
+                If (chkstate = CheckState.Checked) Then
+                    equipment.modeljoin(model.getModel, myData.Rows(i)("type").ToString)
+                Else
+                    equipment.deletejoin(model.getModel, myData.Rows(i)("varenr").ToString())
+                End If
+            Next
+
+
             If answer = True Then
                 MsgBox("Endringer er lagret")
             End If
+
             Nullmodel_Click(sender, e)
             searchModel_Click(sender, e)
+            resetCheckedList()
         Else
             MsgBox("Endringer ble ikke lagret.") 'Tilbakemedling hvis bruker avbryter
         End If
@@ -206,12 +236,16 @@ Public Class StorageWorker
         dialogeResult = MsgBox("Vil du slette  modell med navn: " & model.getModel & " ?", MsgBoxStyle.YesNo)
 
         If dialogeResult = 6 Then
+
             answer = model.deleteModell() 'Sletter modell etter modellnavn
+
             If answer = "True" Then
                 MsgBox("Modellen er slettet")
             End If
+
             updateComboboxes()
             Nullmodel_Click(sender, e)
+
         Else
             MsgBox("Sletting ble avbrutt.") 'Tilbakemelding hvis bruker avbryter
         End If
@@ -228,16 +262,21 @@ Public Class StorageWorker
         txtModelproducer.ReadOnly = False
         btnSavemodel.Enabled = True
         btnChangemodel.Enabled = False
+        lstbxEqipment.Enabled = True
 
     End Sub
 
 
-
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        updateComboboxes() 'Fyller Modell bokser med modellvalg
+        objectupdate()
+        'Fyller Modell bokser med modellvalg
         searchModel_Click(sender, e)
         searchBike_Click(sender, e)
+        btnEqipSearch_Click(sender, e)
+        resetCheckedList()
+        updateComboboxes()
+
     End Sub
 
     ''' <summary>
@@ -248,12 +287,13 @@ Public Class StorageWorker
     ''' Rammenummeret blir da brukt for å finne resten av data som er tilhørende og fyller det inn i tekstfelt
     ''' Samtidig blir tekstfelt låst slik at bruker forstår at sykkelen er valgt. Knapper blir også forandret.</remarks>
     Private Sub gridViewBike(sender As Object, e As DataGridViewCellEventArgs) Handles dtgvBike.CellClick
+
         Dim rowchoice As Integer = dtgvBike.CurrentCellAddress.Y 'Finner Y rad som er valgt i datagridview 
         Dim chosenbikenb As String
         Dim testdata As New DataTable
 
         chosenbikenb = dtgvBike.Rows(rowchoice).Cells(0).Value.ToString() 'Legger rammenr inn i variabel
-        testdata = anySqlQuery.selectQuery("SELECT modell, status, lokasjon, utleiested, dekk, ramme, gir, bremser FROM sykkel WHERE rammenr ='" & chosenbikenb & "'")
+        testdata = bike.relBike(chosenbikenb)
 
         txtFramenumber.Text = chosenbikenb                     'Alt fra DataTable inn i Tekstbokser på edit siden
         cmbModel.Text = testdata.Rows(0)(0).ToString()
@@ -289,17 +329,25 @@ Public Class StorageWorker
     ''' Tekstfelt blir låst og knapper endret</remarks>
     Private Sub gridViewModel(sender As Object, e As DataGridViewCellEventArgs) Handles dtgvModel.CellClick
 
+
+        lstbxEqipment.Enabled = False
+        resetCheckedList()
+
         Dim rowchoice As Integer = dtgvModel.CurrentCellAddress.Y 'Finner Y rad some r valgt i datagridview på modelldelen
         Dim chosenmodel As String
         Dim datagrid As New DataGridView
         Dim datafill As New DataTable
+        Dim allEquipment As DataTable
+        Dim teller As Integer = 0
+        Dim count As Integer = 0
+        Dim treff As Integer = 0
+        Dim arraycount As Integer = 0
 
         datagrid.DefaultCellStyle.NullValue = 0.0
         chosenmodel = dtgvModel.Rows(rowchoice).Cells(0).Value.ToString()
 
         'Sender valgt modell fra GridView og får tilbake resultater som settes inn i Modell sine tekstbokser 
-        datafill = anySqlQuery.selectQuery("SELECT modell, pris, produsent, kategori FROM modell WHERE modell ='" & chosenmodel & "'")
-
+        datafill = model.relmodels(chosenmodel)
         txtModelname.Text = chosenmodel
         txtModelprice.Text = datafill.Rows(0)(1).ToString()
         txtModelproducer.Text = datafill.Rows(0)(2).ToString()
@@ -316,6 +364,63 @@ Public Class StorageWorker
         txtModelproducer.ReadOnly = True
         txtModelcategory.ReadOnly = True
 
+        allEquipment = equipment.EquipmentTypes()
+        myData = equipment.modelEquipementCompatiable(chosenmodel)
+
+
+        While treff < (allEquipment.Rows.Count)
+
+            While teller < (myData.Rows.Count)
+
+                If allEquipment.Rows(treff)(0).ToString() = myData.Rows(teller)(0).ToString() Then
+
+                    lstbxEqipment.SetItemChecked(treff, True)
+
+                End If
+
+                teller = teller + 1
+
+            End While
+
+            teller = 0
+            treff = treff + 1
+
+        End While
+
+    End Sub
+
+
+
+    Private Sub dtgvEquip_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgvEquip.CellClick
+
+        Dim rowchoice As Integer = dtgvEquip.CurrentCellAddress.Y 'Finner Y rad some r valgt i datagridview på modelldelen
+        Dim chosenequipment As String
+        Dim datagrid As New DataGridView
+        Dim datafill As New DataTable
+
+        datagrid.DefaultCellStyle.NullValue = 0.0
+        chosenequipment = dtgvEquip.Rows(rowchoice).Cells(0).Value.ToString()
+
+        'Sender valgt modell fra GridView og får tilbake resultater som settes inn i Modell sine tekstbokser 
+        datafill = equipment.chosenEquipment(chosenequipment)
+
+        txtEqipID.Text = chosenequipment
+        txtEqipType.Text = datafill.Rows(0)(1).ToString()
+        txtEqipPrice.Text = datafill.Rows(0)(2).ToString()
+        txtEqipStatus.Text = datafill.Rows(0)(3).ToString()
+
+        btnEqipDelete.Enabled = True
+        btnEqipChange.Enabled = True
+        btnEqipSearch.Enabled = False
+        btnEqipCreate.Enabled = False
+        btnEqipSave.Enabled = False
+        btnEqipReset.Enabled = True
+
+        txtEqipID.ReadOnly = True
+        txtEqipType.ReadOnly = True
+        txtEqipPrice.ReadOnly = True
+        txtEqipStatus.ReadOnly = True
+
     End Sub
 
     ''' <summary>
@@ -327,8 +432,7 @@ Public Class StorageWorker
         Dim chosenmodel As String = cmbModel.SelectedItem.ToString()  'Hvis alternativ i Combobox blir valgt får vi fylt ut 3 andre tekstbokser
         Dim modelfilled As DataTable
 
-        modelfilled = anySqlQuery.selectQuery("SELECT modell, pris, produsent, kategori FROM modell WHERE modell='" & chosenmodel & "'")
-
+        modelfilled = model.relmodels(chosenmodel)
         txtPrice.Text = modelfilled.Rows(0)(1).ToString()
         txtProducer.Text = modelfilled.Rows(0)(2).ToString()
         txtCategory.Text = modelfilled.Rows(0)(3).ToString()
@@ -340,14 +444,17 @@ Public Class StorageWorker
     ''' </summary>
     ''' <remarks>Av og til skjer endringer som gjør at vi må oppdatere valgene inne i comboboksene så innholdet reflekterer endringene</remarks>
     Public Sub updateComboboxes() 'Oppdaterer combobokser slik at de nyeste valg er tilgjengelig 
+
+        objectupdate()
         Dim combomodelnames As DataTable
-
         cmbModel.Items.Clear()
-        combomodelnames = anySqlQuery.selectQuery("SELECT * FROM modell") 'Henter modellnavn
-
+        combomodelnames = model.allmodels 'Henter modellnavn
         Dim numberrows As Integer = combomodelnames.Rows.Count()
+
         For counter As Integer = counter To numberrows - 1 'Fyller opp Modell combobox med valg basert på hvor mange modeller er databasen.
+
             cmbModel.Items.Add(combomodelnames.Rows(counter)(0)) 'Kjøres ofte etter endringer sletting for å gi brukeren de nyeste valgene
+
         Next
 
         txtProducer.Clear()
@@ -360,6 +467,7 @@ Public Class StorageWorker
         cmbStatus.Items.Add("På Lager")
         cmbStatus.Items.Add("Utleid")
         cmbStatus.Items.Add("Under Transport")
+        cmbStatus.Items.Add("Deaktivert")
 
     End Sub
 
@@ -368,9 +476,22 @@ Public Class StorageWorker
     ''' </summary>
     ''' <remarks>Oppdatering av objecter så vi har de nyeste verdier å arbeide med</remarks>
     Public Sub objectupdate() 'Brukes for å hente nye verdier og skape nye instanser av disse objektene
-        model = New Model(txtModelname.Text, txtModelprice.Text, txtModelproducer.Text, txtModelcategory.Text) 'Objekt for modelldel for søk,opprett,slett,endre,lagre
-        bikemodel = New Model(cmbModel.SelectedItem, txtPrice.Text, txtProducer.Text, txtCategory.Text) 'modellObject som sendes med bike objectet
+        Dim tempprice As Double
+        If txtModelprice.Text = "" Then
+            tempprice = 0.0
+        Else
+            tempprice = txtModelprice.Text
+        End If
+
+        Dim P As Double
+        Double.TryParse(txtEqipPrice.Text, P)
+
+        model = New Model(txtModelname.Text, tempprice, txtModelproducer.Text, txtModelcategory.Text) 'Objekt for modelldel for søk,opprett,slett,endre,lagre
+        bikemodel = New Model(cmbModel.SelectedItem, tempprice, txtProducer.Text, txtCategory.Text) 'modellObject som sendes med bike objectet
         bike = New Bike(txtFramenumber.Text, cmbStatus.SelectedItem, txtLocation.Text, txtPointofsale.Text, txtBrakes.Text, txtTire.Text, txtFrame.Text, txtGear.Text, bikemodel) 'bikeobjekt
+        equipment = New Equipment(txtEqipID.Text, txtEqipStatus.Text, P, txtEqipType.Text)
+
+
     End Sub
 
     ''' <summary>
@@ -429,7 +550,83 @@ Public Class StorageWorker
         btnSearchmodel.Enabled = True
 
         dtgvModel.DataSource = Nothing
+        resetCheckedList()
 
+
+    End Sub
+
+    Private Sub btnEqipReset_Click(sender As Object, e As EventArgs) Handles btnEqipReset.Click
+
+        txtEqipID.Clear()
+        txtEqipType.Clear()
+        txtEqipPrice.Clear()
+        txtEqipStatus.Clear()
+
+        txtEqipType.ReadOnly = False
+        txtEqipPrice.ReadOnly = False
+        txtEqipStatus.ReadOnly = False
+
+        btnEqipSearch.Enabled = True
+        btnEqipCreate.Enabled = True
+        btnEqipReset.Enabled = True
+        btnEqipDelete.Enabled = False
+        btnEqipChange.Enabled = False
+        btnEqipSave.Enabled = False
+
+        dtgvEquip.DataSource = Nothing
+
+    End Sub
+
+
+    Private Sub btnEqipSearch_Click(sender As Object, e As EventArgs) Handles btnEqipSearch.Click
+
+        objectupdate()
+        dtgvEquip.DataSource = equipment.listAllEquipment()
+        dtgvEquip.ClearSelection()
+    End Sub
+
+    Private Sub btnEqipChange_Click(sender As Object, e As EventArgs) Handles btnEqipChange.Click
+
+        txtEqipType.ReadOnly = False
+        txtEqipPrice.ReadOnly = False
+        txtEqipStatus.ReadOnly = False
+        btnEqipSave.Enabled = True
+
+
+    End Sub
+
+    Private Sub btnEqipSave_Click(sender As Object, e As EventArgs) Handles btnEqipSave.Click
+        objectupdate()
+        equipment.ChangeEquipment()
+        btnEqipReset_Click(sender, e)
+        btnEqipSearch_Click(sender, e)
+    End Sub
+
+    Private Sub btnEqipDelete_Click(sender As Object, e As EventArgs) Handles btnEqipDelete.Click
+
+        objectupdate()
+        equipment.DeleteEquipment()
+        btnEqipReset_Click(sender, e)
+        btnEqipSearch_Click(sender, e)
+
+    End Sub
+
+    Private Sub btnEqipCreate_Click(sender As Object, e As EventArgs) Handles btnEqipCreate.Click
+
+        objectupdate()
+        equipment.createEquipment()
+        btnEqipReset_Click(sender, e)
+        btnEqipSearch_Click(sender, e)
+
+    End Sub
+
+
+    Private Sub resetCheckedList()
+
+        lstbxEqipment.Enabled = False
+        lstbxEqipment.DataSource = Nothing
+        lstbxEqipment.DataSource = equipment.EquipmentTypes()
+        lstbxEqipment.DisplayMember = "type"
     End Sub
 
 End Class

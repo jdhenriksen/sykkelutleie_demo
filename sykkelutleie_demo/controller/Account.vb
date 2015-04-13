@@ -7,7 +7,7 @@ Imports System.Security.Cryptography
 ''' <remarks></remarks>
 
 Public Class Account
-    Private username As String
+    Property username As String
     Private password As String
 
     Sub New(username As String, password As String)
@@ -17,6 +17,10 @@ Public Class Account
         Else
             MsgBox("Passord ugyldig.")
         End If
+    End Sub
+
+    Sub New()
+
     End Sub
 
     Public Function getUsername() As String
@@ -75,5 +79,27 @@ Public Class Account
         Dim dao As New EmployeeDao
         Dim table As DataTable = dao.login(getUsername(), getPassword())
         Return table
+    End Function
+
+    Public Function getEmployee() As Employee
+        Dim dbutil As New DBUtility
+        Dim sql As String
+        Dim result As DataTable
+        Dim row As DataRow
+
+        sql = "SELECT ansatt.fornavn, ansatt.etternavn, stilling, ansatt.epost, ansatt.telefon FROM ansatt WHERE brukernavn = '" & username & "';"
+        result = dbutil.selectQuery(sql)
+
+        If result.Rows.Count <> 1 Then
+            Return Nothing
+        Else
+
+            row = result.Rows(0)
+
+            Dim employee As New Employee(row("fornavn"), row("etternavn"), row("telefon"), row("epost"), row("stilling"), "", "", username, "aaaaaaaa")
+
+            Return employee
+
+        End If
     End Function
 End Class

@@ -22,6 +22,22 @@ Partial Class StorageWorker
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.lstbxEqipment = New System.Windows.Forms.CheckedListBox()
+        Me.btnEqipSave = New System.Windows.Forms.Button()
+        Me.btnEqipReset = New System.Windows.Forms.Button()
+        Me.btnEqipCreate = New System.Windows.Forms.Button()
+        Me.btnEqipDelete = New System.Windows.Forms.Button()
+        Me.btnEqipChange = New System.Windows.Forms.Button()
+        Me.dtgvEquip = New System.Windows.Forms.DataGridView()
+        Me.btnEqipSearch = New System.Windows.Forms.Button()
+        Me.lblEqipStatus = New System.Windows.Forms.Label()
+        Me.lblEqipPrice = New System.Windows.Forms.Label()
+        Me.lblEqipType = New System.Windows.Forms.Label()
+        Me.lblEqipID = New System.Windows.Forms.Label()
+        Me.txtEqipStatus = New System.Windows.Forms.TextBox()
+        Me.txtEqipPrice = New System.Windows.Forms.TextBox()
+        Me.txtEqipType = New System.Windows.Forms.TextBox()
+        Me.txtEqipID = New System.Windows.Forms.TextBox()
         Me.btnNullmodel = New System.Windows.Forms.Button()
         Me.btnNullbike = New System.Windows.Forms.Button()
         Me.btnDeletemodel = New System.Windows.Forms.Button()
@@ -68,281 +84,434 @@ Partial Class StorageWorker
         Me.txtFramenumber = New System.Windows.Forms.MaskedTextBox()
         Me.dtgvModel = New System.Windows.Forms.DataGridView()
         Me.dtgvBike = New System.Windows.Forms.DataGridView()
+        CType(Me.dtgvEquip, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtgvModel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtgvBike, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
+        'lstbxEqipment
+        '
+        Me.lstbxEqipment.CheckOnClick = True
+        Me.lstbxEqipment.Enabled = False
+        Me.lstbxEqipment.FormattingEnabled = True
+        Me.lstbxEqipment.Location = New System.Drawing.Point(295, 518)
+        Me.lstbxEqipment.Name = "lstbxEqipment"
+        Me.lstbxEqipment.Size = New System.Drawing.Size(120, 157)
+        Me.lstbxEqipment.TabIndex = 228
+        '
+        'btnEqipSave
+        '
+        Me.btnEqipSave.Enabled = False
+        Me.btnEqipSave.Location = New System.Drawing.Point(862, 206)
+        Me.btnEqipSave.Name = "btnEqipSave"
+        Me.btnEqipSave.Size = New System.Drawing.Size(75, 23)
+        Me.btnEqipSave.TabIndex = 227
+        Me.btnEqipSave.Text = "Lagre"
+        Me.btnEqipSave.UseVisualStyleBackColor = True
+        '
+        'btnEqipReset
+        '
+        Me.btnEqipReset.Location = New System.Drawing.Point(700, 175)
+        Me.btnEqipReset.Name = "btnEqipReset"
+        Me.btnEqipReset.Size = New System.Drawing.Size(75, 23)
+        Me.btnEqipReset.TabIndex = 226
+        Me.btnEqipReset.Text = "Reset"
+        Me.btnEqipReset.UseVisualStyleBackColor = True
+        '
+        'btnEqipCreate
+        '
+        Me.btnEqipCreate.Location = New System.Drawing.Point(781, 177)
+        Me.btnEqipCreate.Name = "btnEqipCreate"
+        Me.btnEqipCreate.Size = New System.Drawing.Size(75, 23)
+        Me.btnEqipCreate.TabIndex = 225
+        Me.btnEqipCreate.Text = "Opprett"
+        Me.btnEqipCreate.UseVisualStyleBackColor = True
+        '
+        'btnEqipDelete
+        '
+        Me.btnEqipDelete.Enabled = False
+        Me.btnEqipDelete.Location = New System.Drawing.Point(699, 204)
+        Me.btnEqipDelete.Name = "btnEqipDelete"
+        Me.btnEqipDelete.Size = New System.Drawing.Size(75, 23)
+        Me.btnEqipDelete.TabIndex = 224
+        Me.btnEqipDelete.Text = "Slett"
+        Me.btnEqipDelete.UseVisualStyleBackColor = True
+        '
+        'btnEqipChange
+        '
+        Me.btnEqipChange.Enabled = False
+        Me.btnEqipChange.Location = New System.Drawing.Point(781, 206)
+        Me.btnEqipChange.Name = "btnEqipChange"
+        Me.btnEqipChange.Size = New System.Drawing.Size(75, 23)
+        Me.btnEqipChange.TabIndex = 223
+        Me.btnEqipChange.Text = "Endre"
+        Me.btnEqipChange.UseVisualStyleBackColor = True
+        '
+        'dtgvEquip
+        '
+        Me.dtgvEquip.AllowUserToAddRows = False
+        Me.dtgvEquip.AllowUserToDeleteRows = False
+        Me.dtgvEquip.AllowUserToResizeColumns = False
+        Me.dtgvEquip.AllowUserToResizeRows = False
+        Me.dtgvEquip.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
+        Me.dtgvEquip.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.dtgvEquip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dtgvEquip.Location = New System.Drawing.Point(943, 54)
+        Me.dtgvEquip.MultiSelect = False
+        Me.dtgvEquip.Name = "dtgvEquip"
+        Me.dtgvEquip.ReadOnly = True
+        Me.dtgvEquip.RowHeadersVisible = False
+        Me.dtgvEquip.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders
+        Me.dtgvEquip.RowTemplate.Height = 24
+        Me.dtgvEquip.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dtgvEquip.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dtgvEquip.Size = New System.Drawing.Size(329, 173)
+        Me.dtgvEquip.TabIndex = 222
+        '
+        'btnEqipSearch
+        '
+        Me.btnEqipSearch.Location = New System.Drawing.Point(862, 177)
+        Me.btnEqipSearch.Name = "btnEqipSearch"
+        Me.btnEqipSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnEqipSearch.TabIndex = 221
+        Me.btnEqipSearch.Text = "Søk"
+        Me.btnEqipSearch.UseVisualStyleBackColor = True
+        '
+        'lblEqipStatus
+        '
+        Me.lblEqipStatus.AutoSize = True
+        Me.lblEqipStatus.Location = New System.Drawing.Point(701, 143)
+        Me.lblEqipStatus.Name = "lblEqipStatus"
+        Me.lblEqipStatus.Size = New System.Drawing.Size(48, 17)
+        Me.lblEqipStatus.TabIndex = 220
+        Me.lblEqipStatus.Text = "Status"
+        '
+        'lblEqipPrice
+        '
+        Me.lblEqipPrice.AutoSize = True
+        Me.lblEqipPrice.Location = New System.Drawing.Point(701, 112)
+        Me.lblEqipPrice.Name = "lblEqipPrice"
+        Me.lblEqipPrice.Size = New System.Drawing.Size(32, 17)
+        Me.lblEqipPrice.TabIndex = 219
+        Me.lblEqipPrice.Text = "Pris"
+        '
+        'lblEqipType
+        '
+        Me.lblEqipType.AutoSize = True
+        Me.lblEqipType.Location = New System.Drawing.Point(700, 83)
+        Me.lblEqipType.Name = "lblEqipType"
+        Me.lblEqipType.Size = New System.Drawing.Size(40, 17)
+        Me.lblEqipType.TabIndex = 218
+        Me.lblEqipType.Text = "Type"
+        '
+        'lblEqipID
+        '
+        Me.lblEqipID.AutoSize = True
+        Me.lblEqipID.Location = New System.Drawing.Point(701, 54)
+        Me.lblEqipID.Name = "lblEqipID"
+        Me.lblEqipID.Size = New System.Drawing.Size(89, 17)
+        Me.lblEqipID.TabIndex = 217
+        Me.lblEqipID.Text = "Varenummer"
+        '
+        'txtEqipStatus
+        '
+        Me.txtEqipStatus.Location = New System.Drawing.Point(837, 140)
+        Me.txtEqipStatus.Name = "txtEqipStatus"
+        Me.txtEqipStatus.Size = New System.Drawing.Size(100, 22)
+        Me.txtEqipStatus.TabIndex = 216
+        '
+        'txtEqipPrice
+        '
+        Me.txtEqipPrice.Location = New System.Drawing.Point(837, 112)
+        Me.txtEqipPrice.Name = "txtEqipPrice"
+        Me.txtEqipPrice.Size = New System.Drawing.Size(100, 22)
+        Me.txtEqipPrice.TabIndex = 215
+        '
+        'txtEqipType
+        '
+        Me.txtEqipType.Location = New System.Drawing.Point(837, 85)
+        Me.txtEqipType.Name = "txtEqipType"
+        Me.txtEqipType.Size = New System.Drawing.Size(100, 22)
+        Me.txtEqipType.TabIndex = 214
+        '
+        'txtEqipID
+        '
+        Me.txtEqipID.Location = New System.Drawing.Point(837, 54)
+        Me.txtEqipID.Name = "txtEqipID"
+        Me.txtEqipID.Size = New System.Drawing.Size(100, 22)
+        Me.txtEqipID.TabIndex = 213
+        '
         'btnNullmodel
         '
-        Me.btnNullmodel.Location = New System.Drawing.Point(11, 634)
+        Me.btnNullmodel.Location = New System.Drawing.Point(15, 633)
         Me.btnNullmodel.Name = "btnNullmodel"
         Me.btnNullmodel.Size = New System.Drawing.Size(83, 23)
-        Me.btnNullmodel.TabIndex = 195
+        Me.btnNullmodel.TabIndex = 212
         Me.btnNullmodel.Text = "Reset"
         Me.btnNullmodel.UseVisualStyleBackColor = True
         '
         'btnNullbike
         '
-        Me.btnNullbike.Location = New System.Drawing.Point(11, 365)
+        Me.btnNullbike.Location = New System.Drawing.Point(8, 373)
         Me.btnNullbike.Name = "btnNullbike"
         Me.btnNullbike.Size = New System.Drawing.Size(83, 23)
-        Me.btnNullbike.TabIndex = 194
+        Me.btnNullbike.TabIndex = 211
         Me.btnNullbike.Text = "Reset"
         Me.btnNullbike.UseVisualStyleBackColor = True
         '
         'btnDeletemodel
         '
         Me.btnDeletemodel.Enabled = False
-        Me.btnDeletemodel.Location = New System.Drawing.Point(11, 663)
+        Me.btnDeletemodel.Location = New System.Drawing.Point(15, 662)
         Me.btnDeletemodel.Name = "btnDeletemodel"
         Me.btnDeletemodel.Size = New System.Drawing.Size(83, 23)
-        Me.btnDeletemodel.TabIndex = 193
+        Me.btnDeletemodel.TabIndex = 210
         Me.btnDeletemodel.Text = "Slett"
         Me.btnDeletemodel.UseVisualStyleBackColor = True
         '
         'txtModelcategory
         '
-        Me.txtModelcategory.Location = New System.Drawing.Point(146, 598)
+        Me.txtModelcategory.Location = New System.Drawing.Point(150, 597)
         Me.txtModelcategory.Name = "txtModelcategory"
         Me.txtModelcategory.Size = New System.Drawing.Size(127, 22)
-        Me.txtModelcategory.TabIndex = 192
+        Me.txtModelcategory.TabIndex = 209
         '
         'txtModelproducer
         '
-        Me.txtModelproducer.Location = New System.Drawing.Point(148, 569)
+        Me.txtModelproducer.Location = New System.Drawing.Point(152, 568)
         Me.txtModelproducer.Name = "txtModelproducer"
         Me.txtModelproducer.Size = New System.Drawing.Size(127, 22)
-        Me.txtModelproducer.TabIndex = 191
+        Me.txtModelproducer.TabIndex = 208
         '
         'txtModelprice
         '
-        Me.txtModelprice.Location = New System.Drawing.Point(146, 540)
+        Me.txtModelprice.Location = New System.Drawing.Point(150, 539)
         Me.txtModelprice.Mask = "0000"
         Me.txtModelprice.Name = "txtModelprice"
         Me.txtModelprice.Size = New System.Drawing.Size(127, 22)
-        Me.txtModelprice.TabIndex = 190
+        Me.txtModelprice.TabIndex = 207
         '
         'txtModelname
         '
-        Me.txtModelname.Location = New System.Drawing.Point(146, 511)
+        Me.txtModelname.Location = New System.Drawing.Point(150, 510)
         Me.txtModelname.Name = "txtModelname"
         Me.txtModelname.Size = New System.Drawing.Size(127, 22)
-        Me.txtModelname.TabIndex = 189
+        Me.txtModelname.TabIndex = 206
         '
         'txtBrakes
         '
-        Me.txtBrakes.Location = New System.Drawing.Point(132, 327)
+        Me.txtBrakes.Location = New System.Drawing.Point(129, 335)
         Me.txtBrakes.Name = "txtBrakes"
         Me.txtBrakes.Size = New System.Drawing.Size(151, 22)
-        Me.txtBrakes.TabIndex = 188
+        Me.txtBrakes.TabIndex = 205
         '
         'txtGear
         '
-        Me.txtGear.Location = New System.Drawing.Point(130, 298)
+        Me.txtGear.Location = New System.Drawing.Point(127, 306)
         Me.txtGear.Name = "txtGear"
         Me.txtGear.Size = New System.Drawing.Size(151, 22)
-        Me.txtGear.TabIndex = 187
+        Me.txtGear.TabIndex = 204
         '
         'txtFrame
         '
-        Me.txtFrame.Location = New System.Drawing.Point(130, 276)
+        Me.txtFrame.Location = New System.Drawing.Point(127, 284)
         Me.txtFrame.Name = "txtFrame"
         Me.txtFrame.Size = New System.Drawing.Size(151, 22)
-        Me.txtFrame.TabIndex = 186
+        Me.txtFrame.TabIndex = 203
         '
         'txtTire
         '
-        Me.txtTire.Location = New System.Drawing.Point(130, 250)
+        Me.txtTire.Location = New System.Drawing.Point(127, 258)
         Me.txtTire.Name = "txtTire"
         Me.txtTire.Size = New System.Drawing.Size(151, 22)
-        Me.txtTire.TabIndex = 185
+        Me.txtTire.TabIndex = 202
         '
         'txtPointofsale
         '
-        Me.txtPointofsale.Location = New System.Drawing.Point(130, 221)
+        Me.txtPointofsale.Location = New System.Drawing.Point(127, 229)
         Me.txtPointofsale.Name = "txtPointofsale"
         Me.txtPointofsale.Size = New System.Drawing.Size(151, 22)
-        Me.txtPointofsale.TabIndex = 184
+        Me.txtPointofsale.TabIndex = 201
         '
         'txtLocation
         '
-        Me.txtLocation.Location = New System.Drawing.Point(130, 192)
+        Me.txtLocation.Location = New System.Drawing.Point(127, 200)
         Me.txtLocation.Name = "txtLocation"
         Me.txtLocation.Size = New System.Drawing.Size(151, 22)
-        Me.txtLocation.TabIndex = 183
+        Me.txtLocation.TabIndex = 200
         '
         'txtPrice
         '
-        Me.txtPrice.Location = New System.Drawing.Point(130, 128)
+        Me.txtPrice.Location = New System.Drawing.Point(127, 136)
         Me.txtPrice.Mask = "0000"
         Me.txtPrice.Name = "txtPrice"
         Me.txtPrice.ReadOnly = True
         Me.txtPrice.Size = New System.Drawing.Size(153, 22)
-        Me.txtPrice.TabIndex = 182
+        Me.txtPrice.TabIndex = 199
         '
         'txtCategory
         '
-        Me.txtCategory.Location = New System.Drawing.Point(132, 106)
+        Me.txtCategory.Location = New System.Drawing.Point(129, 114)
         Me.txtCategory.Name = "txtCategory"
         Me.txtCategory.ReadOnly = True
         Me.txtCategory.Size = New System.Drawing.Size(153, 22)
-        Me.txtCategory.TabIndex = 181
+        Me.txtCategory.TabIndex = 198
         '
         'txtProducer
         '
-        Me.txtProducer.Location = New System.Drawing.Point(132, 76)
+        Me.txtProducer.Location = New System.Drawing.Point(129, 84)
         Me.txtProducer.Name = "txtProducer"
         Me.txtProducer.ReadOnly = True
         Me.txtProducer.Size = New System.Drawing.Size(153, 22)
-        Me.txtProducer.TabIndex = 180
+        Me.txtProducer.TabIndex = 197
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(25, 134)
+        Me.Label12.Location = New System.Drawing.Point(22, 142)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(32, 17)
-        Me.Label12.TabIndex = 179
+        Me.Label12.TabIndex = 196
         Me.Label12.Text = "Pris"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(25, 76)
+        Me.Label3.Location = New System.Drawing.Point(22, 84)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(73, 17)
-        Me.Label3.TabIndex = 178
+        Me.Label3.TabIndex = 195
         Me.Label3.Text = "Produsent"
         '
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(25, 106)
+        Me.Label30.Location = New System.Drawing.Point(22, 114)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(61, 17)
-        Me.Label30.TabIndex = 177
+        Me.Label30.TabIndex = 194
         Me.Label30.Text = "Kategori"
         '
         'btnSavemodel
         '
         Me.btnSavemodel.Enabled = False
-        Me.btnSavemodel.Location = New System.Drawing.Point(193, 663)
+        Me.btnSavemodel.Location = New System.Drawing.Point(197, 662)
         Me.btnSavemodel.Name = "btnSavemodel"
         Me.btnSavemodel.Size = New System.Drawing.Size(87, 23)
-        Me.btnSavemodel.TabIndex = 176
+        Me.btnSavemodel.TabIndex = 193
         Me.btnSavemodel.Text = "Lagre"
         Me.btnSavemodel.UseVisualStyleBackColor = True
         '
         'btnChangemodel
         '
         Me.btnChangemodel.Enabled = False
-        Me.btnChangemodel.Location = New System.Drawing.Point(100, 663)
+        Me.btnChangemodel.Location = New System.Drawing.Point(104, 662)
         Me.btnChangemodel.Name = "btnChangemodel"
         Me.btnChangemodel.Size = New System.Drawing.Size(87, 23)
-        Me.btnChangemodel.TabIndex = 175
+        Me.btnChangemodel.TabIndex = 192
         Me.btnChangemodel.Text = "Endre"
         Me.btnChangemodel.UseVisualStyleBackColor = True
         '
         'btnSearchmodel
         '
-        Me.btnSearchmodel.Location = New System.Drawing.Point(193, 634)
+        Me.btnSearchmodel.Location = New System.Drawing.Point(197, 633)
         Me.btnSearchmodel.Name = "btnSearchmodel"
         Me.btnSearchmodel.Size = New System.Drawing.Size(87, 23)
-        Me.btnSearchmodel.TabIndex = 174
+        Me.btnSearchmodel.TabIndex = 191
         Me.btnSearchmodel.Text = "Søk"
         Me.btnSearchmodel.UseVisualStyleBackColor = True
         '
         'btnNewmodel
         '
-        Me.btnNewmodel.Location = New System.Drawing.Point(100, 634)
+        Me.btnNewmodel.Location = New System.Drawing.Point(104, 633)
         Me.btnNewmodel.Name = "btnNewmodel"
         Me.btnNewmodel.Size = New System.Drawing.Size(87, 23)
-        Me.btnNewmodel.TabIndex = 173
+        Me.btnNewmodel.TabIndex = 190
         Me.btnNewmodel.Text = "Opprett"
         Me.btnNewmodel.UseVisualStyleBackColor = True
         '
         'btnSavebike
         '
         Me.btnSavebike.Enabled = False
-        Me.btnSavebike.Location = New System.Drawing.Point(190, 395)
+        Me.btnSavebike.Location = New System.Drawing.Point(187, 403)
         Me.btnSavebike.Name = "btnSavebike"
         Me.btnSavebike.Size = New System.Drawing.Size(93, 23)
-        Me.btnSavebike.TabIndex = 172
+        Me.btnSavebike.TabIndex = 189
         Me.btnSavebike.Text = "Lagre"
         Me.btnSavebike.UseVisualStyleBackColor = True
         '
         'btnChangebike
         '
         Me.btnChangebike.Enabled = False
-        Me.btnChangebike.Location = New System.Drawing.Point(100, 395)
+        Me.btnChangebike.Location = New System.Drawing.Point(97, 403)
         Me.btnChangebike.Name = "btnChangebike"
         Me.btnChangebike.Size = New System.Drawing.Size(83, 23)
-        Me.btnChangebike.TabIndex = 171
+        Me.btnChangebike.TabIndex = 188
         Me.btnChangebike.Text = "Endre"
         Me.btnChangebike.UseVisualStyleBackColor = True
         '
         'btnDeletebike
         '
         Me.btnDeletebike.Enabled = False
-        Me.btnDeletebike.Location = New System.Drawing.Point(11, 395)
+        Me.btnDeletebike.Location = New System.Drawing.Point(8, 403)
         Me.btnDeletebike.Name = "btnDeletebike"
         Me.btnDeletebike.Size = New System.Drawing.Size(83, 23)
-        Me.btnDeletebike.TabIndex = 170
+        Me.btnDeletebike.TabIndex = 187
         Me.btnDeletebike.Text = "Slett"
         Me.btnDeletebike.UseVisualStyleBackColor = True
         '
         'btnSearchbike
         '
-        Me.btnSearchbike.Location = New System.Drawing.Point(190, 366)
+        Me.btnSearchbike.Location = New System.Drawing.Point(187, 374)
         Me.btnSearchbike.Name = "btnSearchbike"
         Me.btnSearchbike.Size = New System.Drawing.Size(93, 23)
-        Me.btnSearchbike.TabIndex = 169
+        Me.btnSearchbike.TabIndex = 186
         Me.btnSearchbike.Text = "Søk"
         Me.btnSearchbike.UseVisualStyleBackColor = True
         '
         'btnNewbike
         '
-        Me.btnNewbike.Location = New System.Drawing.Point(100, 366)
+        Me.btnNewbike.Location = New System.Drawing.Point(97, 374)
         Me.btnNewbike.Name = "btnNewbike"
         Me.btnNewbike.Size = New System.Drawing.Size(83, 23)
-        Me.btnNewbike.TabIndex = 168
+        Me.btnNewbike.TabIndex = 185
         Me.btnNewbike.Text = "Opprett"
         Me.btnNewbike.UseVisualStyleBackColor = True
         '
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(25, 595)
+        Me.Label26.Location = New System.Drawing.Point(29, 594)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(61, 17)
-        Me.Label26.TabIndex = 167
+        Me.Label26.TabIndex = 184
         Me.Label26.Text = "Kategori"
         '
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(25, 567)
+        Me.Label25.Location = New System.Drawing.Point(29, 566)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(73, 17)
-        Me.Label25.TabIndex = 166
+        Me.Label25.TabIndex = 183
         Me.Label25.Text = "Produsent"
         '
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(25, 537)
+        Me.Label24.Location = New System.Drawing.Point(29, 536)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(32, 17)
-        Me.Label24.TabIndex = 165
+        Me.Label24.TabIndex = 182
         Me.Label24.Text = "Pris"
         '
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(25, 511)
+        Me.Label23.Location = New System.Drawing.Point(29, 510)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(49, 17)
-        Me.Label23.TabIndex = 164
+        Me.Label23.TabIndex = 181
         Me.Label23.Text = "Modell"
         '
         'cmbStatus
@@ -350,107 +519,107 @@ Partial Class StorageWorker
         Me.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbStatus.FormattingEnabled = True
         Me.cmbStatus.Items.AddRange(New Object() {"Til Reparasjon", "Skal til Reparasjon", "På Lager", "Utleid", "Under Transport"})
-        Me.cmbStatus.Location = New System.Drawing.Point(132, 157)
+        Me.cmbStatus.Location = New System.Drawing.Point(129, 165)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Size = New System.Drawing.Size(151, 24)
-        Me.cmbStatus.TabIndex = 163
+        Me.cmbStatus.TabIndex = 180
         '
         'cmbModel
         '
         Me.cmbModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbModel.FormattingEnabled = True
-        Me.cmbModel.Location = New System.Drawing.Point(132, 43)
+        Me.cmbModel.Location = New System.Drawing.Point(129, 51)
         Me.cmbModel.Name = "cmbModel"
         Me.cmbModel.Size = New System.Drawing.Size(151, 24)
-        Me.cmbModel.TabIndex = 162
+        Me.cmbModel.TabIndex = 179
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(25, 332)
+        Me.Label11.Location = New System.Drawing.Point(22, 340)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(61, 17)
-        Me.Label11.TabIndex = 161
+        Me.Label11.TabIndex = 178
         Me.Label11.Text = "Bremser"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(25, 304)
+        Me.Label10.Location = New System.Drawing.Point(22, 312)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(27, 17)
-        Me.Label10.TabIndex = 160
+        Me.Label10.TabIndex = 177
         Me.Label10.Text = "Gir"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(25, 276)
+        Me.Label9.Location = New System.Drawing.Point(22, 284)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(56, 17)
-        Me.Label9.TabIndex = 159
+        Me.Label9.TabIndex = 176
         Me.Label9.Text = "Ramme"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(25, 248)
+        Me.Label8.Location = New System.Drawing.Point(22, 256)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(40, 17)
-        Me.Label8.TabIndex = 158
+        Me.Label8.TabIndex = 175
         Me.Label8.Text = "Dekk"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(25, 220)
+        Me.Label7.Location = New System.Drawing.Point(22, 228)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(71, 17)
-        Me.Label7.TabIndex = 157
+        Me.Label7.TabIndex = 174
         Me.Label7.Text = "Utleiested"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(25, 192)
+        Me.Label6.Location = New System.Drawing.Point(22, 200)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(65, 17)
-        Me.Label6.TabIndex = 156
+        Me.Label6.TabIndex = 173
         Me.Label6.Text = "Lokasjon"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(25, 164)
+        Me.Label4.Location = New System.Drawing.Point(22, 172)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(48, 17)
-        Me.Label4.TabIndex = 155
+        Me.Label4.TabIndex = 172
         Me.Label4.Text = "Status"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(25, 46)
+        Me.Label2.Location = New System.Drawing.Point(22, 54)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(49, 17)
-        Me.Label2.TabIndex = 154
+        Me.Label2.TabIndex = 171
         Me.Label2.Text = "Modell"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(25, 19)
+        Me.Label1.Location = New System.Drawing.Point(22, 27)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(69, 17)
-        Me.Label1.TabIndex = 153
+        Me.Label1.TabIndex = 170
         Me.Label1.Text = "Rammenr"
         '
         'txtFramenumber
         '
-        Me.txtFramenumber.Location = New System.Drawing.Point(132, 14)
+        Me.txtFramenumber.Location = New System.Drawing.Point(129, 22)
         Me.txtFramenumber.Name = "txtFramenumber"
         Me.txtFramenumber.Size = New System.Drawing.Size(149, 22)
-        Me.txtFramenumber.TabIndex = 152
+        Me.txtFramenumber.TabIndex = 169
         '
         'dtgvModel
         '
@@ -460,7 +629,7 @@ Partial Class StorageWorker
         Me.dtgvModel.AllowUserToResizeRows = False
         Me.dtgvModel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dtgvModel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgvModel.Location = New System.Drawing.Point(291, 511)
+        Me.dtgvModel.Location = New System.Drawing.Point(421, 510)
         Me.dtgvModel.MultiSelect = False
         Me.dtgvModel.Name = "dtgvModel"
         Me.dtgvModel.ReadOnly = True
@@ -468,8 +637,8 @@ Partial Class StorageWorker
         Me.dtgvModel.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders
         Me.dtgvModel.RowTemplate.Height = 24
         Me.dtgvModel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgvModel.Size = New System.Drawing.Size(462, 175)
-        Me.dtgvModel.TabIndex = 151
+        Me.dtgvModel.Size = New System.Drawing.Size(328, 175)
+        Me.dtgvModel.TabIndex = 168
         '
         'dtgvBike
         '
@@ -477,25 +646,41 @@ Partial Class StorageWorker
         Me.dtgvBike.AllowUserToDeleteRows = False
         Me.dtgvBike.AllowUserToResizeColumns = False
         Me.dtgvBike.AllowUserToResizeRows = False
-        Me.dtgvBike.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dtgvBike.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.dtgvBike.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dtgvBike.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgvBike.Location = New System.Drawing.Point(291, 14)
+        Me.dtgvBike.Location = New System.Drawing.Point(288, 22)
         Me.dtgvBike.MultiSelect = False
         Me.dtgvBike.Name = "dtgvBike"
         Me.dtgvBike.ReadOnly = True
         Me.dtgvBike.RowHeadersVisible = False
-        Me.dtgvBike.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders
         Me.dtgvBike.RowTemplate.Height = 24
+        Me.dtgvBike.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.dtgvBike.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgvBike.Size = New System.Drawing.Size(462, 404)
-        Me.dtgvBike.TabIndex = 150
+        Me.dtgvBike.Size = New System.Drawing.Size(376, 404)
+        Me.dtgvBike.TabIndex = 167
         '
         'StorageWorker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1284, 723)
+        Me.Controls.Add(Me.lstbxEqipment)
+        Me.Controls.Add(Me.btnEqipSave)
+        Me.Controls.Add(Me.btnEqipReset)
+        Me.Controls.Add(Me.btnEqipCreate)
+        Me.Controls.Add(Me.btnEqipDelete)
+        Me.Controls.Add(Me.btnEqipChange)
+        Me.Controls.Add(Me.dtgvEquip)
+        Me.Controls.Add(Me.btnEqipSearch)
+        Me.Controls.Add(Me.lblEqipStatus)
+        Me.Controls.Add(Me.lblEqipPrice)
+        Me.Controls.Add(Me.lblEqipType)
+        Me.Controls.Add(Me.lblEqipID)
+        Me.Controls.Add(Me.txtEqipStatus)
+        Me.Controls.Add(Me.txtEqipPrice)
+        Me.Controls.Add(Me.txtEqipType)
+        Me.Controls.Add(Me.txtEqipID)
         Me.Controls.Add(Me.btnNullmodel)
         Me.Controls.Add(Me.btnNullbike)
         Me.Controls.Add(Me.btnDeletemodel)
@@ -544,12 +729,29 @@ Partial Class StorageWorker
         Me.Controls.Add(Me.dtgvBike)
         Me.Name = "StorageWorker"
         Me.Text = "StorageWorker"
+        CType(Me.dtgvEquip, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtgvModel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtgvBike, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
+    Friend WithEvents lstbxEqipment As System.Windows.Forms.CheckedListBox
+    Friend WithEvents btnEqipSave As System.Windows.Forms.Button
+    Friend WithEvents btnEqipReset As System.Windows.Forms.Button
+    Friend WithEvents btnEqipCreate As System.Windows.Forms.Button
+    Friend WithEvents btnEqipDelete As System.Windows.Forms.Button
+    Friend WithEvents btnEqipChange As System.Windows.Forms.Button
+    Friend WithEvents dtgvEquip As System.Windows.Forms.DataGridView
+    Friend WithEvents btnEqipSearch As System.Windows.Forms.Button
+    Friend WithEvents lblEqipStatus As System.Windows.Forms.Label
+    Friend WithEvents lblEqipPrice As System.Windows.Forms.Label
+    Friend WithEvents lblEqipType As System.Windows.Forms.Label
+    Friend WithEvents lblEqipID As System.Windows.Forms.Label
+    Friend WithEvents txtEqipStatus As System.Windows.Forms.TextBox
+    Friend WithEvents txtEqipPrice As System.Windows.Forms.TextBox
+    Friend WithEvents txtEqipType As System.Windows.Forms.TextBox
+    Friend WithEvents txtEqipID As System.Windows.Forms.TextBox
     Friend WithEvents btnNullmodel As System.Windows.Forms.Button
     Friend WithEvents btnNullbike As System.Windows.Forms.Button
     Friend WithEvents btnDeletemodel As System.Windows.Forms.Button

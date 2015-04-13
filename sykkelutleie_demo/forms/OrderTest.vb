@@ -3,58 +3,151 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class OrderTest
-    Private bicycleList(50, 4) As String
-    Private bicyclePrice As Double
-    Private bicyclePriceCounter As Double
+    Public Property loggedInUser As New Account
+
+    Private bicycleList As New List(Of Bike)
     Private bicycleCounter As Integer = 0
     Private employee As String
-    Private customer As String
-    Private cmr As Customer
- 
+    Private fromDate As Date
+    Private toDate As Date
+    Private discount As String
+
+    Private modelCategory As String
+    Private modelPrice As Double
+    Private modelModel As String
+    Private modelProducer As String
+    Private bikeFrameNumber As String
+
+    Private customerEmail As String
+    Private customerFirstname As String
+    Private customerLastname As String
+    Private customerPhone As String
+    Private customerCustomerID As String
+
+
     ''' <summary>
-    ''' Lager objekter for å bruke i bestillings behandlingen
+    ''' Prossedyrer som setter variablene fra tekstbokser.
     ''' </summary>
-    ''' <returns>Returnerer ordre objekt</returns>
-    ''' <remarks>Samme for de neste 3 rutinene</remarks>
-    Private Function createOrder() As Order
-        Dim newOrder As New Order(CalendarFrom.SelectionStart, CalendarTo.SelectionEnd, txtBxKID.Text, "21", bicyclePriceCounter, CmbBoxDiscount.Text)
+    ''' <remarks></remarks>
+    Public Sub setTestOrder()
+        setTestCustomer()
+        fromDate = CalendarFrom.SelectionStart
+        toDate = CalendarTo.SelectionEnd
+        discount = CmbBoxDiscount.Text
 
-        Return newOrder
-    End Function
-    Private Function createModel() As Model
-        Dim tempbicyclePrice As Double
-
+    End Sub
+    Public Sub setTestBicycle()
+        modelCategory = txtBxKategori.Text
         If txtBxPris.Text = "" Then
-            tempbicyclePrice = 0.0
+            modelPrice = 0.0
         Else
-            tempbicyclePrice = CDbl(txtBxPris.Text)
+            modelPrice = CDbl(txtBxPris.Text)
         End If
+        modelModel = txtBxModell.Text
+        modelProducer = txtBxMerke.Text
+        bikeFrameNumber = txtBxRammenr.Text
+    End Sub
+    Public Sub setTestCustomer()
+        customerEmail = txtBxEmail.Text
+        customerFirstname = txtBxFirstName.Text
+        customerLastname = txtBxSirName.Text
+        customerPhone = txtBxPhone.Text
+        customerCustomerID = txtBxKID.Text
+    End Sub
 
-        Dim newModel As New Model(txtBxModell.Text, tempbicyclePrice, txtBxMerke.Text, txtBxKategori.Text)
-      
-        Return newModel
-    End Function
-    Private Function createBicycle() As Bike
-        Dim newBike As New Bike(txtBxRammenr.Text, "", "", "", "", "", "", "", createModel)
 
-        Return newBike
-    End Function
-    Private Function createCustomer() As Customer
-        Dim newCustomer As New Customer(txtBxFirstName.Text, txtBxSirName.Text, txtBxPhone.Text, txtBxEmail.Text)
 
-        Return newCustomer
-    End Function
+
+
+    ''' <summary>
+    ''' Registrerer ordren i databasen. Men tilhørende sykkel-/utstyrBestilling
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub btnRegisterOrder_Click() Handles btnRegisterOrder.Click
+        setTestOrder()
+
+        Dim customer As New Customer(customerFirstname, customerLastname, customerPhone, customerEmail)
+        customer.setCustomerID(customerCustomerID)
+        Dim order As New Order(bicycleList, customer, loggedInUser.getEmployee, fromDate, toDate, discount)
+
+        order.registerOrder()
+
+        MsgBox("Bestillingen er registrert")
+        btnNewOrder_Click()
+    End Sub
+    ''' <summary>
+    ''' Legger valgt sykkel (tekstbokser) inn i liste over sykler til bestillingen.
+    ''' </summary>
+    ''' <remarks>Startet med å skjekke om sykkel allerede er i bestillingen.
+    ''' Skriver deretter noe info til listeboks på siste side.
+    ''' </remarks>
+    Private Sub btnAddToOrder_Click() Handles btnAddToOrder.Click
+        Dim frameCheck As String = txtBxRammenr.Text 'Skjekker om sykkelen allerede er lagt til listen for bestillingen.
+        For Each item In ListBoxOrderOverview.Items
+            If item.contains(frameCheck) Then
+                MsgBox("Sykkelen er allerede i bestillingen")
+                btnAddNewBicycle_Click()
+                Exit Sub
+            End If
+        Next
+
+        setTestBicycle()
+        Dim tempModel As New Model(modelModel, modelPrice, modelProducer, modelCategory)
+        Dim tempBicycle As New Bike(bikeFrameNumber, "", "", "", "", "", "", "", tempModel)
+        tempBicycle.setBikeUnderOrder(bikeFrameNumber)
+
+        For Each itemChecked In CheckedListBox1.CheckedItems 'For hver utstyr checkbox markert hentes første utstyr som er ledig av den typen  
+            'og legges til i equipmentList til sykkelen. under_bestilling settes til 1 for å unngå konflikt. 
+            Dim tempEquipment As New Equipment
+            Dim data As DataTable
+
+            tempEquipment.EquipmentType = itemChecked.item("type").ToString()
+
+            data = tempEquipment.getEquipmentID(tempEquipment.EquipmentType) 'Henter varenr og pris til utstyr som er på lager, og som enda IKKE er under bestilling(under_bestilling=0)
+
+            tempEquipment.EquipmentID = data.Rows(0)("varenr")
+            tempEquipment.EquipmentPrice = data.Rows(0)("pris")
+            tempEquipment.setEquipmentUnderOrder(tempEquipment.EquipmentID) ' Setter under_bestilling =True
+
+            tempBicycle.equipmentList.Add(tempEquipment)
+        Next
+
+        bicycleList.Add(tempBicycle)
+
+        ListBoxReceipt.Items.Add(bicycleCounter + 1 & ". sykkel i bestilling")
+        ListBoxReceipt.Items.Add("_________________________________________________________")
+
+        ListBoxReceipt.Items.Add("Kategori: " & bicycleList(bicycleCounter).model.category)
+        ListBoxReceipt.Items.Add("Modell: " & bicycleList(bicycleCounter).model.model)
+        ListBoxReceipt.Items.Add("Pris: " & bicycleList(bicycleCounter).model.price)
+        ListBoxReceipt.Items.Add("Merke: " & bicycleList(bicycleCounter).model.producer)
+        ListBoxReceipt.Items.Add("Rammenummer: " & bicycleList(bicycleCounter).frameNumber)
+
+        ListBoxReceipt.Items.Add("__________________________________________________________")
+        ListBoxReceipt.Items.Add("")
+
+        ListBoxOrderOverview.Items.Add(vbTab & bicycleList(bicycleCounter).frameNumber & ", " & bicycleList(bicycleCounter).model.category & "sykkel")
+        ListBoxOrderOverview.Items.Add("")
+        ListBoxOrderOverview.Items.Add(vbTab & "Tilleggsutstyr:")
+        For Each item In CheckedListBox1.CheckedItems
+            ListBoxOrderOverview.Items.Add(vbTab & vbTab & item.item("type").ToString())
+        Next
+        ListBoxOrderOverview.Items.Add("")
+
+
+        bicycleCounter += 1
+
+        btnAddNewBicycle_Click()
+    End Sub
     ''' <summary>
     ''' Skriver sammendrag av bestilling, tenkt som kvittering
     ''' </summary>
     ''' <remarks>Skrives til ListBox</remarks>
     Private Sub btnPrintReceipt_Click() Handles btnPrintReceipt.Click
-        Dim dateFrom = CalendarFrom.SelectionStart
-        Dim dateTo As Date = createOrder.toDate
-        Dim discount As String = createOrder.discount
-        employee = "Per Selgersen" 'Currently logged in salesman
-        Dim kid As String = txtBxKID.Text
-        customer = txtBxFirstName.Text & " " & txtBxSirName.Text & " kid: " & kid
+        setTestOrder()
+        Dim customer As New Customer(customerFirstname, customerLastname, customerPhone, customerEmail)
+        'Dim employee As New Employee(salesmanFirstname, salesmanLastname, "", "", "", "", "", "", "")
+        Dim order As New Order(bicycleList, customer, loggedInUser.getEmployee, fromDate, toDate, discount)
 
         ListBoxReceipt.Items.Add("")
         ListBoxReceipt.Items.Add("")
@@ -66,61 +159,58 @@ Public Class OrderTest
         Else
             ListBoxReceipt.Items.Add(bicycleCounter & " sykler")
         End If
-        ListBoxReceipt.Items.Add("Fra " & dateFrom)
-        ListBoxReceipt.Items.Add("Til og med " & FormatDateTime(dateTo, DateFormat.ShortDate))
+        ListBoxReceipt.Items.Add("Fra " & FormatDateTime(fromDate, DateFormat.ShortDate))
+        ListBoxReceipt.Items.Add("Til og med " & FormatDateTime(toDate, DateFormat.ShortDate))
         ListBoxReceipt.Items.Add("Rabatt: " & discount)
-        ListBoxReceipt.Items.Add("Selger: " & employee)
-        ListBoxReceipt.Items.Add("Kunde: " & customer)
-        ListBoxReceipt.Items.Add("Antall dager: " & createOrder.getTimeSpanOfOrder)
-        ListBoxReceipt.Items.Add("Totalpris: " & createOrder.getTotalPrice)
+        'ListBoxReceipt.Items.Add("Selger: " & order.salesman.firstname & " " & order.salesman.lastname)
+        ListBoxReceipt.Items.Add("Selger: Stig Myhre")
+        ListBoxReceipt.Items.Add("Kunde: " & customerFirstname & " " & customerLastname & " KID: " & customerCustomerID)
+        ListBoxReceipt.Items.Add("Antall dager: " & order.getTimeSpanOfOrder)
+        ListBoxReceipt.Items.Add("Totalpris: " & order.getTotalPrice)
         ListBoxReceipt.Items.Add("__________________________________________________________")
 
     End Sub
-    ''' <summary>
-    ''' Registrerer ordren i databasen. Men tilhørende sykkel-/utstyrBestilling
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub btnRegisterOrder_Click() Handles btnRegisterOrder.Click
-        Try
-
-            Dim newOrder As Order = createOrder()
-            newOrder.registerOrder()
-
-            For i = 0 To bicycleCounter - 1 'Blar seg igjennom alle sykkler i bestillingen å oppretter kobling i databasen
-                Dim bicycleOrder As New BicycleOrder(createOrder.getOrderID, bicycleList(i, 4))
-
-                bicycleOrder.registerBicycleOrder()
-            Next
-        Catch ex As Exception
-            MsgBox("Noe gikk galt under registrering av bestillingen..." & ex.Message)
-            Exit Sub
-        End Try
-        MsgBox("Bestillingen er registrert")
-    End Sub
-    Private Sub updateCustomerGridView()
-        Dim order As New Order
-
-        dtgvKunde.DataSource = order.updateCustomer(createCustomer)
-
-    End Sub
-    Private Sub updateBicycleGridView()
-        Dim order As New Order
-
-        dgvBicycle.DataSource = order.updateBicycle(createModel, createBicycle)
-    End Sub
-    Private Sub OrderTest_Load() Handles MyBase.Load
+    Private Sub OrderTest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         updateCustomerGridView()
         updateBicycleGridView()
 
         Bestilling.Dock = DockStyle.Fill
     End Sub
-    Private Sub getFromGridViewKunde() Handles dtgvKunde.CellClick
+
+
+
+    ''' <summary>
+    ''' Prossedyrer som oppdaterer DataGridView med data fra tekstfeltene.
+    ''' </summary>
+    ''' <remarks>Kalles ved hver endring i samtlige tekstbokser, og ved lasting av form.</remarks>
+    Private Sub updateCustomerGridView()
+        setTestCustomer()
+        Dim customer As New Customer(customerFirstname, customerLastname, customerPhone, customerEmail)
+        Dim order As New Order
+        DataGridViewKunde.DataSource = order.updateCustomer(customer)
+
+    End Sub
+    Private Sub updateBicycleGridView()
+        setTestBicycle()
+        Dim tempModel As New Model(modelModel, modelPrice, modelProducer, modelCategory)
+        Dim tempBicycle As New Bike(bikeFrameNumber, "", "", "", "", "", "", "", tempModel)
+        Dim order As New Order
+        dgvBicycle.DataSource = order.updateBicycle(tempBicycle)
+    End Sub
+
+
+    ''' <summary>
+    ''' Prossedyre for henting av Kune-/Sykkeldata fra database
+    ''' </summary>
+    ''' <remarks>Når det trykkes på en celle blir kollonne 0 og rad Y innholdet sendt for å hente resterende data som fyller  tekstfelt 
+    '''</remarks>
+    Private Sub getFromGridViewKunde() Handles DataGridViewKunde.CellClick
         Dim dbutil As New DBUtility
-        Dim rowChoice As Integer = dtgvKunde.CurrentCellAddress.Y 'Finner Y rad some er valgt i datagridview 
+        Dim rowChoice As Integer = DataGridViewKunde.CurrentCellAddress.Y 'Finner Y rad some er valgt i datagridview 
         Dim chosenKunde As String
         Dim data As New DataTable
 
-        chosenKunde = dtgvKunde.Rows(rowChoice).Cells(0).Value.ToString()
+        chosenKunde = DataGridViewKunde.Rows(rowChoice).Cells(0).Value.ToString()
 
         'Sender valgt Kunde fra GridView og får tilbake resultater som settes inn i Kundel sine tekstbokser 
         data = dbutil.selectQuery("SELECT fornavn, etternavn, telefon, epost, kid FROM kunde WHERE kid ='" & chosenKunde & "'")
@@ -149,97 +239,21 @@ Public Class OrderTest
         txtBxMerke.Text = data.Rows(0)(3).ToString()
         txtBxRammenr.Text = data.Rows(0)(4).ToString()
 
-    End Sub
-    Private Sub btnAddToOrder_Click() Handles btnAddToOrder.Click
-        Dim frameCheck As String = txtBxRammenr.Text 'Skjekker om sykkelen allerede er lagt til listen for bestillingen.
-        For Each item In ListBoxOrderOverview.Items
-            If item.contains(frameCheck) Then
-                MsgBox("Sykkelen er allerede i bestillingen")
-                Exit Sub
-            End If
-        Next
-
-        bicycleList(bicycleCounter, 0) = txtBxKategori.Text
-        bicycleList(bicycleCounter, 1) = txtBxModell.Text
-        bicycleList(bicycleCounter, 2) = txtBxPris.Text
-        bicycleList(bicycleCounter, 3) = txtBxMerke.Text
-        bicycleList(bicycleCounter, 4) = txtBxRammenr.Text
-
-        ListBoxReceipt.Items.Add(bicycleCounter + 1 & ". sykkel i bestilling")
-        ListBoxReceipt.Items.Add("_________________________________________________________")
-
-        ListBoxReceipt.Items.Add("Kategori: " & bicycleList(bicycleCounter, 0))
-        ListBoxReceipt.Items.Add("Modell: " & bicycleList(bicycleCounter, 1))
-        ListBoxReceipt.Items.Add("Pris: " & bicycleList(bicycleCounter, 2))
-        ListBoxReceipt.Items.Add("Merke: " & bicycleList(bicycleCounter, 3))
-        ListBoxReceipt.Items.Add("Rammenummer: " & bicycleList(bicycleCounter, 4))
-
-        ListBoxReceipt.Items.Add("__________________________________________________________")
-        ListBoxReceipt.Items.Add("")
-
-        ListBoxOrderOverview.Items.Add(vbTab & bicycleList(bicycleCounter, 4) & ", " & bicycleList(bicycleCounter, 0) & "sykkel")
-        ListBoxOrderOverview.Items.Add("")
-        ListBoxOrderOverview.Items.Add(vbTab & "Tilleggsutstyr:")
-        For Each s As String In CheckedListBox1.CheckedItems
-            ListBoxOrderOverview.Items.Add(vbTab & vbTab & s)
-        Next
-        ListBoxOrderOverview.Items.Add("")
-
-
-        If txtBxPris.Text = "" Then
-            bicyclePrice = 0.0
-        Else
-            bicyclePrice = CDbl(txtBxPris.Text)
-        End If
-
-        bicyclePriceCounter += bicyclePrice
-        bicycleCounter += 1
+        Dim tempEquipment As New Equipment
+        CheckedListBox1.DataSource = Nothing
+        CheckedListBox1.DataSource = tempEquipment.compatibleEquipment(txtBxModell.Text) 'Fyller checkedListBox med utstyr som er på lager. Basert på model som er valgt. 
+        'Viser bare en checkbox per utstyr Type
+        CheckedListBox1.DisplayMember = "type"
 
     End Sub
-    Private Sub btnAddNewBicycle_Click() Handles btnAddNewBicycle.Click
-        txtBxKategori.Text = ""
-        txtBxMerke.Text = ""
-        txtBxModell.Text = ""
-        txtBxPris.Text = "0"
-        txtBxRammenr.Text = ""
-    End Sub
-    Private Sub btnNextSammendrag_Click() Handles btnNextSammendrag.Click
-        btnPrintReceipt_Click()
 
-        If CalendarFrom.SelectionStart.DayOfYear > CalendarTo.SelectionEnd.DayOfYear Then
-            MsgBox("Tidsperioden som er valgt er ikke gyldig")
-            Exit Sub
-        End If
 
-        Bestilling.SelectTab(3)
 
-        ListBoxOrderOverview.Items.Add("Leieperiode:")
-        ListBoxOrderOverview.Items.Add(vbTab & "Fra: " & CalendarFrom.SelectionStart)
-        ListBoxOrderOverview.Items.Add(vbTab & "Til og med: " & FormatDateTime(CalendarTo.SelectionEnd, DateFormat.ShortDate))
-        ListBoxOrderOverview.Items.Add("")
-        ListBoxOrderOverview.Items.Add("Rabatt:")
-        ListBoxOrderOverview.Items.Add(vbTab & CmbBoxDiscount.Text)
-    End Sub
-    Private Sub Button11_Click()
-        End
-    End Sub
-    Private Sub createCustomerFromTextFields()
-        Dim firstname As String = txtBxFirstName.Text
-        Dim lastname As String = txtBxSirName.Text
-        Dim phone As String = txtBxPhone.Text
-        Dim email As String = txtBxEmail.Text
 
-        cmr = New Customer(firstname, lastname, phone, email)
-    End Sub
-    Private Sub btnChangeCustomer_Click() Handles btnChangeCustomer.Click
-        '        txtBxFirstName.Text = ""
-        '       txtBxSirName.Text = ""
-        '      txtBxPhone.Text = ""
-        '     txtBxEmail.Text = ""
-        '    txtBxKID.Text = ""
-        createCustomerFromTextFields()
-        cmr.editCustomer(txtBxKID.Text)
-    End Sub
+    ''' <summary>
+    ''' Prossedyrer som trigges av endring i tekstboksene
+    ''' </summary>
+    ''' <remarks>Muligjør levende søk</remarks>
     Private Sub txtBxFirstName_TextChanged() Handles txtBxFirstName.TextChanged
         updateCustomerGridView()
     End Sub
@@ -251,28 +265,6 @@ Public Class OrderTest
     End Sub
     Private Sub txtBxPhone_TextChanged() Handles txtBxPhone.TextChanged
         updateCustomerGridView()
-    End Sub
-    Private Sub Button1_Click()
-        End
-    End Sub
-    Private Sub Button2_Click() Handles btnNextToSykkel.Click
-        Bestilling.SelectTab(1)
-        ListBoxOrderOverview.Items.Add("Kunde:")
-        ListBoxOrderOverview.Items.Add(vbTab & txtBxFirstName.Text)
-        ListBoxOrderOverview.Items.Add("")
-        ListBoxOrderOverview.Items.Add("Sykkel:")
-    End Sub
-    Private Sub Button4_Click()
-        End
-    End Sub
-    Private Sub Button3_Click() Handles btnNextBestilling.Click
-        Bestilling.SelectTab(2)
-    End Sub
-    Private Sub Button5_Click() Handles btnBackKunde.Click
-        Bestilling.SelectTab(0)
-    End Sub
-    Private Sub Button6_Click() Handles btnCreateNewCustomer.Click
-        CustomerTest.Show()
     End Sub
     Private Sub txtBxKategori_TextChanged() Handles txtBxKategori.TextChanged
         updateBicycleGridView()
@@ -290,6 +282,61 @@ Public Class OrderTest
         updateBicycleGridView()
     End Sub
 
+
+
+
+    ''' <summary>
+    ''' Prossedyrer som håndterer ren GUI funksjonalitet
+    ''' </summary>
+    ''' <remarks>Trigges av knappetrykk</remarks>
+    Private Sub btnNextSammendrag_Click() Handles btnNextSammendrag.Click
+
+        If CalendarFrom.SelectionStart.DayOfYear > CalendarTo.SelectionEnd.DayOfYear Then
+            MsgBox("Tidsperioden som er valgt er ikke gyldig")
+            Exit Sub
+        End If
+
+        Bestilling.SelectTab(3)
+
+        ListBoxOrderOverview.Items.Add("Leieperiode:")
+        ListBoxOrderOverview.Items.Add(vbTab & "Fra: " & CalendarFrom.SelectionStart)
+        ListBoxOrderOverview.Items.Add(vbTab & "Til og med: " & FormatDateTime(CalendarTo.SelectionEnd, DateFormat.ShortDate))
+        ListBoxOrderOverview.Items.Add("")
+        ListBoxOrderOverview.Items.Add("Rabatt:")
+        ListBoxOrderOverview.Items.Add(vbTab & CmbBoxDiscount.Text)
+    End Sub
+    Private Sub btnAddNewBicycle_Click() Handles btnAddNewBicycle.Click
+        txtBxKategori.Text = ""
+        txtBxMerke.Text = ""
+        txtBxModell.Text = ""
+        txtBxPris.Text = "0"
+        txtBxRammenr.Text = ""
+        CheckedListBox1.DataSource = Nothing
+    End Sub
+    Private Sub btnChangeCustomer_Click() Handles btnChangeCustomer.Click
+        txtBxFirstName.Text = ""
+        txtBxSirName.Text = ""
+        txtBxPhone.Text = ""
+        txtBxEmail.Text = ""
+        txtBxKID.Text = ""
+    End Sub
+    Private Sub btnNextToSykkel_Click() Handles btnNextToSykkel.Click
+
+        Bestilling.SelectTab(1)
+        ListBoxOrderOverview.Items.Add("Kunde:")
+        ListBoxOrderOverview.Items.Add(vbTab & txtBxFirstName.Text)
+        ListBoxOrderOverview.Items.Add("")
+        ListBoxOrderOverview.Items.Add("Sykkel:")
+    End Sub
+    Private Sub btnNextBestilling_Click() Handles btnNextBestilling.Click
+        Bestilling.SelectTab(2)
+    End Sub
+    Private Sub btnBackKunde_Click() Handles btnBackKunde.Click
+        Bestilling.SelectTab(0)
+    End Sub
+    Private Sub btnRegisterNewcustomer_Click() Handles btnCreateNewCustomer.Click
+        CustomerTest.Show()
+    End Sub
     Private Sub btnNewOrder_Click() Handles btnNewOrder.Click
         txtBxFirstName.Text = ""
         txtBxSirName.Text = ""
@@ -301,20 +348,22 @@ Public Class OrderTest
         txtBxModell.Text = ""
         txtBxPris.Text = "0"
         txtBxRammenr.Text = ""
-        For i = 0 To (CheckedListBox1.Items.Count - 1)
-            CheckedListBox1.SetItemChecked(i, False)
-        Next
-
         CmbBoxDiscount.SelectedIndex = 0
         ListBoxReceipt.Items.Clear()
         ListBoxOrderOverview.Items.Clear()
         Bestilling.SelectTab(0)
+        Dim tempEquipment As New Equipment
+        Dim tempBike As New Bike
+        tempEquipment.setAllEquipmentNotUnderOrder()
+        tempBike.setAllBikesNotUnderOrder()
+        updateBicycleGridView()
+        updateCustomerGridView()
+        bicycleList.Clear()
+        bicycleCounter = 0
     End Sub
-
     Private Sub btnBackSykkel_Click() Handles btnBackSykkel.Click
         Bestilling.SelectTab(1)
     End Sub
-
     Private Sub btnBackBestilling_Click() Handles btnBackBestilling.Click
         Bestilling.SelectTab(2)
     End Sub
