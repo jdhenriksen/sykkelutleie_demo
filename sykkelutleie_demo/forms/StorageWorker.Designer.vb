@@ -94,15 +94,15 @@ Partial Class StorageWorker
         Me.lstbxEqipment.CheckOnClick = True
         Me.lstbxEqipment.Enabled = False
         Me.lstbxEqipment.FormattingEnabled = True
-        Me.lstbxEqipment.Location = New System.Drawing.Point(288, 527)
+        Me.lstbxEqipment.Location = New System.Drawing.Point(295, 518)
         Me.lstbxEqipment.Name = "lstbxEqipment"
-        Me.lstbxEqipment.Size = New System.Drawing.Size(120, 174)
+        Me.lstbxEqipment.Size = New System.Drawing.Size(120, 157)
         Me.lstbxEqipment.TabIndex = 228
         '
         'btnEqipSave
         '
         Me.btnEqipSave.Enabled = False
-        Me.btnEqipSave.Location = New System.Drawing.Point(918, 671)
+        Me.btnEqipSave.Location = New System.Drawing.Point(862, 206)
         Me.btnEqipSave.Name = "btnEqipSave"
         Me.btnEqipSave.Size = New System.Drawing.Size(75, 23)
         Me.btnEqipSave.TabIndex = 227
@@ -111,7 +111,7 @@ Partial Class StorageWorker
         '
         'btnEqipReset
         '
-        Me.btnEqipReset.Location = New System.Drawing.Point(756, 640)
+        Me.btnEqipReset.Location = New System.Drawing.Point(700, 175)
         Me.btnEqipReset.Name = "btnEqipReset"
         Me.btnEqipReset.Size = New System.Drawing.Size(75, 23)
         Me.btnEqipReset.TabIndex = 226
@@ -120,7 +120,7 @@ Partial Class StorageWorker
         '
         'btnEqipCreate
         '
-        Me.btnEqipCreate.Location = New System.Drawing.Point(837, 642)
+        Me.btnEqipCreate.Location = New System.Drawing.Point(781, 177)
         Me.btnEqipCreate.Name = "btnEqipCreate"
         Me.btnEqipCreate.Size = New System.Drawing.Size(75, 23)
         Me.btnEqipCreate.TabIndex = 225
@@ -130,7 +130,7 @@ Partial Class StorageWorker
         'btnEqipDelete
         '
         Me.btnEqipDelete.Enabled = False
-        Me.btnEqipDelete.Location = New System.Drawing.Point(755, 669)
+        Me.btnEqipDelete.Location = New System.Drawing.Point(699, 204)
         Me.btnEqipDelete.Name = "btnEqipDelete"
         Me.btnEqipDelete.Size = New System.Drawing.Size(75, 23)
         Me.btnEqipDelete.TabIndex = 224
@@ -140,7 +140,7 @@ Partial Class StorageWorker
         'btnEqipChange
         '
         Me.btnEqipChange.Enabled = False
-        Me.btnEqipChange.Location = New System.Drawing.Point(837, 671)
+        Me.btnEqipChange.Location = New System.Drawing.Point(781, 206)
         Me.btnEqipChange.Name = "btnEqipChange"
         Me.btnEqipChange.Size = New System.Drawing.Size(75, 23)
         Me.btnEqipChange.TabIndex = 223
@@ -153,10 +153,10 @@ Partial Class StorageWorker
         Me.dtgvEquip.AllowUserToDeleteRows = False
         Me.dtgvEquip.AllowUserToResizeColumns = False
         Me.dtgvEquip.AllowUserToResizeRows = False
-        Me.dtgvEquip.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.dtgvEquip.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.dtgvEquip.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
+        Me.dtgvEquip.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.dtgvEquip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgvEquip.Location = New System.Drawing.Point(999, 519)
+        Me.dtgvEquip.Location = New System.Drawing.Point(943, 54)
         Me.dtgvEquip.MultiSelect = False
         Me.dtgvEquip.Name = "dtgvEquip"
         Me.dtgvEquip.ReadOnly = True
@@ -165,12 +165,12 @@ Partial Class StorageWorker
         Me.dtgvEquip.RowTemplate.Height = 24
         Me.dtgvEquip.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.dtgvEquip.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgvEquip.Size = New System.Drawing.Size(277, 173)
+        Me.dtgvEquip.Size = New System.Drawing.Size(329, 173)
         Me.dtgvEquip.TabIndex = 222
         '
         'btnEqipSearch
         '
-        Me.btnEqipSearch.Location = New System.Drawing.Point(918, 642)
+        Me.btnEqipSearch.Location = New System.Drawing.Point(862, 177)
         Me.btnEqipSearch.Name = "btnEqipSearch"
         Me.btnEqipSearch.Size = New System.Drawing.Size(75, 23)
         Me.btnEqipSearch.TabIndex = 221
@@ -180,7 +180,7 @@ Partial Class StorageWorker
         'lblEqipStatus
         '
         Me.lblEqipStatus.AutoSize = True
-        Me.lblEqipStatus.Location = New System.Drawing.Point(757, 608)
+        Me.lblEqipStatus.Location = New System.Drawing.Point(701, 143)
         Me.lblEqipStatus.Name = "lblEqipStatus"
         Me.lblEqipStatus.Size = New System.Drawing.Size(48, 17)
         Me.lblEqipStatus.TabIndex = 220
@@ -189,7 +189,7 @@ Partial Class StorageWorker
         'lblEqipPrice
         '
         Me.lblEqipPrice.AutoSize = True
-        Me.lblEqipPrice.Location = New System.Drawing.Point(757, 577)
+        Me.lblEqipPrice.Location = New System.Drawing.Point(701, 112)
         Me.lblEqipPrice.Name = "lblEqipPrice"
         Me.lblEqipPrice.Size = New System.Drawing.Size(32, 17)
         Me.lblEqipPrice.TabIndex = 219
@@ -198,7 +198,7 @@ Partial Class StorageWorker
         'lblEqipType
         '
         Me.lblEqipType.AutoSize = True
-        Me.lblEqipType.Location = New System.Drawing.Point(756, 548)
+        Me.lblEqipType.Location = New System.Drawing.Point(700, 83)
         Me.lblEqipType.Name = "lblEqipType"
         Me.lblEqipType.Size = New System.Drawing.Size(40, 17)
         Me.lblEqipType.TabIndex = 218
@@ -207,7 +207,7 @@ Partial Class StorageWorker
         'lblEqipID
         '
         Me.lblEqipID.AutoSize = True
-        Me.lblEqipID.Location = New System.Drawing.Point(757, 519)
+        Me.lblEqipID.Location = New System.Drawing.Point(701, 54)
         Me.lblEqipID.Name = "lblEqipID"
         Me.lblEqipID.Size = New System.Drawing.Size(89, 17)
         Me.lblEqipID.TabIndex = 217
@@ -215,35 +215,35 @@ Partial Class StorageWorker
         '
         'txtEqipStatus
         '
-        Me.txtEqipStatus.Location = New System.Drawing.Point(893, 605)
+        Me.txtEqipStatus.Location = New System.Drawing.Point(837, 140)
         Me.txtEqipStatus.Name = "txtEqipStatus"
         Me.txtEqipStatus.Size = New System.Drawing.Size(100, 22)
         Me.txtEqipStatus.TabIndex = 216
         '
         'txtEqipPrice
         '
-        Me.txtEqipPrice.Location = New System.Drawing.Point(893, 577)
+        Me.txtEqipPrice.Location = New System.Drawing.Point(837, 112)
         Me.txtEqipPrice.Name = "txtEqipPrice"
         Me.txtEqipPrice.Size = New System.Drawing.Size(100, 22)
         Me.txtEqipPrice.TabIndex = 215
         '
         'txtEqipType
         '
-        Me.txtEqipType.Location = New System.Drawing.Point(893, 550)
+        Me.txtEqipType.Location = New System.Drawing.Point(837, 85)
         Me.txtEqipType.Name = "txtEqipType"
         Me.txtEqipType.Size = New System.Drawing.Size(100, 22)
         Me.txtEqipType.TabIndex = 214
         '
         'txtEqipID
         '
-        Me.txtEqipID.Location = New System.Drawing.Point(893, 519)
+        Me.txtEqipID.Location = New System.Drawing.Point(837, 54)
         Me.txtEqipID.Name = "txtEqipID"
         Me.txtEqipID.Size = New System.Drawing.Size(100, 22)
         Me.txtEqipID.TabIndex = 213
         '
         'btnNullmodel
         '
-        Me.btnNullmodel.Location = New System.Drawing.Point(8, 642)
+        Me.btnNullmodel.Location = New System.Drawing.Point(15, 633)
         Me.btnNullmodel.Name = "btnNullmodel"
         Me.btnNullmodel.Size = New System.Drawing.Size(83, 23)
         Me.btnNullmodel.TabIndex = 212
@@ -262,7 +262,7 @@ Partial Class StorageWorker
         'btnDeletemodel
         '
         Me.btnDeletemodel.Enabled = False
-        Me.btnDeletemodel.Location = New System.Drawing.Point(8, 671)
+        Me.btnDeletemodel.Location = New System.Drawing.Point(15, 662)
         Me.btnDeletemodel.Name = "btnDeletemodel"
         Me.btnDeletemodel.Size = New System.Drawing.Size(83, 23)
         Me.btnDeletemodel.TabIndex = 210
@@ -271,21 +271,21 @@ Partial Class StorageWorker
         '
         'txtModelcategory
         '
-        Me.txtModelcategory.Location = New System.Drawing.Point(143, 606)
+        Me.txtModelcategory.Location = New System.Drawing.Point(150, 597)
         Me.txtModelcategory.Name = "txtModelcategory"
         Me.txtModelcategory.Size = New System.Drawing.Size(127, 22)
         Me.txtModelcategory.TabIndex = 209
         '
         'txtModelproducer
         '
-        Me.txtModelproducer.Location = New System.Drawing.Point(145, 577)
+        Me.txtModelproducer.Location = New System.Drawing.Point(152, 568)
         Me.txtModelproducer.Name = "txtModelproducer"
         Me.txtModelproducer.Size = New System.Drawing.Size(127, 22)
         Me.txtModelproducer.TabIndex = 208
         '
         'txtModelprice
         '
-        Me.txtModelprice.Location = New System.Drawing.Point(143, 548)
+        Me.txtModelprice.Location = New System.Drawing.Point(150, 539)
         Me.txtModelprice.Mask = "0000"
         Me.txtModelprice.Name = "txtModelprice"
         Me.txtModelprice.Size = New System.Drawing.Size(127, 22)
@@ -293,7 +293,7 @@ Partial Class StorageWorker
         '
         'txtModelname
         '
-        Me.txtModelname.Location = New System.Drawing.Point(143, 519)
+        Me.txtModelname.Location = New System.Drawing.Point(150, 510)
         Me.txtModelname.Name = "txtModelname"
         Me.txtModelname.Size = New System.Drawing.Size(127, 22)
         Me.txtModelname.TabIndex = 206
@@ -395,7 +395,7 @@ Partial Class StorageWorker
         'btnSavemodel
         '
         Me.btnSavemodel.Enabled = False
-        Me.btnSavemodel.Location = New System.Drawing.Point(190, 671)
+        Me.btnSavemodel.Location = New System.Drawing.Point(197, 662)
         Me.btnSavemodel.Name = "btnSavemodel"
         Me.btnSavemodel.Size = New System.Drawing.Size(87, 23)
         Me.btnSavemodel.TabIndex = 193
@@ -405,7 +405,7 @@ Partial Class StorageWorker
         'btnChangemodel
         '
         Me.btnChangemodel.Enabled = False
-        Me.btnChangemodel.Location = New System.Drawing.Point(97, 671)
+        Me.btnChangemodel.Location = New System.Drawing.Point(104, 662)
         Me.btnChangemodel.Name = "btnChangemodel"
         Me.btnChangemodel.Size = New System.Drawing.Size(87, 23)
         Me.btnChangemodel.TabIndex = 192
@@ -414,7 +414,7 @@ Partial Class StorageWorker
         '
         'btnSearchmodel
         '
-        Me.btnSearchmodel.Location = New System.Drawing.Point(190, 642)
+        Me.btnSearchmodel.Location = New System.Drawing.Point(197, 633)
         Me.btnSearchmodel.Name = "btnSearchmodel"
         Me.btnSearchmodel.Size = New System.Drawing.Size(87, 23)
         Me.btnSearchmodel.TabIndex = 191
@@ -423,7 +423,7 @@ Partial Class StorageWorker
         '
         'btnNewmodel
         '
-        Me.btnNewmodel.Location = New System.Drawing.Point(97, 642)
+        Me.btnNewmodel.Location = New System.Drawing.Point(104, 633)
         Me.btnNewmodel.Name = "btnNewmodel"
         Me.btnNewmodel.Size = New System.Drawing.Size(87, 23)
         Me.btnNewmodel.TabIndex = 190
@@ -481,7 +481,7 @@ Partial Class StorageWorker
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(22, 603)
+        Me.Label26.Location = New System.Drawing.Point(29, 594)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(61, 17)
         Me.Label26.TabIndex = 184
@@ -490,7 +490,7 @@ Partial Class StorageWorker
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(22, 575)
+        Me.Label25.Location = New System.Drawing.Point(29, 566)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(73, 17)
         Me.Label25.TabIndex = 183
@@ -499,7 +499,7 @@ Partial Class StorageWorker
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(22, 545)
+        Me.Label24.Location = New System.Drawing.Point(29, 536)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(32, 17)
         Me.Label24.TabIndex = 182
@@ -508,7 +508,7 @@ Partial Class StorageWorker
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(22, 519)
+        Me.Label23.Location = New System.Drawing.Point(29, 510)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(49, 17)
         Me.Label23.TabIndex = 181
@@ -629,7 +629,7 @@ Partial Class StorageWorker
         Me.dtgvModel.AllowUserToResizeRows = False
         Me.dtgvModel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dtgvModel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgvModel.Location = New System.Drawing.Point(422, 519)
+        Me.dtgvModel.Location = New System.Drawing.Point(421, 510)
         Me.dtgvModel.MultiSelect = False
         Me.dtgvModel.Name = "dtgvModel"
         Me.dtgvModel.ReadOnly = True
@@ -646,7 +646,7 @@ Partial Class StorageWorker
         Me.dtgvBike.AllowUserToDeleteRows = False
         Me.dtgvBike.AllowUserToResizeColumns = False
         Me.dtgvBike.AllowUserToResizeRows = False
-        Me.dtgvBike.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dtgvBike.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.dtgvBike.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dtgvBike.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgvBike.Location = New System.Drawing.Point(288, 22)
@@ -654,10 +654,10 @@ Partial Class StorageWorker
         Me.dtgvBike.Name = "dtgvBike"
         Me.dtgvBike.ReadOnly = True
         Me.dtgvBike.RowHeadersVisible = False
-        Me.dtgvBike.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
         Me.dtgvBike.RowTemplate.Height = 24
+        Me.dtgvBike.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.dtgvBike.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgvBike.Size = New System.Drawing.Size(462, 404)
+        Me.dtgvBike.Size = New System.Drawing.Size(376, 404)
         Me.dtgvBike.TabIndex = 167
         '
         'StorageWorker

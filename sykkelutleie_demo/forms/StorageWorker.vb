@@ -192,7 +192,7 @@ Public Class StorageWorker
         btnEqipReset_Click(sender, e)
         btnEqipSearch_Click(sender, e)
         objectupdate()
-        myData = equipment.SearchEquipment
+        myData = equipment.EquipmentTypes()
         dialogeResult = MsgBox("Vil du endre modell med navn: " & model.getModel() & "?", MsgBoxStyle.YesNo)
 
         If dialogeResult = 6 Then
@@ -204,7 +204,7 @@ Public Class StorageWorker
                 chkstate = lstbxEqipment.GetItemCheckState(i)
 
                 If (chkstate = CheckState.Checked) Then
-                    equipment.modeljoin(model.getModel, myData.Rows(i)(1).ToString)
+                    equipment.modeljoin(model.getModel, myData.Rows(i)("type").ToString)
                 Else
                     equipment.deletejoin(model.getModel, myData.Rows(i)("varenr").ToString())
                 End If
@@ -364,10 +364,9 @@ Public Class StorageWorker
         txtModelproducer.ReadOnly = True
         txtModelcategory.ReadOnly = True
 
+        allEquipment = equipment.EquipmentTypes()
         myData = equipment.modelEquipementCompatiable(chosenmodel)
-        allEquipment = equipment.SearchEquipment()
 
-        Dim array(myData.Rows.Count) As Integer
 
         While treff < (allEquipment.Rows.Count)
 
