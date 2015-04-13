@@ -47,6 +47,16 @@
 
         Return table
     End Function
+    Public Function getActiveCustomer(customer As Customer) As DataTable
+        dbutil = New DBUtility()
+        Dim table As DataTable
+        Dim sql As String
+
+        sql = "SELECT kid, fornavn, etternavn, telefon, epost FROM kunde WHERE aktivert = '1'"
+        table = dbutil.selectQuery(sql)
+
+        Return table
+    End Function
 
     'Midlertidig hjelpemetode for å hente ut ansatt basert på id
     'Mulig at settes til Private senere

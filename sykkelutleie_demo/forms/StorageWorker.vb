@@ -89,7 +89,7 @@ Public Class StorageWorker
     ''' <remarks>Oppdaterer valgt sykkel med alle feltene
     ''' Det må velges en sykkel før du har muligheten til å oppdatere</remarks>
     Private Sub saveBike_Click(sender As Object, e As EventArgs) Handles btnSavebike.Click
-
+        Dim result As Integer
         objectupdate()
 
         dialogeResult = MsgBox("Vil du oppdatere sykkel med rammenr: " & bike.getFrameNumber & " sin informasjon? ", MsgBoxStyle.YesNo)
@@ -102,17 +102,26 @@ Public Class StorageWorker
                 If answer = "True" Then
                     MsgBox("Sykkel er oppdatert")
                 End If
-                updateComboboxes()
-                Nullbike_Click(sender, e)
-                searchBike_Click(sender, e)
-
             End If
         Else
             MsgBox("Oppdatering av sykkel informasjon ble avbrutt.") 'Bekreftelse hvis bruker avbryter
         End If
+        If cmbStatus.SelectedIndex = 1 Then
+            result = MsgBox("vil du sende Email ang reperasjon?", MsgBoxStyle.YesNoCancel)
+            If result = DialogResult.Cancel Then
+                Close()
+            ElseIf result = DialogResult.No Then
+                MessageBox.Show("Det ble ikke bestilt via mail")
+            ElseIf result = DialogResult.Yes Then
+                MailTest.Show()
+            End If
+        End If
+        updateComboboxes()
+        Nullbike_Click(sender, e)
+        searchBike_Click(sender, e)
+
 
     End Sub
-
     ''' <summary>
     ''' Endre Sykkel
     ''' </summary>

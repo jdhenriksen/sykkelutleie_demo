@@ -46,7 +46,7 @@ Public Class Order
     Public Function updateCustomer(customer As Customer) As DataTable
         Dim data As DataTable
 
-        data = customer.searchCustomer(customer)
+        data = customer.getActiveCustomer(customer)
 
         Return data
     End Function
