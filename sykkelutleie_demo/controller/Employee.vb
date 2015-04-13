@@ -41,7 +41,6 @@ Public Class Employee
         dao.deleteEmployee(getEmployeeID())
     End Sub
 
-    'Offentlig hjelpemetode for å hente ut ansatt basert på id
     Public Function selectEmployeeById(id As String) As DataTable
         Return dao.selectEmployeeById(id)
     End Function
@@ -50,7 +49,10 @@ Public Class Employee
         Return dao.getAllEmployees()
     End Function
 
-    'Hjelpemetode for å sjekke om en ansatt er satt til aktiv
+    Public Function searchEmployee() As DataTable
+        Return dao.searchEmployee(makeList())
+    End Function
+
     Public Function isActive(id As String) As Boolean
         Dim table As New DataTable
         table = dao.isActive(id)
@@ -61,11 +63,11 @@ Public Class Employee
         Return active
     End Function
 
-    Public Function getAreaByZipCode(zipcode As String)
+    Public Function getAreaByZipCode(zipcode As String) As String
         Return dao.getAreaByZipCode(zipcode)
     End Function
 
-    Public Function usernameCheck(username As String) As Boolean
+    Public Function usernameCheck(username As String) As Integer
         Return dao.usernameCheck(username)
     End Function
 
@@ -96,6 +98,14 @@ Public Class Employee
     Public Sub setZip(zip As String)
         Me.zip = zip
     End Sub
+
+    Public Sub createZipCode(zip As String, area As String)
+        dao.createZipCode(zip, area)
+    End Sub
+
+    Public Function zipCodeExists(zip As String) As Boolean
+        Return dao.zipCodeExists(zip)
+    End Function
 
     'Hjelpemetode. Lager liste som sendes til DAO.
     Private Function makeList() As List(Of String)

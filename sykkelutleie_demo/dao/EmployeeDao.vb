@@ -18,6 +18,17 @@
         dbutil.paramQuery(SQLRes.sqlDeleteEmployee)
     End Sub
 
+    Public Function searchEmployee(list As List(Of String)) As DataTable
+        Dim newList() As String = prepareForSearch(list)
+        Dim i As Integer
+        For i = 0 To newList.Length - 1
+            list(i) = newList(i)
+        Next
+        populateList(list)
+        table = dbutil.paramQuery(SQLRes.sqlSearchEmployee)
+        Return table
+    End Function
+
     Public Function getAllEmployees() As DataTable
         Return dbutil.selectQuery(SQLRes.sqlGetAllEmployees)
     End Function
@@ -37,16 +48,16 @@
     Public Function getAreaByZipCode(zipcode As String) As String
         dbutil.addParametersToQuery("@zipcode", zipcode)
         table = dbutil.paramQuery(SQLRes.sqlGetAreaByZipCode)
-        Return table.Rows(0)(0)
+        If table.Rows.Count > 0 Then
+            Return table.Rows(0)(0)
+        End If
+        Return ""
     End Function
 
-    Public Function usernameCheck(username As String) As Boolean
+    Public Function usernameCheck(username As String) As Integer
         dbutil.addParametersToQuery("@username", username)
         table = dbutil.paramQuery(SQLRes.sqlUsernameCheck)
-        If table.Rows.Count > 0 Then
-            Return False
-        End If
-        Return True
+        Return table.Rows.Count
     End Function
 
     Public Function login(username As String, password As String) As DataTable
@@ -54,6 +65,22 @@
         dbutil.addParametersToQuery("@password", password)
         table = dbutil.paramQuery(SQLRes.sqlLogin)
         Return table
+    End Function
+
+    Public Sub createZipCode(zip As String, area As String)
+        dbutil.addParametersToQuery("@zip", zip)
+        dbutil.addParametersToQuery("@area", area)
+        dbutil.paramQuery(SQLRes.sqlCreateZipCode)
+    End Sub
+
+    Public Function zipCodeExists(zip As String) As Boolean
+        dbutil.addParametersToQuery("@zip", zip)
+        Dim exists As Boolean = False
+        table = dbutil.paramQuery(SQLRes.sqlZipCodeExists)
+        If table.Rows.Count > 0 Then
+            exists = True
+        End If
+        Return exists
     End Function
 
     Public Sub populateList(list As List(Of String))
@@ -70,4 +97,19 @@
             .addParametersToQuery("@active", list(9))
         End With
     End Sub
+
+    Private Function prepareForSearch(inputList As List(Of String)) As String()
+        Dim i As Integer
+        Dim listItemLength As Integer
+        Dim list(inputList.Count - 1) As String
+        For i = 0 To inputList.Count - 1
+            If String.IsNullOrEmpty(inputList(i)) Or inputList(i) = Nothing Then
+                list(i) = String.Format("%{0}%", inputList(i))
+            Else
+                listItemLength = inputList(i).Length
+                list(i) = String.Format("%{0," & listItemLength & "}%", inputList(i))
+            End If
+        Next
+        Return list
+    End Function
 End Class

@@ -8,11 +8,14 @@ Public Class EmployeeTest
 
     'BUTTON: Oppretter en ansatt og skriver informasjonen til databasen.
     Private Sub btnInsertEmployee_Click(sender As Object, e As EventArgs) Handles btnInsertEmployee.Click
-        If Not usernameCheck() Then
+        If usernameCheck() > 0 Then
             MsgBox("Brukernavn opptatt. Velg et annet.")
             Exit Sub
         End If
         createEmployeeFromTextFields()
+        If Not emp.zipCodeExists(emp.getZip()) Then
+            emp.createZipCode(emp.getZip(), txtEmpZipArea.Text)
+        End If
         emp.createEmployee()
         getAllEmployees()
     End Sub
@@ -28,7 +31,14 @@ Public Class EmployeeTest
 
     'BUTTON: Oppdaterer informasjon om en ansatt og skriver ny informasjon til databasen.
     Private Sub btnUpdateEmp_Click(sender As Object, e As EventArgs) Handles btnUpdateEmp.Click
+        If usernameCheck() > 1 Then
+            MsgBox("Brukernavn opptatt. Velg et annet.")
+            Exit Sub
+        End If
         createEmployeeFromTextFields()
+        If Not emp.zipCodeExists(emp.getZip()) Then
+            emp.createZipCode(emp.getZip(), txtEmpZipArea.Text)
+        End If
         emp.editEmployee(txtEmpId.Text)
         getAllEmployees()
     End Sub
@@ -103,7 +113,7 @@ Public Class EmployeeTest
     End Sub
 
     'Hjelpemetode: Sjekker om brukernavn allerede eksisterer i databasen.
-    Private Function usernameCheck() As Boolean
+    Private Function usernameCheck() As Integer
         Dim username = txtEmpUsername.Text
         Return emp.usernameCheck(username)
     End Function
@@ -112,14 +122,30 @@ Public Class EmployeeTest
     Private Sub EmployeeTest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtEmpPassword.PasswordChar = "*"
         dgvEmployeeTest.ReadOnly = True
-        txtEmpZipCode.Text = "7020"
         emp = New Employee()
-        txtEmpZipArea.Text = emp.getAreaByZipCode(txtEmpZipCode.Text)
     End Sub
 
     'EVENT: Hver gang en celle i dataGridViewet markeres sendes informasjonen om markert ansatt til tekstfelt.
     Private Sub dgvEmployeeTest_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgvEmployeeTest.CellEnter
         addInfoToTextFields()
         activeCheck()
+    End Sub
+
+    Private Sub txtEmpZipCode_TextChanged(sender As Object, e As EventArgs) Handles txtEmpZipCode.TextChanged
+        txtEmpZipArea.Text = emp.getAreaByZipCode(txtEmpZipCode.Text)
+    End Sub
+
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        createEmployeeFromTextFields()
+        dgvEmployeeTest.DataSource = emp.searchEmployee()
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        Dim ctrl As Control
+        For Each ctrl In Me.Controls
+            If ctrl.GetType() = GetType(TextBox) Then
+                ctrl.Text = ""
+            End If
+        Next
     End Sub
 End Class

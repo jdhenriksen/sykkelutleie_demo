@@ -18,7 +18,14 @@
     End Sub
 
     'INCOMPLETE: Samme problem som i BikeDao
-    Public Function searchModel(list As List(Of String))
+    Public Function searchModel(list As List(Of String)) As DataTable
+        Dim newList() As String = prepareForSearch(list)
+        Dim i As Integer
+        For i = 0 To newList.Length - 1
+            list(i) = newList(i)
+        Next
+        populateList(list)
+        table = dbutil.paramQuery(SQLRes.sqlSearchModel)
         Return table
     End Function
 
@@ -53,6 +60,21 @@
             .addParametersToQuery("@category", list(3))
         End With
     End Sub
+
+    Private Function prepareForSearch(inputList As List(Of String)) As String()
+        Dim i As Integer
+        Dim listItemLength As Integer
+        Dim list(inputList.Count - 1) As String
+        For i = 0 To inputList.Count - 1
+            If String.IsNullOrEmpty(inputList(i)) Or inputList(i) = Nothing Then
+                list(i) = String.Format("%{0}%", inputList(i))
+            Else
+                listItemLength = inputList(i).Length
+                list(i) = String.Format("%{0," & listItemLength & "}%", inputList(i))
+            End If
+        Next
+        Return list
+    End Function
 
     'SKAL BRUKES I MODEL
     'Private Function makeList() As List(Of String)

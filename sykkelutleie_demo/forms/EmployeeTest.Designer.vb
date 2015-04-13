@@ -50,6 +50,8 @@ Partial Class EmployeeTest
         Me.lblEmpZipCode = New System.Windows.Forms.Label()
         Me.txtEmpZipArea = New System.Windows.Forms.TextBox()
         Me.lblEmpZipArea = New System.Windows.Forms.Label()
+        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.btnClear = New System.Windows.Forms.Button()
         CType(Me.dgvEmployeeTest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -175,7 +177,7 @@ Partial Class EmployeeTest
         '
         'btnInsertEmployee
         '
-        Me.btnInsertEmployee.Location = New System.Drawing.Point(17, 353)
+        Me.btnInsertEmployee.Location = New System.Drawing.Point(160, 353)
         Me.btnInsertEmployee.Name = "btnInsertEmployee"
         Me.btnInsertEmployee.Size = New System.Drawing.Size(82, 23)
         Me.btnInsertEmployee.TabIndex = 18
@@ -218,18 +220,18 @@ Partial Class EmployeeTest
         '
         'btnUpdateEmp
         '
-        Me.btnUpdateEmp.Location = New System.Drawing.Point(119, 353)
+        Me.btnUpdateEmp.Location = New System.Drawing.Point(160, 382)
         Me.btnUpdateEmp.Name = "btnUpdateEmp"
-        Me.btnUpdateEmp.Size = New System.Drawing.Size(75, 23)
+        Me.btnUpdateEmp.Size = New System.Drawing.Size(82, 23)
         Me.btnUpdateEmp.TabIndex = 26
         Me.btnUpdateEmp.Text = "Endre"
         Me.btnUpdateEmp.UseVisualStyleBackColor = True
         '
         'btnDeleteEmp
         '
-        Me.btnDeleteEmp.Location = New System.Drawing.Point(212, 353)
+        Me.btnDeleteEmp.Location = New System.Drawing.Point(160, 411)
         Me.btnDeleteEmp.Name = "btnDeleteEmp"
-        Me.btnDeleteEmp.Size = New System.Drawing.Size(75, 23)
+        Me.btnDeleteEmp.Size = New System.Drawing.Size(82, 23)
         Me.btnDeleteEmp.TabIndex = 27
         Me.btnDeleteEmp.Text = "Slett"
         Me.btnDeleteEmp.UseVisualStyleBackColor = True
@@ -245,7 +247,6 @@ Partial Class EmployeeTest
         '
         Me.txtEmpZipCode.Location = New System.Drawing.Point(100, 201)
         Me.txtEmpZipCode.Name = "txtEmpZipCode"
-        Me.txtEmpZipCode.ReadOnly = True
         Me.txtEmpZipCode.Size = New System.Drawing.Size(142, 20)
         Me.txtEmpZipCode.TabIndex = 29
         '
@@ -271,7 +272,6 @@ Partial Class EmployeeTest
         '
         Me.txtEmpZipArea.Location = New System.Drawing.Point(100, 227)
         Me.txtEmpZipArea.Name = "txtEmpZipArea"
-        Me.txtEmpZipArea.ReadOnly = True
         Me.txtEmpZipArea.Size = New System.Drawing.Size(142, 20)
         Me.txtEmpZipArea.TabIndex = 32
         '
@@ -284,11 +284,31 @@ Partial Class EmployeeTest
         Me.lblEmpZipArea.TabIndex = 33
         Me.lblEmpZipArea.Text = "Poststed:"
         '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(12, 353)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(82, 23)
+        Me.btnSearch.TabIndex = 34
+        Me.btnSearch.Text = "Søk"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
+        'btnClear
+        '
+        Me.btnClear.Location = New System.Drawing.Point(15, 411)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(79, 23)
+        Me.btnClear.TabIndex = 35
+        Me.btnClear.Text = "Clear"
+        Me.btnClear.UseVisualStyleBackColor = True
+        '
         'EmployeeTest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(872, 457)
+        Me.Controls.Add(Me.btnClear)
+        Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.lblEmpZipArea)
         Me.Controls.Add(Me.txtEmpZipArea)
         Me.Controls.Add(Me.lblEmpZipCode)
@@ -352,4 +372,6 @@ Partial Class EmployeeTest
     Friend WithEvents lblEmpZipCode As System.Windows.Forms.Label
     Friend WithEvents txtEmpZipArea As System.Windows.Forms.TextBox
     Friend WithEvents lblEmpZipArea As System.Windows.Forms.Label
+    Friend WithEvents btnSearch As System.Windows.Forms.Button
+    Friend WithEvents btnClear As System.Windows.Forms.Button
 End Class

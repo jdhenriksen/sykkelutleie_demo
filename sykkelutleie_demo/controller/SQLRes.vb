@@ -3,10 +3,6 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class SQLRes
-    'TEST
-    Public DBTestInsert As String = "INSERT INTO  ansatt(`brukernavn` ,`passord` ,`fornavn` ,`etternavn` ,`telefon` ,`epost` ,`adresse` ,`stilling` ,`postnr` ,`aktivert`)VALUES ('testbrukernavn',  'testpassord',  'Per',  'Olav',  '8888887',  'test@mail.cns',  'testveien 118',  'Lagerarbeider',  '7020',  '1')"
-    Public autoIncrementAs2 As String = "ALTER TABLE ansatt AUTO_INCREMENT=2"
-    Public deleteManyAnsatt As String = "delete from ansatt where ansattid > 1"
 
     'STATISTICS
     Public cheapestBicycles As String = "SELECT sykkel.rammenr AS 'Rammenr.', sykkel.modell AS Modell, modell.pris AS Pris FROM sykkel JOIN modell ON sykkel.modell=modell.modell GROUP BY modell ORDER BY pris LIMIT @limit;"
@@ -31,6 +27,11 @@ Public Class SQLRes
     Public Const sqlGetAreaByZipCode As String = "SELECT poststed FROM poststed WHERE postnr = @zipcode;"
     Public Const sqlUsernameCheck As String = "SELECT brukernavn FROM ansatt WHERE brukernavn = @username;"
     Public Const sqlLogin As String = "SELECT stilling FROM ansatt WHERE brukernavn = @username AND passord = @password;"
+    Public Const sqlCreateZipCode As String = "INSERT INTO poststed (`postnr`, `poststed`) VALUES(@zip, @area);"
+    Public Const sqlZipCodeExists As String = "SELECT * FROM poststed WHERE postnr = @zip;"
+    Public Const sqlSearchEmployee As String = "SELECT * FROM ansatt WHERE brukernavn LIKE @username AND passord LIKE @password AND " & _
+            "fornavn LIKE @firstname AND etternavn LIKE @lastname AND telefon LIKE @phone AND epost LIKE @email AND " & _
+            "adresse LIKE @address AND stilling LIKE @job AND postnr LIKE @zip AND aktivert LIKE @active;"
 
     'CUSTOMER
     Public Const sqlCreateCustomer As String = "INSERT INTO kunde (`fornavn` ,`etternavn` ,`telefon` ,`epost` ,`aktivert`) " & _
@@ -40,6 +41,8 @@ Public Class SQLRes
     Public Const sqlDeleteCustomer As String = "DELETE FROM kunde WHERE kid = @id;"
     Public Const sqlSelectCustomerById As String = "SELECT * FROM kunde WHERE id = @id;"
     Public Const sqlSelectAllCustomers As String = "SELECT * FROM kunde;"
+    Public Const sqlSearchCustomer As String = "SELECT * FROM kunde WHERE kid LIKE @id AND fornavn LIKE @firstname AND " & _
+            "etternavn LIKE @lastname AND telefon LIKE @phone AND epost LIKE @email AND aktivert LIKE @active;"
 
     'BIKE
     Public Const sqlCreateBike As String = "INSERT INTO sykkel (rammenr, status, lokasjon, utleiested, bremser, dekk, ramme, gir, modell) " & _
@@ -47,6 +50,9 @@ Public Class SQLRes
     Public Const sqlEditBike As String = "UPDATE sykkel SET status = @status, lokasjon = @location, utleiested = @placeOfOrigin, " & _
             "bremser = @brakes, dekk = @tires, ramme = @frame, gir = @gear, modell = @model WHERE rammenr = @framenumber;"
     Public Const sqlDeleteBike As String = "DELETE FROM sykkel WHERE rammenr = @framenumber;"
+    Public Const searchBike As String = "SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE @framenumber) AND (status LIKE @status) AND " & _
+            "(lokasjon LIKE @location) AND (utleiested LIKE @placeOfOrigin) AND (bremser LIKE @brakes) AND (dekk LIKE @tires) AND " & _
+            "(ramme LIKE @frame) AND (gir LIKE @gear) AND (modell LIKE @model);"
     Public Const sqlGetModelName As String = "SELECT modell FROM sykkel WHERE rammenr = @framenumber;"
     Public Const sqlSelectAllBikes As String = "SELECT * FROM sykkel;"
 
@@ -58,6 +64,8 @@ Public Class SQLRes
     Public Const sqlGetModelProducer As String = "SELECT produsent FROM modell WHERE model = @model;"
     Public Const sqlGetModelCategory As String = "SELECT kategori FROM modell WHERE model = @model;"
     Public Const sqlSelectAllModels As String = "SELECT * FROM modell;"
+    Public Const sqlSearchModel As String = "SELECT * FROM modell WHERE modell LIKE @model AND pris LIKE @price AND " & _
+            "produsent LIKE @producer AND kategori LIKE @category;"
 
     'EQUIPMENT
     Public Const sqlCreateEquipment As String = "INSERT INTO tilleggsutstyr `type`, `pris`, `status` VALUES(@type, @price, @status);"
@@ -65,6 +73,8 @@ Public Class SQLRes
     Public Const sqlDeleteEquipment As String = "DELETE FROM tilleggsutstyr WHERE varenr = @id;"
     Public Const sqlSelectEquipmentById As String = "SELECT * FROM tilleggsutstyr WHERE varenr = @id;"
     Public Const sqlSelectAllEquipment As String = "SELECT * FROM tilleggsutstyr;"
+    Public Const sqlSearchEquipment As String = "SELECT * FROM tilleggsutstyr WHERE varenr LIKE @id AND type LIKE @type AND " & _
+            "pris LIKE @price AND status LIKE @status;"
 
     'ORDER
     Public Const sqlCreateOrder As String = "INSERT INTO bestilling (`leie_fra`, `leie_til`, `ansattid`, `kid`, `sum`) " & _
@@ -73,5 +83,7 @@ Public Class SQLRes
         "kid = @customerID, sum = @sum;"
     Public Const sqlSelectOrderById As String = "SELECT * FROM bestilling WHERE bestillingsid = @id;"
     Public Const sqlSelectAllOrders As String = "SELECT * FROM bestilling;"
+    Public Const sqlSearchOrder As String = "SELECT * FROM bestilling WHERE leie_fra LIKE @from AND leie_til LIKE @to AND " & _
+            "ansattid LIKE @employeeID AND kid LIKE @customerID AND sum LIKE @sum;"
 
 End Class

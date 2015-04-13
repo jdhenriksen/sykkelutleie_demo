@@ -1,7 +1,6 @@
 ﻿Public Class BikeDao
     Private dbutil As New DBUtility
     Private table As New DataTable
-    Private sql As String
 
     Public Sub createBike(list As List(Of String))
         populateList(list)
@@ -18,13 +17,14 @@
         dbutil.paramQuery(SQLRes.sqlDeleteBike)
     End Sub
 
-    'INCOMPLETE. Virker ikke. %-tegnene gjør at verdiene blir feil.
     Public Function searchBike(list As List(Of String)) As DataTable
+        Dim newList() As String = prepareForSearch(list)
+        Dim i As Integer
+        For i = 0 To newList.Length - 1
+            list(i) = newList(i)
+        Next
         populateList(list)
-        sql = "SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE %@framenumber%) AND (status LIKE %@status%) AND " & _
-            "(lokasjon LIKE %@location%) AND (utleiested LIKE %@placeOfOrigin%) AND (bremser LIKE %@brakes%) AND (dekk LIKE %@tires%) AND " & _
-            "(ramme LIKE %@frame%) AND (gir LIKE %@gear%) AND (modell LIKE %@model%);"
-        table = dbutil.paramQuery(sql)
+        table = dbutil.paramQuery(SQLRes.searchBike)
         Return table
     End Function
 
@@ -52,6 +52,21 @@
             .addParametersToQuery("@model", list(8))
         End With
     End Sub
+
+    Private Function prepareForSearch(inputList As List(Of String)) As String()
+        Dim i As Integer
+        Dim listItemLength As Integer
+        Dim list(inputList.Count - 1) As String
+        For i = 0 To inputList.Count - 1
+            If String.IsNullOrEmpty(inputList(i)) Or inputList(i) = Nothing Then
+                list(i) = String.Format("%{0}%", inputList(i))
+            Else
+                listItemLength = inputList(i).Length
+                list(i) = String.Format("%{0," & listItemLength & "}%", inputList(i))
+            End If
+        Next
+        Return list
+    End Function
 
     'SKAL BRUKES I BIKE
     'Private Function makeList() As List(Of String)
