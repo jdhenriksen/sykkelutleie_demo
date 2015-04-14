@@ -55,10 +55,6 @@ Public Class Model
     ''' <remarks>Fyller opp resultatliste(datagridView) med modeller</remarks>
     Public Function searchModell()
 
-        ' sqlstring = "SELECT modell, pris, produsent, kategori FROM modell WHERE (modell LIKE '%" & getModel() & "%') AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')"
-
-        ' myData = anySqlQuery.selectQuery(sqlstring)
-
         myData = dao.searchModel(makeList())
 
         Return myData

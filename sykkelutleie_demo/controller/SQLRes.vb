@@ -45,27 +45,33 @@ Public Class SQLRes
             "etternavn LIKE @lastname AND telefon LIKE @phone AND epost LIKE @email AND aktivert LIKE @active;"
 
     'BIKE
-    Public Const sqlCreateBike As String = "INSERT INTO sykkel (rammenr, status, lokasjon, utleiested, bremser, dekk, ramme, gir, modell) " & _
-            "VALUES (@framenumber, @status, @location, @placeOfOrigin, @brakes, @tires, @frame, @gear, @model);"
     Public Const sqlEditBike As String = "UPDATE sykkel SET status = @status, lokasjon = @location, utleiested = @placeOfOrigin, " & _
             "bremser = @brakes, dekk = @tires, ramme = @frame, gir = @gear, modell = @model WHERE rammenr = @framenumber;"
-    Public Const sqlDeleteBike As String = "DELETE FROM sykkel WHERE rammenr = @framenumber;"
     Public Const searchBike As String = "SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE @framenumber) AND (status LIKE @status) AND " & _
             "(lokasjon LIKE @location) AND (utleiested LIKE @placeOfOrigin) AND (bremser LIKE @brakes) AND (dekk LIKE @tires) AND " & _
             "(ramme LIKE @frame) AND (gir LIKE @gear) AND (modell LIKE @model);"
     Public Const sqlGetModelName As String = "SELECT modell FROM sykkel WHERE rammenr = @framenumber;"
     Public Const sqlSelectAllBikes As String = "SELECT * FROM sykkel;"
 
+    Public Const sqlDeleteBike As String = "UPDATE sykkel SET status = 'Deaktivert' WHERE rammenr = @framenumber;"
+    Public Const sqlCreateBike As String = "INSERT INTO sykkel (`rammenr`, `status`, `lokasjon`, `utleiested`, `bremser`, `dekk`, `ramme`, `gir`, `modell`) " & _
+    "VALUES (@framenumber, @status, @location, @placeOfOrigin, @brakes, @tires, @frame, @gear, @model);"
+    Public Const sqlGetBike As String = "SELECT modell, status, lokasjon, utleiested, dekk, ramme, gir, bremser FROM sykkel WHERE rammenr = @framenumber; "
+    Public Const setAllBikesNotUnderOrder As String = "UPDATE  `14badr05`.`sykkel` SET  sykkel.`under_bestilling` =  '0';"
+    Public Const setBikeUnderOrder As String = "UPDATE  `14badr05`.`sykkel` SET  sykkel.`under_bestilling` =  '1' WHERE  sykkel.rammenr = @framenumber;"
+    Public Const searchBicycleModel As String = "SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE (rammenr LIKE @framenumber) AND (sykkel.modell LIKE @model) AND (lokasjon LIKE @location) AND (utleiested LIKE @placeofOrigin) AND (pris >=@price) AND (produsent LIKE @producer) AND (kategori LIKE @category AND sykkel.under_bestilling = '0' )"
+
     'MODEL
-    Public Const sqlCreateModel As String = "INSERT INTO modell (modell, pris, produsent, kategori) VALUES (@model, @price, @producer, @category);"
     Public Const sqlEditModel As String = "UPDATE modell SET pris = @price, produsent = @producer, kategori = @category WHERE modell = @model;"
     Public Const sqlDeleteModel As String = "DELETE FROM modell WHERE modell = @model;"
     Public Const sqlGetModelPrice As String = "SELECT pris FROM modell WHERE model = @model;"
     Public Const sqlGetModelProducer As String = "SELECT produsent FROM modell WHERE model = @model;"
     Public Const sqlGetModelCategory As String = "SELECT kategori FROM modell WHERE model = @model;"
     Public Const sqlSelectAllModels As String = "SELECT * FROM modell;"
-    Public Const sqlSearchModel As String = "SELECT * FROM modell WHERE modell LIKE @model AND pris LIKE @price AND " & _
-            "produsent LIKE @producer AND kategori LIKE @category;"
+    Public Const sqlCreateModel As String = "INSERT INTO modell (`modell`, `pris`, `produsent`, `kategori`) VALUES (@model, @price, @producer, @category);"
+    Public Const sqlSearchModel As String = "SELECT modell, pris, produsent, kategori FROM modell WHERE (modell LIKE @model) AND (pris LIKE @price) AND " & _
+                "(produsent LIKE @producer) AND (kategori LIKE @category);"
+    Public Const sqlGetModel As String = "SELECT modell, pris, produsent, kategori FROM modell WHERE modell = @model;"
 
     'EQUIPMENT
     Public Const sqlCreateEquipment As String = "INSERT INTO tilleggsutstyr (`type`, `pris`, `status`) VALUES(@type, @price, @status);"

@@ -250,10 +250,7 @@ Public Class OrderTest
 
 
 
-    ''' <summary>
-    ''' Prossedyrer som trigges av endring i tekstboksene
-    ''' </summary>
-    ''' <remarks>Muligjør levende søk</remarks>
+
     'Private Sub txtBxFirstName_TextChanged() Handles txtBxFirstName.TextChanged
     '    updateCustomerGridView()
     'End Sub
