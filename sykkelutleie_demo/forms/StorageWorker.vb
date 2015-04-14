@@ -161,7 +161,7 @@ Public Class StorageWorker
 
                 For Each itemChecked In lstbxEqipment.CheckedItems
 
-                    equipment.modeljoin(model.getModel, (itemChecked.item("type").ToString()))
+                    equipment.createCompatibility(model.getModel, (itemChecked.item("type").ToString()))
 
                 Next
 
@@ -201,7 +201,7 @@ Public Class StorageWorker
         btnEqipReset_Click(sender, e)
         btnEqipSearch_Click(sender, e)
         objectupdate()
-        myData = equipment.EquipmentTypes()
+        myData = equipment.selectEquipmentGroupByType()
         dialogeResult = MsgBox("Vil du endre modell med navn: " & model.getModel() & "?", MsgBoxStyle.YesNo)
 
         If dialogeResult = 6 Then
@@ -213,9 +213,9 @@ Public Class StorageWorker
                 chkstate = lstbxEqipment.GetItemCheckState(i)
 
                 If (chkstate = CheckState.Checked) Then
-                    equipment.modeljoin(model.getModel, myData.Rows(i)("type").ToString)
+                    equipment.createCompatibility(model.getModel, myData.Rows(i)("type").ToString)
                 Else
-                    equipment.deletejoin(model.getModel, myData.Rows(i)("varenr").ToString())
+                    equipment.removeCompatibility(model.getModel, myData.Rows(i)("varenr").ToString())
                 End If
             Next
 
@@ -373,8 +373,8 @@ Public Class StorageWorker
         txtModelproducer.ReadOnly = True
         txtModelcategory.ReadOnly = True
 
-        allEquipment = equipment.EquipmentTypes()
-        myData = equipment.modelEquipementCompatiable(chosenmodel)
+        allEquipment = equipment.selectEquipmentGroupByType()
+        myData = equipment.modelEquipmentCompatible(chosenmodel)
 
 
         While treff < (allEquipment.Rows.Count)
@@ -606,7 +606,7 @@ Public Class StorageWorker
 
     Private Sub btnEqipSave_Click(sender As Object, e As EventArgs) Handles btnEqipSave.Click
         objectupdate()
-        equipment.ChangeEquipment()
+        equipment.changeEquipment()
         btnEqipReset_Click(sender, e)
         btnEqipSearch_Click(sender, e)
     End Sub
@@ -614,7 +614,7 @@ Public Class StorageWorker
     Private Sub btnEqipDelete_Click(sender As Object, e As EventArgs) Handles btnEqipDelete.Click
 
         objectupdate()
-        equipment.DeleteEquipment()
+        equipment.deleteEquipment()
         btnEqipReset_Click(sender, e)
         btnEqipSearch_Click(sender, e)
 
@@ -634,7 +634,7 @@ Public Class StorageWorker
 
         lstbxEqipment.Enabled = False
         lstbxEqipment.DataSource = Nothing
-        lstbxEqipment.DataSource = equipment.EquipmentTypes()
+        lstbxEqipment.DataSource = equipment.selectEquipmentGroupByType()
         lstbxEqipment.DisplayMember = "type"
     End Sub
 

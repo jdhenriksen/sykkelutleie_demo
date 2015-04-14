@@ -101,13 +101,13 @@ Public Class OrderTest
             Dim tempEquipment As New Equipment
             Dim data As DataTable
 
-            tempEquipment.EquipmentType = itemChecked.item("type").ToString()
+            tempEquipment.equipmentType = itemChecked.item("type").ToString()
 
-            data = tempEquipment.getEquipmentID(tempEquipment.EquipmentType) 'Henter varenr og pris til utstyr som er på lager, og som enda IKKE er under bestilling(under_bestilling=0)
+            data = tempEquipment.getEquipmentID(tempEquipment.equipmentType) 'Henter varenr og pris til utstyr som er på lager, og som enda IKKE er under bestilling(under_bestilling=0)
 
-            tempEquipment.EquipmentID = data.Rows(0)("varenr")
-            tempEquipment.EquipmentPrice = data.Rows(0)("pris")
-            tempEquipment.setEquipmentUnderOrder(tempEquipment.EquipmentID) ' Setter under_bestilling =True
+            tempEquipment.equipmentID = data.Rows(0)("varenr")
+            tempEquipment.equipmentPrice = data.Rows(0)("pris")
+            tempEquipment.setEquipmentUnderOrder(tempEquipment.equipmentID) ' Setter under_bestilling =True
 
             tempBicycle.equipmentList.Add(tempEquipment)
         Next

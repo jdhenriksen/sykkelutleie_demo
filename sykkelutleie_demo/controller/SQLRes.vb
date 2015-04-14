@@ -68,13 +68,26 @@ Public Class SQLRes
             "produsent LIKE @producer AND kategori LIKE @category;"
 
     'EQUIPMENT
-    Public Const sqlCreateEquipment As String = "INSERT INTO tilleggsutstyr `type`, `pris`, `status` VALUES(@type, @price, @status);"
+    Public Const sqlCreateEquipment As String = "INSERT INTO tilleggsutstyr (`type`, `pris`, `status`) VALUES(@type, @price, @status);"
     Public Const sqlEditEquipment As String = "UPDATE tilleggsutstyr SET type = @type, pris = @price, status = @status WHERE varenr = @id;"
-    Public Const sqlDeleteEquipment As String = "DELETE FROM tilleggsutstyr WHERE varenr = @id;"
+    Public Const sqlDeleteEquipment As String = "UPDATE tilleggsutstyr SET status = 'Deaktivert' WHERE varenr = @id;"
     Public Const sqlSelectEquipmentById As String = "SELECT * FROM tilleggsutstyr WHERE varenr = @id;"
     Public Const sqlSelectAllEquipment As String = "SELECT * FROM tilleggsutstyr;"
     Public Const sqlSearchEquipment As String = "SELECT * FROM tilleggsutstyr WHERE varenr LIKE @id AND type LIKE @type AND " & _
             "pris LIKE @price AND status LIKE @status;"
+    Public Const sqlSelectEquipmentIDOnType As String = "SELECT varenr FROM tilleggsutstyr WHERE type = @type;"
+    Public Const sqlCreateCompatibility As String = "INSERT INTO kompatibel(`varenr`, `modell`) VALUES(@rowVal, @model) ON DUPLICATE KEY UPDATE modell=VALUES(modell);"
+    Public Const sqlModelEquipmentCompatible As String = "SELECT varenr FROM kompatibel WHERE modell = @model;"
+    Public Const sqlChosenEquipment As String = "SELECT varenr, type, pris, status FROM tilleggsutstyr WHERE varenr = @id;"
+    Public Const sqlGetEquipmentID As String = "SELECT varenr, pris FROM tilleggsutstyr WHERE type = @type AND status = 'På lager' AND under_bestilling=0;"
+    Public Const sqlGetEquipmentIDDuringOrder As String = "SELECT varenr FROM tilleggsutstyr WHERE type = @type AND under_bestilling = '1';"
+    Public Const sqlGetTypeFromID As String = "SELECT type FROM tilleggsutstyr WHERE varenr = @id;"
+    Public Const sqlRemoveCompatibility As String = "DELETE FROM kompatibel WHERE varenr = @id AND modell = @model;"
+    Public Const sqlCompatibleEquipment As String = "SELECT tilleggsutstyr.type, tilleggsutstyr.varenr FROM tilleggsutstyr JOIN kompatibel ON kompatibel.varenr=tilleggsutstyr.varenr WHERE modell = @model AND tilleggsutstyr.status = 'På lager' AND under_bestilling=0 GROUP BY type;"
+    Public Const sqlSetEquipmentUnderOrder As String = "UPDATE  `14badr05`.`tilleggsutstyr` SET  `under_bestilling` =  '1' WHERE  `tilleggsutstyr`.`varenr` = @id;"
+    Public Const sqlSetEquipmentNotUnderOrder As String = "UPDATE  `14badr05`.`tilleggsutstyr` SET  `under_bestilling` =  '0' WHERE  `tilleggsutstyr`.`varenr` = @id;"
+    Public Const sqlSetAllEquipmentNotUnderOrder As String = "UPDATE  `14badr05`.`tilleggsutstyr` SET  `under_bestilling` =  '0';"
+    Public Const sqlSelectEquipmentGroupByType As String = "SELECT varenr, type, pris, status FROM tilleggsutstyr GROUP BY type;"
 
     'ORDER
     Public Const sqlCreateOrder As String = "INSERT INTO bestilling (`leie_fra`, `leie_til`, `ansattid`, `kid`, `sum`) " & _

@@ -39,6 +39,79 @@
         Return table
     End Function
 
+    Public Sub createCompatibility(model As String, type As String)
+        dbutil.addParametersToQuery("@type", type)
+        table = dbutil.paramQuery(SQLRes.sqlSelectEquipmentIDOnType)
+
+        For Each row As DataRow In table.Rows
+            Dim rowVal As String = row("varenr")
+            dbutil.addParametersToQuery("@rowVal", rowVal)
+            dbutil.addParametersToQuery("@model", model)
+            dbutil.paramQuery(SQLRes.sqlCreateCompatibility)
+        Next
+    End Sub
+
+    Public Function modelEquipmentCompatible(model As String) As DataTable
+        dbutil.addParametersToQuery("@model", model)
+        table = dbutil.paramQuery(SQLRes.sqlModelEquipmentCompatible)
+        Return table
+    End Function
+
+    Public Function chosenEquipment(id As String) As DataTable
+        dbutil.addParametersToQuery("@id", id)
+        table = dbutil.paramQuery(SQLRes.sqlChosenEquipment)
+        Return table
+    End Function
+
+    Public Function getEquipmentID(type As String) As DataTable
+        dbutil.addParametersToQuery("@type", type)
+        table = dbutil.paramQuery(SQLRes.sqlGetEquipmentID)
+        Return table
+    End Function
+
+    Public Function getEquipmentIDDuringOrder(type As String) As DataTable
+        dbutil.addParametersToQuery("@type", type)
+        table = dbutil.paramQuery(SQLRes.sqlGetEquipmentIDDuringOrder)
+        Return table
+    End Function
+
+    Public Function getTypeFromID(id As String) As DataTable
+        dbutil.addParametersToQuery("@id", id)
+        table = dbutil.paramQuery(SQLRes.sqlGetTypeFromID)
+        Return table
+    End Function
+
+    Public Sub removeCompatibility(model As String, id As String)
+        dbutil.addParametersToQuery("@model", model)
+        dbutil.addParametersToQuery("@id", id)
+        dbutil.paramQuery(SQLRes.sqlRemoveCompatibility)
+    End Sub
+
+    Public Function compatibleEquipment(model As String) As DataTable
+        dbutil.addParametersToQuery("@model", model)
+        table = dbutil.paramQuery(SQLRes.sqlCompatibleEquipment)
+        Return table
+    End Function
+
+    Public Sub setEquipmentUnderOrder(id As String)
+        dbutil.addParametersToQuery("@id", id)
+        dbutil.paramQuery(SQLRes.sqlSetEquipmentUnderOrder)
+    End Sub
+
+    Public Sub setEquipmentNotUnderOrder(id As String)
+        dbutil.addParametersToQuery("@id", id)
+        dbutil.paramQuery(SQLRes.sqlSetEquipmentNotUnderOrder)
+    End Sub
+
+    Public Sub setAllEquipmentNotUnderOrder()
+        dbutil.paramQuery(SQLRes.sqlSetAllEquipmentNotUnderOrder)
+    End Sub
+
+    Public Function selectEquipmentGroupByType() As DataTable
+        table = dbutil.paramQuery(SQLRes.sqlSelectEquipmentGroupByType)
+        Return table
+    End Function
+
     Private Sub populateList(list As List(Of String))
         With dbutil
             .addParametersToQuery("@id", list(0))
@@ -62,15 +135,4 @@
         Next
         Return list
     End Function
-
-    'SKAL INN I EQUIPMENT
-    'Private Function makeList() As List(Of String)
-    '    Dim list As New List(Of String)
-    '    With list
-    '        .Add(getEquipmentId())
-    '        .Add(getEquipmentType())
-    '        .Add(getEquipmentPrice())
-    '        .Add(getEquipmentStatus())
-    '    End With
-    'End Function
 End Class
