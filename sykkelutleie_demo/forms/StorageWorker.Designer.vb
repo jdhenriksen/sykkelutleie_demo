@@ -40,7 +40,6 @@ Partial Class StorageWorker
         Me.txtEqipID = New System.Windows.Forms.TextBox()
         Me.btnNullmodel = New System.Windows.Forms.Button()
         Me.btnNullbike = New System.Windows.Forms.Button()
-        Me.btnDeletemodel = New System.Windows.Forms.Button()
         Me.txtModelcategory = New System.Windows.Forms.MaskedTextBox()
         Me.txtModelproducer = New System.Windows.Forms.MaskedTextBox()
         Me.txtModelprice = New System.Windows.Forms.MaskedTextBox()
@@ -258,16 +257,6 @@ Partial Class StorageWorker
         Me.btnNullbike.TabIndex = 211
         Me.btnNullbike.Text = "Reset"
         Me.btnNullbike.UseVisualStyleBackColor = True
-        '
-        'btnDeletemodel
-        '
-        Me.btnDeletemodel.Enabled = False
-        Me.btnDeletemodel.Location = New System.Drawing.Point(15, 662)
-        Me.btnDeletemodel.Name = "btnDeletemodel"
-        Me.btnDeletemodel.Size = New System.Drawing.Size(83, 23)
-        Me.btnDeletemodel.TabIndex = 210
-        Me.btnDeletemodel.Text = "Slett"
-        Me.btnDeletemodel.UseVisualStyleBackColor = True
         '
         'txtModelcategory
         '
@@ -683,7 +672,6 @@ Partial Class StorageWorker
         Me.Controls.Add(Me.txtEqipID)
         Me.Controls.Add(Me.btnNullmodel)
         Me.Controls.Add(Me.btnNullbike)
-        Me.Controls.Add(Me.btnDeletemodel)
         Me.Controls.Add(Me.txtModelcategory)
         Me.Controls.Add(Me.txtModelproducer)
         Me.Controls.Add(Me.txtModelprice)
@@ -754,7 +742,6 @@ Partial Class StorageWorker
     Friend WithEvents txtEqipID As System.Windows.Forms.TextBox
     Friend WithEvents btnNullmodel As System.Windows.Forms.Button
     Friend WithEvents btnNullbike As System.Windows.Forms.Button
-    Friend WithEvents btnDeletemodel As System.Windows.Forms.Button
     Friend WithEvents txtModelcategory As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtModelproducer As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtModelprice As System.Windows.Forms.MaskedTextBox

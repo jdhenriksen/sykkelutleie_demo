@@ -3,8 +3,11 @@
     Private table As New DataTable
 
     Public Sub createBike(list As List(Of String))
+
         populateList(list)
+
         dbutil.paramQuery(SQLRes.sqlCreateBike)
+
     End Sub
 
     Public Sub editBike(list As List(Of String))
@@ -34,10 +37,48 @@
         Return table
     End Function
 
+    Public Function getBike(framenumber As String) As DataTable
+        dbutil.addParametersToQuery("@framenumber", framenumber)
+        table = dbutil.paramQuery(SQLRes.sqlGetBike)
+        Return table
+    End Function
+
     Public Function selectAllBikes() As DataTable
         table = dbutil.paramQuery(SQLRes.sqlSelectAllBikes)
         Return table
     End Function
+
+    Public Sub setAllBikesNotUnderOrder()
+        dbutil.updateQuery(SQLRes.setAllBikesNotUnderOrder)
+    End Sub
+
+    Public Sub setBikeUnderOrder(framenumber As String)
+        dbutil.addParametersToQuery("@framenumber", framenumber)
+        dbutil.updateQuery(SQLRes.setBikeUnderOrder)
+    End Sub
+
+    Public Function searchBicycleModel(list As List(Of String), price As Double, producer As String, category As String) As DataTable
+
+        list.Add(producer)
+        list.Add(category)
+
+        Dim newList() As String = prepareForSearch(list)
+        Dim i As Integer
+        For i = 0 To newList.Length - 1
+            list(i) = newList(i)
+        Next
+
+        populateList(list)
+        dbutil.addParametersToQuery("@price", price, DbType.Decimal)
+        dbutil.addParametersToQuery("@producer", list(9))
+        dbutil.addParametersToQuery("@category", list(10))
+
+        table = dbutil.paramQuery(SQLRes.searchBicycleModel)
+
+        Return table
+
+    End Function
+
 
     Private Sub populateList(list As List(Of String))
         With dbutil

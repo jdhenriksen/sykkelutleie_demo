@@ -171,8 +171,8 @@ Public Class OrderTest
 
     End Sub
     Private Sub OrderTest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        updateCustomerGridView()
-        updateBicycleGridView()
+        '  updateCustomerGridView()
+        ' updateBicycleGridView()
 
         Bestilling.Dock = DockStyle.Fill
     End Sub
@@ -254,33 +254,33 @@ Public Class OrderTest
     ''' Prossedyrer som trigges av endring i tekstboksene
     ''' </summary>
     ''' <remarks>Muligjør levende søk</remarks>
-    Private Sub txtBxFirstName_TextChanged() Handles txtBxFirstName.TextChanged
-        updateCustomerGridView()
-    End Sub
-    Private Sub txtBxSirName_TextChanged() Handles txtBxSirName.TextChanged
-        updateCustomerGridView()
-    End Sub
-    Private Sub txtBxEmail_TextChanged() Handles txtBxEmail.TextChanged
-        updateCustomerGridView()
-    End Sub
-    Private Sub txtBxPhone_TextChanged() Handles txtBxPhone.TextChanged
-        updateCustomerGridView()
-    End Sub
-    Private Sub txtBxKategori_TextChanged() Handles txtBxKategori.TextChanged
-        updateBicycleGridView()
-    End Sub
-    Private Sub txtBxModell_TextChanged() Handles txtBxModell.TextChanged
-        updateBicycleGridView()
-    End Sub
-    Private Sub txtBxPris_TextChanged() Handles txtBxPris.TextChanged
-        updateBicycleGridView()
-    End Sub
-    Private Sub txtBxRammenr_TextChanged() Handles txtBxRammenr.TextChanged
-        updateBicycleGridView()
-    End Sub
-    Private Sub txtBxMerke_TextChanged() Handles txtBxMerke.TextChanged
-        updateBicycleGridView()
-    End Sub
+    'Private Sub txtBxFirstName_TextChanged() Handles txtBxFirstName.TextChanged
+    '    updateCustomerGridView()
+    'End Sub
+    'Private Sub txtBxSirName_TextChanged() Handles txtBxSirName.TextChanged
+    '    updateCustomerGridView()
+    'End Sub
+    'Private Sub txtBxEmail_TextChanged() Handles txtBxEmail.TextChanged
+    '    updateCustomerGridView()
+    'End Sub
+    'Private Sub txtBxPhone_TextChanged() Handles txtBxPhone.TextChanged
+    '    updateCustomerGridView()
+    'End Sub
+    'Private Sub txtBxKategori_TextChanged() Handles txtBxKategori.TextChanged
+    '    updateBicycleGridView()
+    'End Sub
+    'Private Sub txtBxModell_TextChanged() Handles txtBxModell.TextChanged
+    '    updateBicycleGridView()
+    'End Sub
+    'Private Sub txtBxPris_TextChanged() Handles txtBxPris.TextChanged
+    '    updateBicycleGridView()
+    'End Sub
+    'Private Sub txtBxRammenr_TextChanged() Handles txtBxRammenr.TextChanged
+    '    updateBicycleGridView()
+    'End Sub
+    'Private Sub txtBxMerke_TextChanged() Handles txtBxMerke.TextChanged
+    '    updateBicycleGridView()
+    'End Sub
 
 
 
@@ -368,4 +368,7 @@ Public Class OrderTest
         Bestilling.SelectTab(2)
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        updateBicycleGridView()
+    End Sub
 End Class

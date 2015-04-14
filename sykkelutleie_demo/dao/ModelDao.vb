@@ -12,10 +12,6 @@
         dbutil.paramQuery(SQLRes.sqlEditModel)
     End Sub
 
-    Public Sub deleteModel(model As String)
-        dbutil.addParametersToQuery("@model", model)
-        dbutil.paramQuery(SQLRes.sqlDeleteModel)
-    End Sub
 
     'INCOMPLETE: Samme problem som i BikeDao
     Public Function searchModel(list As List(Of String)) As DataTable
@@ -50,6 +46,14 @@
     Public Function selectAllModels() As DataTable
         table = dbutil.paramQuery(SQLRes.sqlSelectAllModels)
         Return table
+    End Function
+
+    Public Function chooseModel(ByVal model As String)
+
+        dbutil.addParametersToQuery("@model", model)
+        table = dbutil.paramQuery(SQLRes.sqlGetModel)
+        Return table
+
     End Function
 
     Private Sub populateList(list As List(Of String))

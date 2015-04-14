@@ -27,12 +27,8 @@ Public Class StorageWorker
         Else
             dialogeResult = MsgBox("Vil du opprette sykkel med rammenr: " & bike.getFrameNumber & "?", MsgBoxStyle.YesNo)
             If dialogeResult = 6 Then                       'Spørsmål om bekreftelse av ny sykkel
-
-                answer = bike.createBike()                           'Hvis svaret på dialogboksen er "Yes" så vil dialogeResult bli "6". Først da kjøres createbike()
-
-                If answer = "True" Then
-                    MsgBox("Sykkel er opprettet")
-                End If
+                objectupdate()
+                bike.createBike()                           'Hvis svaret på dialogboksen er "Yes" så vil dialogeResult bli "6". Først da kjøres createbike()
 
                 updateComboboxes()                          'Renser og fyller combobokser.
                 Nullbike_Click(sender, e)
@@ -71,15 +67,17 @@ Public Class StorageWorker
         dialogeResult = MsgBox("Vil du slette sykkel med rammenummer: " & bike.getFrameNumber() & "?", MsgBoxStyle.YesNo) 'Spør om bekreftelse angående sletting av sykkel
 
         If dialogeResult = 6 Then        'Hvis Yes er valgt så vil sykkelen bli slettet, Model klassen returnerer en dialogboks som bekrefter.
-            answer = bike.deleteBike()            'Sletter sykkel hvis rett rammenr blir 
-            If answer = "True" Then
-                MsgBox("Sykkelen ble slettet")
-            End If
+
+            bike.deleteBike()            'Sletter sykkel hvis rett rammenr blir 
+
             updateComboboxes()
             Nullbike_Click(sender, e)
+            searchBike_Click(sender, e)
         Else
             MsgBox("Sykkel ble ikke slettet.") 'Tilbakemelding om at ingenting ble slettet da bruker avbrøt.
         End If
+
+
 
     End Sub
 
@@ -98,10 +96,7 @@ Public Class StorageWorker
             If bike.getFrameNumber() = "" Then                      'Dette feltet er låst og blir kun fylt hvis en sykkel blir valgt fra datagridview
                 MsgBox("Du må velge en sykkel fra listen etter søk") 'Hvis det er ingenting der så betyr det at bruker ikke har valgt noe fra søk.
             Else
-                answer = bike.changeBike()
-                If answer = "True" Then
-                    MsgBox("Sykkel er oppdatert")
-                End If
+                bike.changeBike()
             End If
         Else
             MsgBox("Oppdatering av sykkel informasjon ble avbrutt.") 'Bekreftelse hvis bruker avbryter
@@ -156,7 +151,7 @@ Public Class StorageWorker
         Else
             dialogeResult = MsgBox("Vil opprette modell med navn: " & model.getModel() & "?", MsgBoxStyle.YesNo)
             If dialogeResult = 6 Then
-                answer = model.createModel()
+                model.createModel()
 
 
                 For Each itemChecked In lstbxEqipment.CheckedItems
@@ -165,9 +160,6 @@ Public Class StorageWorker
 
                 Next
 
-                If answer = "True" Then
-                    MsgBox("Modell er opprettet")
-                End If
                 updateComboboxes()
                 Nullmodel_Click(sender, e)
                 searchModel_Click(sender, e)
@@ -189,7 +181,9 @@ Public Class StorageWorker
         objectupdate()
 
         dtgvModel.DataSource = model.searchModell()
+
         dtgvModel.ClearSelection()
+
     End Sub
 
     ''' <summary>
@@ -205,7 +199,8 @@ Public Class StorageWorker
         dialogeResult = MsgBox("Vil du endre modell med navn: " & model.getModel() & "?", MsgBoxStyle.YesNo)
 
         If dialogeResult = 6 Then
-            answer = model.changeModel()
+
+            model.changeModel()
 
             For i As Integer = 0 To lstbxEqipment.Items.Count - 1
 
@@ -220,10 +215,6 @@ Public Class StorageWorker
             Next
 
 
-            If answer = True Then
-                MsgBox("Endringer er lagret")
-            End If
-
             Nullmodel_Click(sender, e)
             searchModel_Click(sender, e)
             resetCheckedList()
@@ -232,34 +223,6 @@ Public Class StorageWorker
         End If
     End Sub
 
-    ''' <summary>
-    ''' Slett Modell
-    ''' </summary>
-    ''' <remarks>sletter modell etter modellnavn
-    ''' oppdaterer combobokser siden en modell er slettet og det er en færre
-    ''' resetter modellfelt og knapper</remarks>
-    Private Sub deleteModel_Click(sender As Object, e As EventArgs) Handles btnDeletemodel.Click
-
-        objectupdate()
-
-        dialogeResult = MsgBox("Vil du slette  modell med navn: " & model.getModel & " ?", MsgBoxStyle.YesNo)
-
-        If dialogeResult = 6 Then
-
-            answer = model.deleteModell() 'Sletter modell etter modellnavn
-
-            If answer = "True" Then
-                MsgBox("Modellen er slettet")
-            End If
-
-            updateComboboxes()
-            Nullmodel_Click(sender, e)
-
-        Else
-            MsgBox("Sletting ble avbrutt.") 'Tilbakemelding hvis bruker avbryter
-        End If
-
-    End Sub
     ''' <summary>
     ''' Endre Modell
     ''' </summary>
@@ -302,7 +265,7 @@ Public Class StorageWorker
         Dim testdata As New DataTable
 
         chosenbikenb = dtgvBike.Rows(rowchoice).Cells(0).Value.ToString() 'Legger rammenr inn i variabel
-        testdata = bike.relBike(chosenbikenb)
+        testdata = bike.getBike(chosenbikenb)
 
         txtFramenumber.Text = chosenbikenb                     'Alt fra DataTable inn i Tekstbokser på edit siden
         cmbModel.Text = testdata.Rows(0)(0).ToString()
@@ -338,6 +301,8 @@ Public Class StorageWorker
     ''' Tekstfelt blir låst og knapper endret</remarks>
     Private Sub gridViewModel(sender As Object, e As DataGridViewCellEventArgs) Handles dtgvModel.CellClick
 
+        objectupdate()
+
 
         lstbxEqipment.Enabled = False
         resetCheckedList()
@@ -356,13 +321,14 @@ Public Class StorageWorker
         chosenmodel = dtgvModel.Rows(rowchoice).Cells(0).Value.ToString()
 
         'Sender valgt modell fra GridView og får tilbake resultater som settes inn i Modell sine tekstbokser 
+
         datafill = model.relmodels(chosenmodel)
+
         txtModelname.Text = chosenmodel
         txtModelprice.Text = datafill.Rows(0)(1).ToString()
         txtModelproducer.Text = datafill.Rows(0)(2).ToString()
         txtModelcategory.Text = datafill.Rows(0)(3).ToString()
 
-        btnDeletemodel.Enabled = True
         btnChangemodel.Enabled = True
         btnSearchmodel.Enabled = False
         btnNewmodel.Enabled = False
@@ -485,18 +451,13 @@ Public Class StorageWorker
     ''' </summary>
     ''' <remarks>Oppdatering av objecter så vi har de nyeste verdier å arbeide med</remarks>
     Public Sub objectupdate() 'Brukes for å hente nye verdier og skape nye instanser av disse objektene
-        Dim tempprice As Double
-        If txtModelprice.Text = "" Then
-            tempprice = 0.0
-        Else
-            tempprice = txtModelprice.Text
-        End If
 
         Dim P As Double
+        Dim Pm As Double
         Double.TryParse(txtEqipPrice.Text, P)
-
-        model = New Model(txtModelname.Text, tempprice, txtModelproducer.Text, txtModelcategory.Text) 'Objekt for modelldel for søk,opprett,slett,endre,lagre
-        bikemodel = New Model(cmbModel.SelectedItem, tempprice, txtProducer.Text, txtCategory.Text) 'modellObject som sendes med bike objectet
+        Double.TryParse(txtModelprice.Text, Pm)
+        model = New Model(txtModelname.Text, Pm, txtModelproducer.Text, txtModelcategory.Text) 'Objekt for modelldel for søk,opprett,slett,endre,lagre
+        bikemodel = New Model(cmbModel.SelectedItem, Pm, txtProducer.Text, txtCategory.Text) 'modellObject som sendes med bike objectet
         bike = New Bike(txtFramenumber.Text, cmbStatus.SelectedItem, txtLocation.Text, txtPointofsale.Text, txtBrakes.Text, txtTire.Text, txtFrame.Text, txtGear.Text, bikemodel) 'bikeobjekt
         equipment = New Equipment(txtEqipID.Text, txtEqipStatus.Text, P, txtEqipType.Text)
 
@@ -535,6 +496,8 @@ Public Class StorageWorker
 
         updateComboboxes()
         dtgvBike.DataSource = Nothing
+
+        objectupdate()
     End Sub
 
     ''' <summary>
@@ -552,7 +515,7 @@ Public Class StorageWorker
         txtModelprice.ReadOnly = False
         txtModelproducer.ReadOnly = False
         txtModelcategory.ReadOnly = False
-        btnDeletemodel.Enabled = False
+
         btnChangemodel.Enabled = False
         btnSavemodel.Enabled = False
         btnNewmodel.Enabled = True

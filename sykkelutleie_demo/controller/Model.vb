@@ -9,7 +9,7 @@ Public Class Model
     Dim sqlstring As String
     Dim answer As String
     Dim myData As New DataTable
-
+    Private dao As New ModelDao
     ''' <summary>
     ''' Ny modellobject instans
     ''' </summary>
@@ -33,29 +33,21 @@ Public Class Model
     ''' <remarks> Lager en ny modell utifra objektet som allerede er opprettet.
     ''' Det må lages et nytt objekt før createModel blir kjørt
     ''' Den returnerer msgbox hvis en ny modell ble laget</remarks>
-    Public Function createModel()
+    Public Sub createModel()
 
-        sqlstring = "INSERT INTO modell (modell, pris, produsent, kategori) VALUES ('" & getModel() & "','" & getPrice() & "','" & getProducer() & "','" & getCategory() & "')"
+        dao.createModel(makeList())
 
-        answer = anySqlQuery.updateQuery(sqlstring)
-
-        Return answer
-
-    End Function
+    End Sub
 
     ''' <summary>
     ''' Endre modell
     ''' </summary>
     ''' <remarks>Msgbox returneres hvis endring blir utført </remarks>
-    Public Function changeModel()
+    Public Sub changeModel()
 
-        sqlstring = "UPDATE modell SET pris ='" & getPrice() & "', produsent ='" & getProducer() & "', kategori ='" & getCategory() & "' WHERE modell = '" & getModel() & "'"
+        dao.editModel(makeList())
 
-        answer = anySqlQuery.updateQuery(sqlstring)
-
-        Return answer
-
-    End Function
+    End Sub
 
     ''' <summary>
     ''' Modell søk
@@ -63,9 +55,11 @@ Public Class Model
     ''' <remarks>Fyller opp resultatliste(datagridView) med modeller</remarks>
     Public Function searchModell()
 
-        sqlstring = "SELECT modell, pris, produsent, kategori FROM modell WHERE (modell LIKE '%" & getModel() & "%') AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')"
+        ' sqlstring = "SELECT modell, pris, produsent, kategori FROM modell WHERE (modell LIKE '%" & getModel() & "%') AND (produsent LIKE '%" & getProducer() & "%') AND (kategori LIKE '%" & getCategory() & "%')"
 
-        myData = anySqlQuery.selectQuery(sqlstring)
+        ' myData = anySqlQuery.selectQuery(sqlstring)
+
+        myData = dao.searchModel(makeList())
 
         Return myData
 
@@ -74,29 +68,20 @@ Public Class Model
     ''' Slette Modell
     ''' </summary>
     ''' <remarks>Sletter modeller og returnerer msgbox hvis det blir utført</remarks>
-    Public Function deleteModell()
-
-        sqlstring = "DELETE FROM modell WHERE modell = '" & getModel() & "'"
-
-        answer = anySqlQuery.updateQuery(sqlstring)
-
-        Return answer
-
-    End Function
 
     Public Function allmodels()
 
-        sqlstring = "SELECT modell FROM modell"
-
-        myData = anySqlQuery.selectQuery(sqlstring)
+        myData = dao.selectAllModels
 
         Return myData
 
     End Function
 
-    Public Function relmodels(ByVal chosenmodel As String)
+    Public Function relmodels(ByVal chosenmodel As String) As DataTable
 
-        Return anySqlQuery.selectQuery("SELECT modell, pris, produsent, kategori FROM modell WHERE modell='" & chosenmodel & "'")
+        myData = dao.chooseModel(chosenmodel)
+
+        Return myData
 
     End Function
 
@@ -105,7 +90,12 @@ Public Class Model
     End Function
 
     Public Function getPrice()
-        Return price
+        If price = 0 Then
+            Return ""
+        Else
+            Return price
+        End If
+
     End Function
 
     Public Function getProducer()
@@ -115,5 +105,16 @@ Public Class Model
     Public Function getCategory()
         Return category
     End Function
+
+    '  SKAL BRUKES I MODEL
+    Private Function makeList() As List(Of String)
+        Dim list As New List(Of String)
+        list.Add(getModel())
+        list.Add(getPrice())
+        list.Add(getProducer())
+        list.Add(getCategory())
+        Return list
+    End Function
+
 
 End Class
