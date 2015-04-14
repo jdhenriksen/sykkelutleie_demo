@@ -78,7 +78,7 @@ Public Class Order
         For Each Bike As Bike In bicycleList
             bicyclePriceCounter += Bike.model.price 'Legger sammen prisen på alle sykklene i bestillingen.
             For Each tempEquipment As Equipment In Bike.equipmentList
-                bicyclePriceCounter += tempEquipment.equipmentPrice 'Legger sammen prisen på alt av utstyr i bestillingen.
+                bicyclePriceCounter += tempEquipment.EquipmentPrice 'Legger sammen prisen på alt av utstyr i bestillingen.
             Next
         Next
         totalPrice = CInt(getTimeSpanOfOrder()) * bicyclePriceCounter 'Multipliserer hele summen med antall dager leie.
@@ -134,13 +134,13 @@ Public Class Order
             dbutil.updateQuery(sql) 'Hver sykkel i bestillingen legges til i sykkel_bestilling i database. SETTES IKKE TIL UTLEID STATUS
 
             For Each tempEquipment As Equipment In tempBicycle.equipmentList
-                Dim data As DataTable = tempEquipment.getEquipmentIDDuringOrder(tempEquipment.equipmentType) 'Finner varenr til første vare i databasen hvor under_bestilling = True
+                Dim data As DataTable = tempEquipment.getEquipmentIDDuringOrder(tempEquipment.EquipmentType) 'Finner varenr til første vare i databasen hvor under_bestilling = True
                 Dim row As DataRow
                 Dim tempEquipmentID As String
 
 
                 If data.Rows.Count = 0 Then
-                    MsgBox("Kunne ikke finne Varenummeret til " & tempEquipment.equipmentType & " i databasen")
+                    MsgBox("Kunne ikke finne Varenummeret til " & tempEquipment.EquipmentType & " i databasen")
 
                 Else
                     row = data.Rows(0)

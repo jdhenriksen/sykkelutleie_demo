@@ -21,11 +21,11 @@
         dao.createEquipment(makeList())
     End Sub
 
-    Public Sub deleteEquipment()
+    Public Sub DeleteEquipment()
         dao.deleteEquipment(equipmentID)
     End Sub
 
-    Public Sub changeEquipment()
+    Public Sub ChangeEquipment()
         dao.editEquipment(makeList())
     End Sub
 
@@ -33,11 +33,11 @@
         Return dao.searchEquipment(makeList())
     End Function
 
-    Public Sub createCompatibility(ByVal modellnavn As String, ByVal equipmenttype As String)
+    Public Sub modeljoin(ByVal modellnavn As String, ByVal equipmenttype As String)
         dao.createCompatibility(modellnavn, equipmenttype)
     End Sub
 
-    Public Function modelEquipmentCompatible(ByVal modelname As String) As DataTable
+    Public Function modelEquipementCompatiable(ByVal modelname As String) As DataTable
         Return dao.modelEquipmentCompatible(modelname)
     End Function
 
@@ -58,7 +58,7 @@
         Return res
     End Function
 
-    Public Sub removeCompatibility(ByVal modelname As String, ByVal varenr As String)
+    Public Sub deletejoin(ByVal modelname As String, ByVal varenr As String)
         dao.removeCompatibility(modelname, varenr)
     End Sub
 
@@ -83,7 +83,7 @@
         Return dao.searchEquipment(makeList())
     End Function
 
-    Public Function selectEquipmentGroupByType()
+    Public Function EquipmentTypes()
         Return dao.selectEquipmentGroupByType()
     End Function
 
