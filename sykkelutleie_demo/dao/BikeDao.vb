@@ -49,12 +49,12 @@
     End Function
 
     Public Sub setAllBikesNotUnderOrder()
-        dbutil.updateQuery(SQLRes.setAllBikesNotUnderOrder)
+        dbutil.paramQuery(SQLRes.setAllBikesNotUnderOrder)
     End Sub
 
     Public Sub setBikeUnderOrder(framenumber As String)
         dbutil.addParametersToQuery("@framenumber", framenumber)
-        dbutil.updateQuery(SQLRes.setBikeUnderOrder)
+        dbutil.paramQuery(SQLRes.setBikeUnderOrder)
     End Sub
 
     Public Function searchBicycleModel(list As List(Of String), price As Double, producer As String, category As String) As DataTable

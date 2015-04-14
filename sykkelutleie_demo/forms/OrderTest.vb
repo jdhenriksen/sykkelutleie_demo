@@ -82,7 +82,7 @@ Public Class OrderTest
     ''' Skriver deretter noe info til listeboks på siste side.
     ''' </remarks>
     Private Sub btnAddToOrder_Click() Handles btnAddToOrder.Click
-        Dim frameCheck As String = txtBxRammenr.Text 'Skjekker om sykkelen allerede er lagt til listen for bestillingen.
+        Dim frameCheck As String = txtBxRammenr.Text 'Sjekker om sykkelen allerede er lagt til listen for bestillingen.
         For Each item In ListBoxOrderOverview.Items
             If item.contains(frameCheck) Then
                 MsgBox("Sykkelen er allerede i bestillingen")
@@ -171,8 +171,8 @@ Public Class OrderTest
 
     End Sub
     Private Sub OrderTest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        '  updateCustomerGridView()
-        ' updateBicycleGridView()
+        updateCustomerGridView()
+        updateBicycleGridView()
 
         Bestilling.Dock = DockStyle.Fill
     End Sub
@@ -343,7 +343,7 @@ Public Class OrderTest
         txtBxKategori.Text = ""
         txtBxMerke.Text = ""
         txtBxModell.Text = ""
-        txtBxPris.Text = "0"
+        txtBxPris.Text = ""
         txtBxRammenr.Text = ""
         CmbBoxDiscount.SelectedIndex = 0
         ListBoxReceipt.Items.Clear()
