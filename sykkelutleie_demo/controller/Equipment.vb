@@ -21,11 +21,11 @@
         dao.createEquipment(makeList())
     End Sub
 
-    Public Sub DeleteEquipment()
+    Public Sub deleteEquipment()
         dao.deleteEquipment(equipmentID)
     End Sub
 
-    Public Sub ChangeEquipment()
+    Public Sub editEquipment()
         dao.editEquipment(makeList())
     End Sub
 
@@ -33,16 +33,16 @@
         Return dao.searchEquipment(makeList())
     End Function
 
-    Public Sub modeljoin(ByVal modellnavn As String, ByVal equipmenttype As String)
+    Public Sub createCompatibility(ByVal modellnavn As String, ByVal equipmenttype As String)
         dao.createCompatibility(modellnavn, equipmenttype)
     End Sub
 
-    Public Function modelEquipementCompatiable(ByVal modelname As String) As DataTable
-        Return dao.modelEquipmentCompatible(modelname)
+    Public Function getEquipmentByModel(ByVal modelname As String) As DataTable
+        Return dao.getEquipmentByModel(modelname)
     End Function
 
     Public Function chosenEquipment(ByVal numberid As String) As DataTable
-        Return dao.chosenEquipment(numberid)
+        Return dao.selectEquipmentById(numberid)
     End Function
 
     Public Function getEquipmentID(ByVal type As String) As DataTable
@@ -52,18 +52,18 @@
         Return dao.getEquipmentIDDuringOrder(type)
     End Function
 
-    Public Function getTypeFromID(ByVal varenr As String) As String
-        Dim table As DataTable = dao.getTypeFromID(varenr)
+    Public Function getTypeByID(ByVal varenr As String) As String
+        Dim table As DataTable = dao.getTypeByID(varenr)
         Dim res As String = table.Rows(0)(0).ToString()
         Return res
     End Function
 
-    Public Sub deletejoin(ByVal modelname As String, ByVal varenr As String)
+    Public Sub removeCompatibility(ByVal modelname As String, ByVal varenr As String)
         dao.removeCompatibility(modelname, varenr)
     End Sub
 
-    Public Function compatibleEquipment(model As String) As DataTable
-        Return dao.compatibleEquipment(model)
+    Public Function getCompatibleEquipment(model As String) As DataTable
+        Return dao.getCompatibleEquipment(model)
     End Function
 
     Public Sub setEquipmentUnderOrder(equipmentID As String)
@@ -78,13 +78,8 @@
         dao.setAllEquipmentNotUnderOrder()
     End Sub
 
-    'Gjør det samme som searchEquipment. Beholdes midlertidig pga referanse.
-    Public Function listAllEquipment()
-        Return dao.searchEquipment(makeList())
-    End Function
-
-    Public Function EquipmentTypes()
-        Return dao.selectEquipmentGroupByType()
+    Public Function getEquipmentGroupByType()
+        Return dao.getEquipmentGroupByType()
     End Function
 
     Private Function makeList() As List(Of String)

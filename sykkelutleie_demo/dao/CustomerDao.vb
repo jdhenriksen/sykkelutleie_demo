@@ -9,6 +9,7 @@
 
     Public Sub editCustomer(list As List(Of String), id As String)
         populateList(list)
+        dbutil.addParametersToQuery("@id", id)
         dbutil.paramQuery(SQLRes.sqlEditCustomer)
     End Sub
 
@@ -28,10 +29,16 @@
         Return table
     End Function
 
-    Public Sub selectCustomerById(id As String)
+    Public Function getActiveCustomer() As DataTable
+        table = dbutil.paramQuery(SQLRes.sqlGetActiveCustomer)
+        Return table
+    End Function
+
+    Public Function selectCustomerById(id As String) As DataTable
         dbutil.addParametersToQuery("@id", id)
-        dbutil.paramQuery(SQLRes.sqlSelectCustomerById)
-    End Sub
+        table = dbutil.paramQuery(SQLRes.sqlSelectCustomerById)
+        Return table
+    End Function
 
     Public Function selectAllCustomers() As DataTable
         table = dbutil.paramQuery(SQLRes.sqlSelectAllCustomers)
@@ -45,7 +52,6 @@
             .addParametersToQuery("@phone", list(2))
             .addParametersToQuery("@email", list(3))
             .addParametersToQuery("@active", list(4))
-            .addParametersToQuery("@id", list(5))
         End With
     End Sub
 

@@ -85,7 +85,7 @@ Public Class EmployeeTest
 
     'Hjelpemetode: Sjekker aktivert-verdien til et Employee-objekt.
     Private Sub activeCheck()
-        Dim textBoxArr() As TextBox = {txtEmpEmail, txtEmpFirstname, txtEmpId, txtEmpJobTitle, txtEmpLastname, txtEmpPassword, txtEmpPhone, txtEmpUsername, txtEmpAddress, txtEmpZipCode}
+        Dim textBoxArr() As TextBox = {txtEmpEmail, txtEmpFirstname, txtEmpId, txtEmpJobTitle, txtEmpLastname, txtEmpPassword, txtEmpPhone, txtEmpUsername, txtEmpAddress, txtEmpZipCode, txtEmpZipArea}
         If Not emp.isActive(txtEmpId.Text) Then
             For Each txtBox In textBoxArr
                 txtBox.Enabled = False

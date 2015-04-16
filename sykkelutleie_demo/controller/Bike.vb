@@ -25,7 +25,6 @@
                     ByVal loc As String, ByVal placeorigin As String,
                     ByVal brake As String, ByVal tire As String,
                     ByVal framename As String, ByVal gearname As String, ByRef modelobject As Object)
-
         frameNumber = framenb
         status = stat
         location = loc
@@ -35,7 +34,6 @@
         frame = framename
         gear = gearname
         model = modelobject
-
     End Sub
     Public Sub New()
 
@@ -46,20 +44,15 @@
     ''' </summary>
     ''' <remarks>Hvis True altså utført får vi bekreftelse</remarks>
     Public Sub createBike()
-
         dao.createBike(makeList())
-
     End Sub
     ''' <summary>
     ''' Søk etter sykkel
     ''' </summary>
     ''' <remarks>Fyller datagridview for sykkel med reultater</remarks>
-    Public Function searchBike()
-
+    Public Function searchBike() As DataTable
         myData = dao.searchBike(makeList())
-
         Return myData
-
     End Function
     ''' <summary>
     ''' Endre Sykkel
@@ -67,9 +60,7 @@
     ''' <remarks>oppdatering av sykkelinfo, alle bokser og felter oppdateres
     ''' Hvis bekreftet svar= True så gir vi bekreftelse til bruker</remarks>
     Public Sub changeBike()
-
         dao.editBike(makeList())
-
     End Sub
     ''' <summary>
     ''' Slette sykkel
@@ -77,18 +68,12 @@
     ''' <remarks>Bruker også objectet, men trenger kun modellnavn
     ''' Returnerer også svar i form av msgbox()</remarks>
     Public Sub deleteBike()
-
         dao.deleteBike(getFrameNumber())
-
     End Sub
 
-
-    Public Function getBike(ByVal chosenbike As String)
-
+    Public Function getBike(ByVal chosenbike As String) As DataTable
         myData = dao.getBike(chosenbike)
-
         Return myData
-
     End Function
 
     ''' <summary>
@@ -97,67 +82,58 @@
     ''' <returns>Datatabell basert på sql spørring</returns>
     ''' <remarks>Joiner sykkel og modell for å gi data fra begge</remarks>
     Function searchBicycleModel(bike As Bike) As DataTable
-
-
-
         myData = dao.searchBicycleModel(bike.makeList(), bike.model.price, bike.model.getProducer, bike.model.getCategory)
-
         Return myData
-
     End Function
 
     Public Sub setBikeUnderOrder(bicycleID As String)
-
         dao.setBikeUnderOrder(bicycleID)
-
     End Sub
 
     Public Sub setAllBikesNotUnderOrder()
-
         dao.setAllBikesNotUnderOrder()
-
     End Sub
 
-    Public Function getFrameNumber()
+    Public Function getFrameNumber() As String
         Return frameNumber
     End Function
-    Public Function getStatus()
+    Public Function getStatus() As String
         Return status
     End Function
-    Public Function getLocation()
+    Public Function getLocation() As String
         Return location
     End Function
-    Public Function getPlaceOfOrigins()
+    Public Function getPlaceOfOrigins() As String
         Return placeOfOrigin
     End Function
-    Public Function getTires()
+    Public Function getBrakes() As String
+        Return brakes
+    End Function
+    Public Function getTires() As String
         Return tires
     End Function
-    Public Function getFrame()
+    Public Function getFrame() As String
         Return frame
     End Function
-    Public Function getGear()
+    Public Function getGear() As String
         Return gear
     End Function
-    Public Function getModel()
+    Public Function getModel() As String
         Return model.getModel()
     End Function
 
     'DAO
     Private Function makeList() As List(Of String)
         Dim list As New List(Of String)
-
         list.Add(getFrameNumber())
         list.Add(getStatus())
         list.Add(getLocation())
         list.Add(getPlaceOfOrigins())
-        list.Add(brakes)
+        list.Add(getBrakes())
         list.Add(getTires())
         list.Add(getFrame())
         list.Add(getGear())
         list.Add(model.getModel())
-
         Return list
-
     End Function
 End Class

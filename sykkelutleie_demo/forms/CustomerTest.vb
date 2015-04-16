@@ -12,7 +12,10 @@
 
         cmr = New Customer(firstname, lastname, phone, email)
         cmr.createCustomer()
-        Me.Hide()
+        Me.Close()
     End Sub
-    
+
+    Private Sub CustomerTest_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        OrderTest.updateCustomerGridView()
+    End Sub
 End Class

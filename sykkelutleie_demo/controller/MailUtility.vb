@@ -4,11 +4,7 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class MailUtility
-    Dim mailFrom As String, _
-        recipient As String, _
-        subject As String, _
-        body As String, _
-        password As String
+    Private mailFrom As String, recipient, subject, body, password As String
 
     Public Sub New(mailFrom As String, recipient As String, subject As String, body As String, password As String)
         Me.mailFrom = mailFrom
@@ -23,23 +19,17 @@ Public Class MailUtility
     ''' </summary>
     ''' <remarks>Konstruer New mailUtility først, deretter sendMail()</remarks>
     Public Sub sendMail()
-        Dim eMail As New MailMessage(mailFrom, recipient, subject, body)
-
+        Dim email As New MailMessage(mailFrom, recipient, subject, body)
         Try
-
             Dim smtp As New SmtpClient("smtp.gmail.com")
             smtp.Port = 587
             smtp.EnableSsl = True
             smtp.Credentials = New System.Net.NetworkCredential(mailFrom, password)
-
-            smtp.Send(eMail)
-
+            smtp.Send(email)
         Catch ex As Exception
             mailError(ex)
         End Try
-
         MsgBox("Eposten er sendt til " & recipient)
-
     End Sub
 
     Private Sub mailError(ex As Exception)

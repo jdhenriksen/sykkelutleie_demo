@@ -51,15 +51,9 @@
         Next
     End Sub
 
-    Public Function modelEquipmentCompatible(model As String) As DataTable
+    Public Function getEquipmentByModel(model As String) As DataTable
         dbutil.addParametersToQuery("@model", model)
         table = dbutil.paramQuery(SQLRes.sqlModelEquipmentCompatible)
-        Return table
-    End Function
-
-    Public Function chosenEquipment(id As String) As DataTable
-        dbutil.addParametersToQuery("@id", id)
-        table = dbutil.paramQuery(SQLRes.sqlChosenEquipment)
         Return table
     End Function
 
@@ -75,7 +69,7 @@
         Return table
     End Function
 
-    Public Function getTypeFromID(id As String) As DataTable
+    Public Function getTypeByID(id As String) As DataTable
         dbutil.addParametersToQuery("@id", id)
         table = dbutil.paramQuery(SQLRes.sqlGetTypeFromID)
         Return table
@@ -87,7 +81,7 @@
         dbutil.paramQuery(SQLRes.sqlRemoveCompatibility)
     End Sub
 
-    Public Function compatibleEquipment(model As String) As DataTable
+    Public Function getCompatibleEquipment(model As String) As DataTable
         dbutil.addParametersToQuery("@model", model)
         table = dbutil.paramQuery(SQLRes.sqlCompatibleEquipment)
         Return table
@@ -107,7 +101,7 @@
         dbutil.paramQuery(SQLRes.sqlSetAllEquipmentNotUnderOrder)
     End Sub
 
-    Public Function selectEquipmentGroupByType() As DataTable
+    Public Function getEquipmentGroupByType() As DataTable
         table = dbutil.paramQuery(SQLRes.sqlSelectEquipmentGroupByType)
         Return table
     End Function

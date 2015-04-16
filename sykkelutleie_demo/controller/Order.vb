@@ -3,7 +3,7 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class Order
-    Property bicycleList As New List(Of Bike)
+    Property bikes As New List(Of Bike)
     'Private equipment As List(Of EquipmentDao)
     Property customer As New Customer
     Property salesman As New Employee
@@ -14,21 +14,21 @@ Public Class Order
     Property bicyclePriceCounter As Double
     Property sum As Double
 
+    Private dao As New OrderDao
+
 
     Public Sub New()
 
     End Sub
+
     Public Sub New(bicycleList As List(Of Bike), customer As Customer, salesman As Employee, fromDate As Date, toDate As Date, discount As String)
-        Me.bicycleList = bicycleList
+        Me.bikes = bicycleList
         Me.customer = customer
         Me.salesman = salesman
         Me.fromDate = Format(fromDate, "yyyy/MM/dd")
         Me.toDate = Format(toDate, "yyyy/MM/dd")
         Me.discount = discount
     End Sub
-
-
-
 
     ''' <summary>
     ''' Finner Datatable basert på sykkel- og modellsøk
@@ -43,6 +43,7 @@ Public Class Order
 
         Return data
     End Function
+
     Public Function updateCustomer(customer As Customer) As DataTable
         Dim data As DataTable
 
@@ -50,9 +51,6 @@ Public Class Order
 
         Return data
     End Function
-
-
-
 
     ''' <summary>
     ''' Finner tiden i dager mellom to datoer
@@ -65,9 +63,6 @@ Public Class Order
         Return orderDays
     End Function
 
-
-
-
     ''' <summary>
     ''' Finner totalpris basert på valgt rabatt og antall dager.
     ''' </summary>
@@ -75,9 +70,9 @@ Public Class Order
     Public Function getTotalPrice() As Double
         Dim totalPrice As Double
 
-        For Each Bike As Bike In bicycleList
-            bicyclePriceCounter += Bike.model.price 'Legger sammen prisen på alle sykklene i bestillingen.
-            For Each tempEquipment As Equipment In Bike.equipmentList
+        For Each bike As Bike In bikes
+            bicyclePriceCounter += bike.model.price 'Legger sammen prisen på alle sykklene i bestillingen.
+            For Each tempEquipment As Equipment In bike.equipmentList
                 bicyclePriceCounter += tempEquipment.EquipmentPrice 'Legger sammen prisen på alt av utstyr i bestillingen.
             Next
         Next
@@ -115,23 +110,21 @@ Public Class Order
     ''' Formaterer datotid til rett sql format</remarks>
     Public Sub registerOrder()
         Dim dbutil As New DBUtility
-        Dim sql As String
         Dim tempFromDate As String = Format(fromDate, "yyyy/MM/dd")
         Dim tempToDate As String = Format(toDate, "yyyy/MM/dd")
 
         '& getEmployeeID(salesman.account.username) & !!!! Bytt ut med hardkodet ansatt id, her 40
+        'sql = "INSERT INTO `bestilling` (`bestillingsid`, `datotid`, `leie_fra`, `leie_til`, `ansattid`, `kid`, `sum`) VALUES (NULL, CURRENT_TIMESTAMP, '" & tempFromDate & "', '" & tempToDate & "', 40, '" & customer.customerID & "', " & getTotalPrice() & ");"
 
-        sql = "INSERT INTO `14badr05`.`bestilling` (`bestillingsid`, `datotid`, `leie_fra`, `leie_til`, `ansattid`, `kid`, `sum`) VALUES (NULL, CURRENT_TIMESTAMP, '" & tempFromDate & "', '" & tempToDate & "', 40, '" & customer.customerID & "', " & getTotalPrice() & ");"
+        dao.createOrder(makeList())
 
-        dbutil.updateQuery(sql)
+        Dim tempOrderID As String = dao.getLatestOrder()
 
-        Dim tempOrderID As String = getOrderID()
+        For Each tempBicycle As Bike In bikes
 
-        For Each tempBicycle As Bike In bicycleList
-
-            sql = "INSERT INTO `14badr05`.`sykkel_bestilling` (`bestillingsid`, `rammenr`) VALUES ('" & tempOrderID & "', '" & tempBicycle.frameNumber & "');"
-
-            dbutil.updateQuery(sql) 'Hver sykkel i bestillingen legges til i sykkel_bestilling i database. SETTES IKKE TIL UTLEID STATUS
+            'Hver sykkel i bestillingen legges til i sykkel_bestilling i database.
+            'SETTES IKKE TIL UTLEID STATUS
+            dao.createBikeOrder(tempOrderID, tempBicycle.frameNumber)
 
             For Each tempEquipment As Equipment In tempBicycle.equipmentList
                 Dim data As DataTable = tempEquipment.getEquipmentIDDuringOrder(tempEquipment.EquipmentType) 'Finner varenr til første vare i databasen hvor under_bestilling = True
@@ -145,58 +138,18 @@ Public Class Order
                 Else
                     row = data.Rows(0)
                     tempEquipmentID = row("varenr")
-                    sql = "INSERT INTO `14badr05`.`utstyr_bestilling` (`bestillingsid`, `varenr`) VALUES ('" & tempOrderID & "', '" & tempEquipmentID & "');"
-                    dbutil.updateQuery(sql) 'Hvert utstyr til hver sykkel legges til i bestillingen i Databasen. SETTES IKKE TIL UTLEID
+
+                    'Hvert utstyr til hver sykkel legges til i bestillingen i Databasen. 
+                    'SETTES IKKE TIL UTLEID
+                    dao.createEquipmentOrder(tempOrderID, tempEquipmentID)
                     tempEquipment.setEquipmentNotUnderOrder(tempEquipmentID) 'Setter under_bestilling = False, slik at samme vare ikke kommer i neste loop
-
                 End If
-
             Next
         Next
 
         Dim equipment As New Equipment
         equipment.setAllEquipmentNotUnderOrder()
-
-
-
     End Sub
-
-
-
-
-    ''' <summary>
-    ''' Finner bestillingsID basert på info brukt til å lage bestilling
-    ''' </summary>
-    ''' <returns>BestillingsID som string</returns>
-    ''' <remarks>Brukes av skriv til Bicycle- og EquipmentOrder</remarks>
-    Public Function getOrderID() As String
-        Dim dbutil As New DBUtility
-        Dim sql As String
-        Dim result As DataTable
-        Dim row As DataRow
-        Dim id As String
-        Dim tempFromDate As String = Format(fromDate, "yyyy/MM/dd")
-        Dim tempToDate As String = Format(toDate, "yyyy/MM/dd")
-
-        ' sql = "SELECT bestillingsid FROM bestilling WHERE leie_fra ='" & tempFromDate & "' AND leie_til='" & tempToDate & "' AND ansattid='" & getEmployeeID(salesman.account.username) & "' AND kid='" & customer.customerID & "' AND sum='" & sum & "';"
-        sql = "SELECT bestillingsid FROM bestilling WHERE leie_fra ='" & tempFromDate & "' AND leie_til='" & tempToDate & "' AND ansattid='40' AND kid='" & customer.customerID & "' AND sum='" & sum & "';"
-
-        result = dbutil.selectQuery(sql)
-
-        If result.Rows.Count <> 1 Then
-            Return MsgBox("Kunne ikke finne ordrenummer til bestillingen")
-        Else
-
-            row = result.Rows(0)
-            id = row("bestillingsid")
-
-            Return id
-        End If
-
-    End Function
-
-
-
 
     ''' <summary>
     ''' Henter ansattID på innlogget bruker
@@ -217,13 +170,32 @@ Public Class Order
         If result.Rows.Count <> 1 Then
             Return MsgBox("Kunne ikke finne ansattID til ansatt med brukernavn " & username & " i databasen")
         Else
-
             row = result.Rows(0)
             id = row("ansattid")
-
             Return id
         End If
 
+    End Function
+
+    Public Function getCustomerById(id As String) As DataTable
+        Dim customerDao As New CustomerDao
+        Return customerDao.selectCustomerById(id)
+    End Function
+
+    Public Function getBikeJoinModel(framenumber As String) As DataTable
+        Return dao.getBikeJoinModel(framenumber)
+    End Function
+
+    Private Function makeList() As List(Of String)
+        Dim list As New List(Of String)
+        With list
+            .Add(fromDate)
+            .Add(toDate)
+            .Add("40")
+            .Add(customer.customerID)
+            .Add(sum)
+        End With
+        Return list
     End Function
 
 End Class

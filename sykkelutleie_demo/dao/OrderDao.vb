@@ -7,10 +7,33 @@
         dbutil.paramQuery(SQLRes.sqlCreateOrder)
     End Sub
 
+    Public Sub createBikeOrder(orderID As String, frameNumber As String)
+        dbutil.addParametersToQuery("@orderID", orderID)
+        dbutil.addParametersToQuery("@frameNumber", frameNumber)
+        dbutil.paramQuery(SQLRes.sqlCreateBikeOrder)
+    End Sub
+
+    Public Function getLatestOrder() As String
+        table = dbutil.paramQuery(SQLRes.sqlGetLatestOrder)
+        Return table.Rows(0)(0)
+    End Function
+
+    Public Sub createEquipmentOrder(orderID As String, equipmentID As String)
+        dbutil.addParametersToQuery("@orderID", orderID)
+        dbutil.addParametersToQuery("@equipmentID", equipmentID)
+        dbutil.paramQuery("INSERT INTO `utstyr_bestilling` (`bestillingsid`, `varenr`) VALUES (@orderID, @equipmentID);")
+    End Sub
+
     Public Sub editOrder(list As List(Of String))
         populateList(list)
         dbutil.paramQuery(SQLRes.sqlEditOrder)
     End Sub
+
+    Public Function getBikeJoinModel(framenumber As String) As DataTable
+        dbutil.addParametersToQuery("@framenumber", framenumber)
+        table = dbutil.paramQuery(SQLRes.sqlGetBikeJoinModel)
+        Return table
+    End Function
 
     Public Function searchOrder(list As List(Of String)) As DataTable
         Dim newList() As String = prepareForSearch(list)
@@ -58,17 +81,4 @@
         Next
         Return list
     End Function
-
-    'SKAL INN I ORDER
-    'Private Function makeList() As List(Of String)
-    '    Dim list As New List(Of String)
-    '    With list
-    '        .Add(getFromDate())
-    '        .Add(getToDate())
-    '        .Add(Employee.getEmployeeID())
-    '        .Add(Customer.getCustomerID())
-    '        .Add(getSumTotal())
-    '    End With
-    '    Return list
-    'End Function
 End Class

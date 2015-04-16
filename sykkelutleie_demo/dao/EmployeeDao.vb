@@ -30,7 +30,7 @@
     End Function
 
     Public Function getAllEmployees() As DataTable
-        Return dbutil.selectQuery(SQLRes.sqlGetAllEmployees)
+        Return dbutil.paramQuery(SQLRes.sqlGetAllEmployees)
     End Function
 
     Public Function selectEmployeeById(id As String) As DataTable

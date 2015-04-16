@@ -12,8 +12,6 @@
         dbutil.paramQuery(SQLRes.sqlEditModel)
     End Sub
 
-
-    'INCOMPLETE: Samme problem som i BikeDao
     Public Function searchModel(list As List(Of String)) As DataTable
         Dim newList() As String = prepareForSearch(list)
         Dim i As Integer
@@ -48,12 +46,10 @@
         Return table
     End Function
 
-    Public Function chooseModel(ByVal model As String)
-
+    Public Function getModelById(ByVal model As String)
         dbutil.addParametersToQuery("@model", model)
-        table = dbutil.paramQuery(SQLRes.sqlGetModel)
+        table = dbutil.paramQuery(SQLRes.sqlGetModelById)
         Return table
-
     End Function
 
     Private Sub populateList(list As List(Of String))
@@ -79,14 +75,4 @@
         Next
         Return list
     End Function
-
-    'SKAL BRUKES I MODEL
-    'Private Function makeList() As List(Of String)
-    '    Dim list As New List(Of String)
-    '    list.Add(getModel())
-    '    list.Add(getPrice())
-    '    list.Add(getProducer())
-    '    list.Add(getCategory())
-    '    Return list
-    'End Function
 End Class

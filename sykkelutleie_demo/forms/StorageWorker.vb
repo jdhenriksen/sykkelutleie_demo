@@ -156,7 +156,7 @@ Public Class StorageWorker
 
                 For Each itemChecked In lstbxEqipment.CheckedItems
 
-                    equipment.modeljoin(model.getModel, (itemChecked.item("type").ToString()))
+                    equipment.createCompatibility(model.getModel, (itemChecked.item("type").ToString()))
 
                 Next
 
@@ -180,7 +180,7 @@ Public Class StorageWorker
 
         objectupdate()
 
-        dtgvModel.DataSource = model.searchModell()
+        dtgvModel.DataSource = model.searchModel()
 
         dtgvModel.ClearSelection()
 
@@ -195,12 +195,12 @@ Public Class StorageWorker
         btnEqipReset_Click(sender, e)
         btnEqipSearch_Click(sender, e)
         objectupdate()
-        myData = equipment.EquipmentTypes()
+        myData = equipment.getEquipmentGroupByType()
         dialogeResult = MsgBox("Vil du endre modell med navn: " & model.getModel() & "?", MsgBoxStyle.YesNo)
 
         If dialogeResult = 6 Then
 
-            model.changeModel()
+            model.editModel()
 
             For i As Integer = 0 To lstbxEqipment.Items.Count - 1
 
@@ -208,9 +208,9 @@ Public Class StorageWorker
                 chkstate = lstbxEqipment.GetItemCheckState(i)
 
                 If (chkstate = CheckState.Checked) Then
-                    equipment.modeljoin(model.getModel, myData.Rows(i)("type").ToString)
+                    equipment.createCompatibility(model.getModel, myData.Rows(i)("type").ToString)
                 Else
-                    equipment.deletejoin(model.getModel, myData.Rows(i)("varenr").ToString())
+                    equipment.removeCompatibility(model.getModel, myData.Rows(i)("varenr").ToString())
                 End If
             Next
 
@@ -322,7 +322,7 @@ Public Class StorageWorker
 
         'Sender valgt modell fra GridView og får tilbake resultater som settes inn i Modell sine tekstbokser 
 
-        datafill = model.relmodels(chosenmodel)
+        datafill = model.getModelById(chosenmodel)
 
         txtModelname.Text = chosenmodel
         txtModelprice.Text = datafill.Rows(0)(1).ToString()
@@ -339,8 +339,8 @@ Public Class StorageWorker
         txtModelproducer.ReadOnly = True
         txtModelcategory.ReadOnly = True
 
-        allEquipment = equipment.EquipmentTypes()
-        myData = equipment.modelEquipementCompatiable(chosenmodel)
+        allEquipment = equipment.getEquipmentGroupByType()
+        myData = equipment.getEquipmentByModel(chosenmodel)
 
 
         While treff < (allEquipment.Rows.Count)
@@ -407,7 +407,7 @@ Public Class StorageWorker
         Dim chosenmodel As String = cmbModel.SelectedItem.ToString()  'Hvis alternativ i Combobox blir valgt får vi fylt ut 3 andre tekstbokser
         Dim modelfilled As DataTable
 
-        modelfilled = model.relmodels(chosenmodel)
+        modelfilled = model.getModelById(chosenmodel)
         txtPrice.Text = modelfilled.Rows(0)(1).ToString()
         txtProducer.Text = modelfilled.Rows(0)(2).ToString()
         txtCategory.Text = modelfilled.Rows(0)(3).ToString()
@@ -423,7 +423,7 @@ Public Class StorageWorker
         objectupdate()
         Dim combomodelnames As DataTable
         cmbModel.Items.Clear()
-        combomodelnames = model.allmodels 'Henter modellnavn
+        combomodelnames = model.selectAllModels 'Henter modellnavn
         Dim numberrows As Integer = combomodelnames.Rows.Count()
 
         For counter As Integer = counter To numberrows - 1 'Fyller opp Modell combobox med valg basert på hvor mange modeller er databasen.
@@ -553,7 +553,7 @@ Public Class StorageWorker
     Private Sub btnEqipSearch_Click(sender As Object, e As EventArgs) Handles btnEqipSearch.Click
 
         objectupdate()
-        dtgvEquip.DataSource = equipment.listAllEquipment()
+        dtgvEquip.DataSource = equipment.searchEquipment()
         dtgvEquip.ClearSelection()
     End Sub
 
@@ -569,7 +569,7 @@ Public Class StorageWorker
 
     Private Sub btnEqipSave_Click(sender As Object, e As EventArgs) Handles btnEqipSave.Click
         objectupdate()
-        equipment.ChangeEquipment()
+        equipment.editEquipment()
         btnEqipReset_Click(sender, e)
         btnEqipSearch_Click(sender, e)
     End Sub
@@ -577,7 +577,7 @@ Public Class StorageWorker
     Private Sub btnEqipDelete_Click(sender As Object, e As EventArgs) Handles btnEqipDelete.Click
 
         objectupdate()
-        equipment.DeleteEquipment()
+        equipment.deleteEquipment()
         btnEqipReset_Click(sender, e)
         btnEqipSearch_Click(sender, e)
 
@@ -597,7 +597,7 @@ Public Class StorageWorker
 
         lstbxEqipment.Enabled = False
         lstbxEqipment.DataSource = Nothing
-        lstbxEqipment.DataSource = equipment.EquipmentTypes()
+        lstbxEqipment.DataSource = equipment.getEquipmentGroupByType()
         lstbxEqipment.DisplayMember = "type"
     End Sub
 

@@ -4,7 +4,7 @@
     Property phone As String
     Property email As String
     Property active As Integer
-    'Private type As Person ---> Identifiserer om objektet er Employee eller Customer
+
     Private dbutil As DBUtility
 
     Sub New(fn As String, ln As String, phone As String, email As String)
@@ -13,17 +13,10 @@
         setPhone(phone)
         setEmail(email)
         active = 1
-        dbutil = New DBUtility
     End Sub
 
-    'Testkonstruktør
     Sub New()
-        firstname = "Testperson"
-        lastname = "Testesen"
-        phone = "11221122"
-        email = "testperson@test.net"
-        active = 1
-        dbutil = New DBUtility
+       
     End Sub
 
     Public Function getFirstname() As String
@@ -80,9 +73,4 @@
             MsgBox("Aktivert kan kun være 1 eller 0.")
         End If
     End Sub
-
-    Public Overrides Function toString() As String
-        Return "Fornavn: " & getFirstname() & vbCrLf & "Etternavn: " & getLastname() & vbCrLf _
-            & "Telefonnummer: " & getPhone() & vbCrLf & "Epost: " & getEmail() & vbCrLf
-    End Function
 End Class

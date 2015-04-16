@@ -12,11 +12,7 @@ Public Class Account
 
     Sub New(username As String, password As String)
         Me.username = username
-        If validatePassword(password) Then
-            Me.password = generateHash(password)
-        Else
-            MsgBox("Passord ugyldig.")
-        End If
+        Me.password = password
     End Sub
 
     Sub New()

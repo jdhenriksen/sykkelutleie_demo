@@ -39,15 +39,16 @@ Public Class SQLRes
     Public Const sqlEditCustomer As String = "UPDATE kunde SET fornavn = @firstname, etternavn = @lastname, telefon = @phone, " & _
             "epost = @email, aktivert = @active WHERE kid = @id;"
     Public Const sqlDeleteCustomer As String = "DELETE FROM kunde WHERE kid = @id;"
-    Public Const sqlSelectCustomerById As String = "SELECT * FROM kunde WHERE id = @id;"
+    Public Const sqlSelectCustomerById As String = "SELECT * FROM kunde WHERE kid = @id;"
     Public Const sqlSelectAllCustomers As String = "SELECT * FROM kunde;"
     Public Const sqlSearchCustomer As String = "SELECT * FROM kunde WHERE kid LIKE @id AND fornavn LIKE @firstname AND " & _
             "etternavn LIKE @lastname AND telefon LIKE @phone AND epost LIKE @email AND aktivert LIKE @active;"
+    Public Const sqlGetActiveCustomer As String = "SELECT * FROM kunde WHERE aktivert = '1';"
 
     'BIKE
     Public Const sqlEditBike As String = "UPDATE sykkel SET status = @status, lokasjon = @location, utleiested = @placeOfOrigin, " & _
             "bremser = @brakes, dekk = @tires, ramme = @frame, gir = @gear, modell = @model WHERE rammenr = @framenumber;"
-    Public Const searchBike As String = "SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE @framenumber) AND (status LIKE @status) AND " & _
+    Public Const sqlSearchBike As String = "SELECT rammenr, modell, lokasjon, status FROM sykkel WHERE (rammenr LIKE @framenumber) AND (status LIKE @status) AND " & _
             "(lokasjon LIKE @location) AND (utleiested LIKE @placeOfOrigin) AND (bremser LIKE @brakes) AND (dekk LIKE @tires) AND " & _
             "(ramme LIKE @frame) AND (gir LIKE @gear) AND (modell LIKE @model);"
     Public Const sqlGetModelName As String = "SELECT modell FROM sykkel WHERE rammenr = @framenumber;"
@@ -57,9 +58,10 @@ Public Class SQLRes
     Public Const sqlCreateBike As String = "INSERT INTO sykkel (`rammenr`, `status`, `lokasjon`, `utleiested`, `bremser`, `dekk`, `ramme`, `gir`, `modell`) " & _
     "VALUES (@framenumber, @status, @location, @placeOfOrigin, @brakes, @tires, @frame, @gear, @model);"
     Public Const sqlGetBike As String = "SELECT modell, status, lokasjon, utleiested, dekk, ramme, gir, bremser FROM sykkel WHERE rammenr = @framenumber; "
-    Public Const setAllBikesNotUnderOrder As String = "UPDATE  `14badr05`.`sykkel` SET  sykkel.`under_bestilling` =  '0';"
-    Public Const setBikeUnderOrder As String = "UPDATE  `14badr05`.`sykkel` SET  sykkel.`under_bestilling` =  '1' WHERE  sykkel.rammenr = @framenumber;"
-    Public Const searchBicycleModel As String = "SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE (rammenr LIKE @framenumber) AND (sykkel.modell LIKE @model) AND (lokasjon LIKE @location) AND (utleiested LIKE @placeofOrigin) AND (pris >=@price) AND (produsent LIKE @producer) AND (kategori LIKE @category AND sykkel.under_bestilling = '0' )"
+    Public Const sqlSetAllBikesNotUnderOrder As String = "UPDATE  `sykkel` SET  sykkel.`under_bestilling` =  '0';"
+    Public Const sqlSetBikeUnderOrder As String = "UPDATE  `sykkel` SET  sykkel.`under_bestilling` =  '1' WHERE  sykkel.rammenr = @framenumber;"
+    Public Const sqlSearchBicycleModel As String = "SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE (rammenr LIKE @framenumber) AND (sykkel.modell LIKE @model) AND (lokasjon LIKE @location) AND (utleiested LIKE @placeofOrigin) AND (pris >=@price) AND (produsent LIKE @producer) AND (kategori LIKE @category AND sykkel.under_bestilling = '0');"
+    Public Const sqlGetBikeJoinModel As String = "SELECT kategori, sykkel.modell, pris, produsent, rammenr FROM  sykkel JOIN modell ON sykkel.modell=modell.modell  WHERE rammenr = @framenumber;"
 
     'MODEL
     Public Const sqlEditModel As String = "UPDATE modell SET pris = @price, produsent = @producer, kategori = @category WHERE modell = @model;"
@@ -71,7 +73,7 @@ Public Class SQLRes
     Public Const sqlCreateModel As String = "INSERT INTO modell (`modell`, `pris`, `produsent`, `kategori`) VALUES (@model, @price, @producer, @category);"
     Public Const sqlSearchModel As String = "SELECT modell, pris, produsent, kategori FROM modell WHERE (modell LIKE @model) AND (pris LIKE @price) AND " & _
                 "(produsent LIKE @producer) AND (kategori LIKE @category);"
-    Public Const sqlGetModel As String = "SELECT modell, pris, produsent, kategori FROM modell WHERE modell = @model;"
+    Public Const sqlGetModelById As String = "SELECT modell, pris, produsent, kategori FROM modell WHERE modell = @model;"
 
     'EQUIPMENT
     Public Const sqlCreateEquipment As String = "INSERT INTO tilleggsutstyr (`type`, `pris`, `status`) VALUES(@type, @price, @status);"
@@ -84,25 +86,26 @@ Public Class SQLRes
     Public Const sqlSelectEquipmentIDOnType As String = "SELECT varenr FROM tilleggsutstyr WHERE type = @type;"
     Public Const sqlCreateCompatibility As String = "INSERT INTO kompatibel(`varenr`, `modell`) VALUES(@rowVal, @model) ON DUPLICATE KEY UPDATE modell=VALUES(modell);"
     Public Const sqlModelEquipmentCompatible As String = "SELECT varenr FROM kompatibel WHERE modell = @model;"
-    Public Const sqlChosenEquipment As String = "SELECT varenr, type, pris, status FROM tilleggsutstyr WHERE varenr = @id;"
     Public Const sqlGetEquipmentID As String = "SELECT varenr, pris FROM tilleggsutstyr WHERE type = @type AND status = 'På lager' AND under_bestilling=0;"
     Public Const sqlGetEquipmentIDDuringOrder As String = "SELECT varenr FROM tilleggsutstyr WHERE type = @type AND under_bestilling = '1';"
     Public Const sqlGetTypeFromID As String = "SELECT type FROM tilleggsutstyr WHERE varenr = @id;"
     Public Const sqlRemoveCompatibility As String = "DELETE FROM kompatibel WHERE varenr = @id AND modell = @model;"
     Public Const sqlCompatibleEquipment As String = "SELECT tilleggsutstyr.type, tilleggsutstyr.varenr FROM tilleggsutstyr JOIN kompatibel ON kompatibel.varenr=tilleggsutstyr.varenr WHERE modell = @model AND tilleggsutstyr.status = 'På lager' AND under_bestilling=0 GROUP BY type;"
-    Public Const sqlSetEquipmentUnderOrder As String = "UPDATE  `14badr05`.`tilleggsutstyr` SET  `under_bestilling` =  '1' WHERE  `tilleggsutstyr`.`varenr` = @id;"
-    Public Const sqlSetEquipmentNotUnderOrder As String = "UPDATE  `14badr05`.`tilleggsutstyr` SET  `under_bestilling` =  '0' WHERE  `tilleggsutstyr`.`varenr` = @id;"
-    Public Const sqlSetAllEquipmentNotUnderOrder As String = "UPDATE  `14badr05`.`tilleggsutstyr` SET  `under_bestilling` =  '0';"
+    Public Const sqlSetEquipmentUnderOrder As String = "UPDATE  `tilleggsutstyr` SET  `under_bestilling` =  '1' WHERE  `tilleggsutstyr`.`varenr` = @id;"
+    Public Const sqlSetEquipmentNotUnderOrder As String = "UPDATE  `tilleggsutstyr` SET  `under_bestilling` =  '0' WHERE  `tilleggsutstyr`.`varenr` = @id;"
+    Public Const sqlSetAllEquipmentNotUnderOrder As String = "UPDATE  `tilleggsutstyr` SET  `under_bestilling` =  '0';"
     Public Const sqlSelectEquipmentGroupByType As String = "SELECT varenr, type, pris, status FROM tilleggsutstyr GROUP BY type;"
 
     'ORDER
-    Public Const sqlCreateOrder As String = "INSERT INTO bestilling (`leie_fra`, `leie_til`, `ansattid`, `kid`, `sum`) " & _
-            "VALUES(@from, @to, @employeeID, @customerID, @sum);"
+    Public Const sqlCreateOrder As String = "INSERT INTO `bestilling` (`datotid`, `leie_fra`, `leie_til`, `ansattid`, `kid`, `sum`) " & _
+            "VALUES (CURRENT_TIMESTAMP, @from, @to, @employeeID, @customerID, @sum);"
     Public Const sqlEditOrder As String = "UPDATE bestilling SET from = @from, to = @to, ansattid = @employeeID, " & _
         "kid = @customerID, sum = @sum;"
     Public Const sqlSelectOrderById As String = "SELECT * FROM bestilling WHERE bestillingsid = @id;"
     Public Const sqlSelectAllOrders As String = "SELECT * FROM bestilling;"
     Public Const sqlSearchOrder As String = "SELECT * FROM bestilling WHERE leie_fra LIKE @from AND leie_til LIKE @to AND " & _
             "ansattid LIKE @employeeID AND kid LIKE @customerID AND sum LIKE @sum;"
+    Public Const sqlCreateBikeOrder As String = "INSERT INTO `sykkel_bestilling` (`bestillingsid`, `rammenr`) VALUES (@orderID, @frameNumber);"
+    Public Const sqlGetLatestOrder As String = "SELECT MAX(`bestillingsid`) FROM bestilling;"
 
 End Class

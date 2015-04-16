@@ -3,11 +3,8 @@
     Private table As New DataTable
 
     Public Sub createBike(list As List(Of String))
-
         populateList(list)
-
         dbutil.paramQuery(SQLRes.sqlCreateBike)
-
     End Sub
 
     Public Sub editBike(list As List(Of String))
@@ -27,7 +24,7 @@
             list(i) = newList(i)
         Next
         populateList(list)
-        table = dbutil.paramQuery(SQLRes.searchBike)
+        table = dbutil.paramQuery(SQLRes.sqlSearchBike)
         Return table
     End Function
 
@@ -49,16 +46,15 @@
     End Function
 
     Public Sub setAllBikesNotUnderOrder()
-        dbutil.paramQuery(SQLRes.setAllBikesNotUnderOrder)
+        dbutil.paramQuery(SQLRes.sqlSetAllBikesNotUnderOrder)
     End Sub
 
     Public Sub setBikeUnderOrder(framenumber As String)
         dbutil.addParametersToQuery("@framenumber", framenumber)
-        dbutil.paramQuery(SQLRes.setBikeUnderOrder)
+        dbutil.paramQuery(SQLRes.sqlSetBikeUnderOrder)
     End Sub
 
     Public Function searchBicycleModel(list As List(Of String), price As Double, producer As String, category As String) As DataTable
-
         list.Add(producer)
         list.Add(category)
 
@@ -73,10 +69,8 @@
         dbutil.addParametersToQuery("@producer", list(9))
         dbutil.addParametersToQuery("@category", list(10))
 
-        table = dbutil.paramQuery(SQLRes.searchBicycleModel)
-
+        table = dbutil.paramQuery(SQLRes.sqlSearchBicycleModel)
         Return table
-
     End Function
 
 
@@ -108,19 +102,4 @@
         Next
         Return list
     End Function
-
-    'SKAL BRUKES I BIKE
-    'Private Function makeList() As List(Of String)
-    '    Dim list As New List(Of String)
-    '    list.Add(getFrameNumber())
-    '    list.Add(getStatus())
-    '    list.Add(getLocation())
-    '    list.Add(getPlaceOfOrigins())
-    '    list.Add(brakes)
-    '    list.Add(getTires())
-    '    list.Add(getFrame())
-    '    list.Add(getGear())
-    '    list.Add(model.getModel())
-    '    Return list
-    'End Function
 End Class

@@ -3,17 +3,16 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class Statistics
-    Private typeStatistic As String
+    Private type As String
     Private startDate As String
     Private endDate As String
-    Private limitResult As Integer
+    Private resultLimit As Integer
 
-    Public Sub New(ByVal typeStatistic As String, ByVal startDate As String, ByVal endDate As String, ByVal limitResult As Integer)
-        Me.typeStatistic = typeStatistic
+    Public Sub New(type As String, startDate As String, endDate As String, resultLimit As Integer)
+        Me.type = type
         Me.startDate = startDate
         Me.endDate = endDate
-        Me.limitResult = limitResult
-
+        Me.resultLimit = resultLimit
     End Sub
 
     Public Function generateStatistics() As DataTable
@@ -22,49 +21,36 @@ Public Class Statistics
         Dim dbUtil As New DBUtility
 
         With dbUtil
-            .addParametersToQuery("@limit", limitResult, DbType.Int64)
+            .addParametersToQuery("@limit", resultLimit, DbType.Int64)
             .addParametersToQuery("@startDate", startDate)
             .addParametersToQuery("@endDate", endDate)
         End With
 
-
-        Select Case typeStatistic
+        Select Case type
             Case "Dyreste sykkel"
                 query = sqlRes.mostExpensiveBicycles
-
             Case "Billigste sykkel"
                 query = sqlRes.cheapestBicycles
-
             Case "Mest aktive selger"
                 query = sqlRes.mostActiveSalesman
-
             Case "Minst aktive selger"
                 query = sqlRes.leastActiveSalesman
-
             Case "Avanse"
                 query = sqlRes.avanseBicycles
-
             Case "Antall bestillinger"
                 query = sqlRes.countOrders
-
             Case "Mest populære sykler"
                 query = sqlRes.countMosteActiveBicycles
-
             Case "Minst populære sykler"
                 query = sqlRes.countLeastActiveBicycles
-
             Case Else
                 statisticsTypeError()
                 Return Nothing
         End Select
-        ' Dim dbUtil As New DBUtility(query)
-
-
-        Return dbUtil.paramQuery(query) 'dbUtil.selectQuery
+        Return dbUtil.paramQuery(query)
     End Function
 
     Private Sub statisticsTypeError()
         MsgBox("Valgt SQL spørring finnes ikke")
     End Sub
-
 End Class

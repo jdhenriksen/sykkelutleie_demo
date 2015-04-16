@@ -4,6 +4,8 @@
 ''' <remarks></remarks>
 Public Class OrderTest
     Public Property loggedInUser As New Account
+    Private order As New Order
+    Private customer As Customer
 
     Private bicycleList As New List(Of Bike)
     Private bicycleCounter As Integer = 0
@@ -55,10 +57,6 @@ Public Class OrderTest
         customerCustomerID = txtBxKID.Text
     End Sub
 
-
-
-
-
     ''' <summary>
     ''' Registrerer ordren i databasen. Men tilhørende sykkel-/utstyrBestilling
     ''' </summary>
@@ -68,13 +66,17 @@ Public Class OrderTest
 
         Dim customer As New Customer(customerFirstname, customerLastname, customerPhone, customerEmail)
         customer.setCustomerID(customerCustomerID)
-        Dim order As New Order(bicycleList, customer, loggedInUser.getEmployee, fromDate, toDate, discount)
+        order = New Order(bicycleList, customer, loggedInUser.getEmployee, fromDate, toDate, discount)
+
+        'Legge til totalpris
+        order.sum = order.getTotalPrice()
 
         order.registerOrder()
 
         MsgBox("Bestillingen er registrert")
         btnNewOrder_Click()
     End Sub
+
     ''' <summary>
     ''' Legger valgt sykkel (tekstbokser) inn i liste over sykler til bestillingen.
     ''' </summary>
@@ -147,7 +149,7 @@ Public Class OrderTest
         setTestOrder()
         Dim customer As New Customer(customerFirstname, customerLastname, customerPhone, customerEmail)
         'Dim employee As New Employee(salesmanFirstname, salesmanLastname, "", "", "", "", "", "", "")
-        Dim order As New Order(bicycleList, customer, loggedInUser.getEmployee, fromDate, toDate, discount)
+        order = New Order(bicycleList, customer, loggedInUser.getEmployee, fromDate, toDate, discount)
 
         ListBoxReceipt.Items.Add("")
         ListBoxReceipt.Items.Add("")
@@ -169,6 +171,7 @@ Public Class OrderTest
         ListBoxReceipt.Items.Add("Totalpris: " & order.getTotalPrice)
         ListBoxReceipt.Items.Add("__________________________________________________________")
 
+
     End Sub
     Private Sub OrderTest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         updateCustomerGridView()
@@ -183,7 +186,7 @@ Public Class OrderTest
     ''' Prossedyrer som oppdaterer DataGridView med data fra tekstfeltene.
     ''' </summary>
     ''' <remarks>Kalles ved hver endring i samtlige tekstbokser, og ved lasting av form.</remarks>
-    Private Sub updateCustomerGridView()
+    Public Sub updateCustomerGridView()
         setTestCustomer()
         Dim customer As New Customer(customerFirstname, customerLastname, customerPhone, customerEmail)
         Dim order As New Order
@@ -207,31 +210,32 @@ Public Class OrderTest
     Private Sub getFromGridViewKunde() Handles DataGridViewKunde.CellClick
         Dim dbutil As New DBUtility
         Dim rowChoice As Integer = DataGridViewKunde.CurrentCellAddress.Y 'Finner Y rad some er valgt i datagridview 
-        Dim chosenKunde As String
+        Dim customerID As String
         Dim data As New DataTable
 
-        chosenKunde = DataGridViewKunde.Rows(rowChoice).Cells(0).Value.ToString()
+        customerID = DataGridViewKunde.Rows(rowChoice).Cells(0).Value.ToString()
 
-        'Sender valgt Kunde fra GridView og får tilbake resultater som settes inn i Kundel sine tekstbokser 
-        data = dbutil.selectQuery("SELECT fornavn, etternavn, telefon, epost, kid FROM kunde WHERE kid ='" & chosenKunde & "'")
+        'Sender valgt Kunde fra GridView og får tilbake resultater som settes inn i Kunde sine tekstbokser 
+        data = order.getCustomerById(customerID)
 
-        txtBxFirstName.Text = data.Rows(0)(0).ToString()
-        txtBxSirName.Text = data.Rows(0)(1).ToString()
-        txtBxPhone.Text = data.Rows(0)(2).ToString()
-        txtBxEmail.Text = data.Rows(0)(3).ToString()
-        txtBxKID.Text = data.Rows(0)(4).ToString()
+        txtBxKID.Text = data.Rows(0)(0).ToString()
+        txtBxFirstName.Text = data.Rows(0)(1).ToString()
+        txtBxSirName.Text = data.Rows(0)(2).ToString()
+        txtBxPhone.Text = data.Rows(0)(3).ToString()
+        txtBxEmail.Text = data.Rows(0)(4).ToString()
 
     End Sub
     Private Sub getFromDgvBicycle_CellContentClick() Handles dgvBicycle.CellClick
-        Dim dbUtil As New DBUtility
         Dim rowChoice As Integer = dgvBicycle.CurrentCellAddress.Y 'Finner Y rad some er valgt i datagridview 
-        Dim chosenBicycle As String
+        Dim tempBike As String
         Dim data As New DataTable
 
-        chosenBicycle = dgvBicycle.Rows(rowChoice).Cells(0).Value.ToString()
+        tempBike = dgvBicycle.Rows(rowChoice).Cells(0).Value.ToString()
 
-        ' Sender valgt Kunde fra DataGridView og får tilbake resultater som settes inn i Kundetekstboksene 
-        data = dbUtil.selectQuery("SELECT kategori, sykkel.modell, pris, produsent, rammenr FROM  sykkel JOIN modell ON sykkel.modell=modell.modell  WHERE rammenr ='" & chosenBicycle & "'")
+        ' Sender valgt Sykkel fra DataGridView og får tilbake resultater som settes inn i Sykkeltekstboksene 
+        'data = dbUtil.selectQuery("SELECT kategori, sykkel.modell, pris, produsent, rammenr FROM  sykkel JOIN modell ON sykkel.modell=modell.modell  WHERE rammenr ='" & tempBike & "'")
+
+        data = order.getBikeJoinModel(tempBike)
 
         txtBxKategori.Text = data.Rows(0)(0).ToString()
         txtBxModell.Text = data.Rows(0)(1).ToString()
@@ -241,7 +245,7 @@ Public Class OrderTest
 
         Dim tempEquipment As New Equipment
         CheckedListBox1.DataSource = Nothing
-        CheckedListBox1.DataSource = tempEquipment.compatibleEquipment(txtBxModell.Text) 'Fyller checkedListBox med utstyr som er på lager. Basert på model som er valgt. 
+        CheckedListBox1.DataSource = tempEquipment.getCompatibleEquipment(txtBxModell.Text) 'Fyller checkedListBox med utstyr som er på lager. Basert på model som er valgt. 
         'Viser bare en checkbox per utstyr Type
         CheckedListBox1.DisplayMember = "type"
 
@@ -310,12 +314,19 @@ Public Class OrderTest
         txtBxRammenr.Text = ""
         CheckedListBox1.DataSource = Nothing
     End Sub
+
+    Private Sub createCustomerFromTextFields()
+        Dim firstname As String = txtBxFirstName.Text
+        Dim lastname As String = txtBxSirName.Text
+        Dim phone As String = txtBxPhone.Text
+        Dim email As String = txtBxEmail.Text
+        customer = New Customer(firstname, lastname, phone, email)
+    End Sub
+
     Private Sub btnChangeCustomer_Click() Handles btnChangeCustomer.Click
-        txtBxFirstName.Text = ""
-        txtBxSirName.Text = ""
-        txtBxPhone.Text = ""
-        txtBxEmail.Text = ""
-        txtBxKID.Text = ""
+        createCustomerFromTextFields()
+        customer.editCustomer(txtBxKID.Text)
+        updateCustomerGridView()
     End Sub
     Private Sub btnNextToSykkel_Click() Handles btnNextToSykkel.Click
 
