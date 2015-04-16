@@ -112,7 +112,7 @@ Public Class Employee
         Dim list As New List(Of String)
         With list
             .Add(account.getUsername())
-            .Add(account.getPassword())
+            .Add(account.generateHash(account.getPassword()))
             .Add(getFirstname())
             .Add(getLastname())
             .Add(getPhone())

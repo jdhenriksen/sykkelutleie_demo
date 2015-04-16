@@ -58,7 +58,7 @@ Public Class Account
     ''' <param name="password">Passord som skal hashes.</param>
     ''' <returns>Hashverdi basert på passord (MD5)</returns>
     ''' <remarks></remarks>
-    Private Function generateHash(password As String) As String
+    Public Function generateHash(password As String) As String
         'Create encoding object to ensure encoding standard
         Dim encoding As New UnicodeEncoding()
         'Retrieve byte array based on source text
@@ -72,11 +72,13 @@ Public Class Account
     End Function
 
     Public Function login() As DataTable
+        password = generateHash(password)
         Dim dao As New EmployeeDao
         Dim table As DataTable = dao.login(getUsername(), getPassword())
         Return table
     End Function
 
+    'ERSTATT MED Shared Var
     Public Function getEmployee() As Employee
         Dim dbutil As New DBUtility
         Dim sql As String
