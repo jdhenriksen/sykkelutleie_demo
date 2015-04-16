@@ -22,86 +22,93 @@ Partial Class mailLogin
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblNotat = New System.Windows.Forms.Label()
+        Me.btnMailogon = New System.Windows.Forms.Button()
+        Me.txtMailLoginPass = New System.Windows.Forms.TextBox()
+        Me.lblPassword = New System.Windows.Forms.Label()
+        Me.txtEmailAdress = New System.Windows.Forms.TextBox()
+        Me.lblEmailAdress = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
-        'Label3
+        'lblNotat
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(85, 9)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(219, 13)
-        Me.Label3.TabIndex = 11
-        Me.Label3.Text = "Trenger ikke skrive noe hær... er hardkodet.."
+        Me.lblNotat.AutoSize = True
+        Me.lblNotat.Location = New System.Drawing.Point(115, 140)
+        Me.lblNotat.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblNotat.Name = "lblNotat"
+        Me.lblNotat.Size = New System.Drawing.Size(292, 17)
+        Me.lblNotat.TabIndex = 17
+        Me.lblNotat.Text = "Trenger ikke skrive noe hær... er hardkodet.."
         '
-        'Button1
+        'btnMailogon
         '
-        Me.Button1.Location = New System.Drawing.Point(88, 103)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(194, 23)
-        Me.Button1.TabIndex = 10
-        Me.Button1.Text = "Ok"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnMailogon.Location = New System.Drawing.Point(119, 256)
+        Me.btnMailogon.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnMailogon.Name = "btnMailogon"
+        Me.btnMailogon.Size = New System.Drawing.Size(259, 28)
+        Me.btnMailogon.TabIndex = 16
+        Me.btnMailogon.Text = "Ok"
+        Me.btnMailogon.UseVisualStyleBackColor = True
         '
-        'TextBox2
+        'txtMailLoginPass
         '
-        Me.TextBox2.Location = New System.Drawing.Point(88, 77)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TextBox2.Size = New System.Drawing.Size(194, 20)
-        Me.TextBox2.TabIndex = 9
+        Me.txtMailLoginPass.Location = New System.Drawing.Point(119, 224)
+        Me.txtMailLoginPass.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtMailLoginPass.Name = "txtMailLoginPass"
+        Me.txtMailLoginPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.txtMailLoginPass.Size = New System.Drawing.Size(257, 22)
+        Me.txtMailLoginPass.TabIndex = 15
         '
-        'Label2
+        'lblPassword
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(37, 80)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(45, 13)
-        Me.Label2.TabIndex = 8
-        Me.Label2.Text = "Passord"
+        Me.lblPassword.AutoSize = True
+        Me.lblPassword.Location = New System.Drawing.Point(51, 227)
+        Me.lblPassword.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPassword.Name = "lblPassword"
+        Me.lblPassword.Size = New System.Drawing.Size(60, 17)
+        Me.lblPassword.TabIndex = 14
+        Me.lblPassword.Text = "Passord"
         '
-        'TextBox1
+        'txtEmailAdress
         '
-        Me.TextBox1.Location = New System.Drawing.Point(88, 33)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(194, 20)
-        Me.TextBox1.TabIndex = 7
+        Me.txtEmailAdress.Location = New System.Drawing.Point(119, 170)
+        Me.txtEmailAdress.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtEmailAdress.Name = "txtEmailAdress"
+        Me.txtEmailAdress.Size = New System.Drawing.Size(257, 22)
+        Me.txtEmailAdress.TabIndex = 13
         '
-        'Label1
+        'lblEmailAdress
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(5, 36)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(77, 13)
-        Me.Label1.TabIndex = 6
-        Me.Label1.Text = "E-post adresse"
+        Me.lblEmailAdress.AutoSize = True
+        Me.lblEmailAdress.Location = New System.Drawing.Point(9, 173)
+        Me.lblEmailAdress.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblEmailAdress.Name = "lblEmailAdress"
+        Me.lblEmailAdress.Size = New System.Drawing.Size(104, 17)
+        Me.lblEmailAdress.TabIndex = 12
+        Me.lblEmailAdress.Text = "E-post adresse"
         '
         'mailLogin
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(338, 141)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.Label1)
+        Me.ClientSize = New System.Drawing.Size(482, 455)
+        Me.Controls.Add(Me.lblNotat)
+        Me.Controls.Add(Me.btnMailogon)
+        Me.Controls.Add(Me.txtMailLoginPass)
+        Me.Controls.Add(Me.lblPassword)
+        Me.Controls.Add(Me.txtEmailAdress)
+        Me.Controls.Add(Me.lblEmailAdress)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "mailLogin"
         Me.Text = "mailLogin"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblNotat As System.Windows.Forms.Label
+    Friend WithEvents btnMailogon As System.Windows.Forms.Button
+    Friend WithEvents txtMailLoginPass As System.Windows.Forms.TextBox
+    Friend WithEvents lblPassword As System.Windows.Forms.Label
+    Friend WithEvents txtEmailAdress As System.Windows.Forms.TextBox
+    Friend WithEvents lblEmailAdress As System.Windows.Forms.Label
 End Class

@@ -13,14 +13,14 @@ Public Class StatisticsView
 
         result = myStatistic.generateStatistics()
 
-        DataGridView1.DataSource = result
-        Label1.Text = result.Rows.Count
+        dtgvStatistic.DataSource = result
+        lblResultsnb.Text = result.Rows.Count
 
         Me.Width = (result.Columns.Count * 100)
         Me.Height = (result.Rows.Count * 41 + 50)  'Hva skjer ved veldig mange treff..
 
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub closeStatistic(sender As Object, e As EventArgs) Handles btnStatisticViewClose.Click
         Me.Close()
     End Sub
 End Class

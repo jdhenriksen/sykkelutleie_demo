@@ -20,14 +20,6 @@ Public Class EmployeeTest
         getAllEmployees()
     End Sub
 
-    'BUTTON: Søker etter en ansatt basert på verdi i id-feltet.
-    Private Sub btnSearchForEmpById_Click(sender As Object, e As EventArgs) Handles btnSearchForEmpById.Click
-        Dim id As String = txtEmpId.Text
-        emp = New Employee(id)
-        dgvEmployeeTest.DataSource = emp.selectEmployeeById(id)
-        addInfoToTextFields()
-        activeCheck()
-    End Sub
 
     'BUTTON: Oppdaterer informasjon om en ansatt og skriver ny informasjon til databasen.
     Private Sub btnUpdateEmp_Click(sender As Object, e As EventArgs) Handles btnUpdateEmp.Click
