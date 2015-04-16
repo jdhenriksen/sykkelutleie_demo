@@ -71,6 +71,37 @@ Public Class Employee
         Return dao.usernameCheck(username)
     End Function
 
+    Public Function getPasswordHashByUsername(username As String) As String
+        Dim table As DataTable = dao.getPasswordHashByUsername(username)
+        Return table.Rows(0)(0)
+    End Function
+
+    Public Sub createZipCode(zip As String, area As String)
+        dao.createZipCode(zip, area)
+    End Sub
+
+    Public Function zipCodeExists(zip As String) As Boolean
+        Return dao.zipCodeExists(zip)
+    End Function
+
+    'Hjelpemetode. Lager liste som sendes til DAO.
+    Private Function makeList() As List(Of String)
+        Dim list As New List(Of String)
+        With list
+            .Add(account.getUsername())
+            .Add(account.getPassword())
+            .Add(getFirstname())
+            .Add(getLastname())
+            .Add(getPhone())
+            .Add(getEmail())
+            .Add(getAddress())
+            .Add(getJobTitle())
+            .Add(getZip())
+            .Add(getActive())
+        End With
+        Return list
+    End Function
+
     Public Function getEmployeeID() As String
         Return employeeID
     End Function
@@ -98,31 +129,4 @@ Public Class Employee
     Public Sub setZip(zip As String)
         Me.zip = zip
     End Sub
-
-    Public Sub createZipCode(zip As String, area As String)
-        dao.createZipCode(zip, area)
-    End Sub
-
-    Public Function zipCodeExists(zip As String) As Boolean
-        Return dao.zipCodeExists(zip)
-    End Function
-
-    'Hjelpemetode. Lager liste som sendes til DAO.
-    Private Function makeList() As List(Of String)
-        Dim list As New List(Of String)
-        With list
-            .Add(account.getUsername())
-            .Add(account.generateHash(account.getPassword()))
-            .Add(getFirstname())
-            .Add(getLastname())
-            .Add(getPhone())
-            .Add(getEmail())
-            .Add(getAddress())
-            .Add(getJobTitle())
-            .Add(getZip())
-            .Add(getActive())
-        End With
-        Return list
-    End Function
-
 End Class

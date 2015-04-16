@@ -13,9 +13,16 @@ Public Class EmployeeTest
             Exit Sub
         End If
         createEmployeeFromTextFields()
+
+        If Not emp.account.setPassword(emp.account.getPassword()) Then
+            MsgBox("Ikke gyldig passord.")
+            Exit Sub
+        End If
+
         If Not emp.zipCodeExists(emp.getZip()) Then
             emp.createZipCode(emp.getZip(), txtEmpZipArea.Text)
         End If
+
         emp.createEmployee()
         getAllEmployees()
     End Sub
@@ -28,6 +35,17 @@ Public Class EmployeeTest
             Exit Sub
         End If
         createEmployeeFromTextFields()
+
+        'Hent passord fra DB og sammenlign med passord i objekt
+        'Hvis == så ikke skriv passord, hvis != skriv nytt passord til DB
+        Dim pwd As String = emp.getPasswordHashByUsername(emp.account.getUsername())
+        If Not pwd.Equals(emp.account.getPassword()) Then
+            If Not emp.account.setPassword(emp.account.getPassword()) Then
+                MsgBox("Ugyldig passord.")
+                Exit Sub
+            End If
+        End If
+
         If Not emp.zipCodeExists(emp.getZip()) Then
             emp.createZipCode(emp.getZip(), txtEmpZipArea.Text)
         End If

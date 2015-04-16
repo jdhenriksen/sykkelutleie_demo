@@ -109,19 +109,9 @@ Public Class Order
     ''' Blar seg gjennom listene for sykkel og tilleggsutstyr for å opprette koblingstabeller
     ''' Formaterer datotid til rett sql format</remarks>
     Public Sub registerOrder()
-        Dim dbutil As New DBUtility
-        Dim tempFromDate As String = Format(fromDate, "yyyy/MM/dd")
-        Dim tempToDate As String = Format(toDate, "yyyy/MM/dd")
-
-        '& getEmployeeID(salesman.account.username) & !!!! Bytt ut med hardkodet ansatt id, her 40
-        'sql = "INSERT INTO `bestilling` (`bestillingsid`, `datotid`, `leie_fra`, `leie_til`, `ansattid`, `kid`, `sum`) VALUES (NULL, CURRENT_TIMESTAMP, '" & tempFromDate & "', '" & tempToDate & "', 40, '" & customer.customerID & "', " & getTotalPrice() & ");"
-
         dao.createOrder(makeList())
-
         Dim tempOrderID As String = dao.getLatestOrder()
-
         For Each tempBicycle As Bike In bikes
-
             'Hver sykkel i bestillingen legges til i sykkel_bestilling i database.
             'SETTES IKKE TIL UTLEID STATUS
             dao.createBikeOrder(tempOrderID, tempBicycle.frameNumber)
@@ -165,7 +155,7 @@ Public Class Order
         Dim id As String
 
         sql = "SELECT ansatt.ansattid FROM ansatt WHERE brukernavn = '" & username & "';"
-        result = dbutil.selectQuery(sql)
+        result = dbutil.paramQuery(sql)
 
         If result.Rows.Count <> 1 Then
             Return MsgBox("Kunne ikke finne ansattID til ansatt med brukernavn " & username & " i databasen")
@@ -189,8 +179,8 @@ Public Class Order
     Private Function makeList() As List(Of String)
         Dim list As New List(Of String)
         With list
-            .Add(fromDate)
-            .Add(toDate)
+            .Add(Format(fromDate, "yyyy/MM/dd"))
+            .Add(Format(toDate, "yyyy/MM/dd"))
             .Add("40")
             .Add(customer.customerID)
             .Add(sum)

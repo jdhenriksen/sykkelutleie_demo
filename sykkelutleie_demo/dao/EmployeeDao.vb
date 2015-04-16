@@ -45,6 +45,12 @@
         Return table
     End Function
 
+    Public Function getPasswordHashByUsername(username As String) As DataTable
+        dbutil.addParametersToQuery("@username", username)
+        table = dbutil.paramQuery(SQLRes.sqlGetPasswordHashByUsername)
+        Return table
+    End Function
+
     Public Function getAreaByZipCode(zipcode As String) As String
         dbutil.addParametersToQuery("@zipcode", zipcode)
         table = dbutil.paramQuery(SQLRes.sqlGetAreaByZipCode)

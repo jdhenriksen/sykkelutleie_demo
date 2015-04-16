@@ -62,7 +62,6 @@ Public Class OrderTest
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub btnRegisterOrder_Click() Handles btnRegisterOrder.Click
-        setTestOrder()
 
         Dim customer As New Customer(customerFirstname, customerLastname, customerPhone, customerEmail)
         customer.setCustomerID(customerCustomerID)

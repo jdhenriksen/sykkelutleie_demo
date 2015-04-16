@@ -31,22 +31,9 @@ Public Class Account
         Return password
     End Function
 
-    Public Sub setPassword(password As String)
-        If validatePassword(password) Then
-            password = generateHash(password)
-        Else
-            MsgBox("Passord ugyldig.")
-        End If
-    End Sub
-
-    ''' <summary>
-    ''' Hjelpemetode for å sjekke passord.
-    ''' </summary>
-    ''' <param name="password">Passord som skal sjekkes.</param>
-    ''' <returns>True hvis passord er godt nok, false hvis ikke.</returns>
-    ''' <remarks></remarks>
-    Private Function validatePassword(password As String) As Boolean
+    Public Function setPassword(password As String) As Boolean
         If password.Length > 7 Then
+            Me.password = generateHash(password)
             Return True
         End If
         Return False
@@ -86,7 +73,7 @@ Public Class Account
         Dim row As DataRow
 
         sql = "SELECT ansatt.fornavn, ansatt.etternavn, stilling, ansatt.epost, ansatt.telefon FROM ansatt WHERE brukernavn = '" & username & "';"
-        result = dbutil.selectQuery(sql)
+        result = dbutil.paramQuery(sql)
 
         If result.Rows.Count <> 1 Then
             Return Nothing

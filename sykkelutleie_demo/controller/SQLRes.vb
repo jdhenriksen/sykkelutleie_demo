@@ -22,16 +22,17 @@ Public Class SQLRes
             & "WHERE ansattid = @id;"
     Public Const sqlDeleteEmployee As String = "UPDATE ansatt SET aktivert = 0 WHERE ansattid = @id;"
     Public Const sqlSelectEmployeeById As String = "SELECT * FROM ansatt WHERE ansattid = @id;"
-    Public Const sqlGetAllEmployees As String = "SELECT * FROM ansatt;"
+    Public Const sqlGetAllEmployees As String = "SELECT * FROM ansatt WHERE aktivert = '1';"
     Public Const sqlIsActive As String = "SELECT aktivert FROM ansatt WHERE ansattid = @id;"
     Public Const sqlGetAreaByZipCode As String = "SELECT poststed FROM poststed WHERE postnr = @zipcode;"
     Public Const sqlUsernameCheck As String = "SELECT brukernavn FROM ansatt WHERE brukernavn = @username;"
-    Public Const sqlLogin As String = "SELECT stilling FROM ansatt WHERE brukernavn = @username AND passord = @password;"
+    Public Const sqlLogin As String = "SELECT stilling FROM ansatt WHERE brukernavn = @username AND passord = @password AND aktivert = '1';"
     Public Const sqlCreateZipCode As String = "INSERT INTO poststed (`postnr`, `poststed`) VALUES(@zip, @area);"
     Public Const sqlZipCodeExists As String = "SELECT * FROM poststed WHERE postnr = @zip;"
-    Public Const sqlSearchEmployee As String = "SELECT * FROM ansatt WHERE brukernavn LIKE @username AND passord LIKE @password AND " & _
+    Public Const sqlSearchEmployee As String = "SELECT * FROM ansatt WHERE brukernavn LIKE @username AND " & _
             "fornavn LIKE @firstname AND etternavn LIKE @lastname AND telefon LIKE @phone AND epost LIKE @email AND " & _
             "adresse LIKE @address AND stilling LIKE @job AND postnr LIKE @zip AND aktivert LIKE @active;"
+    Public Const sqlGetPasswordHashByUsername As String = "SELECT passord FROM ansatt WHERE brukernavn = @username;"
 
     'CUSTOMER
     Public Const sqlCreateCustomer As String = "INSERT INTO kunde (`fornavn` ,`etternavn` ,`telefon` ,`epost` ,`aktivert`) " & _
