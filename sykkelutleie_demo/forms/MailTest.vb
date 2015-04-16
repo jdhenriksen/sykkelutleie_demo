@@ -14,12 +14,12 @@
 
     End Sub
 
-    Private Sub txtSendEpost_Click(sender As Object, e As EventArgs) Handles txtSendEpost.Click
+    Private Sub btnSendMail_Click(sender As Object, e As EventArgs) Handles btnSendMail.Click
 
-        Dim mailFrom As String = TextBox2.Text
-        Dim mailTo As String = TextBox1.Text
-        Dim mailSubject As String = TextBox3.Text
-        Dim mailBody As String = RichTextBox1.Text
+        Dim mailFrom As String = txtFrom.Text
+        Dim mailTo As String = txtTo.Text
+        Dim mailSubject As String = txtSubject.Text
+        Dim mailBody As String = rtbContent.Text
         Dim mailMessage As New MailUtility(mailFrom, mailTo, mailSubject, mailBody, password)
 
         mailMessage.sendMail()

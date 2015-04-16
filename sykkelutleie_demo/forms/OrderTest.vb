@@ -88,7 +88,7 @@ Public Class OrderTest
         For Each item In ListBoxOrderOverview.Items
             If item.contains(frameCheck) Then
                 MsgBox("Sykkelen er allerede i bestillingen")
-                btnAddNewBicycle_Click()
+                addNewBicycle()
                 Exit Sub
             End If
         Next
@@ -98,18 +98,18 @@ Public Class OrderTest
         Dim tempBicycle As New Bike(bikeFrameNumber, "", "", "", "", "", "", "", tempModel)
         tempBicycle.setBikeUnderOrder(bikeFrameNumber)
 
-        For Each itemChecked In CheckedListBox1.CheckedItems 'For hver utstyr checkbox markert hentes første utstyr som er ledig av den typen  
+        For Each itemChecked In lstbxEquipment.CheckedItems 'For hver utstyr checkbox markert hentes første utstyr som er ledig av den typen  
             'og legges til i equipmentList til sykkelen. under_bestilling settes til 1 for å unngå konflikt. 
             Dim tempEquipment As New Equipment
             Dim data As DataTable
 
-            tempEquipment.EquipmentType = itemChecked.item("type").ToString()
+            tempEquipment.equipmentType = itemChecked.item("type").ToString()
 
-            data = tempEquipment.getEquipmentID(tempEquipment.EquipmentType) 'Henter varenr og pris til utstyr som er på lager, og som enda IKKE er under bestilling(under_bestilling=0)
+            data = tempEquipment.getEquipmentID(tempEquipment.equipmentType) 'Henter varenr og pris til utstyr som er på lager, og som enda IKKE er under bestilling(under_bestilling=0)
 
-            tempEquipment.EquipmentID = data.Rows(0)("varenr")
-            tempEquipment.EquipmentPrice = data.Rows(0)("pris")
-            tempEquipment.setEquipmentUnderOrder(tempEquipment.EquipmentID) ' Setter under_bestilling =True
+            tempEquipment.equipmentID = data.Rows(0)("varenr")
+            tempEquipment.equipmentPrice = data.Rows(0)("pris")
+            tempEquipment.setEquipmentUnderOrder(tempEquipment.equipmentID) ' Setter under_bestilling =True
 
             tempBicycle.equipmentList.Add(tempEquipment)
         Next
@@ -131,7 +131,7 @@ Public Class OrderTest
         ListBoxOrderOverview.Items.Add(vbTab & bicycleList(bicycleCounter).frameNumber & ", " & bicycleList(bicycleCounter).model.category & "sykkel")
         ListBoxOrderOverview.Items.Add("")
         ListBoxOrderOverview.Items.Add(vbTab & "Tilleggsutstyr:")
-        For Each item In CheckedListBox1.CheckedItems
+        For Each item In lstbxEquipment.CheckedItems
             ListBoxOrderOverview.Items.Add(vbTab & vbTab & item.item("type").ToString())
         Next
         ListBoxOrderOverview.Items.Add("")
@@ -139,7 +139,7 @@ Public Class OrderTest
 
         bicycleCounter += 1
 
-        btnAddNewBicycle_Click()
+        addNewBicycle()
     End Sub
     ''' <summary>
     ''' Skriver sammendrag av bestilling, tenkt som kvittering
@@ -244,10 +244,10 @@ Public Class OrderTest
         txtBxRammenr.Text = data.Rows(0)(4).ToString()
 
         Dim tempEquipment As New Equipment
-        CheckedListBox1.DataSource = Nothing
-        CheckedListBox1.DataSource = tempEquipment.getCompatibleEquipment(txtBxModell.Text) 'Fyller checkedListBox med utstyr som er på lager. Basert på model som er valgt. 
+        lstbxEquipment.DataSource = Nothing
+        lstbxEquipment.DataSource = tempEquipment.getCompatibleEquipment(txtBxModell.Text) 'Fyller checkedListBox med utstyr som er på lager. Basert på model som er valgt. 
         'Viser bare en checkbox per utstyr Type
-        CheckedListBox1.DisplayMember = "type"
+        lstbxEquipment.DisplayMember = "type"
 
     End Sub
 
@@ -306,13 +306,13 @@ Public Class OrderTest
         ListBoxOrderOverview.Items.Add("Rabatt:")
         ListBoxOrderOverview.Items.Add(vbTab & CmbBoxDiscount.Text)
     End Sub
-    Private Sub btnAddNewBicycle_Click() Handles btnAddNewBicycle.Click
+    Private Sub addNewBicycle()
         txtBxKategori.Text = ""
         txtBxMerke.Text = ""
         txtBxModell.Text = ""
         txtBxPris.Text = "0"
         txtBxRammenr.Text = ""
-        CheckedListBox1.DataSource = Nothing
+        lstbxEquipment.DataSource = Nothing
     End Sub
 
     Private Sub createCustomerFromTextFields()
@@ -376,7 +376,7 @@ Public Class OrderTest
         Bestilling.SelectTab(2)
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub btnSearchBike(sender As Object, e As EventArgs) Handles btnOrderSearchBike.Click
         updateBicycleGridView()
     End Sub
 End Class

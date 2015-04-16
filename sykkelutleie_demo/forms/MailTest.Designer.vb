@@ -22,108 +22,129 @@ Partial Class MailTest
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
-        Me.txtSendEpost = New System.Windows.Forms.Button()
+        Me.lblContent = New System.Windows.Forms.Label()
+        Me.lblFrom = New System.Windows.Forms.Label()
+        Me.txtSubject = New System.Windows.Forms.TextBox()
+        Me.lblTo = New System.Windows.Forms.Label()
+        Me.txtFrom = New System.Windows.Forms.TextBox()
+        Me.lblSubject = New System.Windows.Forms.Label()
+        Me.txtTo = New System.Windows.Forms.TextBox()
+        Me.rtbContent = New System.Windows.Forms.RichTextBox()
+        Me.btnSendMail = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'Label3
+        'lblContent
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 44)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(33, 13)
-        Me.Label3.TabIndex = 24
-        Me.Label3.Text = "From:"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblContent.AutoSize = True
+        Me.lblContent.Location = New System.Drawing.Point(56, 142)
+        Me.lblContent.Name = "lblContent"
+        Me.lblContent.Size = New System.Drawing.Size(58, 17)
+        Me.lblContent.TabIndex = 34
+        Me.lblContent.Text = "Innhold:"
         '
-        'TextBox3
+        'lblFrom
         '
-        Me.TextBox3.Location = New System.Drawing.Point(64, 63)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(496, 20)
-        Me.TextBox3.TabIndex = 23
+        Me.lblFrom.AutoSize = True
+        Me.lblFrom.Location = New System.Drawing.Point(56, 74)
+        Me.lblFrom.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblFrom.Name = "lblFrom"
+        Me.lblFrom.Size = New System.Drawing.Size(33, 17)
+        Me.lblFrom.TabIndex = 33
+        Me.lblFrom.Text = "Fra:"
+        Me.lblFrom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label2
+        'txtSubject
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 18)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(23, 13)
-        Me.Label2.TabIndex = 22
-        Me.Label2.Text = "To:"
+        Me.txtSubject.Location = New System.Drawing.Point(117, 108)
+        Me.txtSubject.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtSubject.Name = "txtSubject"
+        Me.txtSubject.Size = New System.Drawing.Size(252, 22)
+        Me.txtSubject.TabIndex = 32
         '
-        'TextBox2
+        'lblTo
         '
-        Me.TextBox2.Location = New System.Drawing.Point(64, 37)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(496, 20)
-        Me.TextBox2.TabIndex = 21
-        Me.TextBox2.Text = "vbtestsomo@gmail.com"
+        Me.lblTo.AutoSize = True
+        Me.lblTo.Location = New System.Drawing.Point(56, 40)
+        Me.lblTo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblTo.Name = "lblTo"
+        Me.lblTo.Size = New System.Drawing.Size(27, 17)
+        Me.lblTo.TabIndex = 31
+        Me.lblTo.Text = "Til:"
         '
-        'Label1
+        'txtFrom
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 70)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(46, 13)
-        Me.Label1.TabIndex = 20
-        Me.Label1.Text = "Subject:"
+        Me.txtFrom.Location = New System.Drawing.Point(117, 74)
+        Me.txtFrom.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtFrom.Name = "txtFrom"
+        Me.txtFrom.Size = New System.Drawing.Size(252, 22)
+        Me.txtFrom.TabIndex = 30
+        Me.txtFrom.Text = "vbtestsomo@gmail.com"
         '
-        'TextBox1
+        'lblSubject
         '
-        Me.TextBox1.Location = New System.Drawing.Point(64, 11)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(496, 20)
-        Me.TextBox1.TabIndex = 19
+        Me.lblSubject.AutoSize = True
+        Me.lblSubject.Location = New System.Drawing.Point(56, 108)
+        Me.lblSubject.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSubject.Name = "lblSubject"
+        Me.lblSubject.Size = New System.Drawing.Size(48, 17)
+        Me.lblSubject.TabIndex = 29
+        Me.lblSubject.Text = "Emne:"
         '
-        'RichTextBox1
+        'txtTo
         '
-        Me.RichTextBox1.Location = New System.Drawing.Point(12, 96)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(548, 256)
-        Me.RichTextBox1.TabIndex = 18
-        Me.RichTextBox1.Text = ""
+        Me.txtTo.Location = New System.Drawing.Point(117, 40)
+        Me.txtTo.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtTo.Name = "txtTo"
+        Me.txtTo.Size = New System.Drawing.Size(252, 22)
+        Me.txtTo.TabIndex = 28
         '
-        'txtSendEpost
+        'rtbContent
         '
-        Me.txtSendEpost.Location = New System.Drawing.Point(12, 358)
-        Me.txtSendEpost.Name = "txtSendEpost"
-        Me.txtSendEpost.Size = New System.Drawing.Size(548, 37)
-        Me.txtSendEpost.TabIndex = 17
-        Me.txtSendEpost.Text = "Send E-Post"
-        Me.txtSendEpost.UseVisualStyleBackColor = True
+        Me.rtbContent.Location = New System.Drawing.Point(117, 142)
+        Me.rtbContent.Margin = New System.Windows.Forms.Padding(4)
+        Me.rtbContent.Name = "rtbContent"
+        Me.rtbContent.Size = New System.Drawing.Size(252, 223)
+        Me.rtbContent.TabIndex = 27
+        Me.rtbContent.Text = ""
+        '
+        'btnSendMail
+        '
+        Me.btnSendMail.Location = New System.Drawing.Point(117, 373)
+        Me.btnSendMail.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSendMail.Name = "btnSendMail"
+        Me.btnSendMail.Size = New System.Drawing.Size(252, 36)
+        Me.btnSendMail.TabIndex = 26
+        Me.btnSendMail.Text = "Send E-Post"
+        Me.btnSendMail.UseVisualStyleBackColor = True
         '
         'MailTest
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(570, 400)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.TextBox3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.RichTextBox1)
-        Me.Controls.Add(Me.txtSendEpost)
+        Me.ClientSize = New System.Drawing.Size(482, 455)
+        Me.Controls.Add(Me.lblContent)
+        Me.Controls.Add(Me.lblFrom)
+        Me.Controls.Add(Me.txtSubject)
+        Me.Controls.Add(Me.lblTo)
+        Me.Controls.Add(Me.txtFrom)
+        Me.Controls.Add(Me.lblSubject)
+        Me.Controls.Add(Me.txtTo)
+        Me.Controls.Add(Me.rtbContent)
+        Me.Controls.Add(Me.btnSendMail)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "MailTest"
         Me.Text = "MailTest"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
-    Friend WithEvents txtSendEpost As System.Windows.Forms.Button
+    Friend WithEvents lblContent As System.Windows.Forms.Label
+    Friend WithEvents lblFrom As System.Windows.Forms.Label
+    Friend WithEvents txtSubject As System.Windows.Forms.TextBox
+    Friend WithEvents lblTo As System.Windows.Forms.Label
+    Friend WithEvents txtFrom As System.Windows.Forms.TextBox
+    Friend WithEvents lblSubject As System.Windows.Forms.Label
+    Friend WithEvents txtTo As System.Windows.Forms.TextBox
+    Friend WithEvents rtbContent As System.Windows.Forms.RichTextBox
+    Friend WithEvents btnSendMail As System.Windows.Forms.Button
 End Class

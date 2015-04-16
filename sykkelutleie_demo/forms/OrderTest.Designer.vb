@@ -22,42 +22,16 @@ Partial Class OrderTest
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txtBxFirstName = New System.Windows.Forms.TextBox()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.btnChangeCustomer = New System.Windows.Forms.Button()
-        Me.btnCreateNewCustomer = New System.Windows.Forms.Button()
-        Me.btnNextToSykkel = New System.Windows.Forms.Button()
-        Me.DataGridViewKunde = New System.Windows.Forms.DataGridView()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtBxKID = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtBxEmail = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtBxPhone = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtBxSirName = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Bestilling = New System.Windows.Forms.TabControl()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
-        Me.btnAddNewBicycle = New System.Windows.Forms.Button()
+        Me.btnOrderSearchBike = New System.Windows.Forms.Button()
+        Me.lblOrderChooseEqip = New System.Windows.Forms.Label()
+        Me.lblOrderOverView = New System.Windows.Forms.Label()
+        Me.lstbxEquipment = New System.Windows.Forms.CheckedListBox()
+        Me.btnNewOrder = New System.Windows.Forms.Button()
         Me.btnAddToOrder = New System.Windows.Forms.Button()
         Me.btnBackKunde = New System.Windows.Forms.Button()
-        Me.btnNextBestilling = New System.Windows.Forms.Button()
-        Me.dgvBicycle = New System.Windows.Forms.DataGridView()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.txtBxRammenr = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtBxMerke = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtBxPris = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.txtBxModell = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.txtBxKategori = New System.Windows.Forms.TextBox()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.Label11 = New System.Windows.Forms.Label()
+        Me.btnPrintReceipt = New System.Windows.Forms.Button()
+        Me.TabOrder = New System.Windows.Forms.TabPage()
+        Me.lblDiscount = New System.Windows.Forms.Label()
         Me.CmbBoxDiscount = New System.Windows.Forms.ComboBox()
         Me.grpBxSelectPeriod = New System.Windows.Forms.GroupBox()
         Me.labelTilSelect = New System.Windows.Forms.Label()
@@ -66,402 +40,159 @@ Partial Class OrderTest
         Me.CalendarFrom = New System.Windows.Forms.MonthCalendar()
         Me.btnBackSykkel = New System.Windows.Forms.Button()
         Me.btnNextSammendrag = New System.Windows.Forms.Button()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.ListBoxOrderOverview = New System.Windows.Forms.ListBox()
+        Me.TabSummary = New System.Windows.Forms.TabPage()
         Me.btnBackBestilling = New System.Windows.Forms.Button()
         Me.btnRegisterOrder = New System.Windows.Forms.Button()
-        Me.btnPrintReceipt = New System.Windows.Forms.Button()
         Me.ListBoxReceipt = New System.Windows.Forms.ListBox()
-        Me.ListBoxOrderOverview = New System.Windows.Forms.ListBox()
-        Me.btnNewOrder = New System.Windows.Forms.Button()
-        Me.TabPage1.SuspendLayout()
-        CType(Me.DataGridViewKunde, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Bestilling.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
-        CType(Me.dgvBicycle, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage3.SuspendLayout()
-        Me.grpBxSelectPeriod.SuspendLayout()
-        Me.TabPage4.SuspendLayout()
-        Me.SuspendLayout()
+        Me.btnNextBestilling = New System.Windows.Forms.Button()
+        Me.lblLastnameOrder = New System.Windows.Forms.Label()
+        Me.txtBxSirName = New System.Windows.Forms.TextBox()
+        Me.TabCustomer = New System.Windows.Forms.TabPage()
+        Me.btnChangeCustomer = New System.Windows.Forms.Button()
+        Me.btnCreateNewCustomer = New System.Windows.Forms.Button()
+        Me.btnNextToSykkel = New System.Windows.Forms.Button()
+        Me.DataGridViewKunde = New System.Windows.Forms.DataGridView()
+        Me.lblKidOrdre = New System.Windows.Forms.Label()
+        Me.txtBxKID = New System.Windows.Forms.TextBox()
+        Me.lblemailOrder = New System.Windows.Forms.Label()
+        Me.txtBxEmail = New System.Windows.Forms.TextBox()
+        Me.lblTlfOrder = New System.Windows.Forms.Label()
+        Me.txtBxPhone = New System.Windows.Forms.TextBox()
+        Me.lblFirstnameOrder = New System.Windows.Forms.Label()
+        Me.txtBxFirstName = New System.Windows.Forms.TextBox()
+        Me.dgvBicycle = New System.Windows.Forms.DataGridView()
+        Me.lblFramenbOrder = New System.Windows.Forms.Label()
+        Me.txtBxRammenr = New System.Windows.Forms.TextBox()
+        Me.lblBrandOrder = New System.Windows.Forms.Label()
+        Me.txtBxMerke = New System.Windows.Forms.TextBox()
+        Me.lblPriceOrder = New System.Windows.Forms.Label()
+        Me.txtBxPris = New System.Windows.Forms.TextBox()
+        Me.lblModelOrder = New System.Windows.Forms.Label()
+        Me.txtBxModell = New System.Windows.Forms.TextBox()
+        Me.lblCategoryOrder = New System.Windows.Forms.Label()
+        Me.txtBxKategori = New System.Windows.Forms.TextBox()
+        Me.tabBike = New System.Windows.Forms.TabPage()
+        Me.Bestilling = New System.Windows.Forms.TabControl()
+        Me.TabOrder.SuspendLayout
+        Me.grpBxSelectPeriod.SuspendLayout
+        Me.TabSummary.SuspendLayout
+        Me.TabCustomer.SuspendLayout
+        CType(Me.DataGridViewKunde,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.dgvBicycle,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.tabBike.SuspendLayout
+        Me.Bestilling.SuspendLayout
+        Me.SuspendLayout
         '
-        'txtBxFirstName
+        'btnOrderSearchBike
         '
-        Me.txtBxFirstName.Location = New System.Drawing.Point(72, 59)
-        Me.txtBxFirstName.Name = "txtBxFirstName"
-        Me.txtBxFirstName.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxFirstName.TabIndex = 0
+        Me.btnOrderSearchBike.Location = New System.Drawing.Point(14, 441)
+        Me.btnOrderSearchBike.Name = "btnOrderSearchBike"
+        Me.btnOrderSearchBike.Size = New System.Drawing.Size(175, 45)
+        Me.btnOrderSearchBike.TabIndex = 172
+        Me.btnOrderSearchBike.Text = "Søk"
+        Me.btnOrderSearchBike.UseVisualStyleBackColor = true
         '
-        'TabPage1
+        'lblOrderChooseEqip
         '
-        Me.TabPage1.BackColor = System.Drawing.Color.Transparent
-        Me.TabPage1.Controls.Add(Me.btnChangeCustomer)
-        Me.TabPage1.Controls.Add(Me.btnCreateNewCustomer)
-        Me.TabPage1.Controls.Add(Me.btnNextToSykkel)
-        Me.TabPage1.Controls.Add(Me.DataGridViewKunde)
-        Me.TabPage1.Controls.Add(Me.Label5)
-        Me.TabPage1.Controls.Add(Me.txtBxKID)
-        Me.TabPage1.Controls.Add(Me.Label4)
-        Me.TabPage1.Controls.Add(Me.txtBxEmail)
-        Me.TabPage1.Controls.Add(Me.Label3)
-        Me.TabPage1.Controls.Add(Me.txtBxPhone)
-        Me.TabPage1.Controls.Add(Me.Label2)
-        Me.TabPage1.Controls.Add(Me.txtBxSirName)
-        Me.TabPage1.Controls.Add(Me.Label1)
-        Me.TabPage1.Controls.Add(Me.txtBxFirstName)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.TabPage1.Size = New System.Drawing.Size(1137, 463)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Kunde"
+        Me.lblOrderChooseEqip.AutoSize = true
+        Me.lblOrderChooseEqip.Location = New System.Drawing.Point(876, 16)
+        Me.lblOrderChooseEqip.Name = "lblOrderChooseEqip"
+        Me.lblOrderChooseEqip.Size = New System.Drawing.Size(77, 17)
+        Me.lblOrderChooseEqip.TabIndex = 171
+        Me.lblOrderChooseEqip.Text = "Velg Utstyr"
         '
-        'btnChangeCustomer
+        'lblOrderOverView
         '
-        Me.btnChangeCustomer.Location = New System.Drawing.Point(337, 390)
-        Me.btnChangeCustomer.Name = "btnChangeCustomer"
-        Me.btnChangeCustomer.Size = New System.Drawing.Size(202, 42)
-        Me.btnChangeCustomer.TabIndex = 155
-        Me.btnChangeCustomer.Text = "Endre kunde"
-        Me.btnChangeCustomer.UseVisualStyleBackColor = True
+        Me.lblOrderOverView.AutoSize = true
+        Me.lblOrderOverView.Location = New System.Drawing.Point(1003, 16)
+        Me.lblOrderOverView.Name = "lblOrderOverView"
+        Me.lblOrderOverView.Size = New System.Drawing.Size(94, 17)
+        Me.lblOrderOverView.TabIndex = 170
+        Me.lblOrderOverView.Text = "Ordreoversikt"
         '
-        'btnCreateNewCustomer
+        'lstbxEquipment
         '
-        Me.btnCreateNewCustomer.Location = New System.Drawing.Point(72, 18)
-        Me.btnCreateNewCustomer.Name = "btnCreateNewCustomer"
-        Me.btnCreateNewCustomer.Size = New System.Drawing.Size(149, 23)
-        Me.btnCreateNewCustomer.TabIndex = 154
-        Me.btnCreateNewCustomer.Text = "Opprett ny kunde"
-        Me.btnCreateNewCustomer.UseVisualStyleBackColor = True
+        Me.lstbxEquipment.FormattingEnabled = true
+        Me.lstbxEquipment.Location = New System.Drawing.Point(879, 40)
+        Me.lstbxEquipment.Name = "lstbxEquipment"
+        Me.lstbxEquipment.Size = New System.Drawing.Size(120, 378)
+        Me.lstbxEquipment.TabIndex = 3
         '
-        'btnNextToSykkel
+        'btnNewOrder
         '
-        Me.btnNextToSykkel.Location = New System.Drawing.Point(708, 390)
-        Me.btnNextToSykkel.Name = "btnNextToSykkel"
-        Me.btnNextToSykkel.Size = New System.Drawing.Size(202, 42)
-        Me.btnNextToSykkel.TabIndex = 153
-        Me.btnNextToSykkel.Text = "Neste"
-        Me.btnNextToSykkel.UseVisualStyleBackColor = True
-        '
-        'DataGridViewKunde
-        '
-        Me.DataGridViewKunde.AllowUserToAddRows = False
-        Me.DataGridViewKunde.AllowUserToDeleteRows = False
-        Me.DataGridViewKunde.AllowUserToResizeColumns = False
-        Me.DataGridViewKunde.AllowUserToResizeRows = False
-        Me.DataGridViewKunde.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridViewKunde.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.DataGridViewKunde.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewKunde.Location = New System.Drawing.Point(239, 18)
-        Me.DataGridViewKunde.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.DataGridViewKunde.MultiSelect = False
-        Me.DataGridViewKunde.Name = "DataGridViewKunde"
-        Me.DataGridViewKunde.ReadOnly = True
-        Me.DataGridViewKunde.RowHeadersVisible = False
-        Me.DataGridViewKunde.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders
-        Me.DataGridViewKunde.RowTemplate.Height = 24
-        Me.DataGridViewKunde.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewKunde.Size = New System.Drawing.Size(840, 350)
-        Me.DataGridViewKunde.TabIndex = 151
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(44, 319)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(22, 13)
-        Me.Label5.TabIndex = 9
-        Me.Label5.Text = "Kid"
-        '
-        'txtBxKID
-        '
-        Me.txtBxKID.Location = New System.Drawing.Point(72, 316)
-        Me.txtBxKID.Name = "txtBxKID"
-        Me.txtBxKID.ReadOnly = True
-        Me.txtBxKID.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxKID.TabIndex = 8
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(30, 199)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(37, 13)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "E-post"
-        '
-        'txtBxEmail
-        '
-        Me.txtBxEmail.Location = New System.Drawing.Point(73, 196)
-        Me.txtBxEmail.Name = "txtBxEmail"
-        Me.txtBxEmail.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxEmail.TabIndex = 6
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(29, 265)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(43, 13)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Telefon"
-        '
-        'txtBxPhone
-        '
-        Me.txtBxPhone.Location = New System.Drawing.Point(72, 262)
-        Me.txtBxPhone.Name = "txtBxPhone"
-        Me.txtBxPhone.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxPhone.TabIndex = 4
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 135)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(53, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Etternavn"
-        '
-        'txtBxSirName
-        '
-        Me.txtBxSirName.Location = New System.Drawing.Point(72, 132)
-        Me.txtBxSirName.Name = "txtBxSirName"
-        Me.txtBxSirName.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxSirName.TabIndex = 2
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(20, 62)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(46, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Fornavn"
-        '
-        'Bestilling
-        '
-        Me.Bestilling.Controls.Add(Me.TabPage1)
-        Me.Bestilling.Controls.Add(Me.TabPage2)
-        Me.Bestilling.Controls.Add(Me.TabPage3)
-        Me.Bestilling.Controls.Add(Me.TabPage4)
-        Me.Bestilling.Location = New System.Drawing.Point(0, 0)
-        Me.Bestilling.Name = "Bestilling"
-        Me.Bestilling.SelectedIndex = 0
-        Me.Bestilling.Size = New System.Drawing.Size(1145, 489)
-        Me.Bestilling.TabIndex = 2
-        '
-        'TabPage2
-        '
-        Me.TabPage2.BackColor = System.Drawing.Color.Transparent
-        Me.TabPage2.Controls.Add(Me.Button1)
-        Me.TabPage2.Controls.Add(Me.CheckedListBox1)
-        Me.TabPage2.Controls.Add(Me.btnAddNewBicycle)
-        Me.TabPage2.Controls.Add(Me.btnAddToOrder)
-        Me.TabPage2.Controls.Add(Me.btnBackKunde)
-        Me.TabPage2.Controls.Add(Me.btnNextBestilling)
-        Me.TabPage2.Controls.Add(Me.dgvBicycle)
-        Me.TabPage2.Controls.Add(Me.Label6)
-        Me.TabPage2.Controls.Add(Me.txtBxRammenr)
-        Me.TabPage2.Controls.Add(Me.Label7)
-        Me.TabPage2.Controls.Add(Me.txtBxMerke)
-        Me.TabPage2.Controls.Add(Me.Label8)
-        Me.TabPage2.Controls.Add(Me.txtBxPris)
-        Me.TabPage2.Controls.Add(Me.Label9)
-        Me.TabPage2.Controls.Add(Me.txtBxModell)
-        Me.TabPage2.Controls.Add(Me.Label10)
-        Me.TabPage2.Controls.Add(Me.txtBxKategori)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.TabPage2.Size = New System.Drawing.Size(1137, 463)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Sykkel"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(76, 354)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(56, 19)
-        Me.Button1.TabIndex = 170
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'CheckedListBox1
-        '
-        Me.CheckedListBox1.CheckOnClick = True
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(977, 25)
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(113, 349)
-        Me.CheckedListBox1.TabIndex = 3
-        '
-        'btnAddNewBicycle
-        '
-        Me.btnAddNewBicycle.Location = New System.Drawing.Point(330, 388)
-        Me.btnAddNewBicycle.Name = "btnAddNewBicycle"
-        Me.btnAddNewBicycle.Size = New System.Drawing.Size(142, 41)
-        Me.btnAddNewBicycle.TabIndex = 169
-        Me.btnAddNewBicycle.Text = "Vis Alle"
-        Me.btnAddNewBicycle.UseVisualStyleBackColor = True
+        Me.btnNewOrder.Location = New System.Drawing.Point(196, 441)
+        Me.btnNewOrder.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnNewOrder.Name = "btnNewOrder"
+        Me.btnNewOrder.Size = New System.Drawing.Size(175, 45)
+        Me.btnNewOrder.TabIndex = 4
+        Me.btnNewOrder.Text = "Reset Bestilling"
+        Me.btnNewOrder.UseVisualStyleBackColor = true
         '
         'btnAddToOrder
         '
-        Me.btnAddToOrder.Location = New System.Drawing.Point(539, 379)
+        Me.btnAddToOrder.Location = New System.Drawing.Point(698, 441)
+        Me.btnAddToOrder.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAddToOrder.Name = "btnAddToOrder"
-        Me.btnAddToOrder.Size = New System.Drawing.Size(268, 59)
+        Me.btnAddToOrder.Size = New System.Drawing.Size(175, 45)
         Me.btnAddToOrder.TabIndex = 168
         Me.btnAddToOrder.Text = "Legg sykkel med valgt utstyr til bestillingen"
-        Me.btnAddToOrder.UseVisualStyleBackColor = True
+        Me.btnAddToOrder.UseVisualStyleBackColor = true
         '
         'btnBackKunde
         '
-        Me.btnBackKunde.Location = New System.Drawing.Point(49, 397)
+        Me.btnBackKunde.Location = New System.Drawing.Point(879, 441)
+        Me.btnBackKunde.Margin = New System.Windows.Forms.Padding(4)
         Me.btnBackKunde.Name = "btnBackKunde"
-        Me.btnBackKunde.Size = New System.Drawing.Size(202, 42)
+        Me.btnBackKunde.Size = New System.Drawing.Size(175, 45)
         Me.btnBackKunde.TabIndex = 167
         Me.btnBackKunde.Text = "<-- Tilbake"
-        Me.btnBackKunde.UseVisualStyleBackColor = True
+        Me.btnBackKunde.UseVisualStyleBackColor = true
         '
-        'btnNextBestilling
+        'btnPrintReceipt
         '
-        Me.btnNextBestilling.Location = New System.Drawing.Point(846, 396)
-        Me.btnNextBestilling.Name = "btnNextBestilling"
-        Me.btnNextBestilling.Size = New System.Drawing.Size(202, 42)
-        Me.btnNextBestilling.TabIndex = 166
-        Me.btnNextBestilling.Text = "Neste -->"
-        Me.btnNextBestilling.UseVisualStyleBackColor = True
+        Me.btnPrintReceipt.Location = New System.Drawing.Point(694, 441)
+        Me.btnPrintReceipt.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnPrintReceipt.Name = "btnPrintReceipt"
+        Me.btnPrintReceipt.Size = New System.Drawing.Size(175, 45)
+        Me.btnPrintReceipt.TabIndex = 2
+        Me.btnPrintReceipt.Text = "Vis Kvittering"
+        Me.btnPrintReceipt.UseVisualStyleBackColor = true
         '
-        'dgvBicycle
+        'TabOrder
         '
-        Me.dgvBicycle.AllowUserToAddRows = False
-        Me.dgvBicycle.AllowUserToDeleteRows = False
-        Me.dgvBicycle.AllowUserToResizeColumns = False
-        Me.dgvBicycle.AllowUserToResizeRows = False
-        Me.dgvBicycle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgvBicycle.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.dgvBicycle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvBicycle.Location = New System.Drawing.Point(243, 24)
-        Me.dgvBicycle.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.dgvBicycle.MultiSelect = False
-        Me.dgvBicycle.Name = "dgvBicycle"
-        Me.dgvBicycle.ReadOnly = True
-        Me.dgvBicycle.RowHeadersVisible = False
-        Me.dgvBicycle.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders
-        Me.dgvBicycle.RowTemplate.Height = 24
-        Me.dgvBicycle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvBicycle.Size = New System.Drawing.Size(700, 350)
-        Me.dgvBicycle.TabIndex = 164
+        Me.TabOrder.BackColor = System.Drawing.Color.Transparent
+        Me.TabOrder.Controls.Add(Me.lblDiscount)
+        Me.TabOrder.Controls.Add(Me.CmbBoxDiscount)
+        Me.TabOrder.Controls.Add(Me.grpBxSelectPeriod)
+        Me.TabOrder.Controls.Add(Me.btnBackSykkel)
+        Me.TabOrder.Controls.Add(Me.btnNextSammendrag)
+        Me.TabOrder.Location = New System.Drawing.Point(4, 25)
+        Me.TabOrder.Margin = New System.Windows.Forms.Padding(4)
+        Me.TabOrder.Name = "TabOrder"
+        Me.TabOrder.Padding = New System.Windows.Forms.Padding(4)
+        Me.TabOrder.Size = New System.Drawing.Size(1276, 494)
+        Me.TabOrder.TabIndex = 2
+        Me.TabOrder.Text = "Bestilling"
         '
-        'Label6
+        'lblDiscount
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(15, 325)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(55, 13)
-        Me.Label6.TabIndex = 163
-        Me.Label6.Text = "Rammenr."
-        '
-        'txtBxRammenr
-        '
-        Me.txtBxRammenr.Location = New System.Drawing.Point(76, 322)
-        Me.txtBxRammenr.Name = "txtBxRammenr"
-        Me.txtBxRammenr.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxRammenr.TabIndex = 162
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(33, 266)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(37, 13)
-        Me.Label7.TabIndex = 161
-        Me.Label7.Text = "Merke"
-        '
-        'txtBxMerke
-        '
-        Me.txtBxMerke.Location = New System.Drawing.Point(76, 263)
-        Me.txtBxMerke.Name = "txtBxMerke"
-        Me.txtBxMerke.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxMerke.TabIndex = 160
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(46, 202)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(24, 13)
-        Me.Label8.TabIndex = 159
-        Me.Label8.Text = "Pris"
-        '
-        'txtBxPris
-        '
-        Me.txtBxPris.Location = New System.Drawing.Point(76, 199)
-        Me.txtBxPris.Name = "txtBxPris"
-        Me.txtBxPris.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxPris.TabIndex = 158
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(32, 141)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(38, 13)
-        Me.Label9.TabIndex = 157
-        Me.Label9.Text = "Modell"
-        '
-        'txtBxModell
-        '
-        Me.txtBxModell.Location = New System.Drawing.Point(76, 138)
-        Me.txtBxModell.Name = "txtBxModell"
-        Me.txtBxModell.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxModell.TabIndex = 156
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(24, 68)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(46, 13)
-        Me.Label10.TabIndex = 155
-        Me.Label10.Text = "Kategori"
-        '
-        'txtBxKategori
-        '
-        Me.txtBxKategori.Location = New System.Drawing.Point(76, 65)
-        Me.txtBxKategori.Name = "txtBxKategori"
-        Me.txtBxKategori.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxKategori.TabIndex = 154
-        '
-        'TabPage3
-        '
-        Me.TabPage3.BackColor = System.Drawing.Color.Transparent
-        Me.TabPage3.Controls.Add(Me.Label11)
-        Me.TabPage3.Controls.Add(Me.CmbBoxDiscount)
-        Me.TabPage3.Controls.Add(Me.grpBxSelectPeriod)
-        Me.TabPage3.Controls.Add(Me.btnBackSykkel)
-        Me.TabPage3.Controls.Add(Me.btnNextSammendrag)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.TabPage3.Size = New System.Drawing.Size(1137, 463)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Bestilling"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(605, 183)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(39, 13)
-        Me.Label11.TabIndex = 173
-        Me.Label11.Text = "Rabatt"
+        Me.lblDiscount.AutoSize = true
+        Me.lblDiscount.Location = New System.Drawing.Point(731, 207)
+        Me.lblDiscount.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblDiscount.Name = "lblDiscount"
+        Me.lblDiscount.Size = New System.Drawing.Size(50, 17)
+        Me.lblDiscount.TabIndex = 173
+        Me.lblDiscount.Text = "Rabatt"
         '
         'CmbBoxDiscount
         '
-        Me.CmbBoxDiscount.FormattingEnabled = True
+        Me.CmbBoxDiscount.FormattingEnabled = true
         Me.CmbBoxDiscount.Items.AddRange(New Object() {"Ingen", "10%", "20%", "Ansatt", "Skoleklasse", "Gruppe 10+", "Kampanje 50%"})
-        Me.CmbBoxDiscount.Location = New System.Drawing.Point(650, 180)
+        Me.CmbBoxDiscount.Location = New System.Drawing.Point(791, 204)
+        Me.CmbBoxDiscount.Margin = New System.Windows.Forms.Padding(4)
         Me.CmbBoxDiscount.Name = "CmbBoxDiscount"
-        Me.CmbBoxDiscount.Size = New System.Drawing.Size(121, 21)
+        Me.CmbBoxDiscount.Size = New System.Drawing.Size(160, 24)
         Me.CmbBoxDiscount.TabIndex = 172
         Me.CmbBoxDiscount.Text = "Ingen"
         '
@@ -471,201 +202,532 @@ Partial Class OrderTest
         Me.grpBxSelectPeriod.Controls.Add(Me.CalendarTo)
         Me.grpBxSelectPeriod.Controls.Add(Me.labelFraSelect)
         Me.grpBxSelectPeriod.Controls.Add(Me.CalendarFrom)
-        Me.grpBxSelectPeriod.Location = New System.Drawing.Point(126, 76)
+        Me.grpBxSelectPeriod.Location = New System.Drawing.Point(62, 87)
+        Me.grpBxSelectPeriod.Margin = New System.Windows.Forms.Padding(4)
         Me.grpBxSelectPeriod.Name = "grpBxSelectPeriod"
-        Me.grpBxSelectPeriod.Size = New System.Drawing.Size(441, 221)
+        Me.grpBxSelectPeriod.Padding = New System.Windows.Forms.Padding(4)
+        Me.grpBxSelectPeriod.Size = New System.Drawing.Size(631, 272)
         Me.grpBxSelectPeriod.TabIndex = 171
-        Me.grpBxSelectPeriod.TabStop = False
+        Me.grpBxSelectPeriod.TabStop = false
         Me.grpBxSelectPeriod.Text = "Velg periode"
         '
         'labelTilSelect
         '
-        Me.labelTilSelect.AutoSize = True
-        Me.labelTilSelect.Location = New System.Drawing.Point(256, 20)
+        Me.labelTilSelect.AutoSize = true
+        Me.labelTilSelect.Location = New System.Drawing.Point(341, 25)
+        Me.labelTilSelect.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelTilSelect.Name = "labelTilSelect"
-        Me.labelTilSelect.Size = New System.Drawing.Size(18, 13)
+        Me.labelTilSelect.Size = New System.Drawing.Size(23, 17)
         Me.labelTilSelect.TabIndex = 10
         Me.labelTilSelect.Text = "Til"
         '
         'CalendarTo
         '
-        Me.CalendarTo.Location = New System.Drawing.Point(256, 42)
+        Me.CalendarTo.Location = New System.Drawing.Point(341, 52)
+        Me.CalendarTo.Margin = New System.Windows.Forms.Padding(12, 11, 12, 11)
         Me.CalendarTo.Name = "CalendarTo"
         Me.CalendarTo.TabIndex = 9
         '
         'labelFraSelect
         '
-        Me.labelFraSelect.AutoSize = True
-        Me.labelFraSelect.Location = New System.Drawing.Point(21, 20)
+        Me.labelFraSelect.AutoSize = true
+        Me.labelFraSelect.Location = New System.Drawing.Point(28, 25)
+        Me.labelFraSelect.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelFraSelect.Name = "labelFraSelect"
-        Me.labelFraSelect.Size = New System.Drawing.Size(22, 13)
+        Me.labelFraSelect.Size = New System.Drawing.Size(29, 17)
         Me.labelFraSelect.TabIndex = 8
         Me.labelFraSelect.Text = "Fra"
         '
         'CalendarFrom
         '
-        Me.CalendarFrom.Location = New System.Drawing.Point(24, 42)
+        Me.CalendarFrom.Location = New System.Drawing.Point(32, 52)
+        Me.CalendarFrom.Margin = New System.Windows.Forms.Padding(12, 11, 12, 11)
         Me.CalendarFrom.Name = "CalendarFrom"
         Me.CalendarFrom.TabIndex = 7
         '
         'btnBackSykkel
         '
-        Me.btnBackSykkel.Location = New System.Drawing.Point(345, 402)
+        Me.btnBackSykkel.Location = New System.Drawing.Point(877, 441)
+        Me.btnBackSykkel.Margin = New System.Windows.Forms.Padding(4)
         Me.btnBackSykkel.Name = "btnBackSykkel"
-        Me.btnBackSykkel.Size = New System.Drawing.Size(202, 42)
+        Me.btnBackSykkel.Size = New System.Drawing.Size(175, 45)
         Me.btnBackSykkel.TabIndex = 170
         Me.btnBackSykkel.Text = "<-- Tilbake"
-        Me.btnBackSykkel.UseVisualStyleBackColor = True
+        Me.btnBackSykkel.UseVisualStyleBackColor = true
         '
         'btnNextSammendrag
         '
-        Me.btnNextSammendrag.Location = New System.Drawing.Point(758, 402)
+        Me.btnNextSammendrag.Location = New System.Drawing.Point(1060, 441)
+        Me.btnNextSammendrag.Margin = New System.Windows.Forms.Padding(4)
         Me.btnNextSammendrag.Name = "btnNextSammendrag"
-        Me.btnNextSammendrag.Size = New System.Drawing.Size(202, 42)
+        Me.btnNextSammendrag.Size = New System.Drawing.Size(175, 45)
         Me.btnNextSammendrag.TabIndex = 169
         Me.btnNextSammendrag.Text = "Neste -->"
-        Me.btnNextSammendrag.UseVisualStyleBackColor = True
-        '
-        'TabPage4
-        '
-        Me.TabPage4.BackColor = System.Drawing.Color.Transparent
-        Me.TabPage4.Controls.Add(Me.btnBackBestilling)
-        Me.TabPage4.Controls.Add(Me.btnRegisterOrder)
-        Me.TabPage4.Controls.Add(Me.btnPrintReceipt)
-        Me.TabPage4.Controls.Add(Me.ListBoxReceipt)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.TabPage4.Size = New System.Drawing.Size(1137, 463)
-        Me.TabPage4.TabIndex = 3
-        Me.TabPage4.Text = "Sammendrag"
-        '
-        'btnBackBestilling
-        '
-        Me.btnBackBestilling.Location = New System.Drawing.Point(329, 406)
-        Me.btnBackBestilling.Name = "btnBackBestilling"
-        Me.btnBackBestilling.Size = New System.Drawing.Size(202, 42)
-        Me.btnBackBestilling.TabIndex = 171
-        Me.btnBackBestilling.Text = "<-- Tilbake"
-        Me.btnBackBestilling.UseVisualStyleBackColor = True
-        '
-        'btnRegisterOrder
-        '
-        Me.btnRegisterOrder.Location = New System.Drawing.Point(629, 408)
-        Me.btnRegisterOrder.Name = "btnRegisterOrder"
-        Me.btnRegisterOrder.Size = New System.Drawing.Size(200, 40)
-        Me.btnRegisterOrder.TabIndex = 3
-        Me.btnRegisterOrder.Text = "Registrer bestilling"
-        Me.btnRegisterOrder.UseVisualStyleBackColor = True
-        '
-        'btnPrintReceipt
-        '
-        Me.btnPrintReceipt.Location = New System.Drawing.Point(968, 24)
-        Me.btnPrintReceipt.Name = "btnPrintReceipt"
-        Me.btnPrintReceipt.Size = New System.Drawing.Size(156, 52)
-        Me.btnPrintReceipt.TabIndex = 2
-        Me.btnPrintReceipt.Text = "Vis Kvittering"
-        Me.btnPrintReceipt.UseVisualStyleBackColor = True
-        '
-        'ListBoxReceipt
-        '
-        Me.ListBoxReceipt.FormattingEnabled = True
-        Me.ListBoxReceipt.Location = New System.Drawing.Point(156, 24)
-        Me.ListBoxReceipt.Name = "ListBoxReceipt"
-        Me.ListBoxReceipt.Size = New System.Drawing.Size(777, 381)
-        Me.ListBoxReceipt.TabIndex = 1
+        Me.btnNextSammendrag.UseVisualStyleBackColor = true
         '
         'ListBoxOrderOverview
         '
-        Me.ListBoxOrderOverview.FormattingEnabled = True
-        Me.ListBoxOrderOverview.Location = New System.Drawing.Point(1151, 40)
+        Me.ListBoxOrderOverview.BackColor = System.Drawing.SystemColors.Info
+        Me.ListBoxOrderOverview.FormattingEnabled = true
+        Me.ListBoxOrderOverview.ItemHeight = 16
+        Me.ListBoxOrderOverview.Location = New System.Drawing.Point(1006, 37)
+        Me.ListBoxOrderOverview.Margin = New System.Windows.Forms.Padding(4)
         Me.ListBoxOrderOverview.Name = "ListBoxOrderOverview"
-        Me.ListBoxOrderOverview.Size = New System.Drawing.Size(199, 355)
+        Me.ListBoxOrderOverview.Size = New System.Drawing.Size(229, 388)
         Me.ListBoxOrderOverview.TabIndex = 3
         '
-        'btnNewOrder
+        'TabSummary
         '
-        Me.btnNewOrder.Location = New System.Drawing.Point(1151, 418)
-        Me.btnNewOrder.Name = "btnNewOrder"
-        Me.btnNewOrder.Size = New System.Drawing.Size(181, 42)
-        Me.btnNewOrder.TabIndex = 4
-        Me.btnNewOrder.Text = "Reset Bestilling"
-        Me.btnNewOrder.UseVisualStyleBackColor = True
+        Me.TabSummary.BackColor = System.Drawing.Color.Transparent
+        Me.TabSummary.Controls.Add(Me.btnBackBestilling)
+        Me.TabSummary.Controls.Add(Me.btnRegisterOrder)
+        Me.TabSummary.Controls.Add(Me.btnPrintReceipt)
+        Me.TabSummary.Controls.Add(Me.ListBoxReceipt)
+        Me.TabSummary.Location = New System.Drawing.Point(4, 25)
+        Me.TabSummary.Margin = New System.Windows.Forms.Padding(4)
+        Me.TabSummary.Name = "TabSummary"
+        Me.TabSummary.Padding = New System.Windows.Forms.Padding(4)
+        Me.TabSummary.Size = New System.Drawing.Size(1276, 494)
+        Me.TabSummary.TabIndex = 3
+        Me.TabSummary.Text = "Sammendrag"
+        '
+        'btnBackBestilling
+        '
+        Me.btnBackBestilling.Location = New System.Drawing.Point(877, 441)
+        Me.btnBackBestilling.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnBackBestilling.Name = "btnBackBestilling"
+        Me.btnBackBestilling.Size = New System.Drawing.Size(175, 45)
+        Me.btnBackBestilling.TabIndex = 171
+        Me.btnBackBestilling.Text = "<-- Tilbake"
+        Me.btnBackBestilling.UseVisualStyleBackColor = true
+        '
+        'btnRegisterOrder
+        '
+        Me.btnRegisterOrder.Location = New System.Drawing.Point(1060, 441)
+        Me.btnRegisterOrder.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnRegisterOrder.Name = "btnRegisterOrder"
+        Me.btnRegisterOrder.Size = New System.Drawing.Size(175, 45)
+        Me.btnRegisterOrder.TabIndex = 3
+        Me.btnRegisterOrder.Text = "Registrer bestilling"
+        Me.btnRegisterOrder.UseVisualStyleBackColor = true
+        '
+        'ListBoxReceipt
+        '
+        Me.ListBoxReceipt.FormattingEnabled = true
+        Me.ListBoxReceipt.ItemHeight = 16
+        Me.ListBoxReceipt.Location = New System.Drawing.Point(73, 30)
+        Me.ListBoxReceipt.Margin = New System.Windows.Forms.Padding(4)
+        Me.ListBoxReceipt.Name = "ListBoxReceipt"
+        Me.ListBoxReceipt.Size = New System.Drawing.Size(1162, 388)
+        Me.ListBoxReceipt.TabIndex = 1
+        '
+        'btnNextBestilling
+        '
+        Me.btnNextBestilling.Location = New System.Drawing.Point(1060, 441)
+        Me.btnNextBestilling.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnNextBestilling.Name = "btnNextBestilling"
+        Me.btnNextBestilling.Size = New System.Drawing.Size(175, 45)
+        Me.btnNextBestilling.TabIndex = 166
+        Me.btnNextBestilling.Text = "Neste -->"
+        Me.btnNextBestilling.UseVisualStyleBackColor = true
+        '
+        'lblLastnameOrder
+        '
+        Me.lblLastnameOrder.AutoSize = true
+        Me.lblLastnameOrder.Location = New System.Drawing.Point(15, 137)
+        Me.lblLastnameOrder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblLastnameOrder.Name = "lblLastnameOrder"
+        Me.lblLastnameOrder.Size = New System.Drawing.Size(69, 17)
+        Me.lblLastnameOrder.TabIndex = 3
+        Me.lblLastnameOrder.Text = "Etternavn"
+        '
+        'txtBxSirName
+        '
+        Me.txtBxSirName.Location = New System.Drawing.Point(84, 133)
+        Me.txtBxSirName.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBxSirName.Name = "txtBxSirName"
+        Me.txtBxSirName.Size = New System.Drawing.Size(213, 22)
+        Me.txtBxSirName.TabIndex = 2
+        '
+        'TabCustomer
+        '
+        Me.TabCustomer.BackColor = System.Drawing.Color.Transparent
+        Me.TabCustomer.Controls.Add(Me.btnChangeCustomer)
+        Me.TabCustomer.Controls.Add(Me.btnCreateNewCustomer)
+        Me.TabCustomer.Controls.Add(Me.btnNextToSykkel)
+        Me.TabCustomer.Controls.Add(Me.DataGridViewKunde)
+        Me.TabCustomer.Controls.Add(Me.lblKidOrdre)
+        Me.TabCustomer.Controls.Add(Me.txtBxKID)
+        Me.TabCustomer.Controls.Add(Me.lblemailOrder)
+        Me.TabCustomer.Controls.Add(Me.txtBxEmail)
+        Me.TabCustomer.Controls.Add(Me.lblTlfOrder)
+        Me.TabCustomer.Controls.Add(Me.txtBxPhone)
+        Me.TabCustomer.Controls.Add(Me.lblLastnameOrder)
+        Me.TabCustomer.Controls.Add(Me.txtBxSirName)
+        Me.TabCustomer.Controls.Add(Me.lblFirstnameOrder)
+        Me.TabCustomer.Controls.Add(Me.txtBxFirstName)
+        Me.TabCustomer.Location = New System.Drawing.Point(4, 25)
+        Me.TabCustomer.Margin = New System.Windows.Forms.Padding(4)
+        Me.TabCustomer.Name = "TabCustomer"
+        Me.TabCustomer.Padding = New System.Windows.Forms.Padding(4)
+        Me.TabCustomer.Size = New System.Drawing.Size(1276, 494)
+        Me.TabCustomer.TabIndex = 0
+        Me.TabCustomer.Text = "Kunde"
+        '
+        'btnChangeCustomer
+        '
+        Me.btnChangeCustomer.Location = New System.Drawing.Point(694, 441)
+        Me.btnChangeCustomer.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnChangeCustomer.Name = "btnChangeCustomer"
+        Me.btnChangeCustomer.Size = New System.Drawing.Size(175, 45)
+        Me.btnChangeCustomer.TabIndex = 155
+        Me.btnChangeCustomer.Text = "Endre kunde"
+        Me.btnChangeCustomer.UseVisualStyleBackColor = true
+        '
+        'btnCreateNewCustomer
+        '
+        Me.btnCreateNewCustomer.Location = New System.Drawing.Point(877, 441)
+        Me.btnCreateNewCustomer.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnCreateNewCustomer.Name = "btnCreateNewCustomer"
+        Me.btnCreateNewCustomer.Size = New System.Drawing.Size(175, 45)
+        Me.btnCreateNewCustomer.TabIndex = 154
+        Me.btnCreateNewCustomer.Text = "Opprett ny kunde"
+        Me.btnCreateNewCustomer.UseVisualStyleBackColor = true
+        '
+        'btnNextToSykkel
+        '
+        Me.btnNextToSykkel.Location = New System.Drawing.Point(1060, 441)
+        Me.btnNextToSykkel.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnNextToSykkel.Name = "btnNextToSykkel"
+        Me.btnNextToSykkel.Size = New System.Drawing.Size(175, 45)
+        Me.btnNextToSykkel.TabIndex = 153
+        Me.btnNextToSykkel.Text = "Neste -->"
+        Me.btnNextToSykkel.UseVisualStyleBackColor = true
+        '
+        'DataGridViewKunde
+        '
+        Me.DataGridViewKunde.AllowUserToAddRows = false
+        Me.DataGridViewKunde.AllowUserToDeleteRows = false
+        Me.DataGridViewKunde.AllowUserToResizeColumns = false
+        Me.DataGridViewKunde.AllowUserToResizeRows = false
+        Me.DataGridViewKunde.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewKunde.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.DataGridViewKunde.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewKunde.Location = New System.Drawing.Point(320, 22)
+        Me.DataGridViewKunde.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.DataGridViewKunde.MultiSelect = false
+        Me.DataGridViewKunde.Name = "DataGridViewKunde"
+        Me.DataGridViewKunde.ReadOnly = true
+        Me.DataGridViewKunde.RowHeadersVisible = false
+        Me.DataGridViewKunde.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders
+        Me.DataGridViewKunde.RowTemplate.Height = 24
+        Me.DataGridViewKunde.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridViewKunde.Size = New System.Drawing.Size(915, 400)
+        Me.DataGridViewKunde.TabIndex = 151
+        '
+        'lblKidOrdre
+        '
+        Me.lblKidOrdre.AutoSize = true
+        Me.lblKidOrdre.Location = New System.Drawing.Point(15, 372)
+        Me.lblKidOrdre.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblKidOrdre.Name = "lblKidOrdre"
+        Me.lblKidOrdre.Size = New System.Drawing.Size(28, 17)
+        Me.lblKidOrdre.TabIndex = 9
+        Me.lblKidOrdre.Text = "Kid"
+        '
+        'txtBxKID
+        '
+        Me.txtBxKID.Location = New System.Drawing.Point(84, 372)
+        Me.txtBxKID.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBxKID.Name = "txtBxKID"
+        Me.txtBxKID.ReadOnly = true
+        Me.txtBxKID.Size = New System.Drawing.Size(213, 22)
+        Me.txtBxKID.TabIndex = 8
+        '
+        'lblemailOrder
+        '
+        Me.lblemailOrder.AutoSize = true
+        Me.lblemailOrder.Location = New System.Drawing.Point(15, 215)
+        Me.lblemailOrder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblemailOrder.Name = "lblemailOrder"
+        Me.lblemailOrder.Size = New System.Drawing.Size(49, 17)
+        Me.lblemailOrder.TabIndex = 7
+        Me.lblemailOrder.Text = "E-post"
+        '
+        'txtBxEmail
+        '
+        Me.txtBxEmail.Location = New System.Drawing.Point(84, 214)
+        Me.txtBxEmail.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBxEmail.Name = "txtBxEmail"
+        Me.txtBxEmail.Size = New System.Drawing.Size(213, 22)
+        Me.txtBxEmail.TabIndex = 6
+        '
+        'lblTlfOrder
+        '
+        Me.lblTlfOrder.AutoSize = true
+        Me.lblTlfOrder.Location = New System.Drawing.Point(15, 293)
+        Me.lblTlfOrder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblTlfOrder.Name = "lblTlfOrder"
+        Me.lblTlfOrder.Size = New System.Drawing.Size(56, 17)
+        Me.lblTlfOrder.TabIndex = 5
+        Me.lblTlfOrder.Text = "Telefon"
+        '
+        'txtBxPhone
+        '
+        Me.txtBxPhone.Location = New System.Drawing.Point(84, 293)
+        Me.txtBxPhone.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBxPhone.Name = "txtBxPhone"
+        Me.txtBxPhone.ReadOnly = true
+        Me.txtBxPhone.Size = New System.Drawing.Size(213, 22)
+        Me.txtBxPhone.TabIndex = 4
+        '
+        'lblFirstnameOrder
+        '
+        Me.lblFirstnameOrder.AutoSize = true
+        Me.lblFirstnameOrder.Location = New System.Drawing.Point(15, 59)
+        Me.lblFirstnameOrder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblFirstnameOrder.Name = "lblFirstnameOrder"
+        Me.lblFirstnameOrder.Size = New System.Drawing.Size(60, 17)
+        Me.lblFirstnameOrder.TabIndex = 1
+        Me.lblFirstnameOrder.Text = "Fornavn"
+        '
+        'txtBxFirstName
+        '
+        Me.txtBxFirstName.Location = New System.Drawing.Point(84, 56)
+        Me.txtBxFirstName.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBxFirstName.Name = "txtBxFirstName"
+        Me.txtBxFirstName.Size = New System.Drawing.Size(213, 22)
+        Me.txtBxFirstName.TabIndex = 0
+        '
+        'dgvBicycle
+        '
+        Me.dgvBicycle.AllowUserToAddRows = false
+        Me.dgvBicycle.AllowUserToDeleteRows = false
+        Me.dgvBicycle.AllowUserToResizeColumns = false
+        Me.dgvBicycle.AllowUserToResizeRows = false
+        Me.dgvBicycle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvBicycle.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.dgvBicycle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvBicycle.Location = New System.Drawing.Point(320, 22)
+        Me.dgvBicycle.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.dgvBicycle.MultiSelect = false
+        Me.dgvBicycle.Name = "dgvBicycle"
+        Me.dgvBicycle.ReadOnly = true
+        Me.dgvBicycle.RowHeadersVisible = false
+        Me.dgvBicycle.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders
+        Me.dgvBicycle.RowTemplate.Height = 24
+        Me.dgvBicycle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvBicycle.Size = New System.Drawing.Size(553, 400)
+        Me.dgvBicycle.TabIndex = 164
+        '
+        'lblFramenbOrder
+        '
+        Me.lblFramenbOrder.AutoSize = true
+        Me.lblFramenbOrder.Location = New System.Drawing.Point(20, 376)
+        Me.lblFramenbOrder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblFramenbOrder.Name = "lblFramenbOrder"
+        Me.lblFramenbOrder.Size = New System.Drawing.Size(73, 17)
+        Me.lblFramenbOrder.TabIndex = 163
+        Me.lblFramenbOrder.Text = "Rammenr."
+        '
+        'txtBxRammenr
+        '
+        Me.txtBxRammenr.Location = New System.Drawing.Point(89, 373)
+        Me.txtBxRammenr.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBxRammenr.Name = "txtBxRammenr"
+        Me.txtBxRammenr.Size = New System.Drawing.Size(213, 22)
+        Me.txtBxRammenr.TabIndex = 162
+        '
+        'lblBrandOrder
+        '
+        Me.lblBrandOrder.AutoSize = true
+        Me.lblBrandOrder.Location = New System.Drawing.Point(20, 297)
+        Me.lblBrandOrder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblBrandOrder.Name = "lblBrandOrder"
+        Me.lblBrandOrder.Size = New System.Drawing.Size(47, 17)
+        Me.lblBrandOrder.TabIndex = 161
+        Me.lblBrandOrder.Text = "Merke"
+        '
+        'txtBxMerke
+        '
+        Me.txtBxMerke.Location = New System.Drawing.Point(89, 294)
+        Me.txtBxMerke.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBxMerke.Name = "txtBxMerke"
+        Me.txtBxMerke.Size = New System.Drawing.Size(213, 22)
+        Me.txtBxMerke.TabIndex = 160
+        '
+        'lblPriceOrder
+        '
+        Me.lblPriceOrder.AutoSize = true
+        Me.lblPriceOrder.Location = New System.Drawing.Point(20, 218)
+        Me.lblPriceOrder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPriceOrder.Name = "lblPriceOrder"
+        Me.lblPriceOrder.Size = New System.Drawing.Size(32, 17)
+        Me.lblPriceOrder.TabIndex = 159
+        Me.lblPriceOrder.Text = "Pris"
+        '
+        'txtBxPris
+        '
+        Me.txtBxPris.Location = New System.Drawing.Point(89, 215)
+        Me.txtBxPris.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBxPris.Name = "txtBxPris"
+        Me.txtBxPris.Size = New System.Drawing.Size(213, 22)
+        Me.txtBxPris.TabIndex = 158
+        '
+        'lblModelOrder
+        '
+        Me.lblModelOrder.AutoSize = true
+        Me.lblModelOrder.Location = New System.Drawing.Point(20, 139)
+        Me.lblModelOrder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblModelOrder.Name = "lblModelOrder"
+        Me.lblModelOrder.Size = New System.Drawing.Size(49, 17)
+        Me.lblModelOrder.TabIndex = 157
+        Me.lblModelOrder.Text = "Modell"
+        '
+        'txtBxModell
+        '
+        Me.txtBxModell.Location = New System.Drawing.Point(89, 134)
+        Me.txtBxModell.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBxModell.Name = "txtBxModell"
+        Me.txtBxModell.Size = New System.Drawing.Size(213, 22)
+        Me.txtBxModell.TabIndex = 156
+        '
+        'lblCategoryOrder
+        '
+        Me.lblCategoryOrder.AutoSize = true
+        Me.lblCategoryOrder.Location = New System.Drawing.Point(20, 60)
+        Me.lblCategoryOrder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblCategoryOrder.Name = "lblCategoryOrder"
+        Me.lblCategoryOrder.Size = New System.Drawing.Size(61, 17)
+        Me.lblCategoryOrder.TabIndex = 155
+        Me.lblCategoryOrder.Text = "Kategori"
+        '
+        'txtBxKategori
+        '
+        Me.txtBxKategori.Location = New System.Drawing.Point(89, 57)
+        Me.txtBxKategori.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBxKategori.Name = "txtBxKategori"
+        Me.txtBxKategori.Size = New System.Drawing.Size(213, 22)
+        Me.txtBxKategori.TabIndex = 154
+        '
+        'tabBike
+        '
+        Me.tabBike.BackColor = System.Drawing.Color.Transparent
+        Me.tabBike.Controls.Add(Me.btnOrderSearchBike)
+        Me.tabBike.Controls.Add(Me.lblOrderChooseEqip)
+        Me.tabBike.Controls.Add(Me.lblOrderOverView)
+        Me.tabBike.Controls.Add(Me.lstbxEquipment)
+        Me.tabBike.Controls.Add(Me.ListBoxOrderOverview)
+        Me.tabBike.Controls.Add(Me.btnNewOrder)
+        Me.tabBike.Controls.Add(Me.btnAddToOrder)
+        Me.tabBike.Controls.Add(Me.btnBackKunde)
+        Me.tabBike.Controls.Add(Me.btnNextBestilling)
+        Me.tabBike.Controls.Add(Me.dgvBicycle)
+        Me.tabBike.Controls.Add(Me.lblFramenbOrder)
+        Me.tabBike.Controls.Add(Me.txtBxRammenr)
+        Me.tabBike.Controls.Add(Me.lblBrandOrder)
+        Me.tabBike.Controls.Add(Me.txtBxMerke)
+        Me.tabBike.Controls.Add(Me.lblPriceOrder)
+        Me.tabBike.Controls.Add(Me.txtBxPris)
+        Me.tabBike.Controls.Add(Me.lblModelOrder)
+        Me.tabBike.Controls.Add(Me.txtBxModell)
+        Me.tabBike.Controls.Add(Me.lblCategoryOrder)
+        Me.tabBike.Controls.Add(Me.txtBxKategori)
+        Me.tabBike.Location = New System.Drawing.Point(4, 25)
+        Me.tabBike.Margin = New System.Windows.Forms.Padding(4)
+        Me.tabBike.Name = "tabBike"
+        Me.tabBike.Padding = New System.Windows.Forms.Padding(4)
+        Me.tabBike.Size = New System.Drawing.Size(1276, 494)
+        Me.tabBike.TabIndex = 1
+        Me.tabBike.Text = "Sykkel"
+        '
+        'Bestilling
+        '
+        Me.Bestilling.Controls.Add(Me.TabCustomer)
+        Me.Bestilling.Controls.Add(Me.tabBike)
+        Me.Bestilling.Controls.Add(Me.TabOrder)
+        Me.Bestilling.Controls.Add(Me.TabSummary)
+        Me.Bestilling.Location = New System.Drawing.Point(36, 53)
+        Me.Bestilling.Margin = New System.Windows.Forms.Padding(4)
+        Me.Bestilling.Name = "Bestilling"
+        Me.Bestilling.SelectedIndex = 0
+        Me.Bestilling.Size = New System.Drawing.Size(1284, 523)
+        Me.Bestilling.TabIndex = 3
         '
         'OrderTest
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8!, 16!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1017, 510)
-        Me.Controls.Add(Me.btnNewOrder)
-        Me.Controls.Add(Me.ListBoxOrderOverview)
+        Me.ClientSize = New System.Drawing.Size(1348, 723)
         Me.Controls.Add(Me.Bestilling)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "OrderTest"
         Me.Text = "OrderTest"
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
-        CType(Me.DataGridViewKunde, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Bestilling.ResumeLayout(False)
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
-        CType(Me.dgvBicycle, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage3.ResumeLayout(False)
-        Me.TabPage3.PerformLayout()
-        Me.grpBxSelectPeriod.ResumeLayout(False)
-        Me.grpBxSelectPeriod.PerformLayout()
-        Me.TabPage4.ResumeLayout(False)
-        Me.ResumeLayout(False)
+        Me.TabOrder.ResumeLayout(false)
+        Me.TabOrder.PerformLayout
+        Me.grpBxSelectPeriod.ResumeLayout(false)
+        Me.grpBxSelectPeriod.PerformLayout
+        Me.TabSummary.ResumeLayout(false)
+        Me.TabCustomer.ResumeLayout(false)
+        Me.TabCustomer.PerformLayout
+        CType(Me.DataGridViewKunde,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.dgvBicycle,System.ComponentModel.ISupportInitialize).EndInit
+        Me.tabBike.ResumeLayout(false)
+        Me.tabBike.PerformLayout
+        Me.Bestilling.ResumeLayout(false)
+        Me.ResumeLayout(false)
 
-    End Sub
-    Friend WithEvents txtBxFirstName As System.Windows.Forms.TextBox
-    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents DataGridViewKunde As System.Windows.Forms.DataGridView
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents txtBxKID As System.Windows.Forms.TextBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents txtBxEmail As System.Windows.Forms.TextBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents txtBxPhone As System.Windows.Forms.TextBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents txtBxSirName As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Bestilling As System.Windows.Forms.TabControl
-    Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
-    Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
-    Friend WithEvents btnNextToSykkel As System.Windows.Forms.Button
-    Friend WithEvents btnNextBestilling As System.Windows.Forms.Button
-    Friend WithEvents dgvBicycle As System.Windows.Forms.DataGridView
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents txtBxRammenr As System.Windows.Forms.TextBox
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents txtBxMerke As System.Windows.Forms.TextBox
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents txtBxPris As System.Windows.Forms.TextBox
-    Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents txtBxModell As System.Windows.Forms.TextBox
-    Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents txtBxKategori As System.Windows.Forms.TextBox
-    Friend WithEvents btnBackKunde As System.Windows.Forms.Button
-    Friend WithEvents btnCreateNewCustomer As System.Windows.Forms.Button
+End Sub
+    Friend WithEvents btnOrderSearchBike As System.Windows.Forms.Button
+    Friend WithEvents lblOrderChooseEqip As System.Windows.Forms.Label
+    Friend WithEvents lblOrderOverView As System.Windows.Forms.Label
+    Friend WithEvents lstbxEquipment As System.Windows.Forms.CheckedListBox
+    Friend WithEvents btnNewOrder As System.Windows.Forms.Button
     Friend WithEvents btnAddToOrder As System.Windows.Forms.Button
-    Friend WithEvents btnAddNewBicycle As System.Windows.Forms.Button
-    Friend WithEvents CheckedListBox1 As System.Windows.Forms.CheckedListBox
-    Friend WithEvents btnBackSykkel As System.Windows.Forms.Button
-    Friend WithEvents btnNextSammendrag As System.Windows.Forms.Button
-    Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
-    Friend WithEvents ListBoxReceipt As System.Windows.Forms.ListBox
-    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents btnBackKunde As System.Windows.Forms.Button
+    Friend WithEvents btnPrintReceipt As System.Windows.Forms.Button
+    Friend WithEvents TabOrder As System.Windows.Forms.TabPage
+    Friend WithEvents lblDiscount As System.Windows.Forms.Label
     Friend WithEvents CmbBoxDiscount As System.Windows.Forms.ComboBox
     Friend WithEvents grpBxSelectPeriod As System.Windows.Forms.GroupBox
     Friend WithEvents labelTilSelect As System.Windows.Forms.Label
     Friend WithEvents CalendarTo As System.Windows.Forms.MonthCalendar
     Friend WithEvents labelFraSelect As System.Windows.Forms.Label
     Friend WithEvents CalendarFrom As System.Windows.Forms.MonthCalendar
-    Friend WithEvents btnPrintReceipt As System.Windows.Forms.Button
-    Friend WithEvents btnRegisterOrder As System.Windows.Forms.Button
-    Friend WithEvents btnChangeCustomer As System.Windows.Forms.Button
+    Friend WithEvents btnBackSykkel As System.Windows.Forms.Button
+    Friend WithEvents btnNextSammendrag As System.Windows.Forms.Button
     Friend WithEvents ListBoxOrderOverview As System.Windows.Forms.ListBox
-    Friend WithEvents btnNewOrder As System.Windows.Forms.Button
+    Friend WithEvents TabSummary As System.Windows.Forms.TabPage
     Friend WithEvents btnBackBestilling As System.Windows.Forms.Button
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents btnRegisterOrder As System.Windows.Forms.Button
+    Friend WithEvents ListBoxReceipt As System.Windows.Forms.ListBox
+    Friend WithEvents btnNextBestilling As System.Windows.Forms.Button
+    Friend WithEvents lblLastnameOrder As System.Windows.Forms.Label
+    Friend WithEvents txtBxSirName As System.Windows.Forms.TextBox
+    Friend WithEvents TabCustomer As System.Windows.Forms.TabPage
+    Friend WithEvents btnChangeCustomer As System.Windows.Forms.Button
+    Friend WithEvents btnCreateNewCustomer As System.Windows.Forms.Button
+    Friend WithEvents btnNextToSykkel As System.Windows.Forms.Button
+    Friend WithEvents DataGridViewKunde As System.Windows.Forms.DataGridView
+    Friend WithEvents lblKidOrdre As System.Windows.Forms.Label
+    Friend WithEvents txtBxKID As System.Windows.Forms.TextBox
+    Friend WithEvents lblemailOrder As System.Windows.Forms.Label
+    Friend WithEvents txtBxEmail As System.Windows.Forms.TextBox
+    Friend WithEvents lblTlfOrder As System.Windows.Forms.Label
+    Friend WithEvents txtBxPhone As System.Windows.Forms.TextBox
+    Friend WithEvents lblFirstnameOrder As System.Windows.Forms.Label
+    Friend WithEvents txtBxFirstName As System.Windows.Forms.TextBox
+    Friend WithEvents dgvBicycle As System.Windows.Forms.DataGridView
+    Friend WithEvents lblFramenbOrder As System.Windows.Forms.Label
+    Friend WithEvents txtBxRammenr As System.Windows.Forms.TextBox
+    Friend WithEvents lblBrandOrder As System.Windows.Forms.Label
+    Friend WithEvents txtBxMerke As System.Windows.Forms.TextBox
+    Friend WithEvents lblPriceOrder As System.Windows.Forms.Label
+    Friend WithEvents txtBxPris As System.Windows.Forms.TextBox
+    Friend WithEvents lblModelOrder As System.Windows.Forms.Label
+    Friend WithEvents txtBxModell As System.Windows.Forms.TextBox
+    Friend WithEvents lblCategoryOrder As System.Windows.Forms.Label
+    Friend WithEvents txtBxKategori As System.Windows.Forms.TextBox
+    Friend WithEvents tabBike As System.Windows.Forms.TabPage
+    Friend WithEvents Bestilling As System.Windows.Forms.TabControl
 End Class
