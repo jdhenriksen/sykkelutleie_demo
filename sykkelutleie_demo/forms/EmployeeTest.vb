@@ -12,6 +12,12 @@ Public Class EmployeeTest
             MsgBox("Brukernavn opptatt. Velg et annet.")
             Exit Sub
         End If
+
+        If Not checkTextBoxes() Then
+            MsgBox("Alle tekstfelt må fylles ut.")
+            Exit Sub
+        End If
+
         createEmployeeFromTextFields()
 
         If Not emp.account.setPassword(emp.account.getPassword()) Then
@@ -34,6 +40,12 @@ Public Class EmployeeTest
             MsgBox("Brukernavn opptatt. Velg et annet.")
             Exit Sub
         End If
+
+        If Not checkTextBoxes() Then
+            MsgBox("Alle tekstfelt må fylles ut.")
+            Exit Sub
+        End If
+
         createEmployeeFromTextFields()
 
         'Hent passord fra DB og sammenlign med passord i objekt
@@ -158,4 +170,16 @@ Public Class EmployeeTest
             End If
         Next
     End Sub
+
+    Private Function checkTextBoxes() As Boolean
+        Dim ctrl As Control
+        For Each ctrl In Me.Controls
+            If ctrl.GetType() = GetType(TextBox) Then
+                If ctrl.Text = "" Then
+                    Return False
+                End If
+            End If
+        Next
+        Return True
+    End Function
 End Class

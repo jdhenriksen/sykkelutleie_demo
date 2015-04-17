@@ -89,6 +89,12 @@
         Return exists
     End Function
 
+    Public Function setUserId(username As String) As DataTable
+        dbutil.addParametersToQuery("@username", username)
+        table = dbutil.paramQuery(SQLRes.sqlSetUserId)
+        Return table
+    End Function
+
     Public Sub populateList(list As List(Of String))
         With dbutil
             .addParametersToQuery("@username", list(0))

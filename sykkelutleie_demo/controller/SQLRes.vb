@@ -5,14 +5,14 @@
 Public Class SQLRes
 
     'STATISTICS
-    Public cheapestBicycles As String = "SELECT sykkel.rammenr AS 'Rammenr.', sykkel.modell AS Modell, modell.pris AS Pris FROM sykkel JOIN modell ON sykkel.modell=modell.modell GROUP BY modell ORDER BY pris LIMIT @limit;"
-    Public mostExpensiveBicycles As String = "SELECT sykkel.rammenr AS 'Rammenr.', sykkel.modell, modell.pris FROM sykkel JOIN modell ON sykkel.modell=modell.modell GROUP BY modell ORDER BY pris DESC LIMIT @limit;"
-    Public mostActiveSalesman As String = "SELECT COUNT(bestilling.ansattid) AS Salg, ansatt.fornavn, ansatt.etternavn, ansatt.ansattid FROM ansatt JOIN bestilling ON bestilling.ansattid=ansatt.ansattid WHERE datotid BETWEEN @startDate AND @endDate;"
-    Public leastActiveSalesman As String = "SELECT COUNT(bestilling.ansattid) AS Salg, ansatt.fornavn, ansatt.etternavn, ansatt.ansattid FROM ansatt JOIN bestilling ON bestilling.ansattid=ansatt.ansattid WHERE datotid BETWEEN @startDate AND @endDate GROUP BY ansatt.ansattid DESC;"
-    Public avanseBicycles As String = "SELECT SUM(modell.pris) AS 'Avanse på sykkel i perioden' FROM modell JOIN sykkel ON modell.modell=sykkel.modell JOIN sykkel_bestilling ON sykkel.rammenr=sykkel_bestilling.rammenr JOIN bestilling ON sykkel_bestilling.bestillingsid=bestilling.bestillingsid WHERE datotid BETWEEN @startDate AND @endDate;"
-    Public countOrders As String = "SELECT COUNT(bestillingsid) AS 'Antall bestillinger i perioden' FROM bestilling WHERE datotid BETWEEN @startDate AND @endDate;"
-    Public countMosteActiveBicycles As String = "SELECT COUNT(bestilling.bestillingsid) AS 'Ganger utleid', sykkel.rammenr AS 'Ramme nummer', sykkel.modell AS 'Modell', modell.pris AS 'Pris' FROM modell JOIN sykkel ON modell.modell=sykkel.modell JOIN sykkel_bestilling ON sykkel.rammenr=sykkel_bestilling.rammenr JOIN bestilling ON sykkel_bestilling.bestillingsid=bestilling.bestillingsid WHERE datotid BETWEEN @startDate AND @endDate GROUP BY sykkel.rammenr LIMIT @limit;"
-    Public countLeastActiveBicycles As String = "SELECT COUNT(bestilling.bestillingsid) AS 'Ganger utleid', sykkel.rammenr AS 'Ramme nummer', sykkel.modell AS 'Modell', modell.pris AS 'Pris' FROM modell JOIN sykkel ON modell.modell=sykkel.modell JOIN sykkel_bestilling ON sykkel.rammenr=sykkel_bestilling.rammenr JOIN bestilling ON sykkel_bestilling.bestillingsid=bestilling.bestillingsid WHERE datotid BETWEEN @startDate AND @endDate GROUP BY sykkel.rammenr DESC LIMIT @limit;"
+    Public sqlCheapestBicycles As String = "SELECT sykkel.rammenr AS 'Rammenr.', sykkel.modell AS Modell, modell.pris AS Pris FROM sykkel JOIN modell ON sykkel.modell=modell.modell GROUP BY modell ORDER BY pris LIMIT @limit;"
+    Public sqlMostExpensiveBicycles As String = "SELECT sykkel.rammenr AS 'Rammenr.', sykkel.modell, modell.pris FROM sykkel JOIN modell ON sykkel.modell=modell.modell GROUP BY modell ORDER BY pris DESC LIMIT @limit;"
+    Public sqlMostActiveSalesman As String = "SELECT COUNT(bestilling.ansattid) AS Salg, ansatt.fornavn, ansatt.etternavn, ansatt.ansattid FROM ansatt JOIN bestilling ON bestilling.ansattid=ansatt.ansattid WHERE datotid BETWEEN @startDate AND @endDate;"
+    Public sqlLeastActiveSalesman As String = "SELECT COUNT(bestilling.ansattid) AS Salg, ansatt.fornavn, ansatt.etternavn, ansatt.ansattid FROM ansatt JOIN bestilling ON bestilling.ansattid=ansatt.ansattid WHERE datotid BETWEEN @startDate AND @endDate GROUP BY ansatt.ansattid DESC;"
+    Public sqlSalesIncomeBicycles As String = "SELECT SUM(modell.pris) AS 'Avanse på sykkel i perioden' FROM modell JOIN sykkel ON modell.modell=sykkel.modell JOIN sykkel_bestilling ON sykkel.rammenr=sykkel_bestilling.rammenr JOIN bestilling ON sykkel_bestilling.bestillingsid=bestilling.bestillingsid WHERE datotid BETWEEN @startDate AND @endDate;"
+    Public sqlCountOrders As String = "SELECT COUNT(bestillingsid) AS 'Antall bestillinger i perioden' FROM bestilling WHERE datotid BETWEEN @startDate AND @endDate;"
+    Public sqlCountMosteActiveBicycles As String = "SELECT COUNT(bestilling.bestillingsid) AS 'Ganger utleid', sykkel.rammenr AS 'Ramme nummer', sykkel.modell AS 'Modell', modell.pris AS 'Pris' FROM modell JOIN sykkel ON modell.modell=sykkel.modell JOIN sykkel_bestilling ON sykkel.rammenr=sykkel_bestilling.rammenr JOIN bestilling ON sykkel_bestilling.bestillingsid=bestilling.bestillingsid WHERE datotid BETWEEN @startDate AND @endDate GROUP BY sykkel.rammenr LIMIT @limit;"
+    Public sqlCountLeastActiveBicycles As String = "SELECT COUNT(bestilling.bestillingsid) AS 'Ganger utleid', sykkel.rammenr AS 'Ramme nummer', sykkel.modell AS 'Modell', modell.pris AS 'Pris' FROM modell JOIN sykkel ON modell.modell=sykkel.modell JOIN sykkel_bestilling ON sykkel.rammenr=sykkel_bestilling.rammenr JOIN bestilling ON sykkel_bestilling.bestillingsid=bestilling.bestillingsid WHERE datotid BETWEEN @startDate AND @endDate GROUP BY sykkel.rammenr DESC LIMIT @limit;"
 
     'EMPLOYEE
     Public Const sqlCreateEmployee As String = "INSERT INTO  ansatt(`brukernavn` ,`passord` ,`fornavn` ,`etternavn` ,`telefon` ,`epost` ,`adresse` ,`stilling` ,`postnr` ,`aktivert`)" _
@@ -33,16 +33,17 @@ Public Class SQLRes
             "fornavn LIKE @firstname AND etternavn LIKE @lastname AND telefon LIKE @phone AND epost LIKE @email AND " & _
             "adresse LIKE @address AND stilling LIKE @job AND postnr LIKE @zip AND aktivert LIKE @active;"
     Public Const sqlGetPasswordHashByUsername As String = "SELECT passord FROM ansatt WHERE brukernavn = @username;"
+    Public Const sqlSetUserId As String = "SELECT ansattid FROM ansatt WHERE brukernavn = @username;"
 
     'CUSTOMER
     Public Const sqlCreateCustomer As String = "INSERT INTO kunde (`fornavn` ,`etternavn` ,`telefon` ,`epost` ,`aktivert`) " & _
             "VALUES(@firstname, @lastname, @phone, @email, @active);"
     Public Const sqlEditCustomer As String = "UPDATE kunde SET fornavn = @firstname, etternavn = @lastname, telefon = @phone, " & _
             "epost = @email, aktivert = @active WHERE kid = @id;"
-    Public Const sqlDeleteCustomer As String = "DELETE FROM kunde WHERE kid = @id;"
+    Public Const sqlDeleteCustomer As String = "UPDATE kunde SET aktivert = 0 WHERE kid = @id;"
     Public Const sqlSelectCustomerById As String = "SELECT * FROM kunde WHERE kid = @id;"
     Public Const sqlSelectAllCustomers As String = "SELECT * FROM kunde;"
-    Public Const sqlSearchCustomer As String = "SELECT * FROM kunde WHERE kid LIKE @id AND fornavn LIKE @firstname AND " & _
+    Public Const sqlSearchCustomer As String = "SELECT * FROM kunde WHERE fornavn LIKE @firstname AND " & _
             "etternavn LIKE @lastname AND telefon LIKE @phone AND epost LIKE @email AND aktivert LIKE @active;"
     Public Const sqlGetActiveCustomer As String = "SELECT * FROM kunde WHERE aktivert = '1';"
 

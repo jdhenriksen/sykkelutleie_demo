@@ -81,8 +81,8 @@
     ''' </summary>
     ''' <returns>Datatabell basert på sql spørring</returns>
     ''' <remarks>Joiner sykkel og modell for å gi data fra begge</remarks>
-    Function searchBicycleModel(bike As Bike) As DataTable
-        myData = dao.searchBicycleModel(bike.makeList(), bike.model.price, bike.model.getProducer, bike.model.getCategory)
+    Function searchBicycleModel() As DataTable
+        myData = dao.searchBicycleModel(makeList(), model.price, model.getProducer, model.getCategory)
         Return myData
     End Function
 

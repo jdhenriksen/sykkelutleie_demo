@@ -24,7 +24,6 @@
             Case "lagerarbeider"
                 StorageWorker.Show()
             Case "selger"
-                OrderTest.loggedInUser = account
                 OrderTest.Show()
             Case "sekretær", "daglig leder"
                 AdminForm.Show()

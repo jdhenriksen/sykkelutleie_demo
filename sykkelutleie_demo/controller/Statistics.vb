@@ -28,21 +28,21 @@ Public Class Statistics
 
         Select Case type
             Case "Dyreste sykkel"
-                query = sqlRes.mostExpensiveBicycles
+                query = sqlRes.sqlMostExpensiveBicycles
             Case "Billigste sykkel"
-                query = sqlRes.cheapestBicycles
+                query = sqlRes.sqlCheapestBicycles
             Case "Mest aktive selger"
-                query = sqlRes.mostActiveSalesman
+                query = sqlRes.sqlMostActiveSalesman
             Case "Minst aktive selger"
-                query = sqlRes.leastActiveSalesman
+                query = sqlRes.sqlLeastActiveSalesman
             Case "Avanse"
-                query = sqlRes.avanseBicycles
+                query = sqlRes.sqlSalesIncomeBicycles
             Case "Antall bestillinger"
-                query = sqlRes.countOrders
+                query = sqlRes.sqlCountOrders
             Case "Mest populære sykler"
-                query = sqlRes.countMosteActiveBicycles
+                query = sqlRes.sqlCountMosteActiveBicycles
             Case "Minst populære sykler"
-                query = sqlRes.countLeastActiveBicycles
+                query = sqlRes.sqlCountLeastActiveBicycles
             Case Else
                 statisticsTypeError()
                 Return Nothing

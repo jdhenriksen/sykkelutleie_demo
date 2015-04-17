@@ -24,15 +24,15 @@
         dao.editCustomer(makeList(), id)
     End Sub
     'Deaktivere kunde
-    Public Sub deleteCustomer()
+    Public Sub deleteCustomer(id As String)
         setActive(0)
-        dao.deleteCustomer(getCustomerID())
+        dao.deleteCustomer(id)
     End Sub
 
     Public Function searchCustomer() As DataTable
         Return dao.searchCustomer(makeList())
     End Function
-    Public Function getActiveCustomer(customer As Customer) As DataTable
+    Public Function getActiveCustomer() As DataTable
         Return dao.getActiveCustomer()
     End Function
 
@@ -55,7 +55,6 @@
         list.Add(getPhone())
         list.Add(getEmail())
         list.Add(getActive())
-
         Return list
     End Function
 

@@ -8,6 +8,7 @@ Imports System.Security.Cryptography
 
 Public Class Account
     Property username As String
+    Public Shared Property userID As String
     Private password As String
 
     Sub New(username As String, password As String)
@@ -32,6 +33,10 @@ Public Class Account
     End Function
 
     Public Function setPassword(password As String) As Boolean
+        Return validatePassword(password)
+    End Function
+
+    Private Function validatePassword(password As String) As Boolean
         If password.Length > 7 Then
             Me.password = generateHash(password)
             Return True
@@ -62,29 +67,13 @@ Public Class Account
         password = generateHash(password)
         Dim dao As New EmployeeDao
         Dim table As DataTable = dao.login(getUsername(), getPassword())
+        setUserId()
         Return table
     End Function
 
-    'ERSTATT MED Shared Var
-    Public Function getEmployee() As Employee
-        Dim dbutil As New DBUtility
-        Dim sql As String
-        Dim result As DataTable
-        Dim row As DataRow
-
-        sql = "SELECT ansatt.fornavn, ansatt.etternavn, stilling, ansatt.epost, ansatt.telefon FROM ansatt WHERE brukernavn = '" & username & "';"
-        result = dbutil.paramQuery(sql)
-
-        If result.Rows.Count <> 1 Then
-            Return Nothing
-        Else
-
-            row = result.Rows(0)
-
-            Dim employee As New Employee(row("fornavn"), row("etternavn"), row("telefon"), row("epost"), row("stilling"), "", "", username, "aaaaaaaa")
-
-            Return employee
-
-        End If
-    End Function
+    Private Sub setUserId()
+        Dim dao As New EmployeeDao
+        Dim table As DataTable = dao.setUserId(username)
+        userID = table.Rows(0)(0)
+    End Sub
 End Class

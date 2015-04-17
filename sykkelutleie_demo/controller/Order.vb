@@ -4,9 +4,10 @@
 ''' <remarks></remarks>
 Public Class Order
     Property bikes As New List(Of Bike)
-    'Private equipment As List(Of EquipmentDao)
+    'Private equipment As List(Of Equipment)
     Property customer As New Customer
-    Property salesman As New Employee
+    Property employee As New Employee
+    Property bike As New Bike
     Property orderID As String
     Property fromDate As Date
     Property toDate As Date
@@ -15,6 +16,10 @@ Public Class Order
     Property sum As Double
 
     Private dao As New OrderDao
+    'Private customer2 As Customer
+    'Private employee As Employee
+    'Private bikes2 As List(Of Bike)
+    'Private equipment As List(Of Equipment)
 
 
     Public Sub New()
@@ -24,31 +29,21 @@ Public Class Order
     Public Sub New(bicycleList As List(Of Bike), customer As Customer, salesman As Employee, fromDate As Date, toDate As Date, discount As String)
         Me.bikes = bicycleList
         Me.customer = customer
-        Me.salesman = salesman
+        Me.employee = salesman
         Me.fromDate = Format(fromDate, "yyyy/MM/dd")
         Me.toDate = Format(toDate, "yyyy/MM/dd")
         Me.discount = discount
     End Sub
 
-    ''' <summary>
-    ''' Finner Datatable basert på sykkel- og modellsøk
-    ''' </summary>
-    ''' <param name="bike">Kommer fra tekstfeltene som det skrives i</param>
-    ''' <returns>Returnerer Datatable</returns>
-    ''' <remarks>Det meste som søkes på er "tomme" felt , ""</remarks>
-    Public Function updateBicycle(bike As Bike) As DataTable
+    Public Function updateBicycle() As DataTable
         Dim data As DataTable
-
-        data = bike.searchBicycleModel(bike)
-
+        data = bike.searchBicycleModel()
         Return data
     End Function
 
-    Public Function updateCustomer(customer As Customer) As DataTable
+    Public Function updateCustomer() As DataTable
         Dim data As DataTable
-
-        data = customer.getActiveCustomer(customer)
-
+        data = customer.getActiveCustomer()
         Return data
     End Function
 
@@ -100,8 +95,6 @@ Public Class Order
     End Function
 
 
-
-
     ''' <summary>
     ''' Skriver bestillingen til Databasen
     ''' </summary>
@@ -141,32 +134,6 @@ Public Class Order
         equipment.setAllEquipmentNotUnderOrder()
     End Sub
 
-    ''' <summary>
-    ''' Henter ansattID på innlogget bruker
-    ''' </summary>
-    ''' <param name="username">Hentes fra Account klassen</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Private Function getEmployeeID(username As String) As String
-        Dim dbutil As New DBUtility
-        Dim sql As String
-        Dim result As DataTable
-        Dim row As DataRow
-        Dim id As String
-
-        sql = "SELECT ansatt.ansattid FROM ansatt WHERE brukernavn = '" & username & "';"
-        result = dbutil.paramQuery(sql)
-
-        If result.Rows.Count <> 1 Then
-            Return MsgBox("Kunne ikke finne ansattID til ansatt med brukernavn " & username & " i databasen")
-        Else
-            row = result.Rows(0)
-            id = row("ansattid")
-            Return id
-        End If
-
-    End Function
-
     Public Function getCustomerById(id As String) As DataTable
         Dim customerDao As New CustomerDao
         Return customerDao.selectCustomerById(id)
@@ -176,16 +143,25 @@ Public Class Order
         Return dao.getBikeJoinModel(framenumber)
     End Function
 
+    Public Function getEmployee(id As String) As Employee
+        Dim table As New DataTable
+        Dim dao As New EmployeeDao
+        table = dao.selectEmployeeById(id)
+        employee.setFirstname(table.Rows(0).Item("fornavn"))
+        employee.setLastname(table.Rows(0).Item("etternavn"))
+        employee.employeeID = id
+        Return employee
+    End Function
+
     Private Function makeList() As List(Of String)
         Dim list As New List(Of String)
         With list
             .Add(Format(fromDate, "yyyy/MM/dd"))
             .Add(Format(toDate, "yyyy/MM/dd"))
-            .Add("40")
+            .Add(employee.employeeID)
             .Add(customer.customerID)
             .Add(sum)
         End With
         Return list
     End Function
-
 End Class
