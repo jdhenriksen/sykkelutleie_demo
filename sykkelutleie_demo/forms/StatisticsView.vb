@@ -20,6 +20,8 @@ Public Class StatisticsView
         Me.Height = (result.Rows.Count * 41 + 50)  'Hva skjer ved veldig mange treff..
 
     End Sub
+
+    'BUTTON: Lukker statistikkfremvisningen.
     Private Sub closeStatistic(sender As Object, e As EventArgs) Handles btnStatisticViewClose.Click
         Me.Close()
     End Sub

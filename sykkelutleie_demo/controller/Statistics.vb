@@ -1,5 +1,6 @@
 ﻿''' <summary>
-''' Klasse som holder statistikk funksjonalitet
+''' Klasse som holder statistikkfunksjonalitet. Klassen har ingen DAO selv om det utføres
+''' spørringer mot databasen. Dette fordi klassen er såpass begrenset fra før.
 ''' </summary>
 ''' <remarks></remarks>
 Public Class Statistics
@@ -8,6 +9,14 @@ Public Class Statistics
     Private endDate As String
     Private resultLimit As Integer
 
+    ''' <summary>
+    ''' Konstruktør som setter alle objektvariabler.
+    ''' </summary>
+    ''' <param name="type">Type statistikk valgt.</param>
+    ''' <param name="startDate">Startdato.</param>
+    ''' <param name="endDate">Sluttdato.</param>
+    ''' <param name="resultLimit">Antall resultater som skal vises.</param>
+    ''' <remarks></remarks>
     Public Sub New(type As String, startDate As String, endDate As String, resultLimit As Integer)
         Me.type = type
         Me.startDate = startDate
@@ -15,6 +24,11 @@ Public Class Statistics
         Me.resultLimit = resultLimit
     End Sub
 
+    ''' <summary>
+    ''' Utfører søk i databasen basert på objektvariabler.
+    ''' </summary>
+    ''' <returns>En datatabell som fremviser resultatet av valgt statistikksøk.</returns>
+    ''' <remarks></remarks>
     Public Function generateStatistics() As DataTable
         Dim query As String
         Dim sqlRes As New SQLRes
@@ -26,6 +40,7 @@ Public Class Statistics
             .addParametersToQuery("@endDate", endDate)
         End With
 
+        'Sender spørring basert på type statistikk valgt.
         Select Case type
             Case "Dyreste sykkel"
                 query = sqlRes.sqlMostExpensiveBicycles
@@ -47,9 +62,13 @@ Public Class Statistics
                 statisticsTypeError()
                 Return Nothing
         End Select
-        Return dbUtil.paramQuery(query)
+        Return dbUtil.query(query)
     End Function
 
+    ''' <summary>
+    ''' Gir standardisert feilmelding.
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub statisticsTypeError()
         MsgBox("Valgt SQL spørring finnes ikke")
     End Sub

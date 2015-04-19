@@ -197,7 +197,6 @@ Public Class OrderTest
     ''' <remarks>Når det trykkes på en celle blir kollonne 0 og rad Y innholdet sendt for å hente resterende data som fyller  tekstfelt 
     '''</remarks>
     Private Sub getFromGridViewKunde() Handles DataGridViewKunde.CellClick
-        Dim dbutil As New DBUtility
         Dim rowChoice As Integer = DataGridViewKunde.CurrentCellAddress.Y 'Finner Y rad some er valgt i datagridview 
         Dim customerID As String
         Dim data As New DataTable

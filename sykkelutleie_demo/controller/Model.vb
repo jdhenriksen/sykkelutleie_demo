@@ -1,17 +1,25 @@
-﻿Public Class Model
-    'Private listofEquipment As List(Of Equipment)
+﻿''' <summary>
+''' Klasse som håndterer funksjonalitet forbundet med modell-objekter.
+''' </summary>
+''' <remarks></remarks>
+Public Class Model
+    Private listofEquipment As List(Of Equipment)
     Property model As String
     Property price As Double
     Property producer As String
     Property category As String
 
-    Private myData As New DataTable
+    Private table As New DataTable
     Private dao As New ModelDao
 
     ''' <summary>
-    ''' Ny modellobject instans
+    ''' Konstruktør som setter alle objektvariabler.
     ''' </summary>
-    ''' <remarks> New lager nytt objekt uti fra verdier som blir sendt til den</remarks>
+    ''' <param name="model">Modellnavn.</param>
+    ''' <param name="price">Pris.</param>
+    ''' <param name="producer">Produsent.</param>
+    ''' <param name="category">Kategori.</param>
+    ''' <remarks></remarks>
     Public Sub New(model As String, price As Double, producer As String, category As String)
         Me.model = model
         Me.price = price
@@ -19,47 +27,77 @@
         Me.category = category
     End Sub
 
+    ''' <summary>
+    ''' Standardkonstruktør. Brukes hvis et objekt er nødvendig med det ikke
+    ''' foreligger konkret informasjon.
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Sub New()
 
     End Sub
 
     ''' <summary>
-    ''' Ny Modell
+    ''' Skriver et modell-objekt til databasen.
     ''' </summary>
-    ''' <remarks> Lager en ny modell utifra objektet som allerede er opprettet.
-    ''' Det må lages et nytt objekt før createModel blir kjørt
-    ''' Den returnerer msgbox hvis en ny modell ble laget</remarks>
+    ''' <remarks></remarks>
     Public Sub createModel()
         dao.createModel(makeList())
     End Sub
 
     ''' <summary>
-    ''' Endre modell
+    ''' Endrer en eksisterende modell i databasen.
     ''' </summary>
-    ''' <remarks>Msgbox returneres hvis endring blir utført </remarks>
+    ''' <remarks></remarks>
     Public Sub editModel()
         dao.editModel(makeList())
     End Sub
 
     ''' <summary>
-    ''' Modell søk
+    ''' Søker etter modeller i databasen på en dynamisk måte.
     ''' </summary>
-    ''' <remarks>Fyller opp resultatliste(datagridView) med modeller</remarks>
-    Public Function searchModel()
-        myData = dao.searchModel(makeList())
-        Return myData
+    ''' <returns>En datatabell med informasjon om modeller som stemmer overens med søk.</returns>
+    ''' <remarks></remarks>
+    Public Function searchModel() As DataTable
+        table = dao.searchModel(makeList())
+        Return table
     End Function
 
-    Public Function selectAllModels()
-        myData = dao.selectAllModels()
-        Return myData
+    ''' <summary>
+    ''' Henter ut alle modeller i databasen.
+    ''' </summary>
+    ''' <returns>En datatabell med informasjon om alle modeller i databasen.</returns>
+    ''' <remarks></remarks>
+    Public Function selectAllModels() As DataTable
+        table = dao.selectAllModels()
+        Return table
     End Function
 
-    Public Function getModelById(frameNumber As String) As DataTable
-        myData = dao.getModelById(frameNumber)
-        Return myData
+    ''' <summary>
+    ''' Henter ut en modell basert på modellnavn (ID i databasen).
+    ''' </summary>
+    ''' <param name="model"></param>
+    ''' <returns>En datatabell med informasjon om aktuell modell.</returns>
+    ''' <remarks></remarks>
+    Public Function getModelById(model As String) As DataTable
+        table = dao.getModelById(model)
+        Return table
     End Function
 
+    ''' <summary>
+    ''' Hjelpemetode. Lager liste som sendes til DAO.
+    ''' </summary>
+    ''' <returns>En liste bestående innholdet i alle objektvariablene for objektet.</returns>
+    ''' <remarks>Se ModelDAO for bruk.</remarks>
+    Private Function makeList() As List(Of String)
+        Dim list As New List(Of String)
+        list.Add(getModel())
+        list.Add(getPrice())
+        list.Add(getProducer())
+        list.Add(getCategory())
+        Return list
+    End Function
+
+    'GET-metoder for objektvariabler.
     Public Function getModel() As String
         Return model
     End Function
@@ -78,14 +116,5 @@
 
     Public Function getCategory() As String
         Return category
-    End Function
-
-    Private Function makeList() As List(Of String)
-        Dim list As New List(Of String)
-        list.Add(getModel())
-        list.Add(getPrice())
-        list.Add(getProducer())
-        list.Add(getCategory())
-        Return list
     End Function
 End Class

@@ -33,72 +33,65 @@ Partial Class mailLogin
         'lblNotat
         '
         Me.lblNotat.AutoSize = True
-        Me.lblNotat.Location = New System.Drawing.Point(115, 140)
-        Me.lblNotat.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblNotat.Location = New System.Drawing.Point(86, 114)
         Me.lblNotat.Name = "lblNotat"
-        Me.lblNotat.Size = New System.Drawing.Size(292, 17)
+        Me.lblNotat.Size = New System.Drawing.Size(218, 13)
         Me.lblNotat.TabIndex = 17
-        Me.lblNotat.Text = "Trenger ikke skrive noe hær... er hardkodet.."
+        Me.lblNotat.Text = "Trenger ikke skrive noe her... er hardkodet..."
         '
         'btnMailogon
         '
-        Me.btnMailogon.Location = New System.Drawing.Point(119, 256)
-        Me.btnMailogon.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnMailogon.Location = New System.Drawing.Point(89, 208)
         Me.btnMailogon.Name = "btnMailogon"
-        Me.btnMailogon.Size = New System.Drawing.Size(259, 28)
+        Me.btnMailogon.Size = New System.Drawing.Size(194, 23)
         Me.btnMailogon.TabIndex = 16
         Me.btnMailogon.Text = "Ok"
         Me.btnMailogon.UseVisualStyleBackColor = True
         '
         'txtMailLoginPass
         '
-        Me.txtMailLoginPass.Location = New System.Drawing.Point(119, 224)
-        Me.txtMailLoginPass.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtMailLoginPass.Location = New System.Drawing.Point(89, 182)
         Me.txtMailLoginPass.Name = "txtMailLoginPass"
         Me.txtMailLoginPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtMailLoginPass.Size = New System.Drawing.Size(257, 22)
+        Me.txtMailLoginPass.Size = New System.Drawing.Size(194, 20)
         Me.txtMailLoginPass.TabIndex = 15
         '
         'lblPassword
         '
         Me.lblPassword.AutoSize = True
-        Me.lblPassword.Location = New System.Drawing.Point(51, 227)
-        Me.lblPassword.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPassword.Location = New System.Drawing.Point(38, 184)
         Me.lblPassword.Name = "lblPassword"
-        Me.lblPassword.Size = New System.Drawing.Size(60, 17)
+        Me.lblPassword.Size = New System.Drawing.Size(45, 13)
         Me.lblPassword.TabIndex = 14
         Me.lblPassword.Text = "Passord"
         '
         'txtEmailAdress
         '
-        Me.txtEmailAdress.Location = New System.Drawing.Point(119, 170)
-        Me.txtEmailAdress.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtEmailAdress.Location = New System.Drawing.Point(89, 138)
         Me.txtEmailAdress.Name = "txtEmailAdress"
-        Me.txtEmailAdress.Size = New System.Drawing.Size(257, 22)
+        Me.txtEmailAdress.Size = New System.Drawing.Size(194, 20)
         Me.txtEmailAdress.TabIndex = 13
         '
         'lblEmailAdress
         '
         Me.lblEmailAdress.AutoSize = True
-        Me.lblEmailAdress.Location = New System.Drawing.Point(9, 173)
-        Me.lblEmailAdress.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblEmailAdress.Location = New System.Drawing.Point(7, 141)
         Me.lblEmailAdress.Name = "lblEmailAdress"
-        Me.lblEmailAdress.Size = New System.Drawing.Size(104, 17)
+        Me.lblEmailAdress.Size = New System.Drawing.Size(77, 13)
         Me.lblEmailAdress.TabIndex = 12
         Me.lblEmailAdress.Text = "E-post adresse"
         '
         'mailLogin
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(482, 455)
+        Me.ClientSize = New System.Drawing.Size(362, 370)
         Me.Controls.Add(Me.lblNotat)
         Me.Controls.Add(Me.btnMailogon)
         Me.Controls.Add(Me.txtMailLoginPass)
         Me.Controls.Add(Me.lblPassword)
         Me.Controls.Add(Me.txtEmailAdress)
         Me.Controls.Add(Me.lblEmailAdress)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "mailLogin"
         Me.Text = "mailLogin"
         Me.ResumeLayout(False)
