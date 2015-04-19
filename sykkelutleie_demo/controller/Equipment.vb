@@ -184,8 +184,20 @@ Public Class Equipment
     ''' </summary>
     ''' <returns>En datatabell som inneholder alt tilleggsutstyr, gruppert etter type.</returns>
     ''' <remarks></remarks>
-    Public Function getEquipmentGroupByType()
+    Public Function getEquipmentGroupByType() As DataTable
         Return dao.getEquipmentGroupByType()
+    End Function
+    ''' <summary>
+    ''' Håndterer tomme tekstbokser fra Equipment
+    ''' </summary>
+    ''' <returns>En string med tallet eller en tom for tomme tekstbokser</returns>
+    ''' <remarks>MÅ gjøres eller så avgrenses søk på 0 i pris</remarks>
+    Public Function equipmentPriceFix(equipmentPrice As Double) As String
+        If equipmentPrice = 0 Then
+            Return ""
+        Else
+            Return equipmentPrice
+        End If
     End Function
 
     ''' <summary>
@@ -198,7 +210,7 @@ Public Class Equipment
         With list
             .Add(equipmentID)
             .Add(equipmentType)
-            .Add(equipmentPrice())
+            .Add(equipmentPriceFix(equipmentPrice))
             .Add(equipmentStatus())
         End With
         Return list

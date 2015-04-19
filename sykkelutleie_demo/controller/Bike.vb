@@ -124,6 +124,11 @@ Public Class Bike
         dao.setAllBikesNotUnderOrder()
     End Sub
 
+    Public Function missingBikes() As DataTable
+        myData = dao.missingBikes
+        Return myData
+    End Function
+
     ''' <summary>
     ''' Hjelpemetode. Lager liste som sendes til DAO.
     ''' </summary>

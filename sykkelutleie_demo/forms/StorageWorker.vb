@@ -16,9 +16,10 @@ Public Class StorageWorker
     ''' Alt blir resettet og et nytt generelt søk blir gjort for å vise at sykkelen har blitt lagt til.</remarks>
     Private Sub newBike_Click(sender As Object, e As EventArgs) Handles btnNewbike.Click 'Opprett knapp
         objectupdate()      'Nytt object slik at alle verdier er de nyeste.
-        If txtFramenumber.Text = "" Or cmbModel.SelectedIndex = -1 Or cmbStatus.SelectedIndex = -1 Then    'Rammenummer, modelltype og status er minimum før oppretting av sykkel.
-            MsgBox("Du må skrive inn et rammenummer,velge modell og sette status")                         'Varsel dersom mimimumskrav ikke er oppfylt
+        If txtFramenumber.Text = "" Or cmbModel.SelectedIndex = -1 Or cmbStatus.SelectedIndex = -1 Or txtFramenumber.TextLength >= 9 Then    'Rammenummer, modelltype og status er minimum før oppretting av sykkel.
+            MsgBox("Du må skrive inn et rammenummer mellom 1 og 8 tall, velge modell og sette status")                         'Varsel dersom mimimumskrav ikke er oppfylt
         Else
+
             result = MsgBox("Vil du opprette sykkel med rammenr: " & bike.getFrameNumber & "?", MsgBoxStyle.YesNo)
             If result = 6 Then                       'Spørsmål om bekreftelse av ny sykkel.
                 objectupdate()
@@ -212,6 +213,7 @@ Public Class StorageWorker
         btnEqipSearch_Click(sender, e)
         resetCheckedList()
         updateComboboxes()
+        btnmissingbike_Click(sender, e)
     End Sub
 
     ''' <summary>
@@ -551,5 +553,10 @@ Public Class StorageWorker
         lstbxEqipment.DataSource = Nothing
         lstbxEqipment.DataSource = equipment.getEquipmentGroupByType()
         lstbxEqipment.DisplayMember = "type"
+    End Sub
+
+    Private Sub btnmissingbike_Click(sender As Object, e As EventArgs) Handles btnmissingbike.Click
+
+        dtgvmissingbike.DataSource = bike.missingBikes
     End Sub
 End Class

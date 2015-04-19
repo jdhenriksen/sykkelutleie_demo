@@ -86,12 +86,16 @@ Partial Class StorageWorker
         Me.lblBikePrice = New System.Windows.Forms.Label()
         Me.lblBikeProducer = New System.Windows.Forms.Label()
         Me.lblBikeCategory = New System.Windows.Forms.Label()
+        Me.dtgvmissingbike = New System.Windows.Forms.DataGridView()
+        Me.lblmissinbike = New System.Windows.Forms.Label()
+        Me.btnmissingbike = New System.Windows.Forms.Button()
         CType(Me.dtgvBike, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpbxBike.SuspendLayout()
         Me.grpbxModels.SuspendLayout()
         CType(Me.dtgvModel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpbxEquipment.SuspendLayout()
         CType(Me.dtgvEquip, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtgvmissingbike, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnSearchbike
@@ -243,7 +247,7 @@ Partial Class StorageWorker
         Me.grpbxBike.Controls.Add(Me.btnDeletebike)
         Me.grpbxBike.Location = New System.Drawing.Point(7, 8)
         Me.grpbxBike.Name = "grpbxBike"
-        Me.grpbxBike.Size = New System.Drawing.Size(694, 457)
+        Me.grpbxBike.Size = New System.Drawing.Size(679, 449)
         Me.grpbxBike.TabIndex = 258
         Me.grpbxBike.TabStop = False
         Me.grpbxBike.Text = "Sykkel"
@@ -467,9 +471,9 @@ Partial Class StorageWorker
         Me.grpbxEquipment.Controls.Add(Me.btnEqipSearch)
         Me.grpbxEquipment.Controls.Add(Me.txtEqipType)
         Me.grpbxEquipment.Controls.Add(Me.txtEqipID)
-        Me.grpbxEquipment.Location = New System.Drawing.Point(720, 248)
+        Me.grpbxEquipment.Location = New System.Drawing.Point(692, 36)
         Me.grpbxEquipment.Name = "grpbxEquipment"
-        Me.grpbxEquipment.Size = New System.Drawing.Size(600, 218)
+        Me.grpbxEquipment.Size = New System.Drawing.Size(584, 218)
         Me.grpbxEquipment.TabIndex = 259
         Me.grpbxEquipment.TabStop = False
         Me.grpbxEquipment.Text = "Tilleggsutstyr"
@@ -567,7 +571,7 @@ Partial Class StorageWorker
         Me.dtgvEquip.RowTemplate.Height = 24
         Me.dtgvEquip.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.dtgvEquip.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgvEquip.Size = New System.Drawing.Size(300, 179)
+        Me.dtgvEquip.Size = New System.Drawing.Size(296, 179)
         Me.dtgvEquip.TabIndex = 222
         '
         'txtEqipStatus
@@ -616,7 +620,7 @@ Partial Class StorageWorker
         '
         'btnEqipCreate
         '
-        Me.btnEqipCreate.Location = New System.Drawing.Point(818, 392)
+        Me.btnEqipCreate.Location = New System.Drawing.Point(790, 180)
         Me.btnEqipCreate.Name = "btnEqipCreate"
         Me.btnEqipCreate.Size = New System.Drawing.Size(85, 25)
         Me.btnEqipCreate.TabIndex = 257
@@ -717,11 +721,46 @@ Partial Class StorageWorker
         Me.lblBikeCategory.TabIndex = 245
         Me.lblBikeCategory.Text = "Kategori"
         '
+        'dtgvmissingbike
+        '
+        Me.dtgvmissingbike.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dtgvmissingbike.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.dtgvmissingbike.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dtgvmissingbike.Location = New System.Drawing.Point(976, 350)
+        Me.dtgvmissingbike.Name = "dtgvmissingbike"
+        Me.dtgvmissingbike.RowHeadersVisible = False
+        Me.dtgvmissingbike.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
+        Me.dtgvmissingbike.RowTemplate.Height = 24
+        Me.dtgvmissingbike.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dtgvmissingbike.Size = New System.Drawing.Size(262, 339)
+        Me.dtgvmissingbike.TabIndex = 261
+        '
+        'lblmissinbike
+        '
+        Me.lblmissinbike.AutoSize = True
+        Me.lblmissinbike.Location = New System.Drawing.Point(973, 330)
+        Me.lblmissinbike.Name = "lblmissinbike"
+        Me.lblmissinbike.Size = New System.Drawing.Size(105, 17)
+        Me.lblmissinbike.TabIndex = 262
+        Me.lblmissinbike.Text = "Savnede sykler"
+        '
+        'btnmissingbike
+        '
+        Me.btnmissingbike.Location = New System.Drawing.Point(1156, 327)
+        Me.btnmissingbike.Name = "btnmissingbike"
+        Me.btnmissingbike.Size = New System.Drawing.Size(82, 23)
+        Me.btnmissingbike.TabIndex = 263
+        Me.btnmissingbike.Text = "Oppdater"
+        Me.btnmissingbike.UseVisualStyleBackColor = True
+        '
         'StorageWorker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1348, 723)
+        Me.ClientSize = New System.Drawing.Size(1284, 723)
+        Me.Controls.Add(Me.btnmissingbike)
+        Me.Controls.Add(Me.lblmissinbike)
+        Me.Controls.Add(Me.dtgvmissingbike)
         Me.Controls.Add(Me.cmbStatus)
         Me.Controls.Add(Me.cmbModel)
         Me.Controls.Add(Me.lblBikeBreaks)
@@ -761,6 +800,7 @@ Partial Class StorageWorker
         Me.grpbxEquipment.ResumeLayout(False)
         Me.grpbxEquipment.PerformLayout()
         CType(Me.dtgvEquip, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtgvmissingbike, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -829,4 +869,7 @@ Partial Class StorageWorker
     Friend WithEvents lblBikePrice As System.Windows.Forms.Label
     Friend WithEvents lblBikeProducer As System.Windows.Forms.Label
     Friend WithEvents lblBikeCategory As System.Windows.Forms.Label
+    Friend WithEvents dtgvmissingbike As System.Windows.Forms.DataGridView
+    Friend WithEvents lblmissinbike As System.Windows.Forms.Label
+    Friend WithEvents btnmissingbike As System.Windows.Forms.Button
 End Class

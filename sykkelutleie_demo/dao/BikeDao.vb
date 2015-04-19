@@ -97,6 +97,11 @@ Public Class BikeDao
         dbutil.query(SQLRes.sqlSetAllBikesNotUnderOrder)
     End Sub
 
+    Public Function missingBikes()
+        table = dbutil.query(SQLRes.sqlMissingBikes)
+        Return table
+    End Function
+
     ''' <summary>
     ''' Setter en sykkel til å være under bestilling basert på rammenummer.
     ''' </summary>

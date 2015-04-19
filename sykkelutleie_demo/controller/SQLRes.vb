@@ -54,6 +54,8 @@ Public Class SQLRes
             "(ramme LIKE @frame) AND (gir LIKE @gear) AND (modell LIKE @model);"
     Public Const sqlGetModelName As String = "SELECT modell FROM sykkel WHERE rammenr = @framenumber;"
     Public Const sqlSelectAllBikes As String = "SELECT * FROM sykkel;"
+    Public Const sqlMissingBikes As String = "SELECT sykkel.rammenr FROM sykkel WHERE sykkel.status = 'Utleid' AND sykkel.rammenr NOT IN (SELECT s.rammenr FROM sykkel s, sykkel_bestilling sb, bestilling b WHERE s.rammenr = sb.rammenr AND sb.bestillingsid = b.bestillingsid AND b.leie_fra >= CURDATE() AND b.leie_til <= CURDATE() AND s.status = 'Utleid')"
+
 
     Public Const sqlDeleteBike As String = "UPDATE sykkel SET status = 'Deaktivert' WHERE rammenr = @framenumber;"
     Public Const sqlCreateBike As String = "INSERT INTO sykkel (`rammenr`, `status`, `lokasjon`, `utleiested`, `bremser`, `dekk`, `ramme`, `gir`, `modell`) " & _
