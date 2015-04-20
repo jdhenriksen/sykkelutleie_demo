@@ -49,6 +49,7 @@ Partial Class OrderTest
         Me.lblLastnameOrder = New System.Windows.Forms.Label()
         Me.txtBxSurName = New System.Windows.Forms.TextBox()
         Me.TabCustomer = New System.Windows.Forms.TabPage()
+        Me.lblUID = New System.Windows.Forms.Label()
         Me.btnSearchCustomer = New System.Windows.Forms.Button()
         Me.btnDeleteCustomer = New System.Windows.Forms.Button()
         Me.btnChangeCustomer = New System.Windows.Forms.Button()
@@ -65,18 +66,17 @@ Partial Class OrderTest
         Me.txtBxFirstName = New System.Windows.Forms.TextBox()
         Me.dgvBicycle = New System.Windows.Forms.DataGridView()
         Me.lblFramenbOrder = New System.Windows.Forms.Label()
-        Me.txtBxRammenr = New System.Windows.Forms.TextBox()
+        Me.txtBxFramenumber = New System.Windows.Forms.TextBox()
         Me.lblBrandOrder = New System.Windows.Forms.Label()
-        Me.txtBxMerke = New System.Windows.Forms.TextBox()
+        Me.txtBxProducer = New System.Windows.Forms.TextBox()
         Me.lblPriceOrder = New System.Windows.Forms.Label()
-        Me.txtBxPris = New System.Windows.Forms.TextBox()
+        Me.txtBxPrice = New System.Windows.Forms.TextBox()
         Me.lblModelOrder = New System.Windows.Forms.Label()
-        Me.txtBxModell = New System.Windows.Forms.TextBox()
+        Me.txtBxModel = New System.Windows.Forms.TextBox()
         Me.lblCategoryOrder = New System.Windows.Forms.Label()
-        Me.txtBxKategori = New System.Windows.Forms.TextBox()
+        Me.txtBxCategory = New System.Windows.Forms.TextBox()
         Me.tabBike = New System.Windows.Forms.TabPage()
         Me.Bestilling = New System.Windows.Forms.TabControl()
-        Me.lblUID = New System.Windows.Forms.Label()
         Me.TabOrder.SuspendLayout()
         Me.grpBxSelectPeriod.SuspendLayout()
         Me.TabSummary.SuspendLayout()
@@ -119,6 +119,7 @@ Partial Class OrderTest
         '
         'lstbxEquipment
         '
+        Me.lstbxEquipment.CheckOnClick = True
         Me.lstbxEquipment.FormattingEnabled = True
         Me.lstbxEquipment.Location = New System.Drawing.Point(659, 32)
         Me.lstbxEquipment.Margin = New System.Windows.Forms.Padding(2)
@@ -358,6 +359,15 @@ Partial Class OrderTest
         Me.TabCustomer.TabIndex = 0
         Me.TabCustomer.Text = "Kunde"
         '
+        'lblUID
+        '
+        Me.lblUID.AutoSize = True
+        Me.lblUID.Location = New System.Drawing.Point(11, 18)
+        Me.lblUID.Name = "lblUID"
+        Me.lblUID.Size = New System.Drawing.Size(82, 13)
+        Me.lblUID.TabIndex = 4
+        Me.lblUID.Text = "Velkommen, id: "
+        '
         'btnSearchCustomer
         '
         Me.btnSearchCustomer.Location = New System.Drawing.Point(240, 358)
@@ -519,12 +529,12 @@ Partial Class OrderTest
         Me.lblFramenbOrder.TabIndex = 163
         Me.lblFramenbOrder.Text = "Rammenr."
         '
-        'txtBxRammenr
+        'txtBxFramenumber
         '
-        Me.txtBxRammenr.Location = New System.Drawing.Point(67, 303)
-        Me.txtBxRammenr.Name = "txtBxRammenr"
-        Me.txtBxRammenr.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxRammenr.TabIndex = 162
+        Me.txtBxFramenumber.Location = New System.Drawing.Point(67, 303)
+        Me.txtBxFramenumber.Name = "txtBxFramenumber"
+        Me.txtBxFramenumber.Size = New System.Drawing.Size(161, 20)
+        Me.txtBxFramenumber.TabIndex = 162
         '
         'lblBrandOrder
         '
@@ -535,12 +545,12 @@ Partial Class OrderTest
         Me.lblBrandOrder.TabIndex = 161
         Me.lblBrandOrder.Text = "Merke"
         '
-        'txtBxMerke
+        'txtBxProducer
         '
-        Me.txtBxMerke.Location = New System.Drawing.Point(67, 239)
-        Me.txtBxMerke.Name = "txtBxMerke"
-        Me.txtBxMerke.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxMerke.TabIndex = 160
+        Me.txtBxProducer.Location = New System.Drawing.Point(67, 239)
+        Me.txtBxProducer.Name = "txtBxProducer"
+        Me.txtBxProducer.Size = New System.Drawing.Size(161, 20)
+        Me.txtBxProducer.TabIndex = 160
         '
         'lblPriceOrder
         '
@@ -551,12 +561,13 @@ Partial Class OrderTest
         Me.lblPriceOrder.TabIndex = 159
         Me.lblPriceOrder.Text = "Pris"
         '
-        'txtBxPris
+        'txtBxPrice
         '
-        Me.txtBxPris.Location = New System.Drawing.Point(67, 175)
-        Me.txtBxPris.Name = "txtBxPris"
-        Me.txtBxPris.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxPris.TabIndex = 158
+        Me.txtBxPrice.Location = New System.Drawing.Point(67, 175)
+        Me.txtBxPrice.Name = "txtBxPrice"
+        Me.txtBxPrice.ReadOnly = True
+        Me.txtBxPrice.Size = New System.Drawing.Size(161, 20)
+        Me.txtBxPrice.TabIndex = 158
         '
         'lblModelOrder
         '
@@ -567,12 +578,12 @@ Partial Class OrderTest
         Me.lblModelOrder.TabIndex = 157
         Me.lblModelOrder.Text = "Modell"
         '
-        'txtBxModell
+        'txtBxModel
         '
-        Me.txtBxModell.Location = New System.Drawing.Point(67, 109)
-        Me.txtBxModell.Name = "txtBxModell"
-        Me.txtBxModell.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxModell.TabIndex = 156
+        Me.txtBxModel.Location = New System.Drawing.Point(67, 109)
+        Me.txtBxModel.Name = "txtBxModel"
+        Me.txtBxModel.Size = New System.Drawing.Size(161, 20)
+        Me.txtBxModel.TabIndex = 156
         '
         'lblCategoryOrder
         '
@@ -583,12 +594,12 @@ Partial Class OrderTest
         Me.lblCategoryOrder.TabIndex = 155
         Me.lblCategoryOrder.Text = "Kategori"
         '
-        'txtBxKategori
+        'txtBxCategory
         '
-        Me.txtBxKategori.Location = New System.Drawing.Point(67, 46)
-        Me.txtBxKategori.Name = "txtBxKategori"
-        Me.txtBxKategori.Size = New System.Drawing.Size(161, 20)
-        Me.txtBxKategori.TabIndex = 154
+        Me.txtBxCategory.Location = New System.Drawing.Point(67, 46)
+        Me.txtBxCategory.Name = "txtBxCategory"
+        Me.txtBxCategory.Size = New System.Drawing.Size(161, 20)
+        Me.txtBxCategory.TabIndex = 154
         '
         'tabBike
         '
@@ -604,15 +615,15 @@ Partial Class OrderTest
         Me.tabBike.Controls.Add(Me.btnNextBestilling)
         Me.tabBike.Controls.Add(Me.dgvBicycle)
         Me.tabBike.Controls.Add(Me.lblFramenbOrder)
-        Me.tabBike.Controls.Add(Me.txtBxRammenr)
+        Me.tabBike.Controls.Add(Me.txtBxFramenumber)
         Me.tabBike.Controls.Add(Me.lblBrandOrder)
-        Me.tabBike.Controls.Add(Me.txtBxMerke)
+        Me.tabBike.Controls.Add(Me.txtBxProducer)
         Me.tabBike.Controls.Add(Me.lblPriceOrder)
-        Me.tabBike.Controls.Add(Me.txtBxPris)
+        Me.tabBike.Controls.Add(Me.txtBxPrice)
         Me.tabBike.Controls.Add(Me.lblModelOrder)
-        Me.tabBike.Controls.Add(Me.txtBxModell)
+        Me.tabBike.Controls.Add(Me.txtBxModel)
         Me.tabBike.Controls.Add(Me.lblCategoryOrder)
-        Me.tabBike.Controls.Add(Me.txtBxKategori)
+        Me.tabBike.Controls.Add(Me.txtBxCategory)
         Me.tabBike.Location = New System.Drawing.Point(4, 22)
         Me.tabBike.Name = "tabBike"
         Me.tabBike.Padding = New System.Windows.Forms.Padding(3)
@@ -631,15 +642,6 @@ Partial Class OrderTest
         Me.Bestilling.SelectedIndex = 0
         Me.Bestilling.Size = New System.Drawing.Size(963, 425)
         Me.Bestilling.TabIndex = 3
-        '
-        'lblUID
-        '
-        Me.lblUID.AutoSize = True
-        Me.lblUID.Location = New System.Drawing.Point(11, 18)
-        Me.lblUID.Name = "lblUID"
-        Me.lblUID.Size = New System.Drawing.Size(82, 13)
-        Me.lblUID.TabIndex = 4
-        Me.lblUID.Text = "Velkommen, id: "
         '
         'OrderTest
         '
@@ -705,15 +707,15 @@ Partial Class OrderTest
     Friend WithEvents txtBxFirstName As System.Windows.Forms.TextBox
     Friend WithEvents dgvBicycle As System.Windows.Forms.DataGridView
     Friend WithEvents lblFramenbOrder As System.Windows.Forms.Label
-    Friend WithEvents txtBxRammenr As System.Windows.Forms.TextBox
+    Friend WithEvents txtBxFramenumber As System.Windows.Forms.TextBox
     Friend WithEvents lblBrandOrder As System.Windows.Forms.Label
-    Friend WithEvents txtBxMerke As System.Windows.Forms.TextBox
+    Friend WithEvents txtBxProducer As System.Windows.Forms.TextBox
     Friend WithEvents lblPriceOrder As System.Windows.Forms.Label
-    Friend WithEvents txtBxPris As System.Windows.Forms.TextBox
+    Friend WithEvents txtBxPrice As System.Windows.Forms.TextBox
     Friend WithEvents lblModelOrder As System.Windows.Forms.Label
-    Friend WithEvents txtBxModell As System.Windows.Forms.TextBox
+    Friend WithEvents txtBxModel As System.Windows.Forms.TextBox
     Friend WithEvents lblCategoryOrder As System.Windows.Forms.Label
-    Friend WithEvents txtBxKategori As System.Windows.Forms.TextBox
+    Friend WithEvents txtBxCategory As System.Windows.Forms.TextBox
     Friend WithEvents tabBike As System.Windows.Forms.TabPage
     Friend WithEvents Bestilling As System.Windows.Forms.TabControl
     Friend WithEvents btnDeleteCustomer As System.Windows.Forms.Button

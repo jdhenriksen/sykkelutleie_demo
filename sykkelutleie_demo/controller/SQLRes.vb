@@ -63,7 +63,7 @@ Public Class SQLRes
     Public Const sqlSelectBikeById As String = "SELECT modell, status, lokasjon, utleiested, dekk, ramme, gir, bremser FROM sykkel WHERE rammenr = @framenumber; "
     Public Const sqlSetAllBikesNotUnderOrder As String = "UPDATE  `sykkel` SET  sykkel.`under_bestilling` =  '0';"
     Public Const sqlSetBikeUnderOrder As String = "UPDATE  `sykkel` SET  sykkel.`under_bestilling` =  '1' WHERE  sykkel.rammenr = @framenumber;"
-    Public Const sqlSearchBicycleModel As String = "SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE (rammenr LIKE @framenumber) AND (sykkel.modell LIKE @model) AND (lokasjon LIKE @location) AND (utleiested LIKE @placeofOrigin) AND (pris >=@price) AND (produsent LIKE @producer) AND (kategori LIKE @category AND sykkel.under_bestilling = '0');"
+    Public Const sqlSearchBicycleModel As String = "SELECT rammenr, kategori, pris, produsent, sykkel.modell FROM sykkel JOIN modell ON sykkel.modell=modell.modell WHERE (rammenr LIKE @framenumber) AND (sykkel.modell LIKE @model) AND (lokasjon LIKE @location) AND (utleiested LIKE @placeofOrigin) AND (produsent LIKE @producer) AND (kategori LIKE @category) AND sykkel.under_bestilling = '0' AND status = 'På lager';"
     Public Const sqlGetBikeJoinModel As String = "SELECT kategori, sykkel.modell, pris, produsent, rammenr FROM  sykkel JOIN modell ON sykkel.modell=modell.modell  WHERE rammenr = @framenumber;"
 
     'MODEL

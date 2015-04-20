@@ -40,15 +40,15 @@ Public Class OrderTest
 
     End Sub
     Public Sub setTestBicycle()
-        modelCategory = txtBxKategori.Text
-        If txtBxPris.Text = "" Then
+        modelCategory = txtBxCategory.Text
+        If txtBxPrice.Text = "" Then
             modelPrice = 0.0
         Else
-            modelPrice = CDbl(txtBxPris.Text)
+            modelPrice = CDbl(txtBxPrice.Text)
         End If
-        modelModel = txtBxModell.Text
-        modelProducer = txtBxMerke.Text
-        bikeFrameNumber = txtBxRammenr.Text
+        modelModel = txtBxModel.Text
+        modelProducer = txtBxProducer.Text
+        bikeFrameNumber = txtBxFramenumber.Text
     End Sub
     Public Sub setTestCustomer()
         customerEmail = txtBxEmail.Text
@@ -83,7 +83,7 @@ Public Class OrderTest
     ''' Skriver deretter noe info til listeboks på siste side.
     ''' </remarks>
     Private Sub btnAddToOrder_Click() Handles btnAddToOrder.Click
-        Dim frameCheck As String = txtBxRammenr.Text 'Sjekker om sykkelen allerede er lagt til listen for bestillingen.
+        Dim frameCheck As String = txtBxFramenumber.Text 'Sjekker om sykkelen allerede er lagt til listen for bestillingen.
         For Each item In ListBoxOrderOverview.Items
             If item.contains(frameCheck) Then
                 MsgBox("Sykkelen er allerede i bestillingen")
@@ -187,7 +187,7 @@ Public Class OrderTest
         DataGridViewKunde.DataSource = order.updateCustomer()
     End Sub
     Private Sub updateBicycleGridView()
-        dgvBicycle.DataSource = order.updateBicycle()
+        dgvBicycle.DataSource = order.searchBicycle()
     End Sub
 
 
@@ -224,15 +224,15 @@ Public Class OrderTest
 
         data = order.getBikeJoinModel(tempBike)
 
-        txtBxKategori.Text = data.Rows(0)(0).ToString()
-        txtBxModell.Text = data.Rows(0)(1).ToString()
-        txtBxPris.Text = data.Rows(0)(2).ToString()
-        txtBxMerke.Text = data.Rows(0)(3).ToString()
-        txtBxRammenr.Text = data.Rows(0)(4).ToString()
+        txtBxCategory.Text = data.Rows(0)(0).ToString()
+        txtBxModel.Text = data.Rows(0)(1).ToString()
+        txtBxPrice.Text = data.Rows(0)(2).ToString()
+        txtBxProducer.Text = data.Rows(0)(3).ToString()
+        txtBxFramenumber.Text = data.Rows(0)(4).ToString()
 
         Dim tempEquipment As New Equipment
         lstbxEquipment.DataSource = Nothing
-        lstbxEquipment.DataSource = tempEquipment.getCompatibleEquipment(txtBxModell.Text) 'Fyller checkedListBox med utstyr som er på lager. Basert på model som er valgt. 
+        lstbxEquipment.DataSource = tempEquipment.getCompatibleEquipment(txtBxModel.Text) 'Fyller checkedListBox med utstyr som er på lager. Basert på model som er valgt. 
         'Viser bare en checkbox per utstyr Type
         lstbxEquipment.DisplayMember = "type"
 
@@ -259,11 +259,11 @@ Public Class OrderTest
         ListBoxOrderOverview.Items.Add(vbTab & CmbBoxDiscount.Text)
     End Sub
     Private Sub addNewBicycle()
-        txtBxKategori.Text = ""
-        txtBxMerke.Text = ""
-        txtBxModell.Text = ""
-        txtBxPris.Text = "0"
-        txtBxRammenr.Text = ""
+        txtBxCategory.Text = ""
+        txtBxProducer.Text = ""
+        txtBxModel.Text = ""
+        txtBxPrice.Text = "0"
+        txtBxFramenumber.Text = ""
         lstbxEquipment.DataSource = Nothing
     End Sub
 
@@ -309,11 +309,11 @@ Public Class OrderTest
         txtBxPhone.Text = ""
         txtBxEmail.Text = ""
         txtBxKID.Text = ""
-        txtBxKategori.Text = ""
-        txtBxMerke.Text = ""
-        txtBxModell.Text = ""
-        txtBxPris.Text = ""
-        txtBxRammenr.Text = ""
+        txtBxCategory.Text = ""
+        txtBxProducer.Text = ""
+        txtBxModel.Text = ""
+        txtBxPrice.Text = ""
+        txtBxFramenumber.Text = ""
         CmbBoxDiscount.SelectedIndex = 0
         ListBoxReceipt.Items.Clear()
         ListBoxOrderOverview.Items.Clear()
@@ -335,6 +335,9 @@ Public Class OrderTest
     End Sub
 
     Private Sub btnSearchBike(sender As Object, e As EventArgs) Handles btnOrderSearchBike.Click
+        Dim model As New Model(txtBxModel.Text, 0.0, txtBxProducer.Text, txtBxCategory.Text)
+        bike = New Bike(txtBxFramenumber.Text, "", "", "", "", "", "", "", model)
+        order.bike = bike
         updateBicycleGridView()
     End Sub
 

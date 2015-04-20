@@ -35,7 +35,7 @@ Public Class Order
         Me.discount = discount
     End Sub
 
-    Public Function updateBicycle() As DataTable
+    Public Function searchBicycle() As DataTable
         Dim data As DataTable
         data = bike.searchBicycleModel()
         Return data

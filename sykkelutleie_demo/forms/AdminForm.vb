@@ -75,4 +75,7 @@ Public Class AdminForm
         End If
     End Sub
 
+    Private Sub btnEmployeeTestOpen_Click(sender As Object, e As EventArgs) Handles btnEmployeeTestOpen.Click
+        EmployeeTest.Show()
+    End Sub
 End Class

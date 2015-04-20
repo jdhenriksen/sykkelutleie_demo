@@ -76,6 +76,7 @@ Partial Class AdminForm
         Me.msktxtbxID = New System.Windows.Forms.MaskedTextBox()
         Me.grpBxStatistic = New System.Windows.Forms.GroupBox()
         Me.btnDisplayStatistics = New System.Windows.Forms.Button()
+        Me.btnEmployeeTestOpen = New System.Windows.Forms.Button()
         Me.pnlStatistics.SuspendLayout()
         CType(Me.NumericUpDownAntall, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpBxStatisticsMetaData.SuspendLayout()
@@ -95,19 +96,19 @@ Partial Class AdminForm
         Me.pnlStatistics.Controls.Add(Me.LabelType)
         Me.pnlStatistics.Controls.Add(Me.LabelDispToDate)
         Me.pnlStatistics.Controls.Add(Me.LabelDispAntall)
-        Me.pnlStatistics.Location = New System.Drawing.Point(109, 452)
+        Me.pnlStatistics.Location = New System.Drawing.Point(82, 367)
+        Me.pnlStatistics.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlStatistics.Name = "pnlStatistics"
-        Me.pnlStatistics.Size = New System.Drawing.Size(253, 143)
+        Me.pnlStatistics.Size = New System.Drawing.Size(190, 116)
         Me.pnlStatistics.TabIndex = 6
         '
         'LabelFra
         '
         Me.LabelFra.AutoSize = True
         Me.LabelFra.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.LabelFra.Location = New System.Drawing.Point(29, 16)
-        Me.LabelFra.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelFra.Location = New System.Drawing.Point(22, 13)
         Me.LabelFra.Name = "LabelFra"
-        Me.LabelFra.Size = New System.Drawing.Size(33, 17)
+        Me.LabelFra.Size = New System.Drawing.Size(25, 13)
         Me.LabelFra.TabIndex = 12
         Me.LabelFra.Text = "Fra:"
         '
@@ -115,10 +116,9 @@ Partial Class AdminForm
         '
         Me.LabelAntall.AutoSize = True
         Me.LabelAntall.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.LabelAntall.Location = New System.Drawing.Point(29, 112)
-        Me.LabelAntall.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelAntall.Location = New System.Drawing.Point(22, 91)
         Me.LabelAntall.Name = "LabelAntall"
-        Me.LabelAntall.Size = New System.Drawing.Size(47, 17)
+        Me.LabelAntall.Size = New System.Drawing.Size(36, 13)
         Me.LabelAntall.TabIndex = 18
         Me.LabelAntall.Text = "Antall:"
         '
@@ -126,10 +126,9 @@ Partial Class AdminForm
         '
         Me.LabelDispType.AutoSize = True
         Me.LabelDispType.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.LabelDispType.Location = New System.Drawing.Point(112, 80)
-        Me.LabelDispType.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelDispType.Location = New System.Drawing.Point(84, 65)
         Me.LabelDispType.Name = "LabelDispType"
-        Me.LabelDispType.Size = New System.Drawing.Size(115, 17)
+        Me.LabelDispType.Size = New System.Drawing.Size(88, 13)
         Me.LabelDispType.TabIndex = 17
         Me.LabelDispType.Text = "Mest leide sykkel"
         '
@@ -137,10 +136,9 @@ Partial Class AdminForm
         '
         Me.LabelDispFromDate.AutoSize = True
         Me.LabelDispFromDate.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.LabelDispFromDate.Location = New System.Drawing.Point(112, 16)
-        Me.LabelDispFromDate.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelDispFromDate.Location = New System.Drawing.Point(84, 13)
         Me.LabelDispFromDate.Name = "LabelDispFromDate"
-        Me.LabelDispFromDate.Size = New System.Drawing.Size(110, 17)
+        Me.LabelDispFromDate.Size = New System.Drawing.Size(82, 13)
         Me.LabelDispFromDate.TabIndex = 13
         Me.LabelDispFromDate.Text = "6. Februar 2015"
         '
@@ -148,10 +146,9 @@ Partial Class AdminForm
         '
         Me.LabelTil.AutoSize = True
         Me.LabelTil.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.LabelTil.Location = New System.Drawing.Point(29, 48)
-        Me.LabelTil.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelTil.Location = New System.Drawing.Point(22, 39)
         Me.LabelTil.Name = "LabelTil"
-        Me.LabelTil.Size = New System.Drawing.Size(27, 17)
+        Me.LabelTil.Size = New System.Drawing.Size(21, 13)
         Me.LabelTil.TabIndex = 14
         Me.LabelTil.Text = "Til:"
         '
@@ -159,10 +156,9 @@ Partial Class AdminForm
         '
         Me.LabelType.AutoSize = True
         Me.LabelType.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.LabelType.Location = New System.Drawing.Point(29, 80)
-        Me.LabelType.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelType.Location = New System.Drawing.Point(22, 65)
         Me.LabelType.Name = "LabelType"
-        Me.LabelType.Size = New System.Drawing.Size(44, 17)
+        Me.LabelType.Size = New System.Drawing.Size(34, 13)
         Me.LabelType.TabIndex = 16
         Me.LabelType.Text = "Type:"
         '
@@ -170,10 +166,9 @@ Partial Class AdminForm
         '
         Me.LabelDispToDate.AutoSize = True
         Me.LabelDispToDate.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.LabelDispToDate.Location = New System.Drawing.Point(112, 48)
-        Me.LabelDispToDate.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelDispToDate.Location = New System.Drawing.Point(84, 39)
         Me.LabelDispToDate.Name = "LabelDispToDate"
-        Me.LabelDispToDate.Size = New System.Drawing.Size(118, 17)
+        Me.LabelDispToDate.Size = New System.Drawing.Size(88, 13)
         Me.LabelDispToDate.TabIndex = 15
         Me.LabelDispToDate.Text = "20. Februar 2015"
         '
@@ -181,10 +176,9 @@ Partial Class AdminForm
         '
         Me.LabelDispAntall.AutoSize = True
         Me.LabelDispAntall.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.LabelDispAntall.Location = New System.Drawing.Point(112, 112)
-        Me.LabelDispAntall.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelDispAntall.Location = New System.Drawing.Point(84, 91)
         Me.LabelDispAntall.Name = "LabelDispAntall"
-        Me.LabelDispAntall.Size = New System.Drawing.Size(24, 17)
+        Me.LabelDispAntall.Size = New System.Drawing.Size(19, 13)
         Me.LabelDispAntall.TabIndex = 19
         Me.LabelDispAntall.Text = "10"
         '
@@ -192,20 +186,18 @@ Partial Class AdminForm
         '
         Me.CmbBxType.FormattingEnabled = True
         Me.CmbBxType.Items.AddRange(New Object() {"Billigste sykkel", "Dyreste sykkel", "Avanse", "Mest populære sykler", "Minst populære sykler", "Mest aktive selger", "Minst aktive selger", "Antall bestillinger"})
-        Me.CmbBxType.Location = New System.Drawing.Point(31, 67)
-        Me.CmbBxType.Margin = New System.Windows.Forms.Padding(4)
+        Me.CmbBxType.Location = New System.Drawing.Point(23, 54)
         Me.CmbBxType.Name = "CmbBxType"
-        Me.CmbBxType.Size = New System.Drawing.Size(160, 24)
+        Me.CmbBxType.Size = New System.Drawing.Size(121, 21)
         Me.CmbBxType.TabIndex = 5
         Me.CmbBxType.Text = "Billigste sykkel"
         '
         'btnAdminSave
         '
         Me.btnAdminSave.Enabled = False
-        Me.btnAdminSave.Location = New System.Drawing.Point(583, 408)
-        Me.btnAdminSave.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnAdminSave.Location = New System.Drawing.Point(437, 332)
         Me.btnAdminSave.Name = "btnAdminSave"
-        Me.btnAdminSave.Size = New System.Drawing.Size(175, 45)
+        Me.btnAdminSave.Size = New System.Drawing.Size(131, 37)
         Me.btnAdminSave.TabIndex = 57
         Me.btnAdminSave.Text = "Lagre endringer"
         Me.btnAdminSave.UseVisualStyleBackColor = True
@@ -213,10 +205,9 @@ Partial Class AdminForm
         'btnAdminReset
         '
         Me.btnAdminReset.Enabled = False
-        Me.btnAdminReset.Location = New System.Drawing.Point(215, 408)
-        Me.btnAdminReset.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnAdminReset.Location = New System.Drawing.Point(161, 332)
         Me.btnAdminReset.Name = "btnAdminReset"
-        Me.btnAdminReset.Size = New System.Drawing.Size(175, 45)
+        Me.btnAdminReset.Size = New System.Drawing.Size(131, 37)
         Me.btnAdminReset.TabIndex = 58
         Me.btnAdminReset.Text = "Tøm felter"
         Me.btnAdminReset.UseVisualStyleBackColor = True
@@ -224,10 +215,9 @@ Partial Class AdminForm
         'LabelCmbBxType
         '
         Me.LabelCmbBxType.AutoSize = True
-        Me.LabelCmbBxType.Location = New System.Drawing.Point(78, 37)
-        Me.LabelCmbBxType.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelCmbBxType.Location = New System.Drawing.Point(58, 30)
         Me.LabelCmbBxType.Name = "LabelCmbBxType"
-        Me.LabelCmbBxType.Size = New System.Drawing.Size(40, 17)
+        Me.LabelCmbBxType.Size = New System.Drawing.Size(31, 13)
         Me.LabelCmbBxType.TabIndex = 6
         Me.LabelCmbBxType.Text = "Type"
         '
@@ -236,18 +226,16 @@ Partial Class AdminForm
         Me.cmbbxPosition.Enabled = False
         Me.cmbbxPosition.FormattingEnabled = True
         Me.cmbbxPosition.Items.AddRange(New Object() {"Selger", "Administrator", "Lagerarbeider"})
-        Me.cmbbxPosition.Location = New System.Drawing.Point(496, 322)
-        Me.cmbbxPosition.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmbbxPosition.Location = New System.Drawing.Point(372, 262)
         Me.cmbbxPosition.Name = "cmbbxPosition"
-        Me.cmbbxPosition.Size = New System.Drawing.Size(236, 24)
+        Me.cmbbxPosition.Size = New System.Drawing.Size(178, 21)
         Me.cmbbxPosition.TabIndex = 36
         '
         'NumericUpDownAntall
         '
-        Me.NumericUpDownAntall.Location = New System.Drawing.Point(239, 69)
-        Me.NumericUpDownAntall.Margin = New System.Windows.Forms.Padding(4)
+        Me.NumericUpDownAntall.Location = New System.Drawing.Point(179, 56)
         Me.NumericUpDownAntall.Name = "NumericUpDownAntall"
-        Me.NumericUpDownAntall.Size = New System.Drawing.Size(160, 22)
+        Me.NumericUpDownAntall.Size = New System.Drawing.Size(120, 20)
         Me.NumericUpDownAntall.TabIndex = 10
         '
         'grpBxStatisticsMetaData
@@ -257,11 +245,9 @@ Partial Class AdminForm
         Me.grpBxStatisticsMetaData.Controls.Add(Me.LabelCmbBxType)
         Me.grpBxStatisticsMetaData.Controls.Add(Me.CmbBxType)
         Me.grpBxStatisticsMetaData.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.grpBxStatisticsMetaData.Location = New System.Drawing.Point(16, 304)
-        Me.grpBxStatisticsMetaData.Margin = New System.Windows.Forms.Padding(4)
+        Me.grpBxStatisticsMetaData.Location = New System.Drawing.Point(12, 247)
         Me.grpBxStatisticsMetaData.Name = "grpBxStatisticsMetaData"
-        Me.grpBxStatisticsMetaData.Padding = New System.Windows.Forms.Padding(4)
-        Me.grpBxStatisticsMetaData.Size = New System.Drawing.Size(458, 134)
+        Me.grpBxStatisticsMetaData.Size = New System.Drawing.Size(344, 109)
         Me.grpBxStatisticsMetaData.TabIndex = 11
         Me.grpBxStatisticsMetaData.TabStop = False
         Me.grpBxStatisticsMetaData.Text = "Velg data"
@@ -269,10 +255,9 @@ Partial Class AdminForm
         'LabelCmbBxAntall
         '
         Me.LabelCmbBxAntall.AutoSize = True
-        Me.LabelCmbBxAntall.Location = New System.Drawing.Point(290, 37)
-        Me.LabelCmbBxAntall.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelCmbBxAntall.Location = New System.Drawing.Point(218, 30)
         Me.LabelCmbBxAntall.Name = "LabelCmbBxAntall"
-        Me.LabelCmbBxAntall.Size = New System.Drawing.Size(43, 17)
+        Me.LabelCmbBxAntall.Size = New System.Drawing.Size(33, 13)
         Me.LabelCmbBxAntall.TabIndex = 8
         Me.LabelCmbBxAntall.Text = "Antall"
         '
@@ -281,10 +266,9 @@ Partial Class AdminForm
         Me.chkBxAllTimeStart.AutoSize = True
         Me.chkBxAllTimeStart.Checked = True
         Me.chkBxAllTimeStart.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkBxAllTimeStart.Location = New System.Drawing.Point(93, 25)
-        Me.chkBxAllTimeStart.Margin = New System.Windows.Forms.Padding(4)
+        Me.chkBxAllTimeStart.Location = New System.Drawing.Point(70, 20)
         Me.chkBxAllTimeStart.Name = "chkBxAllTimeStart"
-        Me.chkBxAllTimeStart.Size = New System.Drawing.Size(133, 21)
+        Me.chkBxAllTimeStart.Size = New System.Drawing.Size(102, 17)
         Me.chkBxAllTimeStart.TabIndex = 11
         Me.chkBxAllTimeStart.Text = "Tidenes morgen"
         Me.chkBxAllTimeStart.UseVisualStyleBackColor = True
@@ -292,78 +276,70 @@ Partial Class AdminForm
         'labelTilSelect
         '
         Me.labelTilSelect.AutoSize = True
-        Me.labelTilSelect.Location = New System.Drawing.Point(248, 25)
-        Me.labelTilSelect.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelTilSelect.Location = New System.Drawing.Point(186, 20)
         Me.labelTilSelect.Name = "labelTilSelect"
-        Me.labelTilSelect.Size = New System.Drawing.Size(23, 17)
+        Me.labelTilSelect.Size = New System.Drawing.Size(18, 13)
         Me.labelTilSelect.TabIndex = 10
         Me.labelTilSelect.Text = "Til"
         '
         'lblAdminPostnb
         '
         Me.lblAdminPostnb.AutoSize = True
-        Me.lblAdminPostnb.Location = New System.Drawing.Point(395, 195)
-        Me.lblAdminPostnb.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminPostnb.Location = New System.Drawing.Point(296, 158)
         Me.lblAdminPostnb.Name = "lblAdminPostnb"
-        Me.lblAdminPostnb.Size = New System.Drawing.Size(91, 17)
+        Me.lblAdminPostnb.Size = New System.Drawing.Size(68, 13)
         Me.lblAdminPostnb.TabIndex = 50
         Me.lblAdminPostnb.Text = "Postnummer:"
         '
         'msktxtbxPostnb
         '
         Me.msktxtbxPostnb.Enabled = False
-        Me.msktxtbxPostnb.Location = New System.Drawing.Point(496, 193)
-        Me.msktxtbxPostnb.Margin = New System.Windows.Forms.Padding(4)
+        Me.msktxtbxPostnb.Location = New System.Drawing.Point(372, 157)
         Me.msktxtbxPostnb.Mask = "0000"
         Me.msktxtbxPostnb.Name = "msktxtbxPostnb"
-        Me.msktxtbxPostnb.Size = New System.Drawing.Size(236, 22)
+        Me.msktxtbxPostnb.Size = New System.Drawing.Size(178, 20)
         Me.msktxtbxPostnb.TabIndex = 49
         '
         'lblAdminPassword
         '
         Me.lblAdminPassword.AutoSize = True
-        Me.lblAdminPassword.Location = New System.Drawing.Point(41, 332)
-        Me.lblAdminPassword.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminPassword.Location = New System.Drawing.Point(31, 270)
         Me.lblAdminPassword.Name = "lblAdminPassword"
-        Me.lblAdminPassword.Size = New System.Drawing.Size(64, 17)
+        Me.lblAdminPassword.Size = New System.Drawing.Size(48, 13)
         Me.lblAdminPassword.TabIndex = 56
         Me.lblAdminPassword.Text = "Passord:"
         '
         'lblAdminAdress
         '
         Me.lblAdminAdress.AutoSize = True
-        Me.lblAdminAdress.Location = New System.Drawing.Point(395, 152)
-        Me.lblAdminAdress.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminAdress.Location = New System.Drawing.Point(296, 124)
         Me.lblAdminAdress.Name = "lblAdminAdress"
-        Me.lblAdminAdress.Size = New System.Drawing.Size(99, 17)
+        Me.lblAdminAdress.Size = New System.Drawing.Size(74, 13)
         Me.lblAdminAdress.TabIndex = 48
         Me.lblAdminAdress.Text = "Gate Adresse:"
         '
         'msktxtbxPassword
         '
         Me.msktxtbxPassword.Enabled = False
-        Me.msktxtbxPassword.Location = New System.Drawing.Point(142, 328)
-        Me.msktxtbxPassword.Margin = New System.Windows.Forms.Padding(4)
+        Me.msktxtbxPassword.Location = New System.Drawing.Point(106, 266)
         Me.msktxtbxPassword.Name = "msktxtbxPassword"
-        Me.msktxtbxPassword.Size = New System.Drawing.Size(236, 22)
+        Me.msktxtbxPassword.Size = New System.Drawing.Size(178, 20)
         Me.msktxtbxPassword.TabIndex = 55
         '
         'msktxtbxAdress
         '
         Me.msktxtbxAdress.Enabled = False
-        Me.msktxtbxAdress.Location = New System.Drawing.Point(496, 150)
-        Me.msktxtbxAdress.Margin = New System.Windows.Forms.Padding(4)
+        Me.msktxtbxAdress.Location = New System.Drawing.Point(372, 122)
         Me.msktxtbxAdress.Name = "msktxtbxAdress"
-        Me.msktxtbxAdress.Size = New System.Drawing.Size(236, 22)
+        Me.msktxtbxAdress.Size = New System.Drawing.Size(178, 20)
         Me.msktxtbxAdress.TabIndex = 47
         '
         'lblAdminTel
         '
         Me.lblAdminTel.AutoSize = True
-        Me.lblAdminTel.Location = New System.Drawing.Point(395, 109)
-        Me.lblAdminTel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminTel.Location = New System.Drawing.Point(296, 89)
         Me.lblAdminTel.Name = "lblAdminTel"
-        Me.lblAdminTel.Size = New System.Drawing.Size(60, 17)
+        Me.lblAdminTel.Size = New System.Drawing.Size(46, 13)
         Me.lblAdminTel.TabIndex = 46
         Me.lblAdminTel.Text = "Telefon:"
         '
@@ -375,11 +351,9 @@ Partial Class AdminForm
         Me.grpBxSelectPeriod.Controls.Add(Me.CalendarTo)
         Me.grpBxSelectPeriod.Controls.Add(Me.labelFraSelect)
         Me.grpBxSelectPeriod.Controls.Add(Me.CalendarFrom)
-        Me.grpBxSelectPeriod.Location = New System.Drawing.Point(16, 24)
-        Me.grpBxSelectPeriod.Margin = New System.Windows.Forms.Padding(4)
+        Me.grpBxSelectPeriod.Location = New System.Drawing.Point(12, 20)
         Me.grpBxSelectPeriod.Name = "grpBxSelectPeriod"
-        Me.grpBxSelectPeriod.Padding = New System.Windows.Forms.Padding(4)
-        Me.grpBxSelectPeriod.Size = New System.Drawing.Size(458, 272)
+        Me.grpBxSelectPeriod.Size = New System.Drawing.Size(344, 221)
         Me.grpBxSelectPeriod.TabIndex = 7
         Me.grpBxSelectPeriod.TabStop = False
         Me.grpBxSelectPeriod.Text = "Velg periode"
@@ -389,150 +363,134 @@ Partial Class AdminForm
         Me.chkBxAllTimeEnd.AutoSize = True
         Me.chkBxAllTimeEnd.Checked = True
         Me.chkBxAllTimeEnd.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkBxAllTimeEnd.Location = New System.Drawing.Point(280, 25)
-        Me.chkBxAllTimeEnd.Margin = New System.Windows.Forms.Padding(4)
+        Me.chkBxAllTimeEnd.Location = New System.Drawing.Point(210, 20)
         Me.chkBxAllTimeEnd.Name = "chkBxAllTimeEnd"
-        Me.chkBxAllTimeEnd.Size = New System.Drawing.Size(97, 21)
+        Me.chkBxAllTimeEnd.Size = New System.Drawing.Size(76, 17)
         Me.chkBxAllTimeEnd.TabIndex = 12
         Me.chkBxAllTimeEnd.Text = "End Times"
         Me.chkBxAllTimeEnd.UseVisualStyleBackColor = True
         '
         'CalendarTo
         '
-        Me.CalendarTo.Location = New System.Drawing.Point(239, 50)
-        Me.CalendarTo.Margin = New System.Windows.Forms.Padding(12, 11, 12, 11)
+        Me.CalendarTo.Location = New System.Drawing.Point(179, 41)
         Me.CalendarTo.Name = "CalendarTo"
         Me.CalendarTo.TabIndex = 9
         '
         'labelFraSelect
         '
         Me.labelFraSelect.AutoSize = True
-        Me.labelFraSelect.Location = New System.Drawing.Point(28, 25)
-        Me.labelFraSelect.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelFraSelect.Location = New System.Drawing.Point(21, 20)
         Me.labelFraSelect.Name = "labelFraSelect"
-        Me.labelFraSelect.Size = New System.Drawing.Size(29, 17)
+        Me.labelFraSelect.Size = New System.Drawing.Size(22, 13)
         Me.labelFraSelect.TabIndex = 8
         Me.labelFraSelect.Text = "Fra"
         '
         'CalendarFrom
         '
-        Me.CalendarFrom.Location = New System.Drawing.Point(16, 50)
-        Me.CalendarFrom.Margin = New System.Windows.Forms.Padding(12, 11, 12, 11)
+        Me.CalendarFrom.Location = New System.Drawing.Point(12, 41)
         Me.CalendarFrom.Name = "CalendarFrom"
         Me.CalendarFrom.TabIndex = 7
         '
         'lblAdminUsername
         '
         Me.lblAdminUsername.AutoSize = True
-        Me.lblAdminUsername.Location = New System.Drawing.Point(41, 287)
-        Me.lblAdminUsername.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminUsername.Location = New System.Drawing.Point(31, 233)
         Me.lblAdminUsername.Name = "lblAdminUsername"
-        Me.lblAdminUsername.Size = New System.Drawing.Size(85, 17)
+        Me.lblAdminUsername.Size = New System.Drawing.Size(65, 13)
         Me.lblAdminUsername.TabIndex = 54
         Me.lblAdminUsername.Text = "Brukernavn:"
         '
         'msktxtbxUsername
         '
         Me.msktxtbxUsername.Enabled = False
-        Me.msktxtbxUsername.Location = New System.Drawing.Point(142, 284)
-        Me.msktxtbxUsername.Margin = New System.Windows.Forms.Padding(4)
+        Me.msktxtbxUsername.Location = New System.Drawing.Point(106, 231)
         Me.msktxtbxUsername.Name = "msktxtbxUsername"
-        Me.msktxtbxUsername.Size = New System.Drawing.Size(236, 22)
+        Me.msktxtbxUsername.Size = New System.Drawing.Size(178, 20)
         Me.msktxtbxUsername.TabIndex = 53
         '
         'lblAdminEpost
         '
         Me.lblAdminEpost.AutoSize = True
-        Me.lblAdminEpost.Location = New System.Drawing.Point(395, 281)
-        Me.lblAdminEpost.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminEpost.Location = New System.Drawing.Point(296, 228)
         Me.lblAdminEpost.Name = "lblAdminEpost"
-        Me.lblAdminEpost.Size = New System.Drawing.Size(48, 17)
+        Me.lblAdminEpost.Size = New System.Drawing.Size(37, 13)
         Me.lblAdminEpost.TabIndex = 44
         Me.lblAdminEpost.Text = "Epost:"
         '
         'lblAdminPostplace
         '
         Me.lblAdminPostplace.AutoSize = True
-        Me.lblAdminPostplace.Location = New System.Drawing.Point(395, 238)
-        Me.lblAdminPostplace.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminPostplace.Location = New System.Drawing.Point(296, 193)
         Me.lblAdminPostplace.Name = "lblAdminPostplace"
-        Me.lblAdminPostplace.Size = New System.Drawing.Size(67, 17)
+        Me.lblAdminPostplace.Size = New System.Drawing.Size(51, 13)
         Me.lblAdminPostplace.TabIndex = 52
         Me.lblAdminPostplace.Text = "Poststed:"
         '
         'msktxtbxPostplace
         '
         Me.msktxtbxPostplace.Enabled = False
-        Me.msktxtbxPostplace.Location = New System.Drawing.Point(496, 236)
-        Me.msktxtbxPostplace.Margin = New System.Windows.Forms.Padding(4)
+        Me.msktxtbxPostplace.Location = New System.Drawing.Point(372, 192)
         Me.msktxtbxPostplace.Name = "msktxtbxPostplace"
-        Me.msktxtbxPostplace.Size = New System.Drawing.Size(236, 22)
+        Me.msktxtbxPostplace.Size = New System.Drawing.Size(178, 20)
         Me.msktxtbxPostplace.TabIndex = 51
         '
         'msktxtbxEpost
         '
         Me.msktxtbxEpost.Enabled = False
-        Me.msktxtbxEpost.Location = New System.Drawing.Point(497, 279)
-        Me.msktxtbxEpost.Margin = New System.Windows.Forms.Padding(4)
+        Me.msktxtbxEpost.Location = New System.Drawing.Point(373, 227)
         Me.msktxtbxEpost.Name = "msktxtbxEpost"
-        Me.msktxtbxEpost.Size = New System.Drawing.Size(236, 22)
+        Me.msktxtbxEpost.Size = New System.Drawing.Size(178, 20)
         Me.msktxtbxEpost.TabIndex = 43
         '
         'lblAdminPosition
         '
         Me.lblAdminPosition.AutoSize = True
-        Me.lblAdminPosition.Location = New System.Drawing.Point(395, 324)
-        Me.lblAdminPosition.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminPosition.Location = New System.Drawing.Point(296, 263)
         Me.lblAdminPosition.Name = "lblAdminPosition"
-        Me.lblAdminPosition.Size = New System.Drawing.Size(53, 17)
+        Me.lblAdminPosition.Size = New System.Drawing.Size(40, 13)
         Me.lblAdminPosition.TabIndex = 42
         Me.lblAdminPosition.Text = "Stilling:"
         '
         'lblAdminLname
         '
         Me.lblAdminLname.AutoSize = True
-        Me.lblAdminLname.Location = New System.Drawing.Point(41, 242)
-        Me.lblAdminLname.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminLname.Location = New System.Drawing.Point(31, 197)
         Me.lblAdminLname.Name = "lblAdminLname"
-        Me.lblAdminLname.Size = New System.Drawing.Size(73, 17)
+        Me.lblAdminLname.Size = New System.Drawing.Size(56, 13)
         Me.lblAdminLname.TabIndex = 41
         Me.lblAdminLname.Text = "Etternavn:"
         '
         'msktxtbxTlf
         '
         Me.msktxtbxTlf.Enabled = False
-        Me.msktxtbxTlf.Location = New System.Drawing.Point(496, 107)
-        Me.msktxtbxTlf.Margin = New System.Windows.Forms.Padding(4)
+        Me.msktxtbxTlf.Location = New System.Drawing.Point(372, 87)
         Me.msktxtbxTlf.Mask = "000 00 000"
         Me.msktxtbxTlf.Name = "msktxtbxTlf"
-        Me.msktxtbxTlf.Size = New System.Drawing.Size(236, 22)
+        Me.msktxtbxTlf.Size = New System.Drawing.Size(178, 20)
         Me.msktxtbxTlf.TabIndex = 45
         '
         'msktxtbxLname
         '
         Me.msktxtbxLname.Enabled = False
-        Me.msktxtbxLname.Location = New System.Drawing.Point(143, 240)
-        Me.msktxtbxLname.Margin = New System.Windows.Forms.Padding(4)
+        Me.msktxtbxLname.Location = New System.Drawing.Point(107, 195)
         Me.msktxtbxLname.Name = "msktxtbxLname"
-        Me.msktxtbxLname.Size = New System.Drawing.Size(236, 22)
+        Me.msktxtbxLname.Size = New System.Drawing.Size(178, 20)
         Me.msktxtbxLname.TabIndex = 40
         '
         'cmbbxUsers
         '
         Me.cmbbxUsers.FormattingEnabled = True
         Me.cmbbxUsers.Items.AddRange(New Object() {"Kjell Hansen", "Stig Ofstad", "Duane Henriksen", "Kristoffer Pedersen"})
-        Me.cmbbxUsers.Location = New System.Drawing.Point(142, 106)
-        Me.cmbbxUsers.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmbbxUsers.Location = New System.Drawing.Point(106, 86)
         Me.cmbbxUsers.Name = "cmbbxUsers"
-        Me.cmbbxUsers.Size = New System.Drawing.Size(236, 24)
+        Me.cmbbxUsers.Size = New System.Drawing.Size(178, 21)
         Me.cmbbxUsers.TabIndex = 6
         '
         'btnAdminCreate
         '
-        Me.btnAdminCreate.Location = New System.Drawing.Point(400, 23)
-        Me.btnAdminCreate.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnAdminCreate.Location = New System.Drawing.Point(300, 19)
         Me.btnAdminCreate.Name = "btnAdminCreate"
-        Me.btnAdminCreate.Size = New System.Drawing.Size(175, 45)
+        Me.btnAdminCreate.Size = New System.Drawing.Size(131, 37)
         Me.btnAdminCreate.TabIndex = 31
         Me.btnAdminCreate.Text = "Opprett ny"
         Me.btnAdminCreate.UseVisualStyleBackColor = True
@@ -540,19 +498,17 @@ Partial Class AdminForm
         'lblAdminEmployee
         '
         Me.lblAdminEmployee.AutoSize = True
-        Me.lblAdminEmployee.Location = New System.Drawing.Point(41, 107)
-        Me.lblAdminEmployee.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminEmployee.Location = New System.Drawing.Point(31, 87)
         Me.lblAdminEmployee.Name = "lblAdminEmployee"
-        Me.lblAdminEmployee.Size = New System.Drawing.Size(52, 17)
+        Me.lblAdminEmployee.Size = New System.Drawing.Size(40, 13)
         Me.lblAdminEmployee.TabIndex = 5
         Me.lblAdminEmployee.Text = "Ansatt:"
         '
         'BtnEndApplication
         '
-        Me.BtnEndApplication.Location = New System.Drawing.Point(160, 651)
-        Me.BtnEndApplication.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnEndApplication.Location = New System.Drawing.Point(120, 529)
         Me.BtnEndApplication.Name = "BtnEndApplication"
-        Me.BtnEndApplication.Size = New System.Drawing.Size(125, 28)
+        Me.BtnEndApplication.Size = New System.Drawing.Size(94, 23)
         Me.BtnEndApplication.TabIndex = 6
         Me.BtnEndApplication.Text = "Avslutt"
         Me.BtnEndApplication.UseVisualStyleBackColor = True
@@ -560,10 +516,9 @@ Partial Class AdminForm
         'btnAdminDelete
         '
         Me.btnAdminDelete.Enabled = False
-        Me.btnAdminDelete.Location = New System.Drawing.Point(583, 23)
-        Me.btnAdminDelete.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnAdminDelete.Location = New System.Drawing.Point(437, 19)
         Me.btnAdminDelete.Name = "btnAdminDelete"
-        Me.btnAdminDelete.Size = New System.Drawing.Size(175, 45)
+        Me.btnAdminDelete.Size = New System.Drawing.Size(131, 37)
         Me.btnAdminDelete.TabIndex = 32
         Me.btnAdminDelete.Text = "Slett"
         Me.btnAdminDelete.UseVisualStyleBackColor = True
@@ -571,10 +526,9 @@ Partial Class AdminForm
         'btnAdminEdit
         '
         Me.btnAdminEdit.Enabled = False
-        Me.btnAdminEdit.Location = New System.Drawing.Point(400, 408)
-        Me.btnAdminEdit.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnAdminEdit.Location = New System.Drawing.Point(300, 332)
         Me.btnAdminEdit.Name = "btnAdminEdit"
-        Me.btnAdminEdit.Size = New System.Drawing.Size(175, 45)
+        Me.btnAdminEdit.Size = New System.Drawing.Size(131, 37)
         Me.btnAdminEdit.TabIndex = 33
         Me.btnAdminEdit.Text = "Rediger"
         Me.btnAdminEdit.UseVisualStyleBackColor = True
@@ -610,11 +564,9 @@ Partial Class AdminForm
         Me.grpbxAdminUserAccount.Controls.Add(Me.cmbbxUsers)
         Me.grpbxAdminUserAccount.Controls.Add(Me.btnAdminCreate)
         Me.grpbxAdminUserAccount.Controls.Add(Me.lblAdminEmployee)
-        Me.grpbxAdminUserAccount.Location = New System.Drawing.Point(13, 135)
-        Me.grpbxAdminUserAccount.Margin = New System.Windows.Forms.Padding(4)
+        Me.grpbxAdminUserAccount.Location = New System.Drawing.Point(10, 110)
         Me.grpbxAdminUserAccount.Name = "grpbxAdminUserAccount"
-        Me.grpbxAdminUserAccount.Padding = New System.Windows.Forms.Padding(4)
-        Me.grpbxAdminUserAccount.Size = New System.Drawing.Size(775, 476)
+        Me.grpbxAdminUserAccount.Size = New System.Drawing.Size(581, 387)
         Me.grpbxAdminUserAccount.TabIndex = 7
         Me.grpbxAdminUserAccount.TabStop = False
         Me.grpbxAdminUserAccount.Text = "Brukerkontoer"
@@ -622,40 +574,36 @@ Partial Class AdminForm
         'lblAdminFname
         '
         Me.lblAdminFname.AutoSize = True
-        Me.lblAdminFname.Location = New System.Drawing.Point(41, 197)
-        Me.lblAdminFname.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminFname.Location = New System.Drawing.Point(31, 160)
         Me.lblAdminFname.Name = "lblAdminFname"
-        Me.lblAdminFname.Size = New System.Drawing.Size(64, 17)
+        Me.lblAdminFname.Size = New System.Drawing.Size(49, 13)
         Me.lblAdminFname.TabIndex = 39
         Me.lblAdminFname.Text = "Fornavn:"
         '
         'msktxtbxFname
         '
         Me.msktxtbxFname.Enabled = False
-        Me.msktxtbxFname.Location = New System.Drawing.Point(142, 196)
-        Me.msktxtbxFname.Margin = New System.Windows.Forms.Padding(4)
+        Me.msktxtbxFname.Location = New System.Drawing.Point(106, 159)
         Me.msktxtbxFname.Name = "msktxtbxFname"
-        Me.msktxtbxFname.Size = New System.Drawing.Size(236, 22)
+        Me.msktxtbxFname.Size = New System.Drawing.Size(178, 20)
         Me.msktxtbxFname.TabIndex = 38
         '
         'lblAdminEmployeeID
         '
         Me.lblAdminEmployeeID.AutoSize = True
-        Me.lblAdminEmployeeID.Location = New System.Drawing.Point(41, 152)
-        Me.lblAdminEmployeeID.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAdminEmployeeID.Location = New System.Drawing.Point(31, 124)
         Me.lblAdminEmployeeID.Name = "lblAdminEmployeeID"
-        Me.lblAdminEmployeeID.Size = New System.Drawing.Size(103, 17)
+        Me.lblAdminEmployeeID.Size = New System.Drawing.Size(77, 13)
         Me.lblAdminEmployeeID.TabIndex = 37
         Me.lblAdminEmployeeID.Text = "Ansattnummer:"
         '
         'msktxtbxID
         '
         Me.msktxtbxID.Enabled = False
-        Me.msktxtbxID.Location = New System.Drawing.Point(142, 152)
-        Me.msktxtbxID.Margin = New System.Windows.Forms.Padding(4)
+        Me.msktxtbxID.Location = New System.Drawing.Point(106, 124)
         Me.msktxtbxID.Mask = "0000"
         Me.msktxtbxID.Name = "msktxtbxID"
-        Me.msktxtbxID.Size = New System.Drawing.Size(236, 22)
+        Me.msktxtbxID.Size = New System.Drawing.Size(178, 20)
         Me.msktxtbxID.TabIndex = 35
         '
         'grpBxStatistic
@@ -665,34 +613,40 @@ Partial Class AdminForm
         Me.grpBxStatistic.Controls.Add(Me.BtnEndApplication)
         Me.grpBxStatistic.Controls.Add(Me.btnDisplayStatistics)
         Me.grpBxStatistic.Controls.Add(Me.pnlStatistics)
-        Me.grpBxStatistic.Location = New System.Drawing.Point(834, 25)
-        Me.grpBxStatistic.Margin = New System.Windows.Forms.Padding(4)
+        Me.grpBxStatistic.Location = New System.Drawing.Point(626, 20)
         Me.grpBxStatistic.Name = "grpBxStatistic"
-        Me.grpBxStatistic.Padding = New System.Windows.Forms.Padding(4)
-        Me.grpBxStatistic.Size = New System.Drawing.Size(482, 697)
+        Me.grpBxStatistic.Size = New System.Drawing.Size(362, 566)
         Me.grpBxStatistic.TabIndex = 6
         Me.grpBxStatistic.TabStop = False
         Me.grpBxStatistic.Text = "Statistikk"
         '
         'btnDisplayStatistics
         '
-        Me.btnDisplayStatistics.Location = New System.Drawing.Point(160, 615)
-        Me.btnDisplayStatistics.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnDisplayStatistics.Location = New System.Drawing.Point(120, 500)
         Me.btnDisplayStatistics.Name = "btnDisplayStatistics"
-        Me.btnDisplayStatistics.Size = New System.Drawing.Size(125, 28)
+        Me.btnDisplayStatistics.Size = New System.Drawing.Size(94, 23)
         Me.btnDisplayStatistics.TabIndex = 0
         Me.btnDisplayStatistics.Text = "Vis Statistikk"
         Me.btnDisplayStatistics.UseVisualStyleBackColor = True
         '
+        'btnEmployeeTestOpen
+        '
+        Me.btnEmployeeTestOpen.Location = New System.Drawing.Point(25, 20)
+        Me.btnEmployeeTestOpen.Name = "btnEmployeeTestOpen"
+        Me.btnEmployeeTestOpen.Size = New System.Drawing.Size(101, 53)
+        Me.btnEmployeeTestOpen.TabIndex = 8
+        Me.btnEmployeeTestOpen.Text = "Gå til administrasjon av brukerkontoer"
+        Me.btnEmployeeTestOpen.UseVisualStyleBackColor = True
+        '
         'AdminForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1552, 761)
+        Me.ClientSize = New System.Drawing.Size(1017, 603)
+        Me.Controls.Add(Me.btnEmployeeTestOpen)
         Me.Controls.Add(Me.grpbxAdminUserAccount)
         Me.Controls.Add(Me.grpBxStatistic)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.MaximumSize = New System.Drawing.Size(1815, 935)
+        Me.MaximumSize = New System.Drawing.Size(1365, 767)
         Me.Name = "AdminForm"
         Me.Text = "AdminForm"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -763,4 +717,5 @@ Partial Class AdminForm
     Friend WithEvents msktxtbxID As System.Windows.Forms.MaskedTextBox
     Friend WithEvents grpBxStatistic As System.Windows.Forms.GroupBox
     Friend WithEvents btnDisplayStatistics As System.Windows.Forms.Button
+    Friend WithEvents btnEmployeeTestOpen As System.Windows.Forms.Button
 End Class
