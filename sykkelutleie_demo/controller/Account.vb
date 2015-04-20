@@ -86,9 +86,11 @@ Public Class Account
     ''' <summary>
     ''' Hjelpemetode: Setter delt variabel.
     ''' </summary>
-    ''' <remarks>Sender melding til DAO for å finne ansattID til innlogget bruker.</remarks>
+    ''' <remarks>Sender melding til DAO for å finne ansattID til innlogget bruker.
+    ''' Må ha egen datatabell for å unngå at tabellen i login()-metoden endres
+    ''' før den har blitt returnert.</remarks>
     Private Sub setUserId()
-        table = dao.setUserId(username)
+        Dim table As DataTable = dao.setUserId(username)
         userID = table.Rows(0)(0)
     End Sub
 
