@@ -140,6 +140,7 @@ Public Class OrderTest
 
         addNewBicycle()
     End Sub
+
     ''' <summary>
     ''' Skriver sammendrag av bestilling, tenkt som kvittering
     ''' </summary>
@@ -176,8 +177,6 @@ Public Class OrderTest
         Bestilling.Dock = DockStyle.Fill
         lblUID.Text &= Account.userID
     End Sub
-
-
 
     ''' <summary>
     ''' Prossedyrer som oppdaterer DataGridView med data fra tekstfeltene.

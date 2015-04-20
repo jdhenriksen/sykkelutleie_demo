@@ -60,7 +60,7 @@
         MailTest.Show()
     End Sub
 
-    Private Sub btnOpenOrderTest_Click(sender As Object, e As EventArgs) Handles btnOpenOrderTest.Click
+    Private Sub btnOpenOrderTest_Click(sender As Object, e As EventArgs)
         OrderTest.Show()
     End Sub
 

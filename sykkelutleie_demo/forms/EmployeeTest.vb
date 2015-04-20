@@ -208,8 +208,10 @@ Public Class EmployeeTest
     ''' Hjelpemetode: Går gjennom alle tekstfelt og sjekker om de er fylt ut.
     ''' </summary>
     ''' <returns>True hvis alle tekstfelt har godkjente verdier, False hvis ikke.</returns>
-    ''' <remarks></remarks>
+    ''' <remarks>Id-feltet tvinges til å ha verdi. Dette går bra ettersom
+    ''' denne ikke sendes med i spørringen.</remarks>
     Private Function checkTextBoxes() As Boolean
+        txtEmpId.Text = "0"
         Dim ctrl As Control
         For Each ctrl In Me.Controls
             If ctrl.GetType() = GetType(TextBox) Then

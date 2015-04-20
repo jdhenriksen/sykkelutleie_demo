@@ -30,7 +30,6 @@ Partial Class Login
         Me.btnOpenAdminForm = New System.Windows.Forms.Button()
         Me.grpboxTestArea = New System.Windows.Forms.GroupBox()
         Me.btnCustomerTest = New System.Windows.Forms.Button()
-        Me.btnOpenOrderTest = New System.Windows.Forms.Button()
         Me.btnOpenMailTest = New System.Windows.Forms.Button()
         Me.btnOpenStorageWorkerTest = New System.Windows.Forms.Button()
         Me.btnOpenEmployeeTest = New System.Windows.Forms.Button()
@@ -96,7 +95,6 @@ Partial Class Login
         'grpboxTestArea
         '
         Me.grpboxTestArea.Controls.Add(Me.btnCustomerTest)
-        Me.grpboxTestArea.Controls.Add(Me.btnOpenOrderTest)
         Me.grpboxTestArea.Controls.Add(Me.btnOpenMailTest)
         Me.grpboxTestArea.Controls.Add(Me.btnOpenStorageWorkerTest)
         Me.grpboxTestArea.Controls.Add(Me.btnOpenEmployeeTest)
@@ -118,18 +116,9 @@ Partial Class Login
         Me.btnCustomerTest.Text = "CustomerTest"
         Me.btnCustomerTest.UseVisualStyleBackColor = True
         '
-        'btnOpenOrderTest
-        '
-        Me.btnOpenOrderTest.Location = New System.Drawing.Point(186, 20)
-        Me.btnOpenOrderTest.Name = "btnOpenOrderTest"
-        Me.btnOpenOrderTest.Size = New System.Drawing.Size(142, 56)
-        Me.btnOpenOrderTest.TabIndex = 16
-        Me.btnOpenOrderTest.Text = "OrderTest"
-        Me.btnOpenOrderTest.UseVisualStyleBackColor = True
-        '
         'btnOpenMailTest
         '
-        Me.btnOpenMailTest.Location = New System.Drawing.Point(186, 87)
+        Me.btnOpenMailTest.Location = New System.Drawing.Point(186, 21)
         Me.btnOpenMailTest.Margin = New System.Windows.Forms.Padding(2)
         Me.btnOpenMailTest.Name = "btnOpenMailTest"
         Me.btnOpenMailTest.Size = New System.Drawing.Size(142, 56)
@@ -149,7 +138,7 @@ Partial Class Login
         '
         'btnOpenEmployeeTest
         '
-        Me.btnOpenEmployeeTest.Location = New System.Drawing.Point(186, 155)
+        Me.btnOpenEmployeeTest.Location = New System.Drawing.Point(186, 87)
         Me.btnOpenEmployeeTest.Name = "btnOpenEmployeeTest"
         Me.btnOpenEmployeeTest.Size = New System.Drawing.Size(142, 56)
         Me.btnOpenEmployeeTest.TabIndex = 11
@@ -182,7 +171,6 @@ Partial Class Login
     Friend WithEvents btnOpenAdminForm As System.Windows.Forms.Button
     Friend WithEvents grpboxTestArea As System.Windows.Forms.GroupBox
     Friend WithEvents btnCustomerTest As System.Windows.Forms.Button
-    Friend WithEvents btnOpenOrderTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenMailTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenStorageWorkerTest As System.Windows.Forms.Button
     Friend WithEvents btnOpenEmployeeTest As System.Windows.Forms.Button

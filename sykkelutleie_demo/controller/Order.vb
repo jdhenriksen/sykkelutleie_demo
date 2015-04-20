@@ -16,16 +16,26 @@ Public Class Order
     Property sum As Double
 
     Private dao As New OrderDao
-    'Private customer2 As Customer
-    'Private employee As Employee
-    'Private bikes2 As List(Of Bike)
-    'Private equipment As List(Of Equipment)
 
-
+    ''' <summary>
+    ''' Standardkonstruktør. Skal brukes i starten av en bestilling.
+    ''' Objektet skal oppdateres underveis i bestillingsprosessen.
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Sub New()
 
     End Sub
 
+    ''' <summary>
+    ''' Konstruktør som setter verdier på alle objektvariabler.
+    ''' </summary>
+    ''' <param name="bicycleList">Liste av sykkelobjekter.</param>
+    ''' <param name="customer">Kunde.</param>
+    ''' <param name="salesman">Ansatt.</param>
+    ''' <param name="fromDate">Fra-dato.</param>
+    ''' <param name="toDate">Til-dato.</param>
+    ''' <param name="discount">Rabatt.</param>
+    ''' <remarks></remarks>
     Public Sub New(bicycleList As List(Of Bike), customer As Customer, salesman As Employee, fromDate As Date, toDate As Date, discount As String)
         Me.bikes = bicycleList
         Me.customer = customer
@@ -35,12 +45,22 @@ Public Class Order
         Me.discount = discount
     End Sub
 
+    ''' <summary>
+    ''' Søker etter sykler og tilhørende modellinformasjon i databasen på en dynamisk måte.
+    ''' </summary>
+    ''' <returns>En datatabell med informasjon om sykler og tilhørende modellinformasjon.</returns>
+    ''' <remarks></remarks>
     Public Function searchBicycle() As DataTable
         Dim data As DataTable
         data = bike.searchBicycleModel()
         Return data
     End Function
 
+    ''' <summary>
+    ''' Henter aktive kunder fra databasen.
+    ''' </summary>
+    ''' <returns>En datatabell med informasjon om aktive kunder.</returns>
+    ''' <remarks></remarks>
     Public Function updateCustomer() As DataTable
         Dim data As DataTable
         data = customer.getActiveCustomer()
@@ -50,18 +70,17 @@ Public Class Order
     ''' <summary>
     ''' Finner tiden i dager mellom to datoer
     ''' </summary>
-    ''' <returns>Returnerer antall dager som heltall</returns>
+    ''' <returns>Antall dager som heltall</returns>
     Public Function getTimeSpanOfOrder() As Integer
         Dim orderDays As Integer
         orderDays = DateDiff(DateInterval.DayOfYear, fromDate, toDate) + 1
-
         Return orderDays
     End Function
 
     ''' <summary>
     ''' Finner totalpris basert på valgt rabatt og antall dager.
     ''' </summary>
-    ''' <returns>Returnerer pris som double med 2 desimaler</returns>
+    ''' <returns>Pris som double med 2 desimaler</returns>
     Public Function getTotalPrice() As Double
         Dim totalPrice As Double
 
@@ -134,15 +153,33 @@ Public Class Order
         equipment.setAllEquipmentNotUnderOrder()
     End Sub
 
+    ''' <summary>
+    ''' Henter ut informasjon om en kunde basert på kundeID.
+    ''' </summary>
+    ''' <param name="id">KundeID.</param>
+    ''' <returns>En datatabell med informasjon om aktuell kunde.</returns>
+    ''' <remarks></remarks>
     Public Function getCustomerById(id As String) As DataTable
         Dim customerDao As New CustomerDao
         Return customerDao.selectCustomerById(id)
     End Function
 
+    ''' <summary>
+    ''' Henter utvalgt informasjon om sykler og modell for bruk i bestillings-Form.
+    ''' </summary>
+    ''' <param name="framenumber">Rammenummer til aktuell sykkel.</param>
+    ''' <returns>En datatabell med relevant informasjon om sykkel og tilhørende modell.</returns>
+    ''' <remarks></remarks>
     Public Function getBikeJoinModel(framenumber As String) As DataTable
         Return dao.getBikeJoinModel(framenumber)
     End Function
 
+    ''' <summary>
+    ''' Henter ut en ansatt basert på ansattID.
+    ''' </summary>
+    ''' <param name="id">AnsattID for aktuell ansatt.</param>
+    ''' <returns>Et ansatt-objekt med informasjon om aktuell ansatt.</returns>
+    ''' <remarks>Setter også fornavn og etternavn eksplisitt.</remarks>
     Public Function getEmployee(id As String) As Employee
         Dim table As New DataTable
         Dim dao As New EmployeeDao
@@ -153,6 +190,11 @@ Public Class Order
         Return employee
     End Function
 
+    ''' <summary>
+    ''' Hjelpemetode. Lager liste som sendes til DAO.
+    ''' </summary>
+    ''' <returns>En liste bestående innholdet i alle objektvariablene for objektet.</returns>
+    ''' <remarks>Se OrderDAO for bruk.</remarks>
     Private Function makeList() As List(Of String)
         Dim list As New List(Of String)
         With list
