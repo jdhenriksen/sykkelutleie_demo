@@ -87,8 +87,8 @@ Partial Class StorageWorker
         Me.lblBikeProducer = New System.Windows.Forms.Label()
         Me.lblBikeCategory = New System.Windows.Forms.Label()
         Me.dtgvmissingbike = New System.Windows.Forms.DataGridView()
-        Me.lblmissinbike = New System.Windows.Forms.Label()
         Me.btnmissingbike = New System.Windows.Forms.Button()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         CType(Me.dtgvBike, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpbxBike.SuspendLayout()
         Me.grpbxModels.SuspendLayout()
@@ -96,12 +96,13 @@ Partial Class StorageWorker
         Me.grpbxEquipment.SuspendLayout()
         CType(Me.dtgvEquip, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtgvmissingbike, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnSearchbike
         '
         Me.btnSearchbike.Location = New System.Drawing.Point(142, 301)
-        Me.btnSearchbike.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnSearchbike.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSearchbike.Name = "btnSearchbike"
         Me.btnSearchbike.Size = New System.Drawing.Size(64, 28)
         Me.btnSearchbike.TabIndex = 186
@@ -114,7 +115,7 @@ Partial Class StorageWorker
         Me.cmbStatus.FormattingEnabled = True
         Me.cmbStatus.Items.AddRange(New Object() {"Til Reparasjon", "Skal til Reparasjon", "På Lager", "Utleid", "Under Transport"})
         Me.cmbStatus.Location = New System.Drawing.Point(74, 145)
-        Me.cmbStatus.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cmbStatus.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Size = New System.Drawing.Size(138, 21)
         Me.cmbStatus.TabIndex = 244
@@ -124,7 +125,7 @@ Partial Class StorageWorker
         Me.cmbModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbModel.FormattingEnabled = True
         Me.cmbModel.Location = New System.Drawing.Point(74, 52)
-        Me.cmbModel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cmbModel.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbModel.Name = "cmbModel"
         Me.cmbModel.Size = New System.Drawing.Size(138, 21)
         Me.cmbModel.TabIndex = 243
@@ -173,7 +174,7 @@ Partial Class StorageWorker
         '
         Me.btnChangebike.Enabled = False
         Me.btnChangebike.Location = New System.Drawing.Point(76, 332)
-        Me.btnChangebike.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnChangebike.Margin = New System.Windows.Forms.Padding(2)
         Me.btnChangebike.Name = "btnChangebike"
         Me.btnChangebike.Size = New System.Drawing.Size(64, 29)
         Me.btnChangebike.TabIndex = 188
@@ -240,7 +241,7 @@ Partial Class StorageWorker
         Me.dtgvBike.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dtgvBike.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgvBike.Location = New System.Drawing.Point(218, 29)
-        Me.dtgvBike.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dtgvBike.Margin = New System.Windows.Forms.Padding(2)
         Me.dtgvBike.MultiSelect = False
         Me.dtgvBike.Name = "dtgvBike"
         Me.dtgvBike.ReadOnly = True
@@ -260,9 +261,9 @@ Partial Class StorageWorker
         Me.grpbxBike.Controls.Add(Me.btnNullbike)
         Me.grpbxBike.Controls.Add(Me.btnDeletebike)
         Me.grpbxBike.Location = New System.Drawing.Point(5, 6)
-        Me.grpbxBike.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpbxBike.Margin = New System.Windows.Forms.Padding(2)
         Me.grpbxBike.Name = "grpbxBike"
-        Me.grpbxBike.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpbxBike.Padding = New System.Windows.Forms.Padding(2)
         Me.grpbxBike.Size = New System.Drawing.Size(509, 365)
         Me.grpbxBike.TabIndex = 258
         Me.grpbxBike.TabStop = False
@@ -272,7 +273,7 @@ Partial Class StorageWorker
         '
         Me.btnSavebike.Enabled = False
         Me.btnSavebike.Location = New System.Drawing.Point(142, 332)
-        Me.btnSavebike.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnSavebike.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSavebike.Name = "btnSavebike"
         Me.btnSavebike.Size = New System.Drawing.Size(64, 29)
         Me.btnSavebike.TabIndex = 189
@@ -282,7 +283,7 @@ Partial Class StorageWorker
         'btnNewbike
         '
         Me.btnNewbike.Location = New System.Drawing.Point(76, 301)
-        Me.btnNewbike.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnNewbike.Margin = New System.Windows.Forms.Padding(2)
         Me.btnNewbike.Name = "btnNewbike"
         Me.btnNewbike.Size = New System.Drawing.Size(64, 28)
         Me.btnNewbike.TabIndex = 185
@@ -292,7 +293,7 @@ Partial Class StorageWorker
         'btnNullbike
         '
         Me.btnNullbike.Location = New System.Drawing.Point(9, 301)
-        Me.btnNullbike.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnNullbike.Margin = New System.Windows.Forms.Padding(2)
         Me.btnNullbike.Name = "btnNullbike"
         Me.btnNullbike.Size = New System.Drawing.Size(64, 28)
         Me.btnNullbike.TabIndex = 211
@@ -303,7 +304,7 @@ Partial Class StorageWorker
         '
         Me.btnDeletebike.Enabled = False
         Me.btnDeletebike.Location = New System.Drawing.Point(9, 332)
-        Me.btnDeletebike.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnDeletebike.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDeletebike.Name = "btnDeletebike"
         Me.btnDeletebike.Size = New System.Drawing.Size(64, 29)
         Me.btnDeletebike.TabIndex = 187
@@ -328,9 +329,9 @@ Partial Class StorageWorker
         Me.grpbxModels.Controls.Add(Me.lblModelCategory)
         Me.grpbxModels.Controls.Add(Me.dtgvModel)
         Me.grpbxModels.Location = New System.Drawing.Point(5, 397)
-        Me.grpbxModels.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpbxModels.Margin = New System.Windows.Forms.Padding(2)
         Me.grpbxModels.Name = "grpbxModels"
-        Me.grpbxModels.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpbxModels.Padding = New System.Windows.Forms.Padding(2)
         Me.grpbxModels.Size = New System.Drawing.Size(578, 177)
         Me.grpbxModels.TabIndex = 260
         Me.grpbxModels.TabStop = False
@@ -342,7 +343,7 @@ Partial Class StorageWorker
         Me.lstbxEqipment.Enabled = False
         Me.lstbxEqipment.FormattingEnabled = True
         Me.lstbxEqipment.Location = New System.Drawing.Point(212, 21)
-        Me.lstbxEqipment.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.lstbxEqipment.Margin = New System.Windows.Forms.Padding(2)
         Me.lstbxEqipment.Name = "lstbxEqipment"
         Me.lstbxEqipment.Size = New System.Drawing.Size(91, 139)
         Me.lstbxEqipment.TabIndex = 228
@@ -350,7 +351,7 @@ Partial Class StorageWorker
         'btnNullmodel
         '
         Me.btnNullmodel.Location = New System.Drawing.Point(9, 118)
-        Me.btnNullmodel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnNullmodel.Margin = New System.Windows.Forms.Padding(2)
         Me.btnNullmodel.Name = "btnNullmodel"
         Me.btnNullmodel.Size = New System.Drawing.Size(64, 20)
         Me.btnNullmodel.TabIndex = 212
@@ -361,7 +362,7 @@ Partial Class StorageWorker
         '
         Me.btnChangemodel.Enabled = False
         Me.btnChangemodel.Location = New System.Drawing.Point(75, 141)
-        Me.btnChangemodel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnChangemodel.Margin = New System.Windows.Forms.Padding(2)
         Me.btnChangemodel.Name = "btnChangemodel"
         Me.btnChangemodel.Size = New System.Drawing.Size(64, 20)
         Me.btnChangemodel.TabIndex = 192
@@ -371,7 +372,7 @@ Partial Class StorageWorker
         'btnSearchmodel
         '
         Me.btnSearchmodel.Location = New System.Drawing.Point(140, 118)
-        Me.btnSearchmodel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnSearchmodel.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSearchmodel.Name = "btnSearchmodel"
         Me.btnSearchmodel.Size = New System.Drawing.Size(64, 20)
         Me.btnSearchmodel.TabIndex = 191
@@ -392,7 +393,7 @@ Partial Class StorageWorker
         '
         Me.btnSavemodel.Enabled = False
         Me.btnSavemodel.Location = New System.Drawing.Point(142, 141)
-        Me.btnSavemodel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnSavemodel.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSavemodel.Name = "btnSavemodel"
         Me.btnSavemodel.Size = New System.Drawing.Size(64, 20)
         Me.btnSavemodel.TabIndex = 193
@@ -412,7 +413,7 @@ Partial Class StorageWorker
         'btnNewmodel
         '
         Me.btnNewmodel.Location = New System.Drawing.Point(75, 118)
-        Me.btnNewmodel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnNewmodel.Margin = New System.Windows.Forms.Padding(2)
         Me.btnNewmodel.Name = "btnNewmodel"
         Me.btnNewmodel.Size = New System.Drawing.Size(64, 20)
         Me.btnNewmodel.TabIndex = 190
@@ -422,7 +423,7 @@ Partial Class StorageWorker
         'txtModelname
         '
         Me.txtModelname.Location = New System.Drawing.Point(78, 20)
-        Me.txtModelname.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtModelname.Margin = New System.Windows.Forms.Padding(2)
         Me.txtModelname.Name = "txtModelname"
         Me.txtModelname.Size = New System.Drawing.Size(131, 20)
         Me.txtModelname.TabIndex = 206
@@ -430,7 +431,7 @@ Partial Class StorageWorker
         'txtModelprice
         '
         Me.txtModelprice.Location = New System.Drawing.Point(78, 42)
-        Me.txtModelprice.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtModelprice.Margin = New System.Windows.Forms.Padding(2)
         Me.txtModelprice.Mask = "0000"
         Me.txtModelprice.Name = "txtModelprice"
         Me.txtModelprice.Size = New System.Drawing.Size(131, 20)
@@ -439,7 +440,7 @@ Partial Class StorageWorker
         'txtModelproducer
         '
         Me.txtModelproducer.Location = New System.Drawing.Point(78, 65)
-        Me.txtModelproducer.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtModelproducer.Margin = New System.Windows.Forms.Padding(2)
         Me.txtModelproducer.Name = "txtModelproducer"
         Me.txtModelproducer.Size = New System.Drawing.Size(131, 20)
         Me.txtModelproducer.TabIndex = 208
@@ -447,7 +448,7 @@ Partial Class StorageWorker
         'txtModelcategory
         '
         Me.txtModelcategory.Location = New System.Drawing.Point(78, 88)
-        Me.txtModelcategory.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtModelcategory.Margin = New System.Windows.Forms.Padding(2)
         Me.txtModelcategory.Name = "txtModelcategory"
         Me.txtModelcategory.Size = New System.Drawing.Size(131, 20)
         Me.txtModelcategory.TabIndex = 209
@@ -481,7 +482,7 @@ Partial Class StorageWorker
         Me.dtgvModel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dtgvModel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgvModel.Location = New System.Drawing.Point(307, 21)
-        Me.dtgvModel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dtgvModel.Margin = New System.Windows.Forms.Padding(2)
         Me.dtgvModel.MultiSelect = False
         Me.dtgvModel.Name = "dtgvModel"
         Me.dtgvModel.ReadOnly = True
@@ -509,10 +510,10 @@ Partial Class StorageWorker
         Me.grpbxEquipment.Controls.Add(Me.txtEqipType)
         Me.grpbxEquipment.Controls.Add(Me.txtEqipID)
         Me.grpbxEquipment.Location = New System.Drawing.Point(519, 29)
-        Me.grpbxEquipment.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpbxEquipment.Margin = New System.Windows.Forms.Padding(2)
         Me.grpbxEquipment.Name = "grpbxEquipment"
-        Me.grpbxEquipment.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.grpbxEquipment.Size = New System.Drawing.Size(438, 177)
+        Me.grpbxEquipment.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpbxEquipment.Size = New System.Drawing.Size(471, 177)
         Me.grpbxEquipment.TabIndex = 259
         Me.grpbxEquipment.TabStop = False
         Me.grpbxEquipment.Text = "Tilleggsutstyr"
@@ -520,7 +521,7 @@ Partial Class StorageWorker
         'btnEqipReset
         '
         Me.btnEqipReset.Location = New System.Drawing.Point(5, 109)
-        Me.btnEqipReset.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnEqipReset.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEqipReset.Name = "btnEqipReset"
         Me.btnEqipReset.Size = New System.Drawing.Size(64, 28)
         Me.btnEqipReset.TabIndex = 226
@@ -541,7 +542,7 @@ Partial Class StorageWorker
         '
         Me.btnEqipChange.Enabled = False
         Me.btnEqipChange.Location = New System.Drawing.Point(75, 141)
-        Me.btnEqipChange.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnEqipChange.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEqipChange.Name = "btnEqipChange"
         Me.btnEqipChange.Size = New System.Drawing.Size(64, 30)
         Me.btnEqipChange.TabIndex = 223
@@ -562,7 +563,7 @@ Partial Class StorageWorker
         '
         Me.btnEqipDelete.Enabled = False
         Me.btnEqipDelete.Location = New System.Drawing.Point(5, 141)
-        Me.btnEqipDelete.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnEqipDelete.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEqipDelete.Name = "btnEqipDelete"
         Me.btnEqipDelete.Size = New System.Drawing.Size(64, 30)
         Me.btnEqipDelete.TabIndex = 224
@@ -583,7 +584,7 @@ Partial Class StorageWorker
         '
         Me.btnEqipSave.Enabled = False
         Me.btnEqipSave.Location = New System.Drawing.Point(143, 141)
-        Me.btnEqipSave.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnEqipSave.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEqipSave.Name = "btnEqipSave"
         Me.btnEqipSave.Size = New System.Drawing.Size(64, 32)
         Me.btnEqipSave.TabIndex = 227
@@ -610,7 +611,7 @@ Partial Class StorageWorker
         Me.dtgvEquip.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.dtgvEquip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgvEquip.Location = New System.Drawing.Point(213, 17)
-        Me.dtgvEquip.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dtgvEquip.Margin = New System.Windows.Forms.Padding(2)
         Me.dtgvEquip.MultiSelect = False
         Me.dtgvEquip.Name = "dtgvEquip"
         Me.dtgvEquip.ReadOnly = True
@@ -619,13 +620,13 @@ Partial Class StorageWorker
         Me.dtgvEquip.RowTemplate.Height = 24
         Me.dtgvEquip.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.dtgvEquip.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgvEquip.Size = New System.Drawing.Size(222, 145)
+        Me.dtgvEquip.Size = New System.Drawing.Size(254, 154)
         Me.dtgvEquip.TabIndex = 222
         '
         'txtEqipStatus
         '
         Me.txtEqipStatus.Location = New System.Drawing.Point(100, 85)
-        Me.txtEqipStatus.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtEqipStatus.Margin = New System.Windows.Forms.Padding(2)
         Me.txtEqipStatus.Name = "txtEqipStatus"
         Me.txtEqipStatus.Size = New System.Drawing.Size(107, 20)
         Me.txtEqipStatus.TabIndex = 216
@@ -633,7 +634,7 @@ Partial Class StorageWorker
         'txtEqipPrice
         '
         Me.txtEqipPrice.Location = New System.Drawing.Point(100, 63)
-        Me.txtEqipPrice.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtEqipPrice.Margin = New System.Windows.Forms.Padding(2)
         Me.txtEqipPrice.Name = "txtEqipPrice"
         Me.txtEqipPrice.Size = New System.Drawing.Size(107, 20)
         Me.txtEqipPrice.TabIndex = 215
@@ -641,7 +642,7 @@ Partial Class StorageWorker
         'btnEqipSearch
         '
         Me.btnEqipSearch.Location = New System.Drawing.Point(142, 109)
-        Me.btnEqipSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnEqipSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEqipSearch.Name = "btnEqipSearch"
         Me.btnEqipSearch.Size = New System.Drawing.Size(64, 28)
         Me.btnEqipSearch.TabIndex = 221
@@ -651,7 +652,7 @@ Partial Class StorageWorker
         'txtEqipType
         '
         Me.txtEqipType.Location = New System.Drawing.Point(100, 40)
-        Me.txtEqipType.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtEqipType.Margin = New System.Windows.Forms.Padding(2)
         Me.txtEqipType.Name = "txtEqipType"
         Me.txtEqipType.Size = New System.Drawing.Size(107, 20)
         Me.txtEqipType.TabIndex = 214
@@ -659,7 +660,7 @@ Partial Class StorageWorker
         'txtEqipID
         '
         Me.txtEqipID.Location = New System.Drawing.Point(100, 17)
-        Me.txtEqipID.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtEqipID.Margin = New System.Windows.Forms.Padding(2)
         Me.txtEqipID.Name = "txtEqipID"
         Me.txtEqipID.Size = New System.Drawing.Size(107, 20)
         Me.txtEqipID.TabIndex = 213
@@ -667,7 +668,7 @@ Partial Class StorageWorker
         'txtFramenumber
         '
         Me.txtFramenumber.Location = New System.Drawing.Point(74, 29)
-        Me.txtFramenumber.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtFramenumber.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFramenumber.Name = "txtFramenumber"
         Me.txtFramenumber.Size = New System.Drawing.Size(137, 20)
         Me.txtFramenumber.TabIndex = 233
@@ -675,7 +676,7 @@ Partial Class StorageWorker
         'btnEqipCreate
         '
         Me.btnEqipCreate.Location = New System.Drawing.Point(592, 138)
-        Me.btnEqipCreate.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnEqipCreate.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEqipCreate.Name = "btnEqipCreate"
         Me.btnEqipCreate.Size = New System.Drawing.Size(64, 28)
         Me.btnEqipCreate.TabIndex = 257
@@ -685,7 +686,7 @@ Partial Class StorageWorker
         'txtBrakes
         '
         Me.txtBrakes.Location = New System.Drawing.Point(74, 283)
-        Me.txtBrakes.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtBrakes.Margin = New System.Windows.Forms.Padding(2)
         Me.txtBrakes.Name = "txtBrakes"
         Me.txtBrakes.Size = New System.Drawing.Size(138, 20)
         Me.txtBrakes.TabIndex = 256
@@ -693,7 +694,7 @@ Partial Class StorageWorker
         'txtGear
         '
         Me.txtGear.Location = New System.Drawing.Point(73, 260)
-        Me.txtGear.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtGear.Margin = New System.Windows.Forms.Padding(2)
         Me.txtGear.Name = "txtGear"
         Me.txtGear.Size = New System.Drawing.Size(138, 20)
         Me.txtGear.TabIndex = 255
@@ -701,7 +702,7 @@ Partial Class StorageWorker
         'txtFrame
         '
         Me.txtFrame.Location = New System.Drawing.Point(73, 237)
-        Me.txtFrame.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtFrame.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFrame.Name = "txtFrame"
         Me.txtFrame.Size = New System.Drawing.Size(138, 20)
         Me.txtFrame.TabIndex = 254
@@ -709,7 +710,7 @@ Partial Class StorageWorker
         'txtTire
         '
         Me.txtTire.Location = New System.Drawing.Point(73, 214)
-        Me.txtTire.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtTire.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTire.Name = "txtTire"
         Me.txtTire.Size = New System.Drawing.Size(138, 20)
         Me.txtTire.TabIndex = 253
@@ -717,7 +718,7 @@ Partial Class StorageWorker
         'txtPointofsale
         '
         Me.txtPointofsale.Location = New System.Drawing.Point(73, 192)
-        Me.txtPointofsale.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtPointofsale.Margin = New System.Windows.Forms.Padding(2)
         Me.txtPointofsale.Name = "txtPointofsale"
         Me.txtPointofsale.Size = New System.Drawing.Size(138, 20)
         Me.txtPointofsale.TabIndex = 252
@@ -725,7 +726,7 @@ Partial Class StorageWorker
         'txtLocation
         '
         Me.txtLocation.Location = New System.Drawing.Point(73, 169)
-        Me.txtLocation.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtLocation.Margin = New System.Windows.Forms.Padding(2)
         Me.txtLocation.Name = "txtLocation"
         Me.txtLocation.Size = New System.Drawing.Size(138, 20)
         Me.txtLocation.TabIndex = 251
@@ -733,7 +734,7 @@ Partial Class StorageWorker
         'txtPrice
         '
         Me.txtPrice.Location = New System.Drawing.Point(73, 122)
-        Me.txtPrice.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtPrice.Margin = New System.Windows.Forms.Padding(2)
         Me.txtPrice.Mask = "0000"
         Me.txtPrice.Name = "txtPrice"
         Me.txtPrice.ReadOnly = True
@@ -743,7 +744,7 @@ Partial Class StorageWorker
         'txtCategory
         '
         Me.txtCategory.Location = New System.Drawing.Point(74, 99)
-        Me.txtCategory.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtCategory.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCategory.Name = "txtCategory"
         Me.txtCategory.ReadOnly = True
         Me.txtCategory.Size = New System.Drawing.Size(140, 20)
@@ -752,7 +753,7 @@ Partial Class StorageWorker
         'txtProducer
         '
         Me.txtProducer.Location = New System.Drawing.Point(74, 76)
-        Me.txtProducer.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtProducer.Margin = New System.Windows.Forms.Padding(2)
         Me.txtProducer.Name = "txtProducer"
         Me.txtProducer.ReadOnly = True
         Me.txtProducer.Size = New System.Drawing.Size(140, 20)
@@ -793,44 +794,43 @@ Partial Class StorageWorker
         Me.dtgvmissingbike.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dtgvmissingbike.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dtgvmissingbike.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgvmissingbike.Location = New System.Drawing.Point(732, 284)
-        Me.dtgvmissingbike.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dtgvmissingbike.Location = New System.Drawing.Point(71, 21)
+        Me.dtgvmissingbike.Margin = New System.Windows.Forms.Padding(2)
         Me.dtgvmissingbike.Name = "dtgvmissingbike"
         Me.dtgvmissingbike.RowHeadersVisible = False
         Me.dtgvmissingbike.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
         Me.dtgvmissingbike.RowTemplate.Height = 24
         Me.dtgvmissingbike.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgvmissingbike.Size = New System.Drawing.Size(196, 275)
+        Me.dtgvmissingbike.Size = New System.Drawing.Size(196, 141)
         Me.dtgvmissingbike.TabIndex = 261
-        '
-        'lblmissinbike
-        '
-        Me.lblmissinbike.AutoSize = True
-        Me.lblmissinbike.Location = New System.Drawing.Point(730, 268)
-        Me.lblmissinbike.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblmissinbike.Name = "lblmissinbike"
-        Me.lblmissinbike.Size = New System.Drawing.Size(80, 13)
-        Me.lblmissinbike.TabIndex = 262
-        Me.lblmissinbike.Text = "Savnede sykler"
         '
         'btnmissingbike
         '
-        Me.btnmissingbike.Location = New System.Drawing.Point(866, 248)
-        Me.btnmissingbike.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnmissingbike.Location = New System.Drawing.Point(5, 26)
+        Me.btnmissingbike.Margin = New System.Windows.Forms.Padding(2)
         Me.btnmissingbike.Name = "btnmissingbike"
         Me.btnmissingbike.Size = New System.Drawing.Size(62, 33)
         Me.btnmissingbike.TabIndex = 263
         Me.btnmissingbike.Text = "Oppdater"
         Me.btnmissingbike.UseVisualStyleBackColor = True
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.dtgvmissingbike)
+        Me.GroupBox1.Controls.Add(Me.btnmissingbike)
+        Me.GroupBox1.Location = New System.Drawing.Point(712, 397)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(278, 177)
+        Me.GroupBox1.TabIndex = 264
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Savnede Sykler"
+        '
         'StorageWorker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(963, 587)
-        Me.Controls.Add(Me.btnmissingbike)
-        Me.Controls.Add(Me.lblmissinbike)
-        Me.Controls.Add(Me.dtgvmissingbike)
+        Me.ClientSize = New System.Drawing.Size(1001, 587)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.cmbStatus)
         Me.Controls.Add(Me.cmbModel)
         Me.Controls.Add(Me.lblBikeBreaks)
@@ -860,7 +860,7 @@ Partial Class StorageWorker
         Me.Controls.Add(Me.grpbxBike)
         Me.Controls.Add(Me.grpbxModels)
         Me.Controls.Add(Me.grpbxEquipment)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "StorageWorker"
         Me.Text = "StorageWorker"
         CType(Me.dtgvBike, System.ComponentModel.ISupportInitialize).EndInit()
@@ -872,6 +872,7 @@ Partial Class StorageWorker
         Me.grpbxEquipment.PerformLayout()
         CType(Me.dtgvEquip, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtgvmissingbike, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -941,6 +942,6 @@ Partial Class StorageWorker
     Friend WithEvents lblBikeProducer As System.Windows.Forms.Label
     Friend WithEvents lblBikeCategory As System.Windows.Forms.Label
     Friend WithEvents dtgvmissingbike As System.Windows.Forms.DataGridView
-    Friend WithEvents lblmissinbike As System.Windows.Forms.Label
     Friend WithEvents btnmissingbike As System.Windows.Forms.Button
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
 End Class

@@ -57,7 +57,7 @@
     End Sub
 
     Private Sub btnOpenMailTest_Click(sender As Object, e As EventArgs) Handles btnOpenMailTest.Click
-        MailTest.Show()
+        Mail.Show()
     End Sub
 
     Private Sub btnOpenOrderTest_Click(sender As Object, e As EventArgs)

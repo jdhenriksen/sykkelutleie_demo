@@ -85,10 +85,10 @@
     </Compile>
     <Compile Include="controller\Bike.vb" />
     <Compile Include="controller\Customer.vb" />
-    <Compile Include="forms\CustomerTest.Designer.vb">
-      <DependentUpon>CustomerTest.vb</DependentUpon>
+    <Compile Include="forms\Customer.Designer.vb">
+      <DependentUpon>Customer.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\CustomerTest.vb">
+    <Compile Include="forms\Customer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="dao\BikeDao.vb" />
@@ -99,10 +99,10 @@
     <Compile Include="dao\OrderDao.vb" />
     <Compile Include="controller\DBUtility.vb" />
     <Compile Include="controller\Employee.vb" />
-    <Compile Include="forms\EmployeeTest.Designer.vb">
-      <DependentUpon>EmployeeTest.vb</DependentUpon>
+    <Compile Include="forms\Employee.Designer.vb">
+      <DependentUpon>Employee.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\EmployeeTest.vb">
+    <Compile Include="forms\Employee.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Login.vb">
@@ -112,16 +112,16 @@
       <DependentUpon>Login.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\mailLogin.Designer.vb">
-      <DependentUpon>mailLogin.vb</DependentUpon>
+    <Compile Include="forms\MailLogin.Designer.vb">
+      <DependentUpon>MailLogin.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\mailLogin.vb">
+    <Compile Include="forms\MailLogin.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\MailTest.Designer.vb">
-      <DependentUpon>MailTest.vb</DependentUpon>
+    <Compile Include="forms\Mail.Designer.vb">
+      <DependentUpon>Mail.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\MailTest.vb">
+    <Compile Include="forms\Mail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="controller\MailUtility.vb" />
@@ -142,10 +142,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="controller\Order.vb" />
-    <Compile Include="forms\OrderTest.Designer.vb">
-      <DependentUpon>OrderTest.vb</DependentUpon>
+    <Compile Include="forms\Order.Designer.vb">
+      <DependentUpon>Order.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\OrderTest.vb">
+    <Compile Include="forms\Order.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="controller\Person.vb" />
@@ -165,11 +165,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="forms\CustomerTest.resx">
-      <DependentUpon>CustomerTest.vb</DependentUpon>
+    <EmbeddedResource Include="forms\Customer.resx">
+      <DependentUpon>Customer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\EmployeeTest.resx">
-      <DependentUpon>EmployeeTest.vb</DependentUpon>
+    <EmbeddedResource Include="forms\Employee.resx">
+      <DependentUpon>Employee.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
@@ -177,11 +177,11 @@
     <EmbeddedResource Include="forms\AdminForm.resx">
       <DependentUpon>AdminForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\mailLogin.resx">
-      <DependentUpon>mailLogin.vb</DependentUpon>
+    <EmbeddedResource Include="forms\MailLogin.resx">
+      <DependentUpon>MailLogin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\MailTest.resx">
-      <DependentUpon>MailTest.vb</DependentUpon>
+    <EmbeddedResource Include="forms\Mail.resx">
+      <DependentUpon>Mail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -189,8 +189,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\OrderTest.resx">
-      <DependentUpon>OrderTest.vb</DependentUpon>
+    <EmbeddedResource Include="forms\Order.resx">
+      <DependentUpon>Order.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\StatisticsView.resx">
       <DependentUpon>StatisticsView.vb</DependentUpon>

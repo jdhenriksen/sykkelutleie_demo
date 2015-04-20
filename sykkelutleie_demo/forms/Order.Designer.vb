@@ -89,7 +89,7 @@ Partial Class OrderTest
         '
         'btnOrderSearchBike
         '
-        Me.btnOrderSearchBike.Location = New System.Drawing.Point(10, 358)
+        Me.btnOrderSearchBike.Location = New System.Drawing.Point(18, 356)
         Me.btnOrderSearchBike.Margin = New System.Windows.Forms.Padding(2)
         Me.btnOrderSearchBike.Name = "btnOrderSearchBike"
         Me.btnOrderSearchBike.Size = New System.Drawing.Size(131, 37)
@@ -121,7 +121,7 @@ Partial Class OrderTest
         '
         Me.lstbxEquipment.CheckOnClick = True
         Me.lstbxEquipment.FormattingEnabled = True
-        Me.lstbxEquipment.Location = New System.Drawing.Point(659, 32)
+        Me.lstbxEquipment.Location = New System.Drawing.Point(658, 30)
         Me.lstbxEquipment.Margin = New System.Windows.Forms.Padding(2)
         Me.lstbxEquipment.Name = "lstbxEquipment"
         Me.lstbxEquipment.Size = New System.Drawing.Size(91, 304)
@@ -129,7 +129,7 @@ Partial Class OrderTest
         '
         'btnNewOrder
         '
-        Me.btnNewOrder.Location = New System.Drawing.Point(147, 358)
+        Me.btnNewOrder.Location = New System.Drawing.Point(176, 356)
         Me.btnNewOrder.Name = "btnNewOrder"
         Me.btnNewOrder.Size = New System.Drawing.Size(131, 37)
         Me.btnNewOrder.TabIndex = 4
@@ -138,16 +138,16 @@ Partial Class OrderTest
         '
         'btnAddToOrder
         '
-        Me.btnAddToOrder.Location = New System.Drawing.Point(524, 358)
+        Me.btnAddToOrder.Location = New System.Drawing.Point(417, 339)
         Me.btnAddToOrder.Name = "btnAddToOrder"
-        Me.btnAddToOrder.Size = New System.Drawing.Size(131, 37)
+        Me.btnAddToOrder.Size = New System.Drawing.Size(191, 54)
         Me.btnAddToOrder.TabIndex = 168
-        Me.btnAddToOrder.Text = "Legg sykkel med valgt utstyr til bestillingen"
+        Me.btnAddToOrder.Text = "Legg til i bestilling"
         Me.btnAddToOrder.UseVisualStyleBackColor = True
         '
         'btnBackKunde
         '
-        Me.btnBackKunde.Location = New System.Drawing.Point(659, 358)
+        Me.btnBackKunde.Location = New System.Drawing.Point(658, 356)
         Me.btnBackKunde.Name = "btnBackKunde"
         Me.btnBackKunde.Size = New System.Drawing.Size(131, 37)
         Me.btnBackKunde.TabIndex = 167
@@ -205,7 +205,7 @@ Partial Class OrderTest
         Me.grpBxSelectPeriod.Controls.Add(Me.CalendarFrom)
         Me.grpBxSelectPeriod.Location = New System.Drawing.Point(46, 71)
         Me.grpBxSelectPeriod.Name = "grpBxSelectPeriod"
-        Me.grpBxSelectPeriod.Size = New System.Drawing.Size(473, 221)
+        Me.grpBxSelectPeriod.Size = New System.Drawing.Size(496, 221)
         Me.grpBxSelectPeriod.TabIndex = 171
         Me.grpBxSelectPeriod.TabStop = False
         Me.grpBxSelectPeriod.Text = "Velg periode"
@@ -264,7 +264,7 @@ Partial Class OrderTest
         Me.ListBoxOrderOverview.FormattingEnabled = True
         Me.ListBoxOrderOverview.Location = New System.Drawing.Point(754, 30)
         Me.ListBoxOrderOverview.Name = "ListBoxOrderOverview"
-        Me.ListBoxOrderOverview.Size = New System.Drawing.Size(173, 316)
+        Me.ListBoxOrderOverview.Size = New System.Drawing.Size(173, 303)
         Me.ListBoxOrderOverview.TabIndex = 3
         '
         'TabSummary
@@ -309,7 +309,7 @@ Partial Class OrderTest
         '
         'btnNextBestilling
         '
-        Me.btnNextBestilling.Location = New System.Drawing.Point(795, 358)
+        Me.btnNextBestilling.Location = New System.Drawing.Point(796, 356)
         Me.btnNextBestilling.Name = "btnNextBestilling"
         Me.btnNextBestilling.Size = New System.Drawing.Size(131, 37)
         Me.btnNextBestilling.TabIndex = 166
@@ -508,7 +508,7 @@ Partial Class OrderTest
         Me.dgvBicycle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvBicycle.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvBicycle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvBicycle.Location = New System.Drawing.Point(240, 18)
+        Me.dgvBicycle.Location = New System.Drawing.Point(240, 30)
         Me.dgvBicycle.Margin = New System.Windows.Forms.Padding(2)
         Me.dgvBicycle.MultiSelect = False
         Me.dgvBicycle.Name = "dgvBicycle"
@@ -517,7 +517,7 @@ Partial Class OrderTest
         Me.dgvBicycle.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders
         Me.dgvBicycle.RowTemplate.Height = 24
         Me.dgvBicycle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvBicycle.Size = New System.Drawing.Size(415, 325)
+        Me.dgvBicycle.Size = New System.Drawing.Size(415, 304)
         Me.dgvBicycle.TabIndex = 164
         '
         'lblFramenbOrder

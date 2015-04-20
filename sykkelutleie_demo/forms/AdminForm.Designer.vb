@@ -96,7 +96,7 @@ Partial Class AdminForm
         Me.pnlStatistics.Controls.Add(Me.LabelType)
         Me.pnlStatistics.Controls.Add(Me.LabelDispToDate)
         Me.pnlStatistics.Controls.Add(Me.LabelDispAntall)
-        Me.pnlStatistics.Location = New System.Drawing.Point(82, 367)
+        Me.pnlStatistics.Location = New System.Drawing.Point(163, 366)
         Me.pnlStatistics.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlStatistics.Name = "pnlStatistics"
         Me.pnlStatistics.Size = New System.Drawing.Size(190, 116)
@@ -245,9 +245,9 @@ Partial Class AdminForm
         Me.grpBxStatisticsMetaData.Controls.Add(Me.LabelCmbBxType)
         Me.grpBxStatisticsMetaData.Controls.Add(Me.CmbBxType)
         Me.grpBxStatisticsMetaData.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.grpBxStatisticsMetaData.Location = New System.Drawing.Point(12, 247)
+        Me.grpBxStatisticsMetaData.Location = New System.Drawing.Point(52, 247)
         Me.grpBxStatisticsMetaData.Name = "grpBxStatisticsMetaData"
-        Me.grpBxStatisticsMetaData.Size = New System.Drawing.Size(344, 109)
+        Me.grpBxStatisticsMetaData.Size = New System.Drawing.Size(381, 109)
         Me.grpBxStatisticsMetaData.TabIndex = 11
         Me.grpBxStatisticsMetaData.TabStop = False
         Me.grpBxStatisticsMetaData.Text = "Velg data"
@@ -276,7 +276,7 @@ Partial Class AdminForm
         'labelTilSelect
         '
         Me.labelTilSelect.AutoSize = True
-        Me.labelTilSelect.Location = New System.Drawing.Point(186, 20)
+        Me.labelTilSelect.Location = New System.Drawing.Point(233, 19)
         Me.labelTilSelect.Name = "labelTilSelect"
         Me.labelTilSelect.Size = New System.Drawing.Size(18, 13)
         Me.labelTilSelect.TabIndex = 10
@@ -351,9 +351,9 @@ Partial Class AdminForm
         Me.grpBxSelectPeriod.Controls.Add(Me.CalendarTo)
         Me.grpBxSelectPeriod.Controls.Add(Me.labelFraSelect)
         Me.grpBxSelectPeriod.Controls.Add(Me.CalendarFrom)
-        Me.grpBxSelectPeriod.Location = New System.Drawing.Point(12, 20)
+        Me.grpBxSelectPeriod.Location = New System.Drawing.Point(6, 19)
         Me.grpBxSelectPeriod.Name = "grpBxSelectPeriod"
-        Me.grpBxSelectPeriod.Size = New System.Drawing.Size(344, 221)
+        Me.grpBxSelectPeriod.Size = New System.Drawing.Size(475, 221)
         Me.grpBxSelectPeriod.TabIndex = 7
         Me.grpBxSelectPeriod.TabStop = False
         Me.grpBxSelectPeriod.Text = "Velg periode"
@@ -363,7 +363,7 @@ Partial Class AdminForm
         Me.chkBxAllTimeEnd.AutoSize = True
         Me.chkBxAllTimeEnd.Checked = True
         Me.chkBxAllTimeEnd.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkBxAllTimeEnd.Location = New System.Drawing.Point(210, 20)
+        Me.chkBxAllTimeEnd.Location = New System.Drawing.Point(257, 19)
         Me.chkBxAllTimeEnd.Name = "chkBxAllTimeEnd"
         Me.chkBxAllTimeEnd.Size = New System.Drawing.Size(76, 17)
         Me.chkBxAllTimeEnd.TabIndex = 12
@@ -372,7 +372,7 @@ Partial Class AdminForm
         '
         'CalendarTo
         '
-        Me.CalendarTo.Location = New System.Drawing.Point(179, 41)
+        Me.CalendarTo.Location = New System.Drawing.Point(237, 41)
         Me.CalendarTo.Name = "CalendarTo"
         Me.CalendarTo.TabIndex = 9
         '
@@ -387,7 +387,7 @@ Partial Class AdminForm
         '
         'CalendarFrom
         '
-        Me.CalendarFrom.Location = New System.Drawing.Point(12, 41)
+        Me.CalendarFrom.Location = New System.Drawing.Point(6, 41)
         Me.CalendarFrom.Name = "CalendarFrom"
         Me.CalendarFrom.TabIndex = 7
         '
@@ -506,7 +506,7 @@ Partial Class AdminForm
         '
         'BtnEndApplication
         '
-        Me.BtnEndApplication.Location = New System.Drawing.Point(120, 529)
+        Me.BtnEndApplication.Location = New System.Drawing.Point(201, 528)
         Me.BtnEndApplication.Name = "BtnEndApplication"
         Me.BtnEndApplication.Size = New System.Drawing.Size(94, 23)
         Me.BtnEndApplication.TabIndex = 6
@@ -564,7 +564,7 @@ Partial Class AdminForm
         Me.grpbxAdminUserAccount.Controls.Add(Me.cmbbxUsers)
         Me.grpbxAdminUserAccount.Controls.Add(Me.btnAdminCreate)
         Me.grpbxAdminUserAccount.Controls.Add(Me.lblAdminEmployee)
-        Me.grpbxAdminUserAccount.Location = New System.Drawing.Point(10, 110)
+        Me.grpbxAdminUserAccount.Location = New System.Drawing.Point(17, 20)
         Me.grpbxAdminUserAccount.Name = "grpbxAdminUserAccount"
         Me.grpbxAdminUserAccount.Size = New System.Drawing.Size(581, 387)
         Me.grpbxAdminUserAccount.TabIndex = 7
@@ -613,16 +613,16 @@ Partial Class AdminForm
         Me.grpBxStatistic.Controls.Add(Me.BtnEndApplication)
         Me.grpBxStatistic.Controls.Add(Me.btnDisplayStatistics)
         Me.grpBxStatistic.Controls.Add(Me.pnlStatistics)
-        Me.grpBxStatistic.Location = New System.Drawing.Point(626, 20)
+        Me.grpBxStatistic.Location = New System.Drawing.Point(620, 20)
         Me.grpBxStatistic.Name = "grpBxStatistic"
-        Me.grpBxStatistic.Size = New System.Drawing.Size(362, 566)
+        Me.grpBxStatistic.Size = New System.Drawing.Size(487, 566)
         Me.grpBxStatistic.TabIndex = 6
         Me.grpBxStatistic.TabStop = False
         Me.grpBxStatistic.Text = "Statistikk"
         '
         'btnDisplayStatistics
         '
-        Me.btnDisplayStatistics.Location = New System.Drawing.Point(120, 500)
+        Me.btnDisplayStatistics.Location = New System.Drawing.Point(201, 499)
         Me.btnDisplayStatistics.Name = "btnDisplayStatistics"
         Me.btnDisplayStatistics.Size = New System.Drawing.Size(94, 23)
         Me.btnDisplayStatistics.TabIndex = 0
@@ -631,7 +631,7 @@ Partial Class AdminForm
         '
         'btnEmployeeTestOpen
         '
-        Me.btnEmployeeTestOpen.Location = New System.Drawing.Point(25, 20)
+        Me.btnEmployeeTestOpen.Location = New System.Drawing.Point(17, 504)
         Me.btnEmployeeTestOpen.Name = "btnEmployeeTestOpen"
         Me.btnEmployeeTestOpen.Size = New System.Drawing.Size(101, 53)
         Me.btnEmployeeTestOpen.TabIndex = 8
@@ -642,7 +642,7 @@ Partial Class AdminForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1017, 603)
+        Me.ClientSize = New System.Drawing.Size(1119, 603)
         Me.Controls.Add(Me.btnEmployeeTestOpen)
         Me.Controls.Add(Me.grpbxAdminUserAccount)
         Me.Controls.Add(Me.grpBxStatistic)

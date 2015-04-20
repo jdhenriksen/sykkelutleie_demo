@@ -92,7 +92,7 @@ Public Class StorageWorker
             ElseIf result = DialogResult.No Then
                 MessageBox.Show("Det ble ikke bestilt via mail")
             ElseIf result = DialogResult.Yes Then
-                MailTest.Show()
+                Mail.Show()
             End If
         End If
         updateComboboxes()

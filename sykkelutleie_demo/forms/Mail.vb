@@ -1,4 +1,4 @@
-﻿Public Class MailTest
+﻿Public Class Mail
     Dim password As String
     Dim address As String
 
