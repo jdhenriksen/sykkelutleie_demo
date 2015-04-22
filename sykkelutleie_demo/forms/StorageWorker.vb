@@ -165,6 +165,7 @@ Public Class StorageWorker
         btnEqipReset_Click(sender, e)
         btnEqipSearch_Click(sender, e)
         objectupdate()
+
         table = equipment.getEquipmentGroupByType()
         result = MsgBox("Vil du endre modell med navn: " & model.getModel() & "?", MsgBoxStyle.YesNo)
 
@@ -176,7 +177,7 @@ Public Class StorageWorker
                 If (chkstate = CheckState.Checked) Then
                     equipment.createCompatibility(model.getModel, table.Rows(i)("type").ToString)
                 Else
-                    equipment.removeCompatibility(model.getModel, table.Rows(i)("varenr").ToString())
+                    equipment.removeCompatibility(model.getModel, table.Rows(i)("type").ToString())
                 End If
             Next
 

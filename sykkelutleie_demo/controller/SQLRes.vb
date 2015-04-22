@@ -92,7 +92,7 @@ Public Class SQLRes
     Public Const sqlGetEquipmentID As String = "SELECT varenr, pris FROM tilleggsutstyr WHERE type = @type AND status = 'På lager' AND under_bestilling=0;"
     Public Const sqlGetEquipmentIDDuringOrder As String = "SELECT varenr FROM tilleggsutstyr WHERE type = @type AND under_bestilling = '1';"
     Public Const sqlGetTypeFromID As String = "SELECT type FROM tilleggsutstyr WHERE varenr = @id;"
-    Public Const sqlRemoveCompatibility As String = "DELETE FROM kompatibel WHERE varenr = @id AND modell = @model;"
+    Public Const sqlRemoveCompatibility As String = "DELETE FROM kompatibel WHERE varenr = @rowVal AND modell = @model;"
     Public Const sqlCompatibleEquipment As String = "SELECT tilleggsutstyr.type, tilleggsutstyr.varenr FROM tilleggsutstyr JOIN kompatibel ON kompatibel.varenr=tilleggsutstyr.varenr WHERE modell = @model AND tilleggsutstyr.status = 'På lager' AND under_bestilling=0 GROUP BY type;"
     Public Const sqlSetEquipmentUnderOrder As String = "UPDATE  `tilleggsutstyr` SET  `under_bestilling` =  '1' WHERE  `tilleggsutstyr`.`varenr` = @id;"
     Public Const sqlSetEquipmentNotUnderOrder As String = "UPDATE  `tilleggsutstyr` SET  `under_bestilling` =  '0' WHERE  `tilleggsutstyr`.`varenr` = @id;"

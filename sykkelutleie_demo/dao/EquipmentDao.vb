@@ -153,13 +153,24 @@ Public Class EquipmentDao
     ''' Fjerner kompatibilitet mellom tilleggsutstyr og modell.
     ''' </summary>
     ''' <param name="model">Modellnavn.</param>
-    ''' <param name="id">Varenummer.</param>
+    ''' <param name="type">Varenummer.</param>
     ''' <remarks>Fjerner rad i kompatibel-tabellen som stemmer overens
     ''' med gitt varenummer og modellnavn.</remarks>
-    Public Sub removeCompatibility(model As String, id As String)
-        dbutil.addParametersToQuery("@model", model)
-        dbutil.addParametersToQuery("@id", id)
-        dbutil.query(SQLRes.sqlRemoveCompatibility)
+    Public Sub removeCompatibility(model As String, type As String)
+        dbutil.addParametersToQuery("@type", type)
+        table = dbutil.query(SQLRes.sqlSelectEquipmentIDOnType)
+
+        For Each row As DataRow In table.Rows
+            Dim rowVal As String = row("varenr")
+            dbutil.addParametersToQuery("@rowVal", rowVal)
+            dbutil.addParametersToQuery("@model", model)
+            dbutil.query(SQLRes.sqlRemoveCompatibility)
+
+        Next
+
+        '  dbutil.addParametersToQuery("@model", model)
+        '  dbutil.addParametersToQuery("@id", id)
+        '  dbutil.query(SQLRes.sqlRemoveCompatibility)
     End Sub
 
     ''' <summary>
